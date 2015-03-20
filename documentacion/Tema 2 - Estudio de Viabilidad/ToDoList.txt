@@ -1,8 +1,8 @@
-calendario
+calendario - DONE
 solapar UML 
 codificacion - pruebas
 manual de usuario
-revisar fechas 
-estudi viabilidad estimacio <- LDC pesimitas, optimistas, estimada
+revisar fechas - DONE
+estudi viabilidad estimacio <- LDC pesimitas, optimistas, estimada - DONE
 añadir las cosas que faltan del ods
 media de estimaciones
