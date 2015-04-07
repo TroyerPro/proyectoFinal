@@ -1,0 +1,21 @@
+THINGS-TO-DO:
+
+Nota apartado empresa: 6
+Tenemos hasta el 30/04/15 para entregarselo "corregido"
+
+1. Empresa: ha d'incloure nom, logo, eslògan, organigrama i els recursos humans amb les funcions de cada departament.
+		-Falta: trabajar más los conceptos.
+2. Obligacions: Fiscals i laborals de constitució de l'empresa, conveni col·lectiu aplicable i aplicació de prevenció de riscos.
+		-Comentario del anacleishon: El convenio colectivo a aplicar es el de Sociedades cooperativas de credito?
+			Riesgos laborales poco trabajado. Obligaciones de constitución ok pero no de funcionamiento.
+3. Estudi de mercat del producte: entorn, clients potencials i competència.
+		-HECHO (ya corregido)
+4. Idea del producte: descripció del producte, justificació i public objectiu.
+		-Comentario del anacleishon: No definen publico objetivo: ERROR.
+			(Da fack. Clientes != Público objetivo ???)
+5. LOPD, com afecta i s'aplicarà al producte.
+		-Comentario del anacleishon: OK.
+		HECHO
+6. Definició dels recursos materials i personals per a realitzar el projecte així com els económics (pressupost, necessitats de finançament per a la posada en marxa i subvencions locals, autonòmiques, nacionals, europees ...).
+		-Comentario del anacleishon: Poco nivel de detalle. Ni mirar el tema subvenciones.
+			(Vamos, que el pesao quiere más detallitos y que le pongamos lo que digan las subvenciones en vez de linkearlas)
