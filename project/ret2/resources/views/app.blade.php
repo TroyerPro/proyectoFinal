@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@section('title') Laravel 5 Sample Site @show</title>
-    @section('meta_keywords')
+    <title>@section('RET') RET @show</title>
+    @section('RET')
         <meta name="keywords" content="your, awesome, keywords, here"/>
     @show @section('meta_author')
-        <meta name="author" content="Jon Doe"/>
-    @show @section('meta_description')
+        <meta name="author" content="RET"/>
+    @show @section('RET')
         <meta name="description"
               content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei."/>
     @show

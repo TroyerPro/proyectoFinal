@@ -20,6 +20,7 @@ Route::pattern('id', '[0-9]+');
 Route::get('news/{id}', 'ArticlesController@show');
 Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
+Route::get('prueba', 'Pocoyo@show');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
