@@ -21,6 +21,7 @@ Route::get('news/{id}', 'ArticlesController@show');
 Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
 Route::get('prueba', 'Pocoyo@show');
+Route::get('subasta', 'Subasta@show');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
