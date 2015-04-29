@@ -11,7 +11,7 @@
         {{--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">--}}
         <div class="col-sm-9 col-md-10 main">
           @yield('main')
-        sadasd
+          asdasd
         </div>
     </div>
 @endsection
