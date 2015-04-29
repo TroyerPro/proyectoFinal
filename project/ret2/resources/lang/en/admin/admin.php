@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'settings' => 'Settings',
+	'settings' => 'Opciones',
 	'homepage' => 'View Homepage',
 	'home' => 'Home',
 	'welcome' => 'Welcome',

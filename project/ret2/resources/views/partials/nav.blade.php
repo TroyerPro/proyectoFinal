@@ -14,22 +14,22 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="{{ (Request::is('/') ? 'active' : '') }}">
-                    <a href="{!! URL::to('') !!}"><i class="fa fa-home"></i> Home</a>
+                    <a href="{!! URL::to('') !!}"><i class="fa fa-home"></i> Inicio</a>
                 </li>
                 <li class="{{ (Request::is('about') ? 'active' : '') }}">
-                    <a href="{!! URL::to('about') !!}">About</a>
+                    <a href="{!! URL::to('about') !!}">Acerca de nosotros</a>
                 </li>
                 <li class="{{ (Request::is('contact') ? 'active' : '') }}">
-                    <a href="{!! URL::to('contact') !!}">Contact</a>
+                    <a href="{!! URL::to('contact') !!}">Contacto</a>
                 </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{!! URL::to('auth/login') !!}"><i
-                                    class="fa fa-sign-in"></i> Login</a></li>
+                                    class="fa fa-sign-in"></i> Entrar</a></li>
                     <li class="{{ (Request::is('auth/register') ? 'active' : '') }}"><a
-                                href="{!! URL::to('auth/register') !!}">Register</a></li>
+                                href="{!! URL::to('auth/register') !!}">Registro</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
