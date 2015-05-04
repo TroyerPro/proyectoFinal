@@ -13,7 +13,7 @@ class ArticlesController extends Controller {
 	{
 		// Get all the blog posts
 		$news = Article::find($id);
-
+ 		//dd($news);
 		return view('news.view_news', compact('news'));
 	}
 
