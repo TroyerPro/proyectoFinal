@@ -5,7 +5,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     #Admin Dashboard
     Route::get('dashboard', 'Admin\DashboardController@index');
-    
+
     #Language
     Route::get('language', 'Admin\LanguageController@index');
     Route::get('language/create', 'Admin\LanguageController@getCreate');
@@ -98,5 +98,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::post('users/{id}/delete', 'Admin\UserController@postDelete');
     Route::get('users/data', 'Admin\UserController@data');
 
+    #Cosas añadidas
+    Route::get('crear/categoria', 'CreateCategory@show');
+    Route::get('site/config', 'SiteConfig@show'); //Hecho
+    Route::get('estadisticas','ViewStats@show');
 
 });

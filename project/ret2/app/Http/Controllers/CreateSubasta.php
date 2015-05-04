@@ -9,7 +9,7 @@ class CreateSubasta extends Controller {
 
 	public function show() //falta $id
 	{
-		return view('subasta.createsubasta');
+		return view('subasta.create');
 	}
 
 }
