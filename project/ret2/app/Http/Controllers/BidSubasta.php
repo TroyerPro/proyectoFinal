@@ -1,15 +1,15 @@
 <?php namespace App\Http\Controllers;
 
-class Pocoyo extends Controller {
+class BidSubasta extends Controller {
 
 	public function __construct()
 	{
 		$this->middleware('auth', [ 'except' => [ 'index', 'show' ] ]);
 	}
 
-	public function show()
+	public function show() //falta $id
 	{
-		return view('pocoyo.pocoyo');
+		return view('subasta.bidsubasta');
 	}
 
 }

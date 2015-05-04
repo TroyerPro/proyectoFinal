@@ -24,18 +24,30 @@
       <div class="col-xs-1 side_space" ></div>
       <div class="col-xs-5 top_space" >
         <div class="col-xs-12 mid_row"></div>
-        Noticias
+          <h2 class="text-center">Noticias</h2>
+        <div class="col-xs-4">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt...
+        </div>
+        <div class="col-xs-4">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt...
+        </div>
+        <div class="col-xs-4">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt...
+        </div>
       </div>
       <div class="col-xs-6">
         <div class="col-xs-12 mid_row" ></div>
         <div class="col-xs-12" class="small_row">
-          Top ten
+          <h2 class="text-center">Top 10 Productos (o categorias)</h2>
         </div>
         <div class="col-xs-12" class="small_row">
-          produ1
+          iPhone5
         </div>
         <div class="col-xs-12" class="small_row">
-          produ2
+          Android
         </div>
         <div class="col-xs-12" class="small_row">
           produ3

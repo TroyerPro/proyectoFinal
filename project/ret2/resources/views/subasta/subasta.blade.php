@@ -30,6 +30,7 @@
             </div>
             <div class="col-xs-4">
               Hora ultima puja: DAY/MONTH/YEAR
+              <br/>NOTA: Falta el botón cerrar puja si es el usuario que la ha creado
             </div>
          </div>
          <div class="col-xs-6 under_panel">
