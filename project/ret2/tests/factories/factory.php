@@ -71,4 +71,10 @@ $factory('App\Video', [
     'user_id' => $faker->numberBetween(1,3)
 ]);
 
+$factory('App\Categoria', [
+    'nombre' => $faker->name,
+    'descripcion' => $faker->name,
+
+]);
+
 //image($dir = '/tmp', $width = 640, $height = 480)
