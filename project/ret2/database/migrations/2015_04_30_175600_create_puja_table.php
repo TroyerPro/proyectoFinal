@@ -13,15 +13,15 @@ class CreatePujaTable extends Migration
      */
     public function up()
     {
-        Schema::create('puja', function (Blueprint $table) {
+        Schema::create('pujas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->float('cantidad');
             $table->date('fecha');
             $table->unsignedInteger('id_subasta')->nullable();
-            $table->foreign('id_subasta')->references('id')->on('subasta');
+            $table->foreign('id_subasta')->references('id')->on('subastas');
             $table->unsignedInteger('id_usuario')->nullable();
-            $table->foreign('id_usuario')->references('id')->on('usuario');
+            $table->foreign('id_usuario')->references('id')->on('usuarios');
             $table->boolean('puja_auto',false);
             $table->timestamps();
         });
@@ -34,7 +34,7 @@ class CreatePujaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('puja');
+        Schema::drop('pujas');
     }
 
 }

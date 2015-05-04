@@ -13,15 +13,15 @@ class CreateSubastaTable extends Migration
      */
     public function up()
     {
-        Schema::create('subasta', function (Blueprint $table) {
+        Schema::create('subastas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('id_user_vendedor')->nullable();
-            $table->foreign('id_user_vendedor')->references('id')->on('usuario');
+            $table->foreign('id_user_vendedor')->references('id')->on('usuarios');
             $table->unsignedInteger('id_factura')->nullable();
-            $table->foreign('id_factura')->references('id')->on('factura');
+            $table->foreign('id_factura')->references('id')->on('facturas');
             $table->unsignedInteger('id_categoria')->nullable();
-            $table->foreign('id_categoria')->references('id')->on('categoria');
+            $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->string('nombre');
             $table->string('descripcion');
             $table->date('fecha_final');
@@ -43,7 +43,7 @@ class CreateSubastaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('subasta');
+        Schema::drop('subastas');
     }
 
 }

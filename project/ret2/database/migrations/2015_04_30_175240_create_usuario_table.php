@@ -13,7 +13,7 @@ class CreateUsuarioTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('nombre');
@@ -25,7 +25,7 @@ class CreateUsuarioTable extends Migration
             $table->float('ratingvendedor')->nullable();
             $table->boolean('admin')->default(false);
             $table->unsignedInteger('empresa_id')->nullable();
-            $table->foreign('empresa_id')->references('id')->on('empresa');
+            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->timestamps();
         });
     }
@@ -37,7 +37,7 @@ class CreateUsuarioTable extends Migration
      */
     public function down()
     {
-        Schema::drop('usuario');
+        Schema::drop('usuarios');
     }
 
 }

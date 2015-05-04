@@ -13,7 +13,7 @@ class CreateEmpresaTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('empresa', function (Blueprint $table) {
+		Schema::create('empresas', function (Blueprint $table) {
 			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->string('nombre')->nullable();
@@ -31,7 +31,7 @@ class CreateEmpresaTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('empresa');
+		Schema::drop('empresas');
 	}
 
 }

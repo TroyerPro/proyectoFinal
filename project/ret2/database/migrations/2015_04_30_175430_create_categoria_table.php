@@ -13,7 +13,7 @@ class CreateCategoriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoria', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('nombre')->nullable();
@@ -29,7 +29,7 @@ class CreateCategoriaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categoria');
+        Schema::drop('categorias');
     }
 
 }

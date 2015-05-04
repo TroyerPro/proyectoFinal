@@ -13,15 +13,15 @@ class CreateConfpujaautoTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('pujaauto', function (Blueprint $table) {
+		Schema::create('pujaautos', function (Blueprint $table) {
 			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->float('max_puja')->nullable();
 			$table->float('incrementar')->nullable();
 			$table->unsignedInteger('id_usuario')->nullable();
-			$table->foreign('id_usuario')->references('id')->on('usuario');
+			$table->foreign('id_usuario')->references('id')->on('usuarios');
 			$table->unsignedInteger('id_puja')->nullable();
-			$table->foreign('id_puja')->references('id')->on('puja');
+			$table->foreign('id_puja')->references('id')->on('pujas');
 			$table->timestamps();
 		});
 	}
@@ -33,7 +33,7 @@ class CreateConfpujaautoTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('pujaauto');
+		Schema::drop('pujaautos');
 	}
 
 }

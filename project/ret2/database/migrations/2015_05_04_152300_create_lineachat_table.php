@@ -13,13 +13,13 @@ class CreateLineachatTable extends Migration
      */
     public function up()
     {
-        Schema::create('lineachat', function (Blueprint $table) {
+        Schema::create('lineachats', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->date('fecha');
             $table->string('text');
             $table->unsignedInteger('id_chat')->nullable();
-            $table->foreign('id_chat')->references('id')->on('chat');
+            $table->foreign('id_chat')->references('id')->on('chats');
             $table->timestamps();
         });
     }
@@ -31,7 +31,7 @@ class CreateLineachatTable extends Migration
      */
     public function down()
     {
-        Schema::drop('lineachat');
+        Schema::drop('lineachats');
     }
 
 }
