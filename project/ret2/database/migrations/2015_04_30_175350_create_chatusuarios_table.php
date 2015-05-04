@@ -20,8 +20,6 @@ class CreateChatusuariosTable extends Migration
             $table->foreign('id_user1')->references('id')->on('usuario');
             $table->unsignedInteger('id_user2')->nullable();
             $table->foreign('id_user2')->references('id')->on('usuario');
-            $table->string('texto');
-            $table->date('fecha')->nullable();
             $table->timestamps();
         });
     }

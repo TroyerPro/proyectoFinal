@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacturaTable extends Migration
+class CreateLineachatTable extends Migration
 {
 
     /**
@@ -13,13 +13,13 @@ class CreateFacturaTable extends Migration
      */
     public function up()
     {
-        Schema::create('factura', function (Blueprint $table) {
+        Schema::create('lineachat', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->date('fecha');
-            $table->float('precio');
-            $table->unsignedInteger('id_usuario')->nullable();
-            $table->foreign('id_usuario')->references('id')->on('usuario');
+            $table->string('text');
+            $table->unsignedInteger('id_chat')->nullable();
+            $table->foreign('id_chat')->references('id')->on('chat');
             $table->timestamps();
         });
     }
@@ -31,7 +31,7 @@ class CreateFacturaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('factura');
+        Schema::drop('lineachat');
     }
 
 }
