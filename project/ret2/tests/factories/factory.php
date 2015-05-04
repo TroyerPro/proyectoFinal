@@ -73,8 +73,45 @@ $factory('App\Video', [
 
 $factory('App\Categoria', [
     'nombre' => $faker->name,
-    'descripcion' => $faker->name,
-
+    'descripcion' => $faker->paragraph,
 ]);
+
+$factory('App\Subasta', [
+    'nombre' => $faker->name,
+    'descripcion' => $faker->paragraph,
+    'fecha_final' => $faker->dateTime(),
+    'fecha_inicio'=> $faker->dateTime(),
+    'fecha_prorroga'=> $faker->dateTime(),
+    'precio_inicial' => $faker->numberBetween(1,3),
+    'precio_actual' => $faker->numberBetween(20,30),
+    'imagen' => $faker->image($dir = public_path().'/appfiles/photoalbum', $width = 320, $height = 240),
+    'puja_ganadora' => $faker->numberBetween(20,30),
+    'id_categoria' => $faker->numberBetween(1,3),
+    'id_user_vendedor' => $faker->numberBetween(1,3),
+    'id_categoria' => $faker->numberBetween(1,3),
+]);
+
+  $factory('App\Empresa', [
+    'nombre' => $faker->name,
+    'direccion' => $faker->name,
+    'precio_prorroga' => $faker->numberBetween(10000000,3000000000000),
+    'dias_subasta_gratis'=> $faker->numberBetween(1,2),
+  ]);
+  $factory('App\Chatusuarios', [
+      'id_user1' => $faker->numberBetween(1,2),
+      'id_user2' => $faker->numberBetween(4,5),
+  ]);
+
+  $factory('App\Usuario', [
+      'nombre' => $faker->name,
+      'apellidos' => $faker->name,
+      'username' => $faker->unique()->userName,
+      'email' => $faker->email,
+      'password' => $faker->word,
+      'ratingcomprador' => $faker->numberBetween(1,3),
+      'ratingvendedor' => $faker->numberBetween(1,3),
+      'admin' => $faker->boolean(50),
+    //  'empresa_id'$faker->numberBetween(1,2),
+  ]);
 
 //image($dir = '/tmp', $width = 640, $height = 480)
