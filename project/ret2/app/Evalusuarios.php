@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evalusuarios extends Model {
 
+	protected $fillable = [ 'comentario', 'fecha'];
 	//
 
 	public function usuario()

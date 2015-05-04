@@ -4,7 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model {
 
+	protected $fillable = [ 'nombre', 'apellidos', 'username', 'email', 'password' ,'ratingcomprador','ratingvendedor','admin' ];
 	//
+
 	public function empresa()
 	    {
 	        return $this->belongsTo('App\Empresa');

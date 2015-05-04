@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Factura extends Model {
 
+	protected $fillable = [ 'fecha', 'precio'];
 	//
 
 	public function usuario()

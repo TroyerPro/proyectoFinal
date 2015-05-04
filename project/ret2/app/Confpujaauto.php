@@ -4,7 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Confpujaauto extends Model {
 
+	protected $fillable = [ 'max_puja', 'incrementar'];
 	//
+
 
 	public function usuario()
 			{

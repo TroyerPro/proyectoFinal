@@ -4,7 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subasta extends Model {
 
+	protected $fillable = [ 'nombre', 'descripcion', 'fecha_final', 'fecha_inicio', 'fecha_prorroga' ,'precio_inicial','precio_actual','imagen','puja_ganadora' ];
 	//
+
 	public function usuario()
 			{
 					return $this->belongsTo('App\Usuario');
