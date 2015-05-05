@@ -27,6 +27,13 @@ Route::get('perfil','ProfileUser@show'); //ID
 Route::get('modificarperfil','ModifyProfile@show'); //ID?
 Route::get('factura','GenerateFactura@show');
 
+//######################################################################
+//                         Test Adri
+//######################################################################
+Route::get('testbd/{id}','Testbd@show');
+//######################################################################
+
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
