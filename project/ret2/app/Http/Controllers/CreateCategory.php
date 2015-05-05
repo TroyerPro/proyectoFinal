@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
-use App\Categiria;
+
+use App\Categoria;
+
 class CreateCategory extends Controller {
 
 	public function __construct()
@@ -16,9 +18,10 @@ class CreateCategory extends Controller {
 	{
 		$nombre = $_POST['nomcat'];
 		$descripcion = $_POST['desc'];
+		$categoria = array($nombre,$descripcion);
 		$cat = Categoria::create(array('nombre' => $nombre,'descripcion' => $descripcion));
 		$cat->save();
-		return view('admin.createcategoria');
+		return view('admin.createcategoria',compact('categoria'));
 	}
 
 }

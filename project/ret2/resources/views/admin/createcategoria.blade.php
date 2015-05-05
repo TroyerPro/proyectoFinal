@@ -12,6 +12,17 @@
         {{--<div class="panel panel-default">--}}
           {{--<div class="panel-heading">Subasta</div>--}}
           {{--<div class="panel-body">--}}
+            @if($categoria)
+                <div class="alert alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <strong>¡Nueva categoría creada!</strong>
+                    <br><br>
+                    <ul>
+                      <li>Nombre: {{ $categoria[0] }}</li>
+                      <li>Descripción: {{ $categoria[1] }}</li>
+                    </ul>
+                </div>
+            @endif
           <div class="col-xs-12 main">
             @yield('main')
             <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('/admin/crear/categoria') !!}">                <input type="hidden" name="_token" value="{{ csrf_token() }}">
