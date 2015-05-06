@@ -1,6 +1,8 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Subasta;
 
-class CreateSubasta extends Controller {
+use App\Http\Controllers\Controller;
+
+class View extends Controller {
 
 	public function __construct()
 	{
@@ -9,7 +11,7 @@ class CreateSubasta extends Controller {
 
 	public function show() //falta $id
 	{
-		return view('subasta.create');
+		return view('subasta.view');
 	}
 
 }

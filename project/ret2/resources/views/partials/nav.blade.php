@@ -41,6 +41,10 @@
                                     <li>
                                         <a href="{!! URL::to('admin/dashboard') !!}"><i class="fa fa-tachometer"></i> Dashboard</a>
                                     </li>
+                                @else
+                                  <li>
+                                      <a href="{!! URL::to('user/dashboard') !!}"><i class="fa fa-tachometer"></i>Panel control Usuario</a>
+                                  </li>
                                 @endif
                                 <li role="presentation" class="divider"></li>
                             @endif

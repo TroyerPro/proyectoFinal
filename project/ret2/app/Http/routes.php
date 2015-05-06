@@ -20,12 +20,9 @@ Route::pattern('id', '[0-9]+');
 Route::get('news/{id}', 'ArticlesController@show');
 Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
-Route::get('subasta/view/{id}', 'ViewSubasta@show'); //Hecho //Cambiar para poner id en la URL!!! <----
-Route::get('subasta/create', 'CreateSubasta@show'); //Hecho
+Route::get('subasta/view/{id}', 'Subasta\View@show'); //Hecho //Cambiar para poner id en la URL!!! <----
 Route::get('search','Search@show');
-Route::get('perfil','ProfileUser@show'); //ID
-Route::get('modificarperfil','ModifyProfile@show'); //ID?
-Route::get('factura','GenerateFactura@show');
+Route::get('perfil/view/{id}','ProfileUser@show'); //ID
 
 //######################################################################
 //                         Test Adri
@@ -42,4 +39,9 @@ Route::controllers([
 if (Request::is('admin/*'))
 {
     require __DIR__.'/admin_routes.php';
+}
+
+if (Request::is('user/*'))
+{
+    require __DIR__.'/user_routes.php';
 }
