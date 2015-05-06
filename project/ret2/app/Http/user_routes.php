@@ -109,6 +109,11 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('subastas/reorder', 'User\SubastaController@getReorder');
     Route::get('subasta/create', 'User\SubastaController@getCreate');
     Route::post('subasta/create', 'User\SubastaController@postCreate');
+    Route::get('subasta/{id}','User\SubastaController@viewSubasta'); //id en la function del controller
+    Route::get('subasta/{id}/prorrogar','User\SubastaController@getProrrogar'); //id en la function del controller
+    Route::post('subasta/{id}/prorrogar','User\SubastaController@postProrrogar'); //Falta implementarlo
+    Route::get('subasta/{id}/cerrar','User\SubastaController@getCerrar'); //id en la function del controller
+    Route::post('subasta/{id}/cerrar', 'User\SubastaController@postCerrar'); //Implementar
 
     //Route::get('subasta/crear','Subasta@funcion'); // --> No está implementado aún el controller. Falta uno general de subasta
     //Route::get('subasta/prorrogar','Subasta@funcion');
