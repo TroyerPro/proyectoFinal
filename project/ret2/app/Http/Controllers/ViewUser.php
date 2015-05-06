@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class ViewProfile extends Controller {
+class ViewUser extends Controller {
 
 	public function __construct()
 	{

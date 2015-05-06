@@ -20,10 +20,10 @@ Route::pattern('id', '[0-9]+');
 Route::get('news/{id}', 'ArticlesController@show');
 Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
-Route::get('subasta/view/{id}', 'Subasta\View@show'); //Hecho //Cambiar para poner id en la URL!!! <----
-Route::get('search/user','Search\User@show');
-Route::get('search/subasta','Search\Subasta@show');
-Route::get('perfil/view/{id}','ViewProfile@show'); //ID
+Route::get('subasta/view/{id}', 'Subasta\View@show');
+Route::get('search/user','Search\UserSearch@show');
+Route::get('search/subasta','Search\SubastaSearch@show');
+Route::get('perfil/view/{id}','ViewUser@show');
 
 
 //######################################################################
