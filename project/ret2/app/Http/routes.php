@@ -23,6 +23,7 @@ Route::get('photo/{id}', 'PhotoController@show');
 Route::get('subasta/view/{id}', 'Subasta\View@show');
 Route::get('search/user','Search\UserSearch@show');
 Route::get('search/subasta','Search\SubastaSearch@show');
+Route::get('search/subasta/data','Search\SubastaSearch@data');
 Route::get('perfil/view/{id}','ViewUser@show');
 
 
