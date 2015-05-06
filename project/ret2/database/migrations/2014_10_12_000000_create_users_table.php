@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
+            $table->string('surname');
             $table->string('username')->unique(); // used for slug.
             $table->string('nif');
             $table->string('email')->unique();

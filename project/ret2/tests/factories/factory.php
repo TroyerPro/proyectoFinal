@@ -5,9 +5,14 @@ $faker->seed(1234); // manage image library
 
 $factory('App\User', [
     'name' => $faker->name,
+    'surname' => $faker->name,
+    'nif' => $faker->numberBetween(000000000,999999999),
     'username' => $faker->unique()->userName,
     'email' => $faker->email,
     'password' => $faker->word,
+    'ratingcomprador' => $faker->numberBetween(1,3),
+    'ratingvendedor' => $faker->numberBetween(1,3),
+    'admin' => $faker->boolean(50),
     'confirmed' => $faker->boolean(50),
     'confirmation_code' => md5(microtime() . env('APP_KEY')),
 ]);
@@ -98,7 +103,7 @@ $factory('App\Subasta', [
     'dias_subasta_gratis'=> $faker->numberBetween(1,2),
   ]);
 
-  $factory('App\Usuario', [
+  /*$factory('App\Usuario', [
       'nombre' => $faker->name,
       'apellidos' => $faker->name,
       'username' => $faker->unique()->userName,
@@ -108,7 +113,8 @@ $factory('App\Subasta', [
       'ratingvendedor' => $faker->numberBetween(1,3),
       'admin' => $faker->boolean(50),
     //  'empresa_id'$faker->numberBetween(1,2),
-  ]);
+  ]);*/
+
   $factory('App\Chatusuarios', [
       'id_user1' => $faker->numberBetween(1,3),
       'id_user2' => $faker->numberBetween(4,5),
