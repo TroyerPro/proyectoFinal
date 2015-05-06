@@ -20,7 +20,7 @@ class SubastaController extends UserController {
     public function index()
     {
         // Show the page
-        return view('admin.news.index');
+        return view('user.subasta.index');
     }
 
     /**
