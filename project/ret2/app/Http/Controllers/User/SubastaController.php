@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Subasta;
+use App\Categoria;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Http\Requests\Admin\DeleteRequest;
@@ -29,12 +30,15 @@ class SubastaController extends UserController {
      */
     public function getCreate()
     {
-        $languages = Language::all();
-        $language = "";
-		    $newscategories = ArticleCategory::all();
-		    $newscategory = "";
+        $nombre = "";
+        $descripcion = "";
+		    $categoria = Categoria::all();
+		    $precio_inicial = "";
+        $imagen = "";
+        $metodo = "";
+
         // Show the page
-        return view('admin.news.create_edit', compact('languages', 'language','newscategories','newscategory'));
+        return view('user.subasta.create', compact('nombre', 'descripcion','categoria','precio_inicial','imagen','metodo'));
     }
 
     /**
