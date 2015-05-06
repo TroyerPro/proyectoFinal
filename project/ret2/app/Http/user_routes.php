@@ -100,5 +100,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
 
     #Cosas añadidas
     Route::get('perfil/modificar','ModifyProfile@show');
+    //Route::get('perfil', '');
+    //Route::get('subasta/crear','Subasta'); --> No está implementado aún el controller
 
 });

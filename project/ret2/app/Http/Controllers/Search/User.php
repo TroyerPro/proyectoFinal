@@ -1,6 +1,8 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Search;
 
-class ProfileUser extends Controller {
+use App\Http\Controllers\Controller;
+
+class SearchUser extends Controller {
 
 	public function __construct()
 	{
@@ -9,7 +11,7 @@ class ProfileUser extends Controller {
 
 	public function show() //falta $id
 	{
-		return view('auth.config.profile');
+		return view('user.search');
 	}
 
 }

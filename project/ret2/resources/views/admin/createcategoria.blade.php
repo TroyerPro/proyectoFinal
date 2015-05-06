@@ -18,15 +18,17 @@
                     <strong>¡Nueva categoría creada!</strong>
                     <br><br>
                     <ul>
-                      <li>Nombre: {{ $categoria[0] }}</li>
-                      <li>Descripción: {{ $categoria[1] }}</li>
+                      <li>Nombre: $categoria[0]</li>
+                      <li>Descripción: $categoria[1]</li>
                     </ul>
                 </div>
-            @endif
+                @endif
           <div class="col-xs-12 main">
             @yield('main')
-            <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('/admin/crear/categoria') !!}">                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+             <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('/admin/crear/categoria') !!}">  
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+            <form class="form-horizontal" role="form" method="POST" action="">
                 <div class="form-group">
                     <label class="col-md-4 control-label">Nombre Categoria</label>
 

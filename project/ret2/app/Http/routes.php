@@ -21,8 +21,10 @@ Route::get('news/{id}', 'ArticlesController@show');
 Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
 Route::get('subasta/view/{id}', 'Subasta\View@show'); //Hecho //Cambiar para poner id en la URL!!! <----
-Route::get('search','Search@show');
-Route::get('perfil/view/{id}','ProfileUser@show'); //ID
+Route::get('search/user','Search\User@show');
+Route::get('search/subasta','Search\Subasta@show');
+Route::get('perfil/view/{id}','ViewProfile@show'); //ID
+
 
 //######################################################################
 //                         Test Adri

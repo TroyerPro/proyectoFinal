@@ -1,6 +1,8 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Search;
 
-class Search extends Controller {
+use App\Http\Controllers\Controller;
+
+class SearchSubasta extends Controller {
 
 	public function __construct()
 	{
