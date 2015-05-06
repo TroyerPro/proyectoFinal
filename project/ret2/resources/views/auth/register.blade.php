@@ -24,6 +24,14 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="form-group">
+                                <label class="col-md-4 control-label">{{{ trans('site/user.nif') }}}</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="nif" value="{{ old('nif') }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-md-4 control-label">{{{ trans('site/user.name') }}}</label>
 
                                 <div class="col-md-6">
@@ -32,11 +40,34 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Username</label>
+                                <label class="col-md-4 control-label">{{{ trans('site/user.surnames') }}}</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="username"
-                                           value="{{ old('username') }}">
+                                    <input type="text" class="form-control" name="surnames" value="{{ old('surnames') }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{{ trans('site/user.birth_date') }}}</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="birthdate" value="{{ old('birthdate') }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{{ trans('site/user.city') }}}</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="city" value="{{ old('city') }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{{ trans('site/user.image') }}}</label>
+
+                                <div class="col-md-6">
+                                    <input type="file">
                                 </div>
                             </div>
 
@@ -49,7 +80,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Password</label>
+                                <label class="col-md-4 control-label">{{{ trans('site/user.password') }}}</label>
 
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password">
@@ -57,10 +88,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Confirm Password</label>
+                                <label class="col-md-4 control-label">{{{ trans('site/user.password_confirmation') }}}</label>
 
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password_confirmation">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{{ trans('site/user.present') }}}</label>
+
+                                <div class="col-md-6">
+                                  <textarea type="text" class="form-control" name="present" value="{{ old('present') }}"></textarea>
                                 </div>
                             </div>
 

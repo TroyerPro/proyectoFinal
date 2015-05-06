@@ -27,7 +27,6 @@ Route::get('search/subasta/data','Search\SubastaSearch@data');
 Route::get('perfil/view/{id}','ViewUser@show');
 Route::get('search/subasta/view/{id}', 'Subasta\View@show');
 
-
 //######################################################################
 //                         Test Adri
 //######################################################################

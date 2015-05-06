@@ -9,6 +9,7 @@
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<!-- ./ csrf token -->
 	<fieldset>
+
 		<div class="form-group {{$errors->has('name')?'has-error':''}}">
 			<label for="name"> {{{ trans('site/user.name') }}} </label>
 			<input class="form-control" placeholder="{{{ trans('site/user.name') }}}" type="text"
@@ -16,6 +17,7 @@
 			<span class="help-block">{!!$errors->first('name', '<span class="help-block">:message </span>')!!}
 			</span>
 		</div>
+
 		<div class="form-group {{$errors->has('email')?'has-error':''}}">
 			<label for="email"> {{{ trans('site/user.e_mail') }}}
 				<small>{{ trans('site/user.confirmation_required') }}</small>
@@ -26,6 +28,7 @@
 				class="help-block">:message </span>')!!}
 			</span>
 		</div>
+
 		<div class="form-group {{$errors->has('password')?'has-error':''}}">
 			<label for="password"> {{{ trans('site/user.password') }}} </label>
 			<input class="form-control" placeholder="{{{ trans('site/user.password') }}}"
@@ -34,6 +37,7 @@
 				class="help-block">:message </span>')!!}
 			</span>
 		</div>
+
 		<div class="form-group {{$errors->has('password_confirmation')?'has-error':''}}">
 			<label for="password_confirmation"> {{{trans('site/user.password_confirmation') }}} </label>
 			<input class="form-control"	placeholder="{{{ trans('site/user.password_confirmation') }}}"
@@ -42,6 +46,7 @@
 				'<span class="help-block">:message </span>')!!}
 			</span>
 		</div>
+
 		<div class="form-actions form-group">
 			<button type="submit" class="btn btn-primary">{{{
 				trans('site/user.submit') }}}</button>
