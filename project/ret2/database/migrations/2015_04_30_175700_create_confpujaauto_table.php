@@ -13,7 +13,7 @@ class CreateConfpujaautoTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('pujaautos', function (Blueprint $table) {
+		Schema::create('confpujaautos', function (Blueprint $table) {
 			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->float('max_puja')->nullable();
@@ -33,7 +33,7 @@ class CreateConfpujaautoTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('pujaautos');
+		Schema::drop('confpujaautos');
 	}
 
 }

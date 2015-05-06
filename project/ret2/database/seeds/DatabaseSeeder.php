@@ -24,15 +24,20 @@ class DatabaseSeeder extends Seeder {
         $this->call('VideoAlbumsTableSeeder');
         $this->call('VideosTableSeeder');
         //########################################
-        $this->call('CategoriaTableSeeder');
-        $this->call('ChatusuariosTableSeeder');
-        $this->call('ConfpujaautoTableSeeder');
         $this->call('EmpresaTableSeeder');
+        $this->call('CategoriaTableSeeder');
+        $this->call('UsuarioTableSeeder');
+        $this->call('SubastaTableSeeder');
+        $this->call('PujaTableSeeder');
+        $this->call('RatingTableSeeder');
         $this->call('EvalusuarioTableSeeder');
         $this->call('FacturaTableSeeder');
-        $this->call('PujaTableSeeder');
-        $this->call('SubastaTableSeeder');
-        $this->call('UsuarioTableSeeder');
+        $this->call('ConfpujaautoTableSeeder');
+        $this->call('ChatusuariosTableSeeder');
+        $this->call('LineaChatTableSeeder');
+
+
+
 
     }
 
