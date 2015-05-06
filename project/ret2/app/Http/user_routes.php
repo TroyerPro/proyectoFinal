@@ -102,7 +102,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     //Falta un controller general para el usuario
     Route::get('perfil/modificar','ModifyProfile@show');
     Route::get('perfil', 'UserProfile@show');
-    
-    //Route::get('crear/subasta','Subasta'); --> No está implementado aún el controller. Falta uno general de subasta
+    Route::get('subastas','UserSubastas@show');
+    //Route::get('subasta/crear','Subasta@funcion'); // --> No está implementado aún el controller. Falta uno general de subasta
+    //Route::get('subasta/prorrogar','Subasta@funcion');
 
 });
