@@ -17,7 +17,7 @@ class CreateSubastaTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('id_user_vendedor')->nullable();
-            $table->foreign('id_user_vendedor')->references('id')->on('usuarios');
+            $table->foreign('id_user_vendedor')->references('id')->on('users');
             $table->unsignedInteger('id_factura')->nullable();
             $table->foreign('id_factura')->references('id')->on('facturas');
             $table->unsignedInteger('id_categoria')->nullable();

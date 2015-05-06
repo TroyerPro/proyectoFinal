@@ -19,7 +19,7 @@ class CreateFacturaTable extends Migration
             $table->date('fecha');
             $table->float('precio');
             $table->unsignedInteger('id_usuario')->nullable();
-            $table->foreign('id_usuario')->references('id')->on('usuarios');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();
         });
     }

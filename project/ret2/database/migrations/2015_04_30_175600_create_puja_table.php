@@ -21,7 +21,7 @@ class CreatePujaTable extends Migration
             $table->unsignedInteger('id_subasta')->nullable();
             $table->foreign('id_subasta')->references('id')->on('subastas');
             $table->unsignedInteger('id_usuario')->nullable();
-            $table->foreign('id_usuario')->references('id')->on('usuarios');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->boolean('puja_auto',false);
             $table->timestamps();
         });

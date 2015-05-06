@@ -19,7 +19,7 @@ class CreateConfpujaautoTable extends Migration
 			$table->float('max_puja')->nullable();
 			$table->float('incrementar')->nullable();
 			$table->unsignedInteger('id_usuario')->nullable();
-			$table->foreign('id_usuario')->references('id')->on('usuarios');
+			$table->foreign('id_usuario')->references('id')->on('users');
 			$table->unsignedInteger('id_puja')->nullable();
 			$table->foreign('id_puja')->references('id')->on('pujas');
 			$table->timestamps();

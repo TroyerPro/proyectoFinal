@@ -17,9 +17,9 @@ class CreateChatusuariosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('id_user1')->nullable();
-            $table->foreign('id_user1')->references('id')->on('usuarios');
+            $table->foreign('id_user1')->references('id')->on('users');
             $table->unsignedInteger('id_user2')->nullable();
-            $table->foreign('id_user2')->references('id')->on('usuarios');
+            $table->foreign('id_user2')->references('id')->on('users');
             $table->timestamps();
         });
     }
