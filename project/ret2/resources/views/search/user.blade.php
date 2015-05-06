@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="page-header">
-            <h2>buscador user</h2>
+            <h2>Buscador de Usuario</h2>
         </div>
     </div>
 @endsection
