@@ -63,23 +63,18 @@
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li {{ (Request::is('/') ? ' class="active"' : '') }}><a
-                                href="{{{ URL::to('') }}}">{{{ trans('site/site.home') }}}</a></li>
+                    <li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">{{{ trans('site/site.home') }}}</a></li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     @if (Auth::check()) @if(isset($admin))
-                        <li><a href="{{{ URL::to('admin/dashboard') }}}">{{{
-								trans('site/site.admin_panel') }}}</a></li> @endif
-                    <li><a href="#">{{{ trans('site/site.login_as') }}} {{{
-								Auth::user()->name }}}</a></li>
-                    <li><a href="{{{ URL::to('auth/logout') }}}">{{{
-								trans('site/site.logout') }}}</a></li> @else
-                        <li {{ (Request::is('auth/login') ? ' class="active"' : '') }}><a
-                                    href="{{{ URL::to('auth/login') }}}">{{{
-								trans('site/site.login') }}}</a></li>
-                        <li {{ (Request::is('auth/register') ? ' class="active"' : '') }}><a
-                                    href="{{{ URL::to('auth/register') }}}">{{{
-								trans('site/site.sign_up') }}}</a></li> @endif
+                        <li><a href="{{{ URL::to('admin/dashboard') }}}">{{{ trans('site/site.admin_panel') }}}</a></li>
+                    @endif
+                        <li><a href="#">{{{ trans('site/site.login_as') }}} {{{ Auth::user()->name }}}</a></li>
+                        <li><a href="{{{ URL::to('auth/logout') }}}">{{{ trans('site/site.logout') }}}</a></li>
+                    @else
+                        <li {{ (Request::is('auth/login') ? ' class="active"' : '') }}><a href="{{{ URL::to('auth/login') }}}">{{{mtrans('site/site.login') }}}</a></li>
+                        <li {{ (Request::is('auth/register') ? ' class="active"' : '') }}><a href="{{{ URL::to('auth/register') }}}">{{{ trans('site/site.sign_up') }}}</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
