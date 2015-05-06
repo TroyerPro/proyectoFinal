@@ -21,8 +21,10 @@
                    aria-expanded="false"><i class="fa fa-search"></i>Buscar</a>
                   <ul class="dropdown-menu" role="menu">
                     <li>
+                      <a href="{!! URL::to('search/subasta') !!}"><i class="glyphicon glyphicon-euro"></i>Subasta</a>
                     </li>
                     <li>
+                      <a href="{!! URL::to('search/user') !!}"><i class="fa fa-user"></i>User</a>
                     </li>
                   </ul>
               </li>
