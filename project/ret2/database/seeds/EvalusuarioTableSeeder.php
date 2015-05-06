@@ -11,7 +11,7 @@ class EvalusuarioTableSeeder extends Seeder {
 	public function run()
 	{
 
-		TestDummy::times(3)->create('App\Evalusuario');
+		TestDummy::times(3)->create('App\Evalusuarios');
 
 	}
 

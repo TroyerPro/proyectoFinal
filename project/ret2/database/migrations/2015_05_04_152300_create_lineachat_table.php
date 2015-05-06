@@ -19,7 +19,7 @@ class CreateLineachatTable extends Migration
             $table->date('fecha');
             $table->string('text');
             $table->unsignedInteger('id_chat')->nullable();
-            $table->foreign('id_chat')->references('id')->on('chats');
+            $table->foreign('id_chat')->references('id')->on('chatusuarios');
             $table->timestamps();
         });
     }

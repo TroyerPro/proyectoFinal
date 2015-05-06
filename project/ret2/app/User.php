@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = [ 'name', 'username', 'email', 'password', 'confirmed' ,'confirmation_code' ];
+	protected $fillable = [ 'name','surname','nif','email','username', 'password','ratingcomprador','ratingvendedor','admin', 'confirmed' ,'confirmation_code' ];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -24,9 +24,43 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = [ 'password', 'remember_token' ,'confirmation_code'  ];
 
+	public function articles ()
+			{
+					return $this->hasMany('App\Article');
+				}
 
-	public function articles()
-	{
-		return $this->hasMany('App\Article');
-	}
+	public function empresa()
+	    {
+	        return $this->belongsTo('App\Empresa');
+	    }
+
+	public function valoraciones()
+			 {
+			    return $this->hasMany('App\Evalusuarios');
+			 }
+
+	public function chats()
+			 {
+						return $this->hasMany('App\Chatusuarios');
+				}
+
+	public function subastas()
+		{
+				return $this->hasMany('App\Subasta');
+		}
+
+	public function subastasAuto()
+		{
+				return $this->hasMany('App\Confpujaauto');
+		}
+
+	public function facturas()
+		{
+				return $this->hasMany('App\Factura');
+		}
+
+	public function pujas()
+		{
+				return $this->hasMany('App\Puja');
+		}
 }

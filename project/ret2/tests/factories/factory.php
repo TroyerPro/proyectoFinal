@@ -5,9 +5,14 @@ $faker->seed(1234); // manage image library
 
 $factory('App\User', [
     'name' => $faker->name,
+    'surname' => $faker->name,
+    'nif' => $faker->numberBetween(000000000,999999999),
     'username' => $faker->unique()->userName,
     'email' => $faker->email,
     'password' => $faker->word,
+    'ratingcomprador' => $faker->numberBetween(1,3),
+    'ratingvendedor' => $faker->numberBetween(1,3),
+    'admin' => $faker->boolean(50),
     'confirmed' => $faker->boolean(50),
     'confirmation_code' => md5(microtime() . env('APP_KEY')),
 ]);
@@ -97,12 +102,8 @@ $factory('App\Subasta', [
     'precio_prorroga' => $faker->numberBetween(10000000,3000000000000),
     'dias_subasta_gratis'=> $faker->numberBetween(1,2),
   ]);
-  $factory('App\Chatusuarios', [
-      'id_user1' => $faker->numberBetween(1,2),
-      'id_user2' => $faker->numberBetween(4,5),
-  ]);
 
-  $factory('App\Usuario', [
+  /*$factory('App\Usuario', [
       'nombre' => $faker->name,
       'apellidos' => $faker->name,
       'username' => $faker->unique()->userName,
@@ -112,6 +113,45 @@ $factory('App\Subasta', [
       'ratingvendedor' => $faker->numberBetween(1,3),
       'admin' => $faker->boolean(50),
     //  'empresa_id'$faker->numberBetween(1,2),
+  ]);*/
+
+  $factory('App\Chatusuarios', [
+      'id_user1' => $faker->numberBetween(1,3),
+      'id_user2' => $faker->numberBetween(4,5),
   ]);
+  $factory('App\Evalusuarios', [
+      'id_user_evaluador' => $faker->numberBetween(1,3),
+      'id_user_evaluado' => $faker->numberBetween(4,5),
+      'id_rating' => 1,
+      'comentario' => $faker->paragraph,
+      'fecha' => $faker->dateTime(),
+  ]);
+  $factory('App\Lineachat', [
+      'fecha' => $faker->dateTime(),
+      'text' => $faker->paragraph,
+      'id_chat' => $faker->numberBetween(1,2),
+  ]);
+  $factory('App\Puja', [
+      'cantidad' => $faker->numberBetween(1,999),
+      'fecha' => $faker->dateTime(),
+      'id_subasta' => $faker->numberBetween(1,3),
+      'id_usuario' => $faker->numberBetween(1,3),
+  ]);
+  $factory('App\Confpujaauto', [
+      'max_puja' => $faker->numberBetween(1,999),
+      'incrementar' => $faker->numberBetween(1,100),
+      'id_usuario' => $faker->numberBetween(1,3),
+      'id_puja' => $faker->numberBetween(1,3),
+
+  ]);
+
+  $factory('App\Factura', [
+    'fecha' => $faker->dateTime(),
+    'precio' => $faker->numberBetween(1,999),
+    'id_usuario' => $faker->numberBetween(1,3),
+  ]);
+
+
+
 
 //image($dir = '/tmp', $width = 640, $height = 480)
