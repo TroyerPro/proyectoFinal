@@ -8,7 +8,7 @@
         {{--<div class="col-xs-12">--}}
         <div class="col-xs-12 main main_panel">
           @yield('main')
-            Muestra el perfil (+ dar de baja)
+            Muestra el perfil público del usuario
         </div>
     </div>
 @endsection

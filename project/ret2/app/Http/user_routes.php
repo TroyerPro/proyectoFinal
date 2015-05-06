@@ -99,8 +99,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('users/data', 'User\UserController@data');
 
     #Cosas añadidas
+    //Falta un controller general para el usuario
     Route::get('perfil/modificar','ModifyProfile@show');
-    //Route::get('perfil', '');
-    //Route::get('subasta/crear','Subasta'); --> No está implementado aún el controller
+    Route::get('perfil', 'UserProfile@show');
+    //Route::get('crear/subasta','Subasta'); --> No está implementado aún el controller. Falta uno general de subasta
 
 });
