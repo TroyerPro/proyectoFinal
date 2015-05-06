@@ -21,16 +21,9 @@
            <div class="col-xs-6">
           <!--  Usuario: {{ $subasta->id_user_vendedor }}(cambiar por name)-->
            </div>
-           <div class="col-xs-12">
-             Realizar nueva puja
-            </div>
-            <div class="col-xs-4">
+           <div class="col-xs-4">
               <button class="btn btn-default">Pujar</button>
-            </div>
-            <div class="col-xs-4">
-              Hora ultima puja: DAY/MONTH/YEAR
-              <br/>NOTA: Falta el botón cerrar puja si es el usuario que la ha creado
-            </div>
+           </div>
          </div>
          <div class="col-xs-6 under_panel">
            <div class="col-xs-12 ">
