@@ -1,8 +1,13 @@
-@extends('app')
-@section('content')
+@extends('admin.layouts.default')
+
+{{-- Web site Title --}}
+@section('title') {{{ trans("admin/news.news") }}} :: @parent @stop
+
+{{-- Content --}}
+@section('main')
 <div class="row">
     <div class="page-header">
-        <h2>Configuración Página</h2>
+        <h2>Configuración subasta</h2>
     </div>
 </div>
 
@@ -18,20 +23,15 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Periodo Subasta Gratuita</label>
+                    <label class="col-md-4 control-label">Tiempo subasta gratuita (días)</label>
 
                     <div class="col-md-6">
-                      <select name="select_periodo_subasta">
-                        <option value="1">3 Días</option>
-                        <option value="2">5 Días</option>
-                        <option value="3">1 Semana</option>
-                        <option value="4">2 Semanas</option>
-                      </select>
+                        <input type="text" class="form-control" name="prorroga" value="{{ old('días') }}">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Precio Prórroga</label>
+                    <label class="col-md-4 control-label">Precio Prórroga (€)</label>
 
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="prorroga" value="{{ old('prorroga') }}">
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Periodo Inactividad</label>
+                    <label class="col-md-4 control-label">Periodo Inactividad (días)</label>
 
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="inactividad" value="{{ old('inactividad') }}">
@@ -60,3 +60,4 @@
         </div>
     </div>
 @endsection
+@stop

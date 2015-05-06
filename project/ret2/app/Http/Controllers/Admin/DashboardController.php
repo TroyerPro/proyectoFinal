@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Article;
 use App\ArticleCategory;
 use App\User;
+use App\Subasta;
 use App\Video;
 use App\Categoria;
 use App\VideoAlbum;
@@ -21,14 +22,14 @@ class DashboardController extends AdminController {
 	{
         $title = "Inicio panel de control";
 
-        $news = Article::count();
+        $subasta = Subasta::count();
         $newscategory = Categoria::count();
         $users = User::count();
         $photo = Photo::count();
         $photoalbum = PhotoAlbum::count();
         $video = Video::count();
         $videoalbum = VideoAlbum::count();
-		return view('admin.dashboard.index',  compact('title','news','newscategory','video','videoalbum','photo',
+		return view('admin.dashboard.index',  compact('title','subasta','newscategory','video','videoalbum','photo',
             'photoalbum','users'));
 	}
 }

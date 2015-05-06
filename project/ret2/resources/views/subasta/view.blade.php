@@ -2,7 +2,6 @@
 @section('content')
     <div class="row">
             @yield('top')
-            Subasta
     </div>
     <div class="row">
 
@@ -11,44 +10,37 @@
           @yield('main')
          <div class="col-xs-6 under_panel">
            <div class="col-xs-12">
-             <img class="imagensubasta" src="{!! 'img/iphone.jpg' !!}">
+             <img class="imagensubasta" src="{{ $subasta->imagen }}">
            </div>
            <div class="col-xs-12">
              Pujas:
            </div>
            <div class="col-xs-6">
-            Puja actual: 100€
+            Puja actual: {{ $subasta->precio_actual }}
            </div>
            <div class="col-xs-6">
-            Usuario: Marta
+          <!--  Usuario: {{ $subasta->id_user_vendedor }}(cambiar por name)-->
            </div>
-           <div class="col-xs-12">
-             Realizar nueva puja
-            </div>
-            <div class="col-xs-4">
+           <div class="col-xs-4">
               <button class="btn btn-default">Pujar</button>
-            </div>
-            <div class="col-xs-4">
-              Hora ultima puja: DAY/MONTH/YEAR
-              <br/>NOTA: Falta el botón cerrar puja si es el usuario que la ha creado
-            </div>
+           </div>
          </div>
          <div class="col-xs-6 under_panel">
            <div class="col-xs-12 ">
              <div class="col-xs-6">
-               Producto: <div_nombre>iPhone</div_nombre>
+               Producto: <div_nombre>{{ $subasta->nombre }}</div_nombre>
              </div>
              <div class="col-xs-6">
-               Comienzo: <div_fecha>16/04/2015<div_fecha>
+               Acaba: <div_fecha>{{ $subasta->fecha_final }}<div_fecha>
              </div>
              <div class="col-xs-6 ">
-               Nombre usuario: <div_usuario>Pepito</div_usuario>
+               Nombre usuario: <div_usuario>{{ $user->name }}</div_usuario>
              </div>
              <div class="col-xs-6 ">
-               Rating usuario: <div_rating>* * *</div_raint>
+               Rating como vendedor: <div_rating>{{ $user->ratingvendedor }}</div_raint>
              </div>
              <div class="col-xs-12 ">
-               Descripción de la puja: <div_desc>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div_desc>
+               Descripción del Producto: <div_desc>{{ $subasta->descripcion }}</div_desc>
              </div>
            </div>
          </div>

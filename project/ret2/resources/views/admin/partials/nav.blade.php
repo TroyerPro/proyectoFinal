@@ -1,5 +1,5 @@
 <div class="input-group">
-    <input type="text" class="form-control" placeholder="Search...">
+    <input type="text" class="form-control" placeholder="Buscar...">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button">
             <i class="fa fa-search"></i>
@@ -14,13 +14,6 @@
                 >
             <i class="fa fa-dashboard fa-fw"></i><span class="hidden-sm text">
 Inicio</span>
-        </a>
-    </li>
-    <li {{ (Request::is('admin/language*') ? ' class=active' : '') }}>
-        <a href="{{URL::to('admin/language')}}"
-                >
-            <i class="glyphicon glyphicon-flag"></i><span
-                    class="hidden-sm text"> Language</span>
         </a>
     </li>
     <li {{ (Request::is('admin/news*') ? ' class=active' : '') }}>
@@ -85,6 +78,13 @@ Inicio</span>
                 >
             <i class="glyphicon glyphicon-user"></i><span
                     class="hidden-sm text"> Users</span>
+        </a>
+    </li>
+    <li {{ (Request::is('admin/site*') ? ' class=active' : '') }} >
+        <a href="{{URL::to('admin/site/config')}}"
+                >
+            <i class="glyphicon glyphicon glyphicon-cog"></i><span
+                    class="hidden-sm text">Conf. Subasta</span>
         </a>
     </li>
 </ul>
