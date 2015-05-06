@@ -1,4 +1,4 @@
-@extends('app')
+@extends('user.layouts.modal')
 @section('content')
 <div class="row">
     <div class="page-header">
