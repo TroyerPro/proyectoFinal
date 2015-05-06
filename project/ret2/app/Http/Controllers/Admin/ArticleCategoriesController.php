@@ -2,6 +2,7 @@
 
 use App\ArticleCategory;
 use App\Language;
+use App\Categoria;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\NewsCategoryRequest;
 use App\Http\Requests\Admin\DeleteRequest;
@@ -87,7 +88,7 @@ class ArticleCategoriesController extends AdminController {
 
     public function getDelete($id)
     {
-        $newscategory = ArticleCategory::find($id);
+        $newscategory = Categoria::find($id);
         // Show the page
         return view('admin.newscategory.delete', compact('newscategory'));
     }
@@ -100,7 +101,7 @@ class ArticleCategoriesController extends AdminController {
      */
     public function postDelete(DeleteRequest $request,$id)
     {
-        $newscategory = ArticleCategory::find($id);
+        $newscategory = Categoria::find($id);
         $newscategory->delete();
     }
 
@@ -111,9 +112,11 @@ class ArticleCategoriesController extends AdminController {
      */
     public function data()
     {
-        $article_categories = ArticleCategory::join('languages', 'languages.id', '=', 'article_categories.language_id')
+
+      /*  $article_categories = ArticleCategory::join('languages', 'languages.id', '=', 'article_categories.language_id')
             ->select(array('article_categories.id','article_categories.title', 'languages.name', 'article_categories.created_at'))
-            ->orderBy('article_categories.position', 'ASC');
+            ->orderBy('article_categories.position', 'ASC');*/
+						$article_categories = Categoria::select('categorias.id','categorias.nombre','categorias.descripcion','categorias.created_at');
 
         return Datatables::of($article_categories)
            ->add_column('actions', '<a href="{{{ URL::to(\'admin/newscategory/\' . $id . \'/edit\' ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  {{ trans("admin/modal.edit") }}</a>

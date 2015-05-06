@@ -5,6 +5,7 @@ use App\Article;
 use App\ArticleCategory;
 use App\User;
 use App\Video;
+use App\Categoria;
 use App\VideoAlbum;
 use App\Photo;
 use App\PhotoAlbum;
@@ -18,10 +19,10 @@ class DashboardController extends AdminController {
 
 	public function index()
 	{
-        $title = "Dashboard";
+        $title = "Inicio panel de control";
 
         $news = Article::count();
-        $newscategory = ArticleCategory::count();
+        $newscategory = Categoria::count();
         $users = User::count();
         $photo = Photo::count();
         $photoalbum = PhotoAlbum::count();

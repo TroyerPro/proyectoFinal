@@ -18,17 +18,17 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="glyphicon glyphicon-bullhorn fa-3x"></i>
+                            <i class="glyphicon fa fa-columns fa-3x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">{{$newscategory}}</div>
-                            <div>{{ trans("admin/admin.news_categories") }}!</div>
+                            <div>{{ trans("Categorias") }}!</div>
                         </div>
                     </div>
                 </div>
                 <a href="{{URL::to('admin/newscategory')}}">
                     <div class="panel-footer">
-                        <span class="pull-left">{{ trans("admin/admin.view_detail") }}</span>
+                        <span class="pull-left">{{ trans("Detalles") }}</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 
                         <div class="clearfix"></div>

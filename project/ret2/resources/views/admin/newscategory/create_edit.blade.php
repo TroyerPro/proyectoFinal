@@ -12,34 +12,26 @@
 	        @else{{ URL::to('admin/newscategory/create') }}@endif"
 	autocomplete="off">
 	<!-- CSRF Token -->
-	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+
 	<!-- ./ csrf token -->
 	<!-- Tabs Content -->
 	<div class="tab-content">
 		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
 			<div class="tab-pane active" id="tab-general">
-				<div
-					class="form-group {{{ $errors->has('language_id') ? 'has-error' : '' }}}">
-					<div class="col-md-12">
-						<label class="control-label" for="language_id">{{
-							trans("admin/admin.language") }}</label> <select
-							style="width: 100%" name="language_id" id="language_id"
-							class="form-control"> @foreach($languages as $item)
-							<option value="{{$item->id}}"
-								@if(!empty($language))
-                                        @if($item->id==$language)
-								selected="selected" @endif @endif >{{$item->name}}</option>
-							@endforeach
-						</select>
-					</div>
-				</div>
 				<div class="form-group {{{ $errors->has('title') ? 'has-error' : '' }}}">
 					<div class="col-md-12">
 						<label class="control-label" for="title"> {{
-							trans("admin/modal.title") }}</label> <input
+							trans("Nombre") }}</label> <input
+							class="form-control" type="text" name="nombre" id="nombre"
+							value="{{{ Input::old('nombre', isset($newscategory) ? $newscategory->nombre : null) }}}" />
+						{!!$errors->first('title', '<span class="help-block">:message </span>')!!}
+					</div>
+					<div class="col-md-12">
+						<label class="control-label" for="title"> {{
+							trans("Descripcion") }}</label> <input
 							class="form-control" type="text" name="title" id="title"
-							value="{{{ Input::old('title', isset($newscategory) ? $newscategory->title : null) }}}" />
+							value="{{{ Input::old('descripcion', isset($newscategory) ? $newscategory->descripcion : null) }}}" />
 						{!!$errors->first('title', '<span class="help-block">:message </span>')!!}
 					</div>
 				</div>
@@ -62,10 +54,10 @@
 					trans("admin/modal.reset") }}
 				</button>
 				<button type="submit" class="btn btn-sm btn-success">
-					<span class="glyphicon glyphicon-ok-circle"></span> 
-					@if (isset($newscategory)) 
+					<span class="glyphicon glyphicon-ok-circle"></span>
+					@if (isset($newscategory))
 						{{ trans("admin/modal.edit") }}
-					@else 
+					@else
 						{{trans("admin/modal.create") }}
 				    	@endif
 				</button>

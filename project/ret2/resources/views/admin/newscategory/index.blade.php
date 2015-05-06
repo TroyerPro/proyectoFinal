@@ -22,8 +22,8 @@
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>{{{ trans("admin/modal.title") }}}</th>
-            <th>{{{ trans("admin/admin.language") }}}</th>
+            <th>{{{ trans("Titulo") }}}</th>
+            <th>{{{ trans("Descripcion") }}}</th>
             <th>{{{ trans("admin/admin.created_at") }}}</th>
             <th>{{{ trans("admin/admin.action") }}}</th>
         </tr>

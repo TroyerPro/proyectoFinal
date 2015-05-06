@@ -13,7 +13,7 @@
         <a href="{{URL::to('admin/dashboard')}}"
                 >
             <i class="fa fa-dashboard fa-fw"></i><span class="hidden-sm text">
-Dashboard</span>
+Inicio</span>
         </a>
     </li>
     <li {{ (Request::is('admin/language*') ? ' class=active' : '') }}>
@@ -25,20 +25,14 @@ Dashboard</span>
     </li>
     <li {{ (Request::is('admin/news*') ? ' class=active' : '') }}>
         <a href="#">
-            <i class="glyphicon glyphicon-bullhorn"></i> News items<span
+            <i class="glyphicon fa fa-columns"></i> Categorias <span
                     class="fa arrow"></span>
         </a>
         <ul class="nav nav-second-level collapse">
             <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
                 <a href="{{URL::to('admin/newscategory')}}">
                     <i class="glyphicon glyphicon-list"></i><span
-                            class="hidden-sm text"> News categories </span>
-                </a>
-            </li>
-            <li {{ (Request::is('admin/news') ? ' class=active' : '') }} >
-                <a href="{{URL::to('admin/news')}}">
-                    <i class="glyphicon glyphicon-bullhorn"></i><span
-                            class="hidden-sm text"> News</span>
+                            class="hidden-sm text"> Todas </span>
                 </a>
             </li>
         </ul>
