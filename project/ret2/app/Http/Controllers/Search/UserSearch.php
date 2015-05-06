@@ -1,8 +1,9 @@
 <?php namespace App\Http\Controllers\Search;
 
+use App\User;
 use App\Http\Controllers\Controller;
 
-class SearchUser extends Controller {
+class User extends Controller {
 
 	public function __construct()
 	{
@@ -11,7 +12,9 @@ class SearchUser extends Controller {
 
 	public function show() //falta $id
 	{
-		return view('user.search');
+		$user = Users::all();
+
+		return view('search.user', compact('user'));
 	}
 
 }

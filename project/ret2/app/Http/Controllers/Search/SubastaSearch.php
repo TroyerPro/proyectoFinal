@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Controller;
 
-class SearchSubasta extends Controller {
+class Subasta extends Controller {
 
 	public function __construct()
 	{
