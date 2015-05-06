@@ -24,7 +24,7 @@
 
 {{-- Sidebar --}}
 @section('sidebar')
-    @include('user.partials.nav')
+    @include('admin.partials.nav')
 @endsection
 
 {{-- Scripts --}}

@@ -1,4 +1,4 @@
-@extends('user.layouts.default')
+@extends('admin.layouts.default')
 
 {{-- Web site Title --}}
 @section('title') {{{ $title }}} :: @parent @stop
@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">{{$newscategory}}</div>
-                            <div>PEne</div>
+                            <div>{{ trans("admin/admin.news_categories") }}!</div>
                         </div>
                     </div>
                 </div>

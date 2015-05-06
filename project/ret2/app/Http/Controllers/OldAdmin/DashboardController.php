@@ -1,16 +1,15 @@
-<?php namespace App\Http\Controllers\User;
+<?php namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Article;
 use App\ArticleCategory;
 use App\User;
-use App\Categoria;
 use App\Video;
 use App\VideoAlbum;
 use App\Photo;
 use App\PhotoAlbum;
 
-class DashboardController extends UserController {
+class DashboardController extends AdminController {
 
     public function __construct()
     {
@@ -22,13 +21,13 @@ class DashboardController extends UserController {
         $title = "Dashboard";
 
         $news = Article::count();
-        $newscategory = Categoria::count();
+        $newscategory = ArticleCategory::count();
         $users = User::count();
         $photo = Photo::count();
         $photoalbum = PhotoAlbum::count();
         $video = Video::count();
         $videoalbum = VideoAlbum::count();
-		return view('user.dashboard.index',  compact('title','news','newscategory','video','videoalbum','photo',
+		return view('admin.dashboard.index',  compact('title','news','newscategory','video','videoalbum','photo',
             'photoalbum','users'));
 	}
 }

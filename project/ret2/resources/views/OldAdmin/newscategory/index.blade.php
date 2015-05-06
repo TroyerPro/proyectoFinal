@@ -1,18 +1,20 @@
-@extends('user.layouts.default')
+@extends('admin.layouts.default')
 
 {{-- Web site Title --}}
-@section('title') {{{ trans("Subastas") }}} @parent @stop
+@section('title') {{{ trans("admin/newscategory.newscategories") }}}
+:: @parent @stop
 
 {{-- Content --}}
 @section('main')
     <div class="page-header">
         <h3>
-            {{{ trans("Subastas") }}}
+            {{{ trans("admin/newscategory.newscategories") }}}
             <div class="pull-right">
-                <a href="{{{ URL::to('user/subasta/create') }}}"
-                   class="btn btn-sm  btn-primary iframe"><span
-                            class="glyphicon glyphicon-plus-sign"></span> {{
-				trans("admin/modal.new") }}</a>
+                <div class="pull-right">
+                    <a href="{{{ URL::to('admin/newscategory/create') }}}"
+                       class="btn btn-sm  btn-primary iframe"><span
+                                class="glyphicon glyphicon-plus-sign"></span> {{ trans("admin/modal.new") }}</a>
+                </div>
             </div>
         </h3>
     </div>
@@ -20,11 +22,10 @@
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>{{{ trans("Nombre") }}}</th>
-            <th>{{{ trans("Descripción") }}}</th>
-            <th>{{{ trans("Fecha Final") }}}</th>
-            <th>{{{ trans("Puja Actual") }}}</th>
-            <th>{{{ trans("Opciones") }}}</th>
+            <th>{{{ trans("admin/modal.title") }}}</th>
+            <th>{{{ trans("admin/admin.language") }}}</th>
+            <th>{{{ trans("admin/admin.created_at") }}}</th>
+            <th>{{{ trans("admin/admin.action") }}}</th>
         </tr>
         </thead>
         <tbody></tbody>
@@ -43,7 +44,7 @@
 
                 "bProcessing": true,
                 "bServerSide": true,
-                "sAjaxSource": "{{ URL::to('user/subastas/data/' )}}",
+                "sAjaxSource": "{{ URL::to('admin/newscategory/data/') }}",
                 "fnDrawCallback": function (oSettings) {
                     $(".iframe").colorbox({
                         iframe: true,
@@ -68,7 +69,7 @@
                     $('#table #row').each(function (i) {
                         navigationList = navigationList + ',' + $(this).val();
                     });
-                    $.getJSON("{{ URL::to('user/subastas/reorder') }}", {
+                    $.getJSON("{{ URL::to('admin/newscategory/reorder') }}", {
                         list: navigationList
                     }, function (data) {
                     });
