@@ -19,14 +19,5 @@ class SubastaSearch extends Controller {
 		//return view('search.subasta');
 	}
 
-	public function data()
-	{
-			$bid = Subasta::all();
-
-			return Datatables::of($bid)
-					->remove_column('id')
-
-					->make();
-	}
 
 }
