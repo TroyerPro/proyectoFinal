@@ -2,6 +2,7 @@
 
 use App\Subasta;
 use App\Http\Controllers\Controller;
+use Datatables;
 
 class SubastaSearch extends Controller {
 
@@ -18,6 +19,17 @@ class SubastaSearch extends Controller {
 		return view('search.subasta', compact('bid'));
 		//return view('search.subasta');
 	}
+/*
+  public function data()
+  {
 
+      $bid = Subasta::select('subasta.id','subasta.nombre','subasta.precio_actual','subasta.fecha_final');
 
+      return Datatables::of($bid)
+         ->add_column('<input type="hidden" name="row" value="{{$id}}" id="row">')
+          ->remove_column('id')
+
+          ->make();
+  }
+*/
 }

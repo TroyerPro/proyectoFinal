@@ -9,7 +9,7 @@
     @foreach ($bid as $bid)
       <li id='{{ $bid->id }}'>
         <div class="">
-          <a href="#">imagen del producto</a>
+          <a href="subasta/view/{{ $bid->id }}">imagen del producto</a>
         </div>
         <h3>{{ $bid->nombre }}</h3>
         <ul>
@@ -23,4 +23,5 @@
     @endforeach
   </ul>
 </div>
-@stop
+
+@endsection
