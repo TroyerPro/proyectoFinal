@@ -33,7 +33,7 @@ class ArticleCategoriesController extends AdminController {
         $languages = Language::all();
         $language = "";
         // Show the page
-        return view('admin.newscategory.create_edit', compact('languages','language'));
+        return view('admin.newscategory.create_edit');
     }
 
     /**
@@ -41,12 +41,11 @@ class ArticleCategoriesController extends AdminController {
      *
      * @return Response
      */
-    public function postCreate(NewsCategoryRequest $request)
+    public function postCreate()
     {
-        $newscategory = new ArticleCategory();
-        $newscategory -> user_id = Auth::id();
-        $newscategory -> language_id = $request->language_id;
-        $newscategory -> title = $request->title;
+        $newscategory = new Categoria();
+        $newscategory -> nombre = $_POST['nombre'];
+        $newscategory -> descripcion = $_POST['descripcion'];
         $newscategory -> save();
     }
     /**
@@ -57,11 +56,9 @@ class ArticleCategoriesController extends AdminController {
      */
     public function getEdit($id)
     {
-        $newscategory = ArticleCategory::find($id);
-        $language = $newscategory->language_id;
-        $languages = Language::all();
+        $newscategory = Categoria::find($id);
 
-        return view('admin.newscategory.create_edit',compact('newscategory','languages','language'));
+        return view('admin.newscategory.create_edit', compact('newscategory'));
     }
 
     /**
@@ -72,10 +69,9 @@ class ArticleCategoriesController extends AdminController {
      */
     public function postEdit(NewsCategoryRequest $request, $id)
     {
-        $newscategory = ArticleCategory::find($id);
-        $newscategory -> user_id_edited = Auth::id();
-        $newscategory -> language_id = $request->language_id;
-        $newscategory -> title = $request->title;
+        $newscategory = Categoria::find($id);
+				$newscategory -> nombre = $_POST['nombre'];
+        $newscategory -> descripcion = $_POST['descripcion'];
         $newscategory -> save();
     }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Article;
 use App\ArticleCategory;
 use App\User;
+use App\Categoria;
 use App\Video;
 use App\VideoAlbum;
 use App\Photo;
@@ -21,13 +22,13 @@ class DashboardController extends UserController {
         $title = "Dashboard";
 
         $news = Article::count();
-        $newscategory = ArticleCategory::count();
+        $newscategory = Categoria::count();
         $users = User::count();
         $photo = Photo::count();
         $photoalbum = PhotoAlbum::count();
         $video = Video::count();
         $videoalbum = VideoAlbum::count();
-		return view('admin.dashboard.index',  compact('title','news','newscategory','video','videoalbum','photo',
+		return view('user.dashboard.index',  compact('title','news','newscategory','video','videoalbum','photo',
             'photoalbum','users'));
 	}
 }

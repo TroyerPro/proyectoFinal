@@ -102,8 +102,17 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     //Falta un controller general para el usuario
     Route::get('perfil/modificar','ModifyProfile@show');
     Route::get('perfil', 'UserProfile@show');
-    Route::get('subastas','UserSubastas@show');
-    //Route::get('subasta/crear','Subasta@funcion'); // --> No está implementado aún el controller. Falta uno general de subasta
-    //Route::get('subasta/prorrogar','Subasta@funcion');
+
+    #Subasta
+    Route::get('subastas','User\SubastaController@index'); // <---- CAMBIAR RUTA EN LA FUNCIÓN!!!!!
+    Route::get('subastas/data', 'User\SubastaController@data');
+    Route::get('subastas/reorder', 'User\SubastaController@getReorder');
+    Route::get('subasta/create', 'User\SubastaController@getCreate');
+    Route::post('subasta/create', 'User\SubastaController@postCreate');
+    Route::get('subasta/{id}','User\SubastaController@viewSubasta'); //id en la function del controller
+    Route::get('subasta/{id}/prorrogar','User\SubastaController@getProrrogar'); //id en la function del controller
+    Route::post('subasta/{id}/prorrogar','User\SubastaController@postProrrogar'); //Falta implementarlo
+    Route::get('subasta/{id}/cerrar','User\SubastaController@getCerrar'); //id en la function del controller
+    Route::post('subasta/{id}/cerrar', 'User\SubastaController@postCerrar'); //Implementar
 
 });

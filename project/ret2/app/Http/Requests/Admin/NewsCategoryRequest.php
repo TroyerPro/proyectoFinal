@@ -12,8 +12,8 @@ class NewsCategoryRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-            'title' => 'required|min:3',
-            'language_id' => 'required|integer',
+            'nombre' => 'required|min:3',
+            'descripcion' => 'required|min:3',
 		];
 	}
 
