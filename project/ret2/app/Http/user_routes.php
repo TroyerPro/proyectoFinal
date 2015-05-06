@@ -104,7 +104,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('perfil', 'UserProfile@show');
 
     #Subasta
-    Route::get('subastas','UserSubastas@show');
+    Route::get('subastas','User\SubastaController@index');
     Route::get('subastas/data', 'User\SubastaController@data');
     Route::get('subastas/reorder', 'User\SubastaController@getReorder');
     Route::get('subasta/create', 'User\SubastaController@getCreate');
