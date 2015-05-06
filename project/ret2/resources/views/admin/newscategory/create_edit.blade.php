@@ -12,27 +12,27 @@
 	        @else{{ URL::to('admin/newscategory/create') }}@endif"
 	autocomplete="off">
 	<!-- CSRF Token -->
-
+	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 	<!-- ./ csrf token -->
 	<!-- Tabs Content -->
 	<div class="tab-content">
 		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
 			<div class="tab-pane active" id="tab-general">
-				<div class="form-group {{{ $errors->has('title') ? 'has-error' : '' }}}">
+				<div class="form-group">
 					<div class="col-md-12">
 						<label class="control-label" for="title"> {{
 							trans("Nombre") }}</label> <input
 							class="form-control" type="text" name="nombre" id="nombre"
 							value="{{{ Input::old('nombre', isset($newscategory) ? $newscategory->nombre : null) }}}" />
-						{!!$errors->first('title', '<span class="help-block">:message </span>')!!}
+						{!!$errors->first('nombre', '<span class="help-block">:message LOLFAKU2</span>')!!}
 					</div>
 					<div class="col-md-12">
 						<label class="control-label" for="title"> {{
-							trans("Descripcion") }}</label> <input
-							class="form-control" type="text" name="title" id="title"
-							value="{{{ Input::old('descripcion', isset($newscategory) ? $newscategory->descripcion : null) }}}" />
-						{!!$errors->first('title', '<span class="help-block">:message </span>')!!}
+							trans("Descripcion") }}</label> <textarea
+							class="form-control" type="text" name="descripcion" id="descripcion"
+							value="{{{ Input::old('descripcion', isset($newscategory) ? $newscategory->descripcion : null) }}}" >@if(isset($newscategory)){{$newscategory->descripcion}} @endif </textarea>
+						{!!$errors->first('descripcion', '<span class="help-block">:message LOL FAKU </span>')!!}
 					</div>
 				</div>
 
