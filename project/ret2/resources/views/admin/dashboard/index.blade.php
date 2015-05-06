@@ -41,17 +41,18 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="glyphicon glyphicon-list fa-3x"></i>
+                            <i class="glyphicon glyphicon-euro fa-3x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">{{$news}}</div>
-                            <div>{{ trans("admin/admin.news_items") }}!</div>
+                            <div class="huge">{{$subasta}}</div>
+                            <div>{{ trans("Subastas") }}!</div>
                         </div>
                     </div>
                 </div>
+
                 <a href="{{URL::to('admin/news')}}">
                     <div class="panel-footer">
-                        <span class="pull-left">{{ trans("admin/admin.view_detail") }}</span>
+                        <span class="pull-left">{{ trans("Detalles") }}</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 
                         <div class="clearfix"></div>
@@ -59,6 +60,7 @@
                 </a>
             </div>
         </div>
+        <!--
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -105,6 +107,7 @@
                 </a>
             </div>
         </div>
+
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-danger">
                 <div class="panel-heading">
@@ -174,5 +177,6 @@
                 </a>
             </div>
         </div>
+      -->
     </div>
 @endsection
