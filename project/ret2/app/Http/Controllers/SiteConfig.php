@@ -9,7 +9,7 @@ class SiteConfig extends Controller {
 
 	public function show() //falta $id
 	{
-		return view('admin.configsite');
+		return view('admin.siteconfig');
 	}
 
 }
