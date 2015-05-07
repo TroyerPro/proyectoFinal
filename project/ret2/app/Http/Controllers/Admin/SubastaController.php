@@ -66,6 +66,55 @@ class SubastaController extends UserController {
 
 
     }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function getEdit($id)
+    {
+        $subasta = Subasta::find($id);
+        $nombre = $subasta->nombre;
+        $descripcion = $subasta->descripcion;
+
+        return view('user.subasta.edit',compact('subasta','nombre','descripcion'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function postEdit(NewsRequest $request, $id)
+    {
+        $news = Article::find($id);
+        $news -> user_id = Auth::id();
+        $news -> language_id = $request->language_id;
+        $news -> title = $request->title;
+        $news -> article_category_id = $request->newscategory_id;
+        $news -> introduction = $request->introduction;
+        $news -> content = $request->content;
+        $news -> source = $request->source;
+
+        $picture = "";
+        if(Input::hasFile('picture'))
+        {
+            $file = Input::file('picture');
+            $filename = $file->getClientOriginalName();
+            $extension = $file -> getClientOriginalExtension();
+            $picture = sha1($filename . time()) . '.' . $extension;
+        }
+        $news -> picture = $picture;
+        $news -> save();
+
+        if(Input::hasFile('picture'))
+        {
+            $destinationPath = public_path() . '/images/news/'.$news->id.'/';
+            Input::file('picture')->move($destinationPath, $picture);
+        }
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -104,7 +153,7 @@ class SubastaController extends UserController {
         $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual');
 
         return Datatables::of($subasta)
-            ->add_column('actions','<a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/tancar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
+            ->add_column('actions','<a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
                     <input type="hidden" name="row" value="{{$id}}" id="row">')
             ->remove_column('id')
 
@@ -123,7 +172,7 @@ class SubastaController extends UserController {
         $order = 1;
         foreach ($items as $value) {
             if ($value != '') {
-                Subasta::where('id', '=', $value) -> update(array('position' => $order));
+                Article::where('id', '=', $value) -> update(array('position' => $order));
                 $order++;
             }
         }
