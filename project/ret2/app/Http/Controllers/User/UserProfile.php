@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\Controller;
 use Auth;
+use Input;
+use URL;
+use Validator;
+use Redirect;
+use Request;
+use Session;
 use App\User;
 class UserProfile extends Controller {
 
@@ -10,7 +16,7 @@ class UserProfile extends Controller {
 		$this->middleware('auth', [ 'except' => [ 'index', 'show' ] ]);
 	}
 
-	public function show() //falta $id
+	public function show()
 	{
 		$id=Auth::user()->id;
 		$currentuser = User::find($id);
@@ -66,7 +72,20 @@ class UserProfile extends Controller {
 		$id=Auth::user()->id;
 		$currentuser = User::find($id);
 		$success = true;
-		return view('user.profile.imagen', compact('currentuser','success'));
-	}
+
+		// getting all of the post data
+		$file = Request::file('image');
+
+
+		$destinationPath = URL::asset('img/profile/'); // upload path
+		$extension = 'jpg'; // getting image extension
+		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+		$currentuser -> imagen = $fileName;
+		$currentuser->save();
+		$file->move($destinationPath, $fileName); // uploading file to given path
+		// sending back with message
+
+	return view('user.profile.imagen', compact('currentuser','success'));
+}
 
 }

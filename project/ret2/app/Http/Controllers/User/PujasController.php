@@ -10,7 +10,7 @@ use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
 
-class SubastaController extends UserController {
+class PujasController extends UserController {
 
     /*
     * Display a listing of the resource.
@@ -20,7 +20,7 @@ class SubastaController extends UserController {
     public function index()
     {
         // Show the page
-        return view('user.subasta.index');
+        return view('user.pujas.index');
     }
 
     /**
