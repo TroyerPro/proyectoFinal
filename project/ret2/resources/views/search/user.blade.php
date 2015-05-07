@@ -9,7 +9,7 @@
     @foreach ($user as $user)
       <li id='{{ $user->id }}'>
         <div class="">
-          <a href="#">imagen del user</a>
+          <a href="user/view/{{ $user->id }}">imagen del user</a>
         </div>
         <h3>{{ $user->name }}</h3>
       </li>
