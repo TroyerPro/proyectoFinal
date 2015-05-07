@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
+use App\Empresa;
 class SiteConfig extends Controller {
 
 	public function __construct()
@@ -11,7 +11,25 @@ class SiteConfig extends Controller {
 
 	public function show() //falta $id
 	{
-		return view('admin.configsite');
+		$empresa = Empresa::find(1);
+		$precio = $empresa -> precio_prorroga;
+		$dias_subasta = $empresa -> dias_subasta_gratis;
+		$tiempo_inactividad = $empresa -> tiempo_inactividad;
+		return view('admin.configsite', compact('precio','dias_subasta','tiempo_inactividad'));
+	}
+
+	public function postEdit() {
+		$empresa = Empresa::find(1);
+		$precio = $_POST['prorroga'];
+		$dias_subasta = $_POST['dias_subasta'];
+		$tiempo_inactividad = $_POST['inactividad'];
+		$empresa -> precio_prorroga = $precio;
+		$empresa -> dias_subasta_gratis = $dias_subasta;
+		$empresa -> tiempo_inactividad = $tiempo_inactividad;
+
+		$empresa->save();
+		$success = true;
+		return view('admin.configsite', compact('precio','dias_subasta','tiempo_inactividad', 'success'));
 	}
 
 }
