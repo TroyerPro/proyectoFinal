@@ -40,19 +40,20 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">{{{ trans('site/user.surnames') }}}</label>
+                                <label class="col-md-4 control-label">{{{ trans('site/user.surname') }}}</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="surnames" value="{{ old('surnames') }}">
+                                    <input type="text" class="form-control" name="surname" value="{{ old('surname') }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">{{{ trans('site/user.birth_date') }}}</label>
 
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="birthdate" value="{{ old('birthdate') }}">
-                                </div>
+                              <label class="col-md-4 control-label">{{{ trans('site/user.birthdate') }}}</label>
+
+                              <div class="col-md-6">
+                                <input type="text" name="birthdate" class="form-control" id="datepicker" value= "{{ old('birthdate') }}">
+                              </div>
                             </div>
 
                             <div class="form-group">
@@ -60,14 +61,6 @@
 
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="city" value="{{ old('city') }}">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">{{{ trans('site/user.image') }}}</label>
-
-                                <div class="col-md-6">
-                                    <input type="file">
                                 </div>
                             </div>
 
