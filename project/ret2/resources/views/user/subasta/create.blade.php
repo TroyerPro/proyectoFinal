@@ -14,7 +14,7 @@
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
             @yield('main')
-            <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('/auth/login') !!}">
+            <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/subasta/create') !!}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
@@ -29,7 +29,7 @@
                     <label class="col-md-4 control-label">Categoria</label>
 
                   <div class="col-md-6">
-                    <select name="select_categoria">
+                    <select name="categoria">
                       <option value="1">Android</option>
                       <option value="2">Frutas</option>
                       <option value="3">Ventanas</option>
@@ -99,10 +99,10 @@
                     <label class="col-md-4 control-label">Método de pago</label>
 
                   <div class="col-md-6">
-                    <select name="duracion">
-                      <option value="1">PayPal</option>
-                      <option value="2">Transferencia Bancaria</option>
-                      <option value="3">Metálico</option>
+                    <select name="metodo">
+                      <option value="Paypal">PayPal</option>
+                      <option value="Transf.">Transferencia Bancaria</option>
+                      <option value="Metalico">Metálico</option>
                     </select>
                   </div>
                 </div>

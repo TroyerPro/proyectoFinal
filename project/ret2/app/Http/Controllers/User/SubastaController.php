@@ -31,6 +31,7 @@ class SubastaController extends UserController {
     public function getCreate()
     {
         $nombre = "";
+        $estado = "";
         $descripcion = "";
 		    $categoria = Categoria::all();
 		    $precio_inicial = "";
@@ -38,7 +39,7 @@ class SubastaController extends UserController {
         $metodo = "";
 
         // Show the page
-        return view('user.subasta.create', compact('nombre', 'descripcion','categoria','precio_inicial','imagen','metodo'));
+        return view('user.subasta.create', compact('nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
     }
 
     /**
@@ -46,33 +47,27 @@ class SubastaController extends UserController {
      *
      * @return Response
      */
-    public function postCreate(NewsRequest $request)
+    public function postCreate()
     {
-        $news = new Article();
-        $news -> user_id = Auth::id();
-        $news -> language_id = $request->language_id;
-        $news -> title = $request->title;
-        $news -> article_category_id = $request->newscategory_id;
-        $news -> introduction = $request->introduction;
-        $news -> content = $request->content;
-        $news -> source = $request->source;
 
-        $picture = "";
-        if(Input::hasFile('picture'))
-        {
-            $file = Input::file('picture');
-            $filename = $file->getClientOriginalName();
-            $extension = $file -> getClientOriginalExtension();
-            $picture = sha1($filename . time()) . '.' . $extension;
-        }
-        $news -> picture = $picture;
-        $news -> save();
 
-        if(Input::hasFile('picture'))
-        {
-            $destinationPath = public_path() . '/images/news/'.$news->id.'/';
-            Input::file('picture')->move($destinationPath, $picture);
-        }
+
+        $subasta = new Subasta();
+        $subasta -> id_user_vendedor = Auth::id();
+        $subasta -> nombre = $_POST['nombre'];
+        $subasta -> descripcion = $_POST['desc'];
+        $subasta -> id_categoria = $_POST['categoria'];
+        $subasta -> metodo_pago = $_POST['metodo'];
+        $subasta -> estado = $_POST['estado'];
+        $subasta -> estado_subasta = true;
+        $subasta -> fecha_inicio = "2015-05-22";
+        $subasta -> fecha_final = "2015-06-30";
+        $subasta -> precio_inicial = 1;
+        $subasta -> imagen = "ruta";
+
+        $subasta -> save();
+
+
     }
     /**
      * Show the form for editing the specified resource.
