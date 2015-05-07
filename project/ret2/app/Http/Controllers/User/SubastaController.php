@@ -49,9 +49,6 @@ class SubastaController extends UserController {
      */
     public function postCreate()
     {
-
-
-
         $subasta = new Subasta();
         $subasta -> id_user_vendedor = Auth::id();
         $subasta -> nombre = $_POST['nombre'];
