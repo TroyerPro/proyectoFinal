@@ -20,6 +20,7 @@ class CreateEmpresaTable extends Migration
 			$table->string('direccion')->nullable();
 			$table->float('precio_prorroga');
 			$table->integer('dias_subasta_gratis');
+			$table->integer('tiempo_inactividad');
 			$table->timestamps();
 		});
 	}

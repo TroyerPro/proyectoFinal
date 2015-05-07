@@ -99,8 +99,9 @@ $factory('App\Subasta', [
   $factory('App\Empresa', [
     'nombre' => $faker->name,
     'direccion' => $faker->name,
-    'precio_prorroga' => $faker->numberBetween(10000000,3000000000000),
-    'dias_subasta_gratis'=> $faker->numberBetween(1,2),
+    'precio_prorroga' => '100',
+    'dias_subasta_gratis'=> '30',
+    'tiempo_inactividad' => '360',
   ]);
 
   /*$factory('App\Usuario', [
