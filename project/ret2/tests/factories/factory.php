@@ -87,8 +87,9 @@ $factory('App\Categoria', [
 $factory('App\Subasta', [
     'nombre' => $faker->name,
     'descripcion' => $faker->paragraph,
-    'metodo_pago' => $faker->word,
-    'estado' => $faker->boolean(50),
+    'metodo_pago' => 'PayPal',
+    'estado_subasta' => $faker->boolean(50),
+    'estado'=>'Usado',
     'fecha_final' => $faker->dateTime(),
     'fecha_inicio'=> $faker->dateTime(),
     'fecha_prorroga'=> $faker->dateTime(),

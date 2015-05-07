@@ -39,7 +39,8 @@ class UserController extends UserController {
 
         $user = new User ();
         $user -> name = $request->name;
-		$user -> username = $request->username;
+		    $user -> username = $request->username;
+        $user-> surname = $request->surname;
         $user -> email = $request->email;
         $user -> password = bcrypt($request->password);
         $user -> confirmation_code = str_random(32);
