@@ -100,9 +100,10 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
 
     #Cosas añadidas
     //Falta un controller general para el usuario
-    Route::get('perfil/modificar','ModifyProfile@show');
-    Route::get('perfil', 'UserProfile@show');
-
+    Route::post('perfil', 'User\UserProfile@postEdit');
+    Route::get('perfil', 'User\UserProfile@show');
+    Route::get('perfil/password', 'User\UserProfile@getPassword');
+    Route::post('perfil/password', 'User\UserProfile@postPassword');
     #Subasta
     Route::get('subastas','User\SubastaController@index'); // <---- CAMBIAR RUTA EN LA FUNCIÓN!!!!!
     Route::get('subastas/data', 'User\SubastaController@data');
