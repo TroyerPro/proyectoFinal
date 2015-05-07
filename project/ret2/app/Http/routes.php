@@ -20,11 +20,11 @@ Route::pattern('id', '[0-9]+');
 Route::get('news/{id}', 'ArticlesController@show');
 Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
-Route::get('subasta/view/{id}', 'Subasta\View@show');
+
 Route::get('search/user','Search\UserSearch@show');
 Route::get('search/subasta','Search\SubastaSearch@show');
 Route::get('search/subasta/data','Search\SubastaSearch@data');
-Route::get('perfil/view/{id}','ViewUser@show');
+Route::get('search/user/view/{id}','Perfil\View@show');
 Route::get('search/subasta/view/{id}', 'Subasta\View@show');
 
 //######################################################################
