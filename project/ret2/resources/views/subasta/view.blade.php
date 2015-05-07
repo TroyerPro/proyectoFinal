@@ -13,8 +13,7 @@
              <h4>{{ $subasta->nombre }}</h4>
            </div>
            <div class="col-xs-12">
-             <img class="imagensubasta" src="{{ $subasta->imagen }}">
-             ((foto producto))
+             <img class="imagensubasta" src="{{ URL::asset('appfiles/photoalbum'.$subasta->nombre) }}">
            </div>
            <div class="col-xs-12">
              Pujas:
