@@ -28,7 +28,7 @@
             </li>
             @foreach ($categoria as $categoria)
             <li>
-              <a href="search/subasta/{{ $categoria->nombre }}">
+              <a href="">
                   <span class="hidden-sm text" style="margin-left:6%;">{{ $categoria->nombre }}</span>
               </a>
             </li>
