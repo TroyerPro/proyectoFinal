@@ -101,7 +101,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     #Cosas añadidas
     Route::get('crear/categoria', 'CreateCategory@show');
     Route::post('crear/categoria', 'CreateCategory@create');
-    Route::get('site/config', 'SiteConfig@show'); //Hecho
+    Route::get('site/config', 'Admin\SiteConfig@show'); //Hecho
     Route::get('estadisticas','ViewStats@show');
     Route::get('factura','GenerateFactura@show');
 
