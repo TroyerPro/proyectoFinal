@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('surname');
             $table->string('username')->unique(); // used for slug.
             $table->string('nif');
+            $table->date('fecha_nacimiento');
+            $table->string('ciudad');
+            $table->string('descripcion');
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->string('confirmation_code');
