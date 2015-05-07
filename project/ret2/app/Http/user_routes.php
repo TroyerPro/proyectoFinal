@@ -104,6 +104,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('perfil', 'User\UserProfile@show');
     Route::get('perfil/password', 'User\UserProfile@getPassword');
     Route::post('perfil/password', 'User\UserProfile@postPassword');
+    Route::get('perfil/imagen', 'User\UserProfile@getImagen');
+    Route::post('perfil/imagen', 'User\UserProfile@postImagen');
     #Subasta
     Route::get('subastas','User\SubastaController@index'); // <---- CAMBIAR RUTA EN LA FUNCIÓN!!!!!
     Route::get('subastas/data', 'User\SubastaController@data');

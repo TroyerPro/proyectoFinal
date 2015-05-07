@@ -54,4 +54,19 @@ class UserProfile extends Controller {
 		return view('user.profile.password', compact('currentuser', 'success'));
 	}
 
+	public function getImagen()
+	{
+		$id=Auth::user()->id;
+		$currentuser = User::find($id);
+		return view('user.profile.imagen', compact('currentuser'));
+	}
+
+	public function postImagen()
+	{
+		$id=Auth::user()->id;
+		$currentuser = User::find($id);
+		$success = true;
+		return view('user.profile.imagen', compact('currentuser','success'));
+	}
+
 }

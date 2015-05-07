@@ -19,6 +19,10 @@
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
             @yield('main')
+            {{ $currentuser-> image }}
+
+            <img src="{!! URL::asset('img/profile/sample.jpg') !!}">
+            <a href="{{{ URL::to('user/perfil/imagen') }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span> Cambiar imagen</a>
             <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/perfil') !!}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @if(isset($success))
