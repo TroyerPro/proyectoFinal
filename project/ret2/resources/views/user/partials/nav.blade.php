@@ -100,4 +100,11 @@ Dashboard</span>
                     class="hidden-sm text"> Subastas</span>
         </a>
     </li>
+    <li {{ (Request::is('user/perfile*') ? ' class=active' : '') }} >
+        <a href="{{URL::to('user/profile')}}"
+                >
+            <i class="glyphicon glyphicon-user"></i><span
+                    class="hidden-sm text"> Perfil Usuario</span>
+        </a>
+    </li>
 </ul>

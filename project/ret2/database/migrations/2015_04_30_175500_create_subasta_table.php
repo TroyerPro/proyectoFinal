@@ -24,6 +24,8 @@ class CreateSubastaTable extends Migration
             $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->string('metodo_pago');
+            $table->boolean('estado')->default(false);            
             $table->date('fecha_final');
             $table->date('fecha_inicio');
             $table->date('fecha_prorroga')->nullable();
