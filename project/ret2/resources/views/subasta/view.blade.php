@@ -16,7 +16,7 @@
              <img class="imagensubasta" src="{{ URL::asset('appfiles/photoalbum'.$subasta->nombre) }}">
            </div>
            <div class="col-xs-12">
-             Pujas:
+             Pujas Totales:
            </div>
            <div class="col-xs-12">
             Puja actual: {{ $subasta->precio_actual }}
