@@ -44,7 +44,7 @@
                             <i class="glyphicon glyphicon-euro fa-3x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">{{$subasta}}</div>
+                            <div class="huge">{{$Subasta}}</div>
                             <div>{{ trans("Subastas") }}!</div>
                         </div>
                     </div>

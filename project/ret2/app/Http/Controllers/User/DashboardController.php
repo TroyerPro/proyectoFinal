@@ -1,10 +1,12 @@
 <?php namespace App\Http\Controllers\User;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Article;
 use App\ArticleCategory;
 use App\User;
-use App\Categoria;
+use App\Subasta;
+use App\Puja;
 use App\Video;
 use App\VideoAlbum;
 use App\Photo;
@@ -19,16 +21,11 @@ class DashboardController extends UserController {
 
 	public function index()
 	{
+        $usuario = Auth::id();
         $title = "Dashboard";
+        $subasta = Subasta::where('subastas.id_user_vendedor',$usuario)->count();
+        $puja = Puja::where('pujas.id_usuario',$usuario)->count();
 
-        $news = Article::count();
-        $newscategory = Categoria::count();
-        $users = User::count();
-        $photo = Photo::count();
-        $photoalbum = PhotoAlbum::count();
-        $video = Video::count();
-        $videoalbum = VideoAlbum::count();
-		return view('user.dashboard.index',  compact('title','news','newscategory','video','videoalbum','photo',
-            'photoalbum','users'));
+		return view('user.dashboard.index',  compact('title','subasta','puja'));
 	}
 }

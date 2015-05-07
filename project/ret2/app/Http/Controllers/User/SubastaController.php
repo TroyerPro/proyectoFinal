@@ -101,7 +101,8 @@ class SubastaController extends UserController {
      */
     public function data()
     {
-        $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual');
+        $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual')
+        ->where('subastas.id_user_vendedor', Auth::id());
 
         return Datatables::of($subasta)
             ->add_column('actions','<a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/tancar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
