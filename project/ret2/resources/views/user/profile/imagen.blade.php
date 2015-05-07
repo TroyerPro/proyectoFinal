@@ -13,27 +13,12 @@
 
 </div>
 
-<form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/perfil/imagen') !!}">
-		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		@if(isset($success))
-				<div class="alert alert-success alert-dismissible fade in" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-						<strong>¡Se han realizado los cambios!</strong>
-				</div>
-				@endif
-		<div class="form-group">
-				<label class="col-md-4 control-label" >Tiempo subasta gratuita (días)</label>
-				<div class="col-md-6">
-						<input type="file" name="imagen">
-				</div>
-		</div>
 
-		<div class="form-group">
-				<div class="col-md-6 col-md-offset-4">
-						<button type="submit" class="btn btn-primary" style="margin-right: 15px;">
-								Realizar cambios
-						</button>
-				</div>
-		</div>
+<form action="{!! URL::to('user/perfil/imagen') !!}" method="post" enctype="multipart/form-data">
+    Select image to upload:
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="file" name="fileToUpload" id="fileToUpload">
+		<input type="text" name="a" id="a">
+    <input type="submit" value="Upload Image" name="submit">
 </form>
 @stop

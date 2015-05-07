@@ -12,7 +12,7 @@
         <meta name="author" content="RET"/>
     @show @section('RET')
         <meta name="description"
-              content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei."/>
+              content="RET"/>
     @show
 
 		<link href="{{ asset('/css/all.css') }}" rel="stylesheet">

@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Http\FormRequest;
 use Auth;
 use Input;
 use URL;
@@ -74,18 +75,19 @@ class UserProfile extends Controller {
 		$success = true;
 
 		// getting all of the post data
-		$file = Request::file('image');
+/*
+		$a = $_FILES["fileToUpload"];
+				$target_dir = URL::asset('img/profile/');
+				$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 
-		$destinationPath = URL::asset('img/profile/'); // upload path
-		$extension = 'jpg'; // getting image extension
-		$fileName = rand(11111,99999).'.'.$extension; // renameing image
-		$currentuser -> imagen = $fileName;
+		$currentuser -> imagen = $_FILES["fileToUpload"]["name"];
 		$currentuser->save();
-		$file->move($destinationPath, $fileName); // uploading file to given path
-		// sending back with message
 
-	return view('user.profile.imagen', compact('currentuser','success'));
+
+		return view('user.profile.imagen', compact('currentuser','success'));
+		*/
 }
 
 }
