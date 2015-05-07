@@ -19,14 +19,19 @@
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
             @yield('main')
-            <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('/auth/login') !!}">
+            <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('admin/site/config') !!}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                @if(isset($success))
+                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <strong>¡Se han realizado los cambios!</strong>
+                    </div>
+                    @endif
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Tiempo subasta gratuita (días)</label>
+                    <label class="col-md-4 control-label" >Tiempo subasta gratuita (días)</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="prorroga" value="{{ old('días') }}">
+                        <input type="text" class="form-control" name="prorroga" placeholder="{{ $precio }}" value="{{ $precio }}">
                     </div>
                 </div>
 
@@ -34,7 +39,7 @@
                     <label class="col-md-4 control-label">Precio Prórroga (€)</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="prorroga" value="{{ old('prorroga') }}">
+                        <input type="text" class="form-control" name="dias_subasta" placeholder="{{ $dias_subasta }}" value="{{ $dias_subasta }}">
                     </div>
                 </div>
 
@@ -42,7 +47,7 @@
                     <label class="col-md-4 control-label">Periodo Inactividad (días)</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="inactividad" value="{{ old('inactividad') }}">
+                        <input type="text" class="form-control" name="inactividad" placeholder="{{ $tiempo_inactividad }}" value="{{ $tiempo_inactividad }}">
                     </div>
                 </div>
 
