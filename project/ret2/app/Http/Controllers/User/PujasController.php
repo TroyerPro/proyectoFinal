@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\UserController;
+use App\Puja;
 use App\Subasta;
 use App\Categoria;
 use Illuminate\Support\Facades\Input;
@@ -64,7 +65,6 @@ class PujasController extends UserController {
 
         $subasta -> save();
 
-
     }
 
     /**
@@ -101,15 +101,16 @@ class PujasController extends UserController {
      */
     public function data()
     {
-        $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual')
-        ->where('subastas.id_user_vendedor', Auth::id());
 
-        return Datatables::of($subasta)
-            ->add_column('actions','<a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/tancar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
-                    <input type="hidden" name="row" value="{{$id}}" id="row">')
-            ->remove_column('id')
+      $puja = Puja::select('subastas.id','pujas.cantidad','pujas.fecha','subastas.nombre')
+      ->where('pujas.id_usuario', Auth::id())
+      ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta');
 
-            ->make();
+      return Datatables::of($puja)
+          ->add_column('actions','<a href="{{{ URL::to(\'search/subasta/view/\'.$id ) }}}" class="btn btn-sm btn-default iframe"><span class="glyphicon"></span> {{ trans("Volver a Pujar") }}</a>
+                  ')
+          ->remove_column('id')
+          ->make();
     }
 
     /**
