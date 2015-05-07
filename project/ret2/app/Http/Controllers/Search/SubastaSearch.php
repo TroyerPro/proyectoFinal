@@ -34,4 +34,12 @@ class SubastaSearch extends Controller {
           ->make();
   }
 */
+	public function categoria($categoria3)
+	{
+			$categoria = Categoria::all();
+			$categoria2=Categoria::select('categoria.id')->where('categoria.nombre','=',$categoria3);
+			$bid = Subasta::select()->where('subasta.categoria','=',$categoria2);
+			return view('search.subasta', compact('bid','categoria'));
+
+	}
 }
