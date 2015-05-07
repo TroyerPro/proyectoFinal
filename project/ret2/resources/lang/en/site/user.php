@@ -13,6 +13,7 @@ return [
 	'e_mail' => 'Dirección de Correo Electrónico',
 	'birth_date' => 'Fecha de Nacimiento',
 	'register' => 'Registrarse',
+	'username' => 'Nombre de Usuario',
 	'password' => 'Contraseña',
 	'password_confirmation' => 'Confirmar contraseña',
 	'confirmation_required' => 'Se necesita confirmación',
