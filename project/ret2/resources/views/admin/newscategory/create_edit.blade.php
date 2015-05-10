@@ -32,7 +32,7 @@
 							trans("Descripcion") }}</label> <textarea
 							class="form-control" type="text" name="descripcion" id="descripcion"
 							value="{{{ Input::old('descripcion', isset($newscategory) ? $newscategory->descripcion : null) }}}" >@if(isset($newscategory)){{$newscategory->descripcion}} @endif </textarea>
-						{!!$errors->first('descripcion', '<span class="help-block">:message LOL FAKU </span>')!!}
+						{!!$errors->first('descripcion', '<span class="help-block">:message </span>')!!}
 					</div>
 				</div>
 

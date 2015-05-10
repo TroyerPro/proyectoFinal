@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\ImagenRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
 use Input;
@@ -68,26 +69,39 @@ class UserProfile extends Controller {
 		return view('user.profile.imagen', compact('currentuser'));
 	}
 
-	public function postImagen()
+	public function postImagen(ImagenRequest $request)
 	{
 		$id=Auth::user()->id;
 		$currentuser = User::find($id);
 		$success = true;
 
-		// getting all of the post data
+
+		$picture = "";
+		if($request->hasFile('image'))
+		{
+				$file = $request->file('image');
+				$filename = $file->getClientOriginalName();
+				$extension = $file -> getClientOriginalExtension();
+				$picture = sha1($filename . time()) . '.' . $extension;
+		}
+
+
+		if($request->hasFile('image'))
+		{
+				$destinationPath = public_path() . '/img/profile/';
+				$request->file('image')->move($destinationPath, $picture);
 /*
-		$a = $_FILES["fileToUpload"];
-				$target_dir = URL::asset('img/profile/');
-				$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+				$path2 = public_path() . '/appfiles/photoalbum/' . $photoalbum->folder_id . '/thumbs/';
+				Thumbnail::generate_image_thumbnail($destinationPath . $picture, $path2 . $picture);*/
 
+		}
 
-		$currentuser -> imagen = $_FILES["fileToUpload"]["name"];
+		$currentuser->imagen = $picture;
+
 		$currentuser->save();
 
+		return view('user.profile.view', compact('currentuser','success'));
 
-		return view('user.profile.imagen', compact('currentuser','success'));
-		*/
 }
 
 }
