@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\User;
 
+use App\Http\Requests\User\Imagen2Request;
 use App\Http\Controllers\UserController;
 use App\Subasta;
 use App\Categoria;
@@ -11,6 +12,7 @@ use App\Http\Requests\Admin\DeleteRequest;
 use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
+
 
 class SubastaController extends UserController {
 
@@ -49,10 +51,14 @@ class SubastaController extends UserController {
      *
      * @return Response
      */
+<<<<<<< HEAD
      
     public function postCreate()
+=======
+    public function postCreate(Imagen2Request $request)
+>>>>>>> origin/master
     {
-
+      $success = true;
       $fechaIni = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
 
       $subasta = new Subasta();
@@ -64,10 +70,32 @@ class SubastaController extends UserController {
       $subasta -> estado = $_POST['estado'];
       $subasta -> estado_subasta = true;
       $subasta -> fecha_inicio = $fechaIni;
-      $subasta -> fecha_final = $_POST['fechaFin'];
+      $subasta -> fecha_final = $fechaIni;
       $subasta -> precio_inicial = floatval($_POST['precioIni']);
-      $subasta -> imagen = "ruta";
+
+      //Cargar imagen subasta
+      $picture = "";
+
+      if($request->hasFile('image'))
+      {
+          $file = $request->file('image');
+          $filename = $file->getClientOriginalName();
+          $extension = $file -> getClientOriginalExtension();
+          $picture = sha1($filename . time()) . '.' . $extension;
+      }
+
+      $subasta-> imagen = $picture;
       $subasta -> save();
+
+
+      if($request->hasFile('image'))
+      {
+          $destinationPath = public_path() . '/img/subasta/';
+          $request->file('image')->move($destinationPath, $picture);
+      }
+
+
+
 
       return view('user.subasta.index');
 

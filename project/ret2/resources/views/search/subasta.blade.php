@@ -63,7 +63,7 @@
             @foreach ($bid as $bid)
             <div class="col-xs-12" style="border-bottom:solid grey 1px;margin-top:2%;">
                 <div class="col-xs-5">
-                  <a href="subasta/view/{{ $bid->id }}">imagen del producto</a>
+                  <a href="subasta/view/{{ $bid->id }}"><img class="imagensubasta" src="{{ URL::asset('img/subasta/'.$subasta->imagen) }}"></a>
                 </div>
                 <div class="col-xs-7">
                   <h4>{{ $bid->nombre }}</h4>
