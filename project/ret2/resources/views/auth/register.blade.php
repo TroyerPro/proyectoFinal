@@ -52,7 +52,9 @@
                               <label class="col-md-4 control-label">{{{ trans('site/user.birthdate') }}}</label>
 
                               <div class="col-md-6">
-                                <input type="text" name="birthdate" class="form-control" id="datepicker" value= "{{ old('birthdate') }}">
+                                <input type="text" class="col-md-3 " name="dia" placeholder="dd">
+                                <input type="text" class="col-md-3" name="mes" placeholder="mm">
+                                <input type="text" class="col-md-3 " name="año" placeholder="aaaa">
                               </div>
                             </div>
 

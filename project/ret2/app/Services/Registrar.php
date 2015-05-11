@@ -18,7 +18,9 @@ class Registrar implements RegistrarContract {
 			'nif' => 'required', //Falta validar el NIF
 			'name' => 'required|max:255',
 			'surname' => 'required|max:255',
-			'birthdate' => 'required',
+			'dia' => 'required',
+			'mes' => 'required',
+			'año' => 'required',
 			'city' => 'required',
 			'username' => 'required|unique:users|max:255',
 			'email' => 'required|email|max:255|unique:users',
@@ -36,12 +38,19 @@ class Registrar implements RegistrarContract {
 	public function create(array $data)
 	{
 
+		$dia = $data['dia'];
+		$mes = $data['mes'];
+		$año = $data['año'];
+		$concat = $año.'-'.$mes.'-'.$dia;
+		$birthdate = date('Y-m-d', strtotime('1992-02-25'));
+
 		return User::create([
+
 			'name' => $data['name'],
 			'surname' => $data['surname'],
 			'username' => $data['username'],
 			'nif' => $data['nif'],
-			'fecha_nacimiento' => $data['birthdate'],
+			'fecha_nacimiento' => $birthdate,
 			'ciudad' => $data['city'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
