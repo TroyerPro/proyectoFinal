@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Subasta;
 use App\Categoria;
+use DateTime;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Http\Requests\Admin\DeleteRequest;
@@ -57,13 +58,13 @@ class SubastaController extends UserController {
         $subasta -> metodo_pago = $_POST['metodo'];
         $subasta -> estado = $_POST['estado'];
         $subasta -> estado_subasta = true;
-        $subasta -> fecha_inicio = "2015-05-22";
-        $subasta -> fecha_final = "2015-06-30";
-        $subasta -> precio_inicial = 1;
+        $subasta -> fecha_inicio = $_POST['fechaIni'];
+        $subasta -> fecha_final = $_POST['fechaFin'];
+        $subasta -> precio_inicial = $_POST['precioIni'];
         $subasta -> imagen = "ruta";
-
         $subasta -> save();
 
+        return view('user.subasta.index');
 
     }
     /**

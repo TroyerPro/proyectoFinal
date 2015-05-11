@@ -1,8 +1,13 @@
-@extends('user.layouts.modal')
-@section('content')
+@extends('user.layouts.default')
+
+{{-- Web site Title --}}
+@section('title') {{{ trans("admin/news.news") }}} :: @parent @stop
+
+{{-- Content --}}
+@section('main')
 <div class="row">
     <div class="page-header">
-        <h2>Subasta</h2>
+        <h3>Creando una subasta</h3>
     </div>
 </div>
 
@@ -13,7 +18,6 @@
           {{--<div class="panel-heading">Subasta</div>--}}
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
-            @yield('main')
             <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/subasta/create') !!}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -30,10 +34,9 @@
 
                   <div class="col-md-6">
                     <select name="categoria">
-                      <option value="1">Android</option>
-                      <option value="2">Frutas</option>
-                      <option value="3">Ventanas</option>
-                      <option value="4">Casas</option>
+                      @foreach ($categoria as $categoria)
+                      <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -43,16 +46,15 @@
 
                   <div class="col-md-6">
                     <select name="estado">
-                      <option value="1">Nuevo</option>
-                      <option value="2">Usado</option>
-                      <option value="3">Viejo</option>
+                      <option value="Nuevo">Nuevo</option>
+                      <option value="Usado">Usado</option>
+                      <option value="Viejo">Viejo</option>
                     </select>
                   </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-md-4 control-label">Descripción producto</label>
-
                     <div class="col-md-6">
                         <textarea type="text" class="form-control" name="desc" value="{{ old('desc') }}"></textarea>
                     </div>
@@ -70,7 +72,7 @@
                     <label class="col-md-4 control-label">Fecha inicio</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="fechaIni" value="Día y hora de hoy" disabled >
+                        <input type="text" class="form-control" name="fechaIni" value="{{Carbon\Carbon::now()}}" disabled >
                     </div>
                 </div>
 
@@ -79,10 +81,10 @@
 
                   <div class="col-md-6">
                     <select name="duracion">
-                      <option value="1">3 días</option>
-                      <option value="2">5 días</option>
-                      <option value="3">1 semana</option>
-                      <option value="4">2 semanas</option>
+                      <option value="3">3 días</option>
+                      <option value="5">5 días</option>
+                      <option value="7">1 semana</option>
+                      <option value="14">2 semanas</option>
                     </select>
                   </div>
                 </div>
@@ -91,8 +93,28 @@
                     <label class="col-md-4 control-label">Fecha final</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="fechaIni" value="Día y hora de hoy + duracion" disabled >
+                        <input type="text" class="form-control" name="fechaFin" value="{{ Carbon\Carbon::now()->addDay(3) }}" disabled >
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Precio inicial</label>
+
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="precioIni" value="1,00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Modo de envío</label>
+
+                  <div class="col-md-6">
+                    <select name="metodo">
+                      <option value="Postal público">Servicio Postal Público</option>
+                      <option value="Postal Privado">Servicio Postal Privado</option>
+                      <option value="Recoger en persona">Recoger en persona</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div class="form-group">

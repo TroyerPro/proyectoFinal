@@ -16,12 +16,27 @@
 Inicio</span>
         </a>
     </li>
+
+
+
     <li {{ (Request::is('user/subastas*') ? ' class=active' : '') }} >
-        <a href="{{URL::to('user/subastas')}}"
-                >
-            <i class="glyphicon glyphicon-user"></i><span
-                    class="hidden-sm text"> Subastas</span>
+        <a href="#">
+            <i class="glyphicon glyphicon-user"></i> Subastas<span class="fa arrow"</span>
         </a>
+        <ul class="nav nav-second-level collapse">
+            <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+                <a href="{{URL::to('user/subastas')}}">
+                    <i class="glyphicon glyphicon-list"></i><span
+                            class="hidden-sm text"> Ver Subastas </span>
+                </a>
+            </li>
+            <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+                <a href="{{URL::to('user/subasta/create')}}">
+                    <i class="glyphicon glyphicon-list"></i><span
+                            class="hidden-sm text">Crear Subasta </span>
+                </a>
+            </li>
+        </ul>
     </li>
     <li {{ (Request::is('user/pujas*') ? ' class=active' : '') }} >
         <a href="{{URL::to('user/pujas')}}"
