@@ -2,6 +2,8 @@
 
 use App\User;
 use Validator;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
 class Registrar implements RegistrarContract {
@@ -20,7 +22,7 @@ class Registrar implements RegistrarContract {
 			'surname' => 'required|max:255',
 			'dia' => 'required',
 			'mes' => 'required',
-			'año' => 'required',
+			'ano' => 'required',
 			'city' => 'required',
 			'username' => 'required|unique:users|max:255',
 			'email' => 'required|email|max:255|unique:users',
@@ -37,20 +39,16 @@ class Registrar implements RegistrarContract {
 	 */
 	public function create(array $data)
 	{
+		$formato = 'Y-m-d';
+		$formFecha =$data['ano'].'-'.$data['mes'].'-'.$data['dia'];
+		$fecha = DateTime::createFromFormat($formato, $formFecha);
 
-		$dia = $data['dia'];
-		$mes = $data['mes'];
-		$año = $data['año'];
-		$concat = $año.'-'.$mes.'-'.$dia;
-		$birthdate = date('Y-m-d', strtotime('1992-02-25'));
-
-		return User::create([
-
+		$user = User::create([
 			'name' => $data['name'],
 			'surname' => $data['surname'],
 			'username' => $data['username'],
 			'nif' => $data['nif'],
-			'fecha_nacimiento' => $birthdate,
+			'fecha_nacimiento' => $fecha,
 			'ciudad' => $data['city'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
@@ -58,6 +56,10 @@ class Registrar implements RegistrarContract {
 			'confirmed' => 0,
 			'confirmation_code' => md5(microtime() . env('APP_KEY')),
 		]);
+
+		$user-> fecha_nacimiento = $fecha;
+		$user-> save();
+		return $user;
 	}
 
 }

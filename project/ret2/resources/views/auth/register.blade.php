@@ -54,7 +54,7 @@
                               <div class="col-md-6">
                                 <input type="text" class="col-md-3 " name="dia" placeholder="dd">
                                 <input type="text" class="col-md-3" name="mes" placeholder="mm">
-                                <input type="text" class="col-md-3 " name="año" placeholder="aaaa">
+                                <input type="text" class="col-md-3 " name="ano" placeholder="aaaa">
                               </div>
                             </div>
 

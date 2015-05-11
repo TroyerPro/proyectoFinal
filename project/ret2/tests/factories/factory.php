@@ -9,7 +9,7 @@ $factory('App\User', [
     'nif' => $faker->numberBetween(000000000,999999999),
     'username' => $faker->unique()->userName,
     'email' => $faker->email,
-    'fecha_nacimiento'=> $faker->date($format = 'd-m-Y', $max = 'now'),
+    'fecha_nacimiento'=> $faker->dateTime($format = 'd-m-Y', $max = 'now'),
     'imagen'=> "sample.jpg",
     'ciudad' => $faker->city,
     'descripcion' => $faker->paragraph,

@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('surname');
             $table->string('username')->unique(); // used for slug.
             $table->string('nif');
-            $table->date('fecha_nacimiento');
+            $table->dateTime('fecha_nacimiento');
             $table->string('ciudad');
             $table->string('descripcion');
             $table->string('imagen');
