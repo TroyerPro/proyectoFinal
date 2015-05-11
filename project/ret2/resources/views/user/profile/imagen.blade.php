@@ -1,4 +1,5 @@
-@extends('user.layouts.modal') {{-- Content --}} @section('content')
+@extends('user.layouts.modal')
+@section('content')
 <!-- Tabs -->
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#tab-general" data-toggle="tab"> {{
@@ -12,7 +13,6 @@
 			<img class="profile_img" src="{{ URL::asset('img/profile/'.$currentuser->imagen) }}" style="max-height:250px; max-width:300px;">
 
 </div>
-
 <form class="form-horizontal" id="fupload" enctype="multipart/form-data"
 	method="post"
 	action="{{ URL::to('user/perfil/imagen') }}"

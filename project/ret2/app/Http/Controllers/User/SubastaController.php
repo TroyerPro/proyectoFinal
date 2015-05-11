@@ -49,11 +49,11 @@ class SubastaController extends UserController {
      *
      * @return Response
      */
+     
     public function postCreate()
     {
 
       $fechaIni = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
-
 
       $subasta = new Subasta();
       $subasta -> id_user_vendedor = Auth::id();
@@ -70,7 +70,6 @@ class SubastaController extends UserController {
       $subasta -> save();
 
       return view('user.subasta.index');
-
 
     }
 

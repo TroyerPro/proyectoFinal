@@ -1,7 +1,7 @@
 @extends('user.layouts.default')
 
 {{-- Web site Title --}}
-@section('title') {{{ trans("admin/news.news") }}} :: @parent @stop
+@section('title') {{{ trans("admin/news.news") }}} @parent @stop
 
 {{-- Content --}}
 @section('main')
@@ -17,12 +17,13 @@
         {{--<div class="panel panel-default">--}}
           {{--<div class="panel-heading">Subasta</div>--}}
           {{--<div class="panel-body">--}}
-          <div class="col-xs-12 main">
             @yield('main')
+          <div class="col-xs-12 main">
             <div class="col-md-3">
               <img class="profile_img col-md-12" src="{{ URL::asset('img/profile/'.$currentuser->imagen) }}">
               <div class="col-md-6 col-md-offset-1">
-                <a href="{{{ URL::to('user/perfil/imagen') }}}" class="btn btn-success btn-sm iframe button-center btn-mrg-top" ><span class="glyphicon glyphicon-pencil"></span> Cambiar imagen</a>
+                <a href="{{{ URL::to('user/perfil/imagen') }}}" class="btn btn-success btn-sm iframe button-center btn-mrg-top" >
+                  <span class="glyphicon glyphicon-pencil"></span> Cambiar imagen</a>
               </div>
               <div class="col-md-6 col-md-offset-1">
               </div>
@@ -97,5 +98,4 @@
         {{--</div>--}}
         </div>
     </div>
-@endsection
 @stop
