@@ -93,24 +93,50 @@ class SubastaController extends UserController {
         $news->delete();
     }
 
+    public function getCerrar($id)
+    {
+        $subasta = Subasta::find($id);
+        return view('user.subasta.cerrar', compact('subasta'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $id
+     * @return Response
+     */
+    public function postCerrar($id)
+    {
+      $subasta = Subasta::find($id);
+      $subasta -> estado_subasta = false;
+      $subasta -> save();
+    }
 
     /**
      * Show a list of all the languages posts formatted for Datatables.
      *
      * @return Datatables JSON
      */
-    public function data()
-    {
-        $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual')
-        ->where('subastas.id_user_vendedor', Auth::id());
+     public function data()
+     {
+       $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual')
+       ->where('subastas.id_user_vendedor', Auth::id());
 
-        return Datatables::of($subasta)
-            ->add_column('actions','<a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/tancar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
-                    <input type="hidden" name="row" value="{{$id}}" id="row">')
-            ->remove_column('id')
+       return Datatables::of($subasta)
+       ->add_column('actions','@if($estado_subasta)
+       <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
+       <input type="hidden" name="row" value="{{$id}}" id="row">
+       @else
+       <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> {{ trans(" Subasta Finalizada") }}</button>
+       <input type="hidden" name="row" value="{{$id}}" id="row">
 
-            ->make();
-    }
+       @endif')
+
+       ->remove_column('id')
+       ->remove_column('estado_subasta')
+
+       ->make();
+     }
 
     /**
      * Reorder items
