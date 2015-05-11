@@ -1,6 +1,27 @@
 @extends('app')
 @section('title') Contact :: @parent @stop
 @section('content')
+{{-- Scripts --}}
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+          $( ".categoria" ).click(function() {
+            var idCategoria= $(this).attr( 'name' );
+            $.ajax({
+              url: "{{ URL::to('search/subasta') }}",
+              data:{
+                "idCategoria": idCategoria
+              },
+            }).done(function() {
+              $("#ResultItems").html();
+
+            });
+          });
+        });
+    </script>
+
+@endsection
 <div class="page-header">
     <h2>Buscador de Subasta</h2>
 </div>
@@ -29,7 +50,7 @@
             @foreach ($categoria as $categoria)
             <li>
               <a>
-                  <span class="hidden-sm text" style="margin-left:6%;" onclick="filtrar({{ $categoria->id }});">{{ $categoria->nombre }}</span>
+                  <span class="hidden-sm text categoria"  style="margin-left:6%;" name="{{ $categoria->id }}" >{{ $categoria->nombre }}</span>
               </a>
             </li>
             @endforeach
@@ -66,24 +87,3 @@
 
 
 @endsection
-
-
-{{-- Scripts --}}
-@section('scripts')
-    @parent
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-          alert("hola");
-          function filtrar(id){
-            alert("hola");
-              $.ajax({
-                "sAjaxSource": "{{ URL::to('search/subasta/categoria/') }}"
-              }).success(function() {
-                    window.location.reload();
-              });
-            };
-        });
-    </script>
-
-    @endsection

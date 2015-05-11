@@ -15,7 +15,14 @@ class SubastaSearch extends Controller {
 	public function show() //falta $id
 	{
 
-		$bid = Subasta::all();
+		if (isset($_REQUEST['idCategoria'])) {
+			$id= $_REQUEST['idCategoria'];
+			$bid = Subasta::select('subastas.*')->where('id_categoria', $id);
+echo $bid;
+		}else{
+			$bid = Subasta::all();
+		}
+
 		$categoria = Categoria::all();
 		//dd($news);
 		return view('search.subasta', compact('bid','categoria'));
@@ -23,12 +30,11 @@ class SubastaSearch extends Controller {
 	}
 
 
-	public function categoria($id)
+	public function filtro()
 	{
 
 		$categoria = Categoria::all();
-
-		$bid = ret::where('id_categoria', $id);
+		$id= $_REQUEST['idCategoria'];
 
 		return view('search.subasta', compact('bid','categoria'));
 
