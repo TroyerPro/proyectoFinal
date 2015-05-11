@@ -18,7 +18,7 @@
           {{--<div class="panel-heading">Subasta</div>--}}
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
-            <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/subasta/create') !!}">
+            <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/subasta/create') !!}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
