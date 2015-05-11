@@ -4,7 +4,7 @@
 */
 .profile_img {
 max-height:250px;
-max-width:250px;  
+max-width:250px;
 }
 #colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
 #cboxWrapper {max-width:none;}
@@ -12272,4 +12272,8 @@ li > ul {
    }
    .text_center {
      text-align: center;
+   }
+
+   .btn-mrg-top {
+     margin-top: 5px;
    }
