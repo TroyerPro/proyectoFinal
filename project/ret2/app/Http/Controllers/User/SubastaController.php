@@ -51,12 +51,8 @@ class SubastaController extends UserController {
      *
      * @return Response
      */
-<<<<<<< HEAD
-     
-    public function postCreate()
-=======
+
     public function postCreate(Imagen2Request $request)
->>>>>>> origin/master
     {
       $success = true;
       $fechaIni = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
