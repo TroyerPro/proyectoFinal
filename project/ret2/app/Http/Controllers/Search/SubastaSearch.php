@@ -21,32 +21,17 @@ class SubastaSearch extends Controller {
 		return view('search.subasta', compact('bid','categoria'));
 		//return view('search.subasta');
 	}
-/*
-  public function data()
-  {
 
-      $bid = Subasta::select('subasta.id','subasta.nombre','subasta.precio_actual','subasta.fecha_final');
 
-      return Datatables::of($bid)
-         ->add_column('<input type="hidden" name="row" value="{{$id}}" id="row">')
-          ->remove_column('id')
-
-          ->make();
-  }
-*/
-/*
 	public function categoria($id)
 	{
 
 		$categoria = Categoria::all();
 
-	$bid = ret::table('subastas')
-										->where('id_categoria', '=', $id)
-										->get();
-
-		$bid = Subasta::select('*')->where('subastas.id_categoria','=',$id);
+		$bid = ret::where('id_categoria', $id);
 
 		return view('search.subasta', compact('bid','categoria'));
 
-	}*/
+	}
+
 }

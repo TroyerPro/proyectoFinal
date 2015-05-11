@@ -22,14 +22,14 @@
 
         <ul class="nav nav-pills nav-stacked" id="menu">
             <li>
-              <a href="">
+              <a>
                 <span class="hidden-sm text">Categorias</span>
               </a>
             </li>
             @foreach ($categoria as $categoria)
             <li>
-              <a href="">
-                  <span class="hidden-sm text" style="margin-left:6%;">{{ $categoria->nombre }}</span>
+              <a>
+                  <span class="hidden-sm text" style="margin-left:6%;" onclick="filtrar({{ $categoria->id }});">{{ $categoria->nombre }}</span>
               </a>
             </li>
             @endforeach
@@ -39,7 +39,6 @@
       </div>
       <div class="col-xs-9">
         <div id="ResultItems" class="">
-          <ul id="ListView">
             @foreach ($bid as $bid)
             <div class="col-xs-12" style="border-bottom:solid grey 1px;margin-top:2%;">
                 <div class="col-xs-5">
@@ -58,9 +57,7 @@
                   </div_fecha>
                 </div>
             </div>
-
             @endforeach
-          </ul>
         </div>
       </div>
     </div>
@@ -69,3 +66,24 @@
 
 
 @endsection
+
+
+{{-- Scripts --}}
+@section('scripts')
+    @parent
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          alert("hola");
+          function filtrar(id){
+            alert("hola");
+              $.ajax({
+                "sAjaxSource": "{{ URL::to('search/subasta/categoria/') }}"
+              }).success(function() {
+                    window.location.reload();
+              });
+            };
+        });
+    </script>
+
+    @endsection
