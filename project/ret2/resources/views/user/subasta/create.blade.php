@@ -64,7 +64,7 @@
                     <label class="col-md-4 control-label">Imagen producto</label>
 
                     <div class="col-md-6">
-                        <input type="file">
+                      <input name="image" type="file" class="uploader" id="image" value="Upload" />
                     </div>
                 </div>
 
@@ -72,7 +72,8 @@
                     <label class="col-md-4 control-label">Fecha inicio</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="fechaIni" value="{{Carbon\Carbon::now()}}" disabled >
+                        <input type="text" class="form-control" value="{{Carbon\Carbon::now()}}" disabled >
+                        <input type="hidden" class="form-control" name="fechaIni" value="{{Carbon\Carbon::now()}}" >
                     </div>
                 </div>
 
@@ -81,10 +82,10 @@
 
                   <div class="col-md-6">
                     <select name="duracion">
-                      <option value="3">3 días</option>
-                      <option value="5">5 días</option>
-                      <option value="7">1 semana</option>
-                      <option value="14">2 semanas</option>
+                      <option value="1">3 días</option>
+                      <option value="2">5 días</option>
+                      <option value="3">1 semana</option>
+                      <option value="4">2 semanas</option>
                     </select>
                   </div>
                 </div>
@@ -93,7 +94,8 @@
                     <label class="col-md-4 control-label">Fecha final</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="fechaFin" value="{{ Carbon\Carbon::now()->addDay(3) }}" disabled >
+                        <input type="text" class="form-control" value="{{ Carbon\Carbon::now()->addDay(3) }}" disabled>
+                        <input type="hidden" class="form-control" name="fechaFin" value="{{ Carbon\Carbon::now()->addDay(3) }}" >
                     </div>
                 </div>
 

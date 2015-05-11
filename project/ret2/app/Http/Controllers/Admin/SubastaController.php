@@ -50,21 +50,23 @@ class SubastaController extends UserController {
      */
     public function postCreate()
     {
-        $subasta = new Subasta();
-        $subasta -> id_user_vendedor = Auth::id();
-        $subasta -> nombre = $_POST['nombre'];
-        $subasta -> descripcion = $_POST['desc'];
-        $subasta -> id_categoria = $_POST['categoria'];
-        $subasta -> metodo_pago = $_POST['metodo'];
-        $subasta -> estado = $_POST['estado'];
-        $subasta -> estado_subasta = true;
-        $subasta -> fecha_inicio = $_POST['fechaIni'];
-        $subasta -> fecha_final = $_POST['fechaFin'];
-        $subasta -> precio_inicial = $_POST['precioIni'];
-        $subasta -> imagen = "ruta";
-        $subasta -> save();
+      $fechaIni = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
 
-        return view('user.subasta.index');
+      $subasta = new Subasta();
+      $subasta -> id_user_vendedor = Auth::id();
+      $subasta -> nombre = $_POST['nombre'];
+      $subasta -> descripcion = $_POST['desc'];
+      $subasta -> id_categoria = $_POST['categoria'];
+      $subasta -> metodo_pago = $_POST['metodo'];
+      $subasta -> estado = $_POST['estado'];
+      $subasta -> estado_subasta = true;
+      $subasta -> fecha_inicio = $fechaIni;
+      $subasta -> fecha_final = $_POST['fechaFin'];
+      $subasta -> precio_inicial = floatval($_POST['precioIni']);
+      $subasta -> imagen = "ruta";
+      $subasta -> save();
+
+      return view('admin.subasta.index');
 
     }
     /**
