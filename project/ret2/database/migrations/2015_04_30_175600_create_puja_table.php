@@ -17,7 +17,7 @@ class CreatePujaTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->float('cantidad');
-            $table->date('fecha');
+            $table->dateTime('fecha');
             $table->unsignedInteger('id_subasta')->nullable();
             $table->foreign('id_subasta')->references('id')->on('subastas');
             $table->unsignedInteger('id_usuario')->nullable();
