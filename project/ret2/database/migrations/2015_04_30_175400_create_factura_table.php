@@ -16,7 +16,7 @@ class CreateFacturaTable extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->date('fecha');
+            $table->dateTime('fecha');
             $table->float('precio');
             $table->unsignedInteger('id_usuario')->nullable();
             $table->foreign('id_usuario')->references('id')->on('users');

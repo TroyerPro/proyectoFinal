@@ -23,7 +23,7 @@ class CreateEvalusuarioTable extends Migration
             $table->unsignedInteger('id_rating')->nullable();
             $table->foreign('id_rating')->references('id')->on('ratings');
             $table->string('comentario');
-            $table->date('fecha');
+            $table->dateTime('fecha');
             $table->timestamps();
         });
     }

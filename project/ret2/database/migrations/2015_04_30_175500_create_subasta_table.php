@@ -27,9 +27,9 @@ class CreateSubastaTable extends Migration
             $table->string('metodo_pago');
             $table->boolean('estado_subasta')->default(false);
             $table->string('estado');
-            $table->date('fecha_final');
-            $table->date('fecha_inicio');
-            $table->date('fecha_prorroga')->nullable();
+            $table->dateTime('fecha_final');
+            $table->dateTime('fecha_inicio');
+            $table->dateTime('fecha_prorroga')->nullable();
             $table->float('precio_inicial');
             $table->float('precio_actual');
             $table->string('imagen');
