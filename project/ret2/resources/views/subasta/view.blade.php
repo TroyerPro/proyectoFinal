@@ -45,7 +45,7 @@
                <h2><b>{{ $subasta->nombre }}</b></h2>
              </div>
              <div class="col-xs-12 ">
-               <div class="col-xs-6"><b>Usuario vendedor:</b></div> <div class="col-xs-6">{{ $user->name }}</div>
+               <div class="col-xs-6">{{ $user->name }}</div><div class="col-xs-6">{{ $subasta->fecha_inicio }}</div>
              </div>
              <div class="col-xs-12">
                <div class="col-xs-6"><b>Estado Subasta:</b></div>
@@ -56,7 +56,13 @@
                @endif
              </div>
              <div class="col-xs-12">
-               <div class="col-xs-6"><b>Precio Inicial:</b></div> <div class="col-xs-6">{{ $subasta->precio_inicial }} € </div>
+               <hr width="100%"/>
+             </div>
+             <div class="col-xs-12 ">
+               <div class="col-xs-6"><b>Tiempo restante:</b></div><div class="col-xs-6">00:00:00</div>
+             </div>
+             <div class="col-xs-12">
+               <hr width="100%"/>
              </div>
              <div class="col-xs-12">
                @if($subasta->estado_subasta == 1)
@@ -66,6 +72,12 @@
                 <div class="col-xs-6"><b>Puja Ganadora:</b></div>
                 <div class="col-xs-6">{{ $subasta->puja_ganadora }} €</div>
                @endif
+             </div>
+             <div class="col-xs-12">
+               <hr width="100%"/>
+             </div>
+             <div class="col-xs-12">
+               <div class="col-xs-6"><b>Precio Inicial:</b></div> <div class="col-xs-6">{{ $subasta->precio_inicial }} € </div>
              </div>
              <div class="col-xs-12">
                <div class="col-xs-6"><b>Fecha final:</b></div> <div class="col-xs-6">{{ $subasta->fecha_final }}</div>
