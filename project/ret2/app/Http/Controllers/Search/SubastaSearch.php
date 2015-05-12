@@ -15,13 +15,8 @@ class SubastaSearch extends Controller {
 	public function show() //falta $id
 	{
 
-		if (isset($_REQUEST['idCategoria'])) {
-			$id= $_REQUEST['idCategoria'];
-			$bid = Subasta::select('subastas.*')->where('id_categoria', $id);
-echo $bid;
-		}else{
 			$bid = Subasta::all();
-		}
+
 
 		$categoria = Categoria::all();
 		//dd($news);
@@ -32,9 +27,24 @@ echo $bid;
 
 	public function filtro()
 	{
+		$datos = $_POST;
 
+		//$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$id)->get();
 		$categoria = Categoria::all();
-		$id= $_REQUEST['idCategoria'];
+
+		/*dd($categoria);
+		die();*/
+		return view('search.subasta', compact('bid','categoria'));
+
+	}
+
+	public function ajaxFiltro()
+	{
+		$datos = $_REQUEST;
+
+		$id = $datos['idCategoria'];
+		$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$id)->get();
+		$categoria = Categoria::all();
 
 		return view('search.subasta', compact('bid','categoria'));
 

@@ -6,15 +6,15 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-          $( ".categoria" ).click(function() {
+          $( ".categoria" ).change(function() {
             var idCategoria= $(this).attr( 'name' );
             $.ajax({
-              url: "{{ URL::to('search/subasta') }}",
+              url: "{{ URL::to('search/subasta/ajax/filtro') }}",
               data:{
                 "idCategoria": idCategoria
               },
             }).done(function() {
-              $("#ResultItems").html();
+
 
             });
           });
@@ -30,31 +30,66 @@
     <div class="col-xs-12">
       @yield('main')
       <div class="col-xs-3">
-        <div  class="col-xs-12" id="buscador">
-          <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar...">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">
-                      <i class="fa fa-search"></i>
-                  </button>
-                </span>
-          </div>
-        </div>
 
         <ul class="nav nav-pills nav-stacked" id="menu">
-            <li>
-              <a>
-                <span class="hidden-sm text">Categorias</span>
-              </a>
-            </li>
-            @foreach ($categoria as $categoria)
-            <li>
-              <a>
-                  <span class="hidden-sm text categoria"  style="margin-left:6%;" name="{{ $categoria->id }}" >{{ $categoria->nombre }}</span>
-              </a>
-            </li>
-            @endforeach
 
+
+            <li>
+              <form method="POST" action="{{ URL::to('search/subasta') }}">
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                <li>
+                  <a>
+                    <span class="hidden-sm text">Nombre</span>
+                  </a>
+                </li>
+                <input type="text" name="nombre"></input><br>
+
+                <li>
+                  <a>
+                    <span class="hidden-sm text">Precio max.</span>
+                  </a>
+                </li>
+                <input type="text" name="pmax"></input><br>
+                <li>
+                  <a>
+                    <span class="hidden-sm text">Precio min.</span>
+                  </a>
+                </li>
+                <input type="text" name="pmin"></input><br>
+                <li>
+                  <a>
+                    <span class="hidden-sm text">Categorias</span>
+                  </a>
+                </li>
+                @foreach ($categoria as $categoria)
+                <input type="checkbox" class="categoria" name="{{ $categoria->id }}" value="{{ $categoria->id }}">{{ $categoria->nombre }}</input><br>
+                @endforeach
+                <li>
+                  <a>
+                    <span class="hidden-sm text">Tipo de pago</span>
+                  </a>
+                </li>
+                <select name="pago">
+                  <option>Paypal</option>
+                  <option>Tarjeta</option>
+                  <option>Efectivo</option>
+                </select>
+                <li>
+                  <a>
+                    <span class="hidden-sm text">Estado producto</span>
+                  </a>
+                </li>
+                <select name="estado">
+                  <option>Nuevo</option>
+                  <option>Usado</option>
+                  <option>Viejos</option>
+                </select><br>
+                <button type="submit" class="btn btn-sm btn-success">
+                  <span class="glyphicon glyphicon-ok-circle"></span>
+                    Buscar
+                </button>
+              </form>
+            </li>
         </ul>
 
       </div>
