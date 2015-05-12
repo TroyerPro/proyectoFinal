@@ -33,13 +33,19 @@ Inicio</span>
             <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
                 <a href="{{URL::to('user/subastas')}}">
                     <i class="glyphicon glyphicon-list"></i><span
-                            class="hidden-sm text"> Ver Subastas </span>
+                            class="hidden-sm text">Ver</span>
                 </a>
             </li>
             <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
                 <a href="{{URL::to('user/subasta/create')}}">
                     <i class="glyphicon glyphicon-list"></i><span
-                            class="hidden-sm text">Crear Subasta </span>
+                            class="hidden-sm text">Crear</span>
+                </a>
+            </li>
+            <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+                <a href="{{URL::to('user/subasta/ganadas')}}">
+                    <i class="glyphicon glyphicon-list"></i><span
+                            class="hidden-sm text">Ganadas </span>
                 </a>
             </li>
         </ul>
