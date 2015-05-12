@@ -37,7 +37,7 @@
 
                 "processing": true,
                 "serverSide": true,
-                "ajax": "{{ URL::to('user/subastas/data/' )}}",
+                "ajax": "{{ URL::to('user/subastas/data2/' )}}",
                 "fnDrawCallback": function (oSettings) {
                     $(".iframe").colorbox({
                         iframe: true,
@@ -62,7 +62,7 @@
                     $('#table #row').each(function (i) {
                         navigationList = navigationList + ',' + $(this).val();
                     });
-                    $.getJSON("{{ URL::to('user/pujas/reorder') }}", {
+                    $.getJSON("{{ URL::to('user/subastas/reorder') }}", {
                         list: navigationList
                     }, function (data) {
                     });
