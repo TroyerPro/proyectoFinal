@@ -63,6 +63,7 @@ class SubastaController extends UserController {
       $subasta -> descripcion = $_POST['desc'];
       $subasta -> id_categoria = $_POST['categoria'];
       $subasta -> metodo_pago = $_POST['metodo'];
+      $subasta -> metodo_envio = $_POST['metodoenvio'];
       $subasta -> estado = $_POST['estado'];
       $subasta -> estado_subasta = true;
       $subasta -> fecha_inicio = $fechaIni;
@@ -165,7 +166,8 @@ class SubastaController extends UserController {
        @else
        <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> {{ trans(" Subasta Finalizada") }}</button>
        <input type="hidden" name="row" value="{{$id}}" id="row">
-
+       <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-user"></span> {{ trans(" Contactar Ganador") }}</button>
+       <input type="hidden" name="row" value="{{$id}}" id="row">
        @endif')
 
        ->remove_column('id')
@@ -185,7 +187,7 @@ class SubastaController extends UserController {
         ->join('pujas','subastas.puja_ganadora','=','pujas.id');
 
         return Datatables::of($subasta)
-        ->add_column('actions','<a href="{{{ URL::to(\'user/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
+        ->add_column('actions','<a href="{{{ URL::to(\'user/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-info iframe"><span class="glyphicon glyphicon-info-sign"></span> {{ trans("Contactar Propietario") }}</a>
         <input type="hidden" name="row" value="{{$id}}" id="row">')
         ->remove_column('id')
 
