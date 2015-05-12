@@ -117,8 +117,13 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('subasta/{id}/prorrogar','User\SubastaController@postProrrogar'); //Falta implementarlo
     Route::get('subasta/{id}/cerrar','User\SubastaController@getCerrar'); //id en la function del controller
     Route::post('subasta/{id}/cerrar', 'User\SubastaController@postCerrar'); //Implementar
+    Route::get('subasta/ganadas','User\SubastaController@getGanadas');
 
     #Pujas
     Route::get('pujas','User\PujasController@index');
     Route::get('pujas/data', 'User\PujasController@data');
+
+    #Chat
+    Route::get('chat','User\ChatController@show');
+    Route::post('chat','User\ChatController@send');
 });
