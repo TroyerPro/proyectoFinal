@@ -15,6 +15,7 @@ class SubastaSearch extends Controller {
 	public function show() //falta $id
 	{
 
+			$bid = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
 
 
 		$categoria = Categoria::all();
