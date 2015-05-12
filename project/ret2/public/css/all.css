@@ -7,7 +7,7 @@ max-height:250px;
 max-width:250px;
 }
 .navbar-inverse {
-  background-color: #642574 !important;
+  /*background-color: #642574 !important;*/
 }
 #colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
 #cboxWrapper {max-width:none;}
