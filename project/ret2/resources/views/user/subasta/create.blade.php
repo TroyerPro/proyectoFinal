@@ -111,7 +111,7 @@
                     <label class="col-md-4 control-label">Modo de envío</label>
 
                   <div class="col-md-6">
-                    <select name="metodo">
+                    <select name="metodoenvio">
                       <option value="Postal público">Servicio Postal Público</option>
                       <option value="Postal Privado">Servicio Postal Privado</option>
                       <option value="Recoger en persona">Recoger en persona</option>
