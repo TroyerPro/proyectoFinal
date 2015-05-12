@@ -66,7 +66,7 @@ class SubastaController extends UserController {
       $subasta -> imagen = "ruta";
       $subasta -> save();
 
-      return view('admin.subasta.index');
+      return view('user.subasta.index');
 
     }
     /**

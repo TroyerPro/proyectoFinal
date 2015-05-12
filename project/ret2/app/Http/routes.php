@@ -32,14 +32,6 @@ Route::get('search/subasta/filtro/{id}', 'Search\SubastaSearch@filtro');
 Route::get('search/user/view/{id}','Perfil\View@show');
 Route::get('search/subasta/view/{id}', 'Subasta\View@show');
 
-
-//######################################################################
-//                         Test Adri
-//######################################################################
-Route::get('testbd/{id}','Testbd@show');
-//######################################################################
-
-
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
