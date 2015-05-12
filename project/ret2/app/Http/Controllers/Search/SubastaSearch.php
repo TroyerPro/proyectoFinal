@@ -31,7 +31,7 @@ class SubastaSearch extends Controller {
 
 		//$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$id)->get();
 		$categoria = Categoria::all();
-
+		$bid = Subasta::all();
 		/*dd($categoria);
 		die();*/
 		return view('search.subasta', compact('bid','categoria'));
