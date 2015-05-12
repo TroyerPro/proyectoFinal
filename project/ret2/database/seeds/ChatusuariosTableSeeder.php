@@ -10,7 +10,7 @@ class ChatusuariosTableSeeder extends Seeder {
 	public function run()
 	{
 
-		TestDummy::times(3)->create('App\Chatusuarios');
+		TestDummy::times(6)->create('App\Chatusuarios');
 
 	}
 

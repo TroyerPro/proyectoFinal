@@ -16,7 +16,6 @@ class CreateLineachatTable extends Migration
         Schema::create('lineachats', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->dateTime('fecha');
             $table->string('text');
             $table->unsignedInteger('id_chat')->nullable();
             $table->foreign('id_chat')->references('id')->on('chatusuarios');

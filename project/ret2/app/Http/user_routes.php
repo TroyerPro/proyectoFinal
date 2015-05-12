@@ -126,4 +126,5 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     #Chat
     Route::get('chat','User\ChatController@show');
     Route::post('chat','User\ChatController@send');
+    Route::get('chat/data', 'User\ChatController@data');
 });

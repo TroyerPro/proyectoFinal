@@ -125,8 +125,8 @@ $factory('App\Subasta', [
   ]);*/
 
   $factory('App\Chatusuarios', [
-      'id_user1' => $faker->numberBetween(1,3),
-      'id_user2' => $faker->numberBetween(4,5),
+      'id_user1' => $faker->numberBetween(1,2),
+      'id_user2' => $faker->numberBetween(3,4),
   ]);
   $factory('App\Evalusuarios', [
       'id_user_evaluador' => $faker->numberBetween(1,3),
@@ -136,7 +136,6 @@ $factory('App\Subasta', [
       'fecha' => $faker->dateTime(),
   ]);
   $factory('App\Lineachat', [
-      'fecha' => $faker->dateTime(),
       'text' => $faker->paragraph,
       'id_chat' => $faker->numberBetween(1,2),
   ]);
