@@ -8,12 +8,6 @@
     <div class="page-header">
         <h3>
             {{{ trans("Pujas") }}}
-            <div class="pull-right">
-                <a href="{{{ URL::to('user/pujas') }}}"
-                   class="btn btn-sm  btn-primary iframe"><span
-                            class="glyphicon glyphicon-plus-sign"></span> {{
-				trans("admin/modal.new") }}</a>
-            </div>
         </h3>
     </div>
 

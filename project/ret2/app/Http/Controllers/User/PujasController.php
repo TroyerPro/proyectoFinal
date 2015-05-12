@@ -107,7 +107,7 @@ class PujasController extends UserController {
       ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta');
 
       return Datatables::of($puja)
-          ->add_column('actions','<a href="{{{ URL::to(\'search/subasta/view/\'.$id ) }}}" class="btn btn-sm btn-default iframe"><span class="glyphicon"></span> {{ trans("Volver a Pujar") }}</a>
+          ->add_column('actions','<a href="{{{ URL::to(\'search/subasta/view/\'.$id ) }}}" class="btn btn-sm btn-default"><span class="glyphicon"></span> {{ trans("Volver a Pujar") }}</a>
                   ')
           ->remove_column('id')
           ->make();

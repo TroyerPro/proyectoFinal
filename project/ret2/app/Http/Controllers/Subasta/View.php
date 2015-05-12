@@ -14,8 +14,9 @@ class View extends Controller {
 	public function show($id) //falta $id
 	{
 		$subasta = Subasta::find($id);
+		$pujas = Puja::find($id);
 		$user = User::find($subasta->id_user_vendedor);
-		return view('subasta.view', compact('subasta','user'));
+		return view('subasta.view', compact('subasta','user','pujas'));
 	}
 
 }
