@@ -15,7 +15,6 @@ class SubastaSearch extends Controller {
 	public function show() //falta $id
 	{
 
-			$bid = Subasta::all();
 
 
 		$categoria = Categoria::all();
