@@ -12226,6 +12226,9 @@ li > ul {
      background-color: lightblue;
    }
    .imagensubasta {
+     border-style: solid;
+     border-width: 1px;
+     border-color: #BDBDBD;
      max-width: 100%;
      max-height: 200px;
      margin-left: 25% !important;
