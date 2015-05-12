@@ -142,6 +142,12 @@ class SubastaController extends UserController {
       $subasta -> save();
     }
 
+
+    public function getGanadas()
+    {
+        return view('user.subasta.ganadas');
+    }
+
     /**
      * Show a list of all the languages posts formatted for Datatables.
      *
@@ -167,6 +173,24 @@ class SubastaController extends UserController {
 
        ->make();
      }
+     /**
+      * Show a list of all the languages posts formatted for Datatables.
+      *
+      * @return Datatables JSON
+      */
+      public function data2()
+      {
+        $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual')
+        ->where('subastas.id',1);
+
+        return Datatables::of($subasta)
+        ->add_column('actions','<a href="{{{ URL::to(\'user/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
+        <input type="hidden" name="row" value="{{$id}}" id="row">')
+        ->remove_column('id')
+
+        ->make();
+      }
+
 
     /**
      * Reorder items

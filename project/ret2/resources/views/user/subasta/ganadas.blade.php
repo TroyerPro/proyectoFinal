@@ -37,7 +37,7 @@
 
                 "bProcessing": true,
                 "bServerSide": true,
-                "sAjaxSource": "{{ URL::to('user/subastas/data/' )}}",
+                "sAjaxSource": "{{ URL::to('user/subastas/data2/' )}}",
                 "fnDrawCallback": function (oSettings) {
                     $(".iframe").colorbox({
                         iframe: true,
