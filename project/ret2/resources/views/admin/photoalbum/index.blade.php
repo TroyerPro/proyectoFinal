@@ -34,19 +34,20 @@
     </table>
 @stop
 
+
 {{-- Scripts --}}
 @section('scripts')
     @parent
     <script type="text/javascript">
         var oTable;
         $(document).ready(function () {
-            oTable = $('#table').dataTable({
+            oTable = $('#table').DataTable({
                 "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
                 "sPaginationType": "bootstrap",
 
-                "bProcessing": true,
-                "bServerSide": true,
-                "sAjaxSource": "{{ URL::to('admin/photoalbum/data/') }}",
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{ URL::to('admin/photoalbum/data/' )}}",
                 "fnDrawCallback": function (oSettings) {
                     $(".iframe").colorbox({
                         iframe: true,
@@ -71,7 +72,7 @@
                     $('#table #row').each(function (i) {
                         navigationList = navigationList + ',' + $(this).val();
                     });
-                    $.getJSON("{{ URL::to('admin/photoalbum/reorder') }}", {
+                    $.getJSON("{{ URL::to('user/pujas/reorder') }}", {
                         list: navigationList
                     }, function (data) {
                     });

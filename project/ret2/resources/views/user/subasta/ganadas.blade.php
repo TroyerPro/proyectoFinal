@@ -31,13 +31,13 @@
     <script type="text/javascript">
         var oTable;
         $(document).ready(function () {
-            oTable = $('#table').dataTable({
+            oTable = $('#table').DataTable({
                 "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
                 "sPaginationType": "bootstrap",
 
-                "bProcessing": true,
-                "bServerSide": true,
-                "sAjaxSource": "{{ URL::to('user/subastas/data2/' )}}",
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{ URL::to('user/subastas/data/' )}}",
                 "fnDrawCallback": function (oSettings) {
                     $(".iframe").colorbox({
                         iframe: true,
@@ -62,7 +62,7 @@
                     $('#table #row').each(function (i) {
                         navigationList = navigationList + ',' + $(this).val();
                     });
-                    $.getJSON("{{ URL::to('user/subastas/reorder') }}", {
+                    $.getJSON("{{ URL::to('user/pujas/reorder') }}", {
                         list: navigationList
                     }, function (data) {
                     });
