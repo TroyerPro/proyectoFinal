@@ -17,7 +17,13 @@ Inicio</span>
         </a>
     </li>
 
-
+    <li {{ (Request::is('user/chat*') ? ' class=active' : '') }} >
+        <a href="{{URL::to('user/chat')}}"
+                >
+            <i class="glyphicon glyphicon-user"></i><span
+                    class="hidden-sm text">Chat</span>
+        </a>
+    </li>
 
     <li {{ (Request::is('user/subastas*') ? ' class=active' : '') }} >
         <a href="#">
