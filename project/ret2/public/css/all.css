@@ -12275,7 +12275,16 @@ li > ul {
    .text_center {
      text-align: center;
    }
-
    .btn-mrg-top {
      margin-top: 5px;
+   }
+   .mrg-top-bot {
+     margin-bottom: 15px;
+   }
+   .red {
+     color: #dd0000;
+   }
+
+   .green {
+     color: #00bb00;
    }
