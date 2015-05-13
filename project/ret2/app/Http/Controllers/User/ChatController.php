@@ -159,14 +159,17 @@ class ChatController extends UserController {
      */
      public function data()
      {
-       $subasta = Chatusuarios::select('chatusuarios.id','chatusuarios.id_user1','chatusuarios.id_user2','chatusuarios.created_at')
+       $chat = Chatusuarios::select('chatusuarios.id','chatusuarios.id_user1','chatusuarios.id_user2','chatusuarios.created_at')
        ->where('chatusuarios.id_user1', Auth::id());
 
-       return Datatables::of($subasta)
+       $table = Datatables::of($chat)
        ->remove_column('id')
-
-
+       ->addColumn('Acciones', '<a href="{{{ URL::to(\'user/chat/\' . $id ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  Ver </a>')
        ->make();
+
+
+
+       return $table;
      }
     /**
      * Reorder items

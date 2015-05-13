@@ -14,11 +14,10 @@
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>{{{ trans("Nombre") }}}</th>
-            <th>{{{ trans("Descripción") }}}</th>
-            <th>{{{ trans("Fecha Final") }}}</th>
-            <th>{{{ trans("Puja Actual") }}}</th>
-            <th>{{{ trans("Opciones") }}}</th>
+            <th>{{{ trans("Yo") }}}</th>
+            <th>{{{ trans("Destino") }}}</th>
+            <th>{{{ trans("Fecha") }}}</th>
+            <th>{{{ trans("Acciones") }}}</th>
         </tr>
         </thead>
         <tbody></tbody>
@@ -37,6 +36,7 @@
 
                 "processing": true,
                 "serverSide": true,
+
                 "ajax": "{{ URL::to('user/chat/data/' )}}",
                 "fnDrawCallback": function (oSettings) {
                     $(".iframe").colorbox({
