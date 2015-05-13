@@ -15,9 +15,10 @@
         <thead>
         <tr>
             <th>{{{ trans("Nombre") }}}</th>
-            <th  width='150px'>{{{ trans("Descripción") }}}</th>
+            <th>{{{ trans("Descripción") }}}</th>
             <th>{{{ trans("Fecha Final") }}}</th>
             <th>{{{ trans("Puja Actual") }}}</th>
+            <th>{{{ trans("Estado") }}}</th>
             <th>{{{ trans("Opciones") }}}</th>
         </tr>
         </thead>

@@ -160,11 +160,16 @@ class SubastaController extends UserController {
        ->where('subastas.id_user_vendedor', Auth::id());
 
        return Datatables::of($subasta)
+       ->add_column('estado','@if($estado_subasta)
+       Abierta
+       @else
+       Cerrada
+       @endif')
        ->add_column('actions','@if($estado_subasta)
        <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        @else
-       <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> {{ trans(" Subasta Finalizada") }}</button>
+       <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> {{ trans(" Prorrogar") }}</button>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-user"></span> {{ trans(" Contactar Ganador") }}</button>
        <input type="hidden" name="row" value="{{$id}}" id="row">
