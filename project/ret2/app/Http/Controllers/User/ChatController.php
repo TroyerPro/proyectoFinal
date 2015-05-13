@@ -3,8 +3,8 @@
 use App\Http\Controllers\UserController;
 use App\Article;
 use App\ArticleCategory;
-use App\Language;
 use App\Chatusuarios;
+use App\Lineachat;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Http\Requests\Admin\DeleteRequest;
@@ -189,4 +189,34 @@ class ChatController extends UserController {
         }
         return $list;
     }
+
+    /**
+     * Show a list of all the languages posts formatted for Datatables.
+     *
+     * @return Datatables JSON
+     */
+     public function getChat($id)
+     {
+       $lineas = lineachat::select('lineachats.id','lineachats.text','users.name','lineachats.created_at')
+       ->where('lineachats.id_chat', $id)
+       ->join('users','users.id','=','lineachats.id_usuario')
+       ->orderBy('created_at', 'ASC')
+       ->take(3)
+       ->get();
+
+       return view('user.chat.view', compact('lineas','id'));
+
+     }
+     public function getChatAJAX($id)
+     {
+       $lineas = lineachat::select('lineachats.id','lineachats.text','users.name','lineachats.created_at')
+       ->where('lineachats.id_chat', $id)
+       ->join('users','users.id','=','lineachats.id_usuario')
+       ->orderBy('created_at', 'ASC')
+       ->take(3)
+       ->get();
+
+       return $lineas;
+
+     }
 }

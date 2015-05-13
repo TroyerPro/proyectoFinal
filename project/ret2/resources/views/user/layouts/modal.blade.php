@@ -50,6 +50,7 @@
 <link rel="shortcut icon"
 	href="{{{ asset('assets/admin/ico/favicon.ico') }}}">
 <!-- end: Favicon and Touch Icons -->
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body>
 	<!-- Container -->
@@ -89,6 +90,9 @@
 					if (form.attr('id') == '' || form.attr('id') != 'fupload'){
 						$.ajax({
 							  type : form.attr('method'),
+								headers: {
+									'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+								},
 							  url : form.attr('action'),
 							  data : form.serialize()
 							  }).success(function() {

@@ -17,6 +17,8 @@ class CreateLineachatTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('text');
+            $table->unsignedInteger('id_usuario')->nullable();
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->unsignedInteger('id_chat')->nullable();
             $table->foreign('id_chat')->references('id')->on('chatusuarios');
             $table->timestamps();
