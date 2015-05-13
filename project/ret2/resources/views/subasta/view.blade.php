@@ -40,11 +40,21 @@
          <div class="col-xs-6 under_panel">
            <div class="col-xs-12 ">
              <div class="col-xs-12">
-               <h2><b>{{ $subasta->nombre }}</b></h2>
+               <div class="col-xs-12"><h3><b>{{ $subasta->nombre }}</b></h3></div>
              </div>
              <div class="col-xs-12 ">
-                 <div class="col-xs-2"><b>Vendedor:</b></div><div class="col-xs-4">{{ $user->name }}</div>
-               <div class="col-xs-2"><b>Fecha inicio:</b></div><div class="col-xs-4">{{ $subasta->fecha_inicio }}</div>
+                 <div class="col-xs-12">{{ $user->name }}</div>
+             </div>
+             <div class="col-xs-12">
+               <div class="col-xs-6">
+                 @if($user->ratingvendedor == 0)
+                  <i>Este usuario no tiene rating</i>
+                 @else
+                   @for ($i = 0; $i < $user->ratingvendedor; $i++)
+                    <img src="{{ URL::asset('img/star.jpg') }}">
+                   @endfor
+                 @endif
+               </div>
              </div>
              <div class="col-xs-12">
                <div class="col-xs-6"><b>Precio Inicial:</b></div> <div class="col-xs-6">{{ $subasta->precio_inicial }} € </div>
@@ -90,26 +100,20 @@
              <div class="col-xs-12">
                <hr width="100%"/>
              </div>
+             <div class="col-xs-12">
+               <div class="col-xs-6"><b>Fecha inicio:</b></div>
+               <div class="col-xs-6">{{ $subasta->fecha_inicio }}</div>
+             </div>
              <div class="col-xs-12 ">
                <div class="col-xs-6"><b>Metodo pago:</b></div> <div class="col-xs-6">{{ $subasta->metodo_pago }}</div>
              </div>
              <div class="col-xs-12 ">
                <div class="col-xs-6"><b>Metodo envio:</b></div> <div class="col-xs-6">{{ $subasta->metodo_envio }}</div>
              </div>
-             <div class="col-xs-12">
-               <div class="col-xs-6"><b>Rating vendedor:</b></div>
-               <div class="col-xs-6">
-                 @for ($i = 0; $i < $user->ratingvendedor; $i++)
-                 <div class="col-xs-1"><img class="main_image" src="{!!'img/star.png'!!}"></div>
-                 @endfor
-                 </div>
-             </div>
              @if($subasta->estado_subasta == 1)
-             <div class="col-xs-6 btn-mrg-top">
-               <div class="col-xs-6 ">
-                  <button class="btn btn-default">Pujar</button>
+               <div class="col-xs-12">
+                  <a href="{{{ URL::to('search/subasta/') }}}" class="iframe btn btn-success btn-mrg-top mrg-left">Realizar una Puja</a>
                </div>
-             </div>
              @endif
            </div>
          </div>

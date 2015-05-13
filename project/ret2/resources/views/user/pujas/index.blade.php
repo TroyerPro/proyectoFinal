@@ -17,6 +17,7 @@
             <th>{{{ trans("Cantidad") }}}</th>
             <th>{{{ trans("Fecha") }}}</th>
             <th>{{{ trans("Subasta") }}}</th>
+            <th>{{{ trans("Estado puja") }}}</th>
             <th>{{{ trans("Opciones") }}}</th>
         </tr>
         </thead>

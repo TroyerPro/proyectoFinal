@@ -102,14 +102,20 @@ class PujasController extends UserController {
     public function data()
     {
 
-      $puja = Puja::select('subastas.id','pujas.cantidad','pujas.fecha','subastas.nombre')
+      $puja = Puja::select('subastas.id','pujas.cantidad','pujas.fecha','subastas.nombre', 'subastas.precio_actual')
       ->where('pujas.id_usuario', Auth::id())
       ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta');
 
       return Datatables::of($puja)
-          ->add_column('actions','<a href="{{{ URL::to(\'search/subasta/view/\'.$id ) }}}" class="btn btn-sm btn-default"><span class="glyphicon"></span> {{ trans("Volver a Pujar") }}</a>
+      ->add_column('pujastatus','@if($precio_actual == $cantidad)
+       <div class="green">Vas ganando</div>
+       @else
+       <div class="red">Vas perdiendo</div>
+       @endif')
+          ->add_column('actions','<a href="{{{ URL::to(\'search/subasta/view/\'.$id ) }}}" class="btn btn-sm btn-default"><span class="glyphicon"></span> {{ trans("Ir a la subasta") }}</a>
                   ')
           ->remove_column('id')
+          ->remove_column('precio_actual')
           ->make();
     }
 
