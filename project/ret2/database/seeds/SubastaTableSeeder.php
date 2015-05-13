@@ -10,7 +10,7 @@ class SubastaTableSeeder extends Seeder {
 	public function run()
 	{
 
-		TestDummy::times(3)->create('App\Subasta');
+		TestDummy::times(20)->create('App\Subasta');
 
 	}
 

@@ -97,7 +97,7 @@ $factory('App\Subasta', [
     'fecha_prorroga'=> $faker->dateTime(),
     'precio_inicial' => $faker->numberBetween(1,3),
     'precio_actual' => $faker->numberBetween(20,30),
-    'imagen' => $faker->image($dir = public_path().'/appfiles/photoalbum', $width = 320, $height = 240),
+    'imagen' => "sandia.jpg",
     'puja_ganadora' => $faker->numberBetween(20,30),
     'id_categoria' => $faker->numberBetween(1,3),
     'id_user_vendedor' => $faker->numberBetween(1,3),
