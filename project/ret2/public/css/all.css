@@ -12262,9 +12262,8 @@ li > ul {
      height: 220px;
    }
    .main_image {
-     border-radius: 50%;
-     height:100%;
-     max-width: 100%;
+     height: 121px;
+     width: 236px;
      display: block;
    }
    .last_product {

@@ -15,7 +15,8 @@
               content="RET"/>
     @show
 
-		<link href="{{ asset('/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/tinycarousel.css') }}" rel="stylesheet">
     {{--<link href="{{elixir('css/all.css')}}" rel="stylesheet">--}}
 
     {{-- TODO: Incorporate into elixer workflow. --}}
