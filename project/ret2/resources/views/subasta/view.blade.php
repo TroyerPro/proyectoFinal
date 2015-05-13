@@ -42,30 +42,29 @@
              <div class="col-xs-12">
                <div class="col-xs-12"><h3><b>{{ $subasta->nombre }}</b></h3></div>
              </div>
-             <div class="col-xs-12 ">
-                 <div class="col-xs-12">{{ $user->name }}</div>
-             </div>
-             <div class="col-xs-12">
-               <div class="col-xs-6">
+             <div class="col-xs-12 nomRating">
+               <div class="col-xs-4">{{ $user->name }}</div>
+
+               <div class="col-xs-8">
                  @if($user->ratingvendedor == 0)
-                  <i>Este usuario no tiene rating</i>
+                 <i>Este usuario no tiene rating</i>
                  @else
-                   @for ($i = 0; $i < $user->ratingvendedor; $i++)
-                    <img src="{{ URL::asset('img/star.jpg') }}">
-                   @endfor
+                 @for ($i = 0; $i < $user->ratingvendedor; $i++)
+                 <img src="{{ URL::asset('img/star.jpg') }}">
+                 @endfor
+                 @endif
+               </div>
+               <div class="col-xs-12">
+                 <div class="col-xs-6">Estado :</div>
+                 @if($subasta->estado_subasta == 1)
+                  <div class="col-xs-6 green">Abierta</div>
+                 @else
+                  <div class="col-xs-6 red">Cerrada</div>
                  @endif
                </div>
              </div>
              <div class="col-xs-12">
                <div class="col-xs-6"><b>Precio Inicial:</b></div> <div class="col-xs-6">{{ $subasta->precio_inicial }} € </div>
-             </div>
-             <div class="col-xs-12">
-               <div class="col-xs-6"><b>Estado Subasta:</b></div>
-               @if($subasta->estado_subasta == 1)
-                <div class="col-xs-6 green">Abierta</div>
-               @else
-                <div class="col-xs-6 red">Cerrada</div>
-               @endif
              </div>
              <div class="col-xs-12">
                <hr width="100%"/>
@@ -78,10 +77,10 @@
              </div>
              <div class="col-xs-12">
                @if($subasta->estado_subasta == 1)
-               <div class="col-xs-6"><b>Puja actual:</b></div>
+               <div class="col-xs-6" id="pujaDesc"><b>Puja actual:</b></div>
                 <div class="col-xs-6">{{ $subasta->precio_actual }} €</div>
                @else
-                <div class="col-xs-6"><b>Puja Ganadora:</b></div>
+                <div class="col-xs-6" id="pujaDesc"><b>Puja Ganadora:</b></div>
                 <div class="col-xs-6">{{ $subasta->puja_ganadora }} €</div>
                @endif
              </div>

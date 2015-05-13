@@ -12290,3 +12290,13 @@ li > ul {
    .green {
      color: #00bb00;
    }
+   .nomRating{
+     font-size: 80%;
+     color: #A4A4A4;
+
+   }
+
+
+   #pujaDesc {
+     color: #D8D8D8;
+   }
