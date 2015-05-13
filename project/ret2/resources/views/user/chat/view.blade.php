@@ -36,25 +36,25 @@
 $( document ).ready(function() {
 
 	$( "#mensaje" ).click(function() {
-  alert( "Handler for .click() called." );
+
 	var mensaje = 	$( "#texto" ).val();
+	alert(mensaje);
 	var id = {{ $id }};
 	$.ajax({
 		headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		},
-			type : 'GET',
+			type : 'POST',
 			url : 'ajax/'+id,
-			data : {id:id, mensaje:mensaje },
-			contentType: false,
-			cache: false,
-			processData:false
+			data : {mensaje:mensaje},
 	}).success(function() {
-/*
+
+		window.location.reload();
+
 			setTimeout(function() {
-				window.location.reload();
+
 				}, 10);
-*/
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 							// Optionally alert the user of an error here...
 							var textResponse = jqXHR.responseText;
@@ -67,7 +67,7 @@ $( document ).ready(function() {
 
 							alert(alertText);
 					});
-});
+
 
 
 });
