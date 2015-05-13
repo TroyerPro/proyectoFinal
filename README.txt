@@ -1,4 +1,7 @@
-Proyecto de la Olga, no se ha hecho nada.
+Proyecto casa de subastas RET
 
+Trabajando en:
 
-Linea nueva
+Laravel 5
+Boostrap
+jQuery
