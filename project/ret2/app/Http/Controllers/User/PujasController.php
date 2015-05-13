@@ -31,16 +31,11 @@ class PujasController extends UserController {
      */
     public function getCreate()
     {
-        $nombre = "";
-        $estado = "";
-        $descripcion = "";
-		    $categoria = Categoria::all();
-		    $precio_inicial = "";
-        $imagen = "";
-        $metodo = "";
+        $subasta = "";
+        $cantidad = "";
 
         // Show the page
-        return view('user.subasta.create', compact('nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
+        return view('user.pujas.create', compact('subasta','cantidad'));
     }
 
     /**
@@ -65,6 +60,11 @@ class PujasController extends UserController {
 
         $subasta -> save();
 
+    }
+
+    public function newPuja()
+    {
+      return view('user.pujas.new');
     }
 
     /**

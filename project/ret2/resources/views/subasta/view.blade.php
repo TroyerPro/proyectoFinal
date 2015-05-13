@@ -111,11 +111,25 @@
              </div>
              @if($subasta->estado_subasta == 1)
                <div class="col-xs-12">
-                  <a href="{{{ URL::to('search/subasta/') }}}" class="iframe btn btn-success btn-mrg-top mrg-left">Realizar una Puja</a>
+                  <a href="{{{ URL::to('user/pujas/new') }}}" class="iframe btn btn-success btn-mrg-top mrg-left">Realizar una Puja</a>
                </div>
              @endif
            </div>
          </div>
         </div>
     </div>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      function (oSettings) {
+        $(".iframe").colorbox({
+              iframe: true,
+              width: "80%",
+              height: "80%",
+              onClosed: function () {
+                  window.location.reload();
+              }
+          });
+        }
+    });
+    </script>
 @endsection

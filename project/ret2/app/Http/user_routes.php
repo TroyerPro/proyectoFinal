@@ -123,6 +123,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     #Pujas
     Route::get('pujas','User\PujasController@index');
     Route::get('pujas/data', 'User\PujasController@data');
+    Route::get('pujas/new','User\PujasController@newPuja');
+    Route::get('pujas/create','User\PujasController@getCreate');
+    Route::post('pujas/create','User\PujasController@postCreate');
 
     #Chat
     Route::get('chat','User\ChatController@show');
