@@ -2,6 +2,7 @@
 #slider1 {
     height: 100%;
     margin: 30px 20px 0;
+    width: 115%;
     overflow: hidden;
     position: relative;
     padding: 0 50px 10px;
@@ -198,7 +199,6 @@
   width: 240px;
   margin: 0 auto;
   }
-
 #slider5 .viewport {
   width: 240px;
   height: 125px;
