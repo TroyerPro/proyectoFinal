@@ -31,6 +31,8 @@ Route::get('search/subasta/filtro/{id}', 'Search\SubastaSearch@filtro');
 
 Route::get('search/user/view/{id}','Perfil\View@show');
 Route::get('search/subasta/view/{id}', 'Subasta\View@show');
+Route::get('search/subasta/filtro/subasta/view/{id}','Subasta\View@show');
+
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

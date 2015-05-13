@@ -10,8 +10,13 @@
   {
       $('#slider1').tinycarousel(
         {
-          interval: true
+          interval: true,
       });
+
+      $("#slider5").tinycarousel({
+        axis   : "y",
+        interval: true,
+    });
   });
 
   </script>
@@ -23,9 +28,8 @@
       <h2>Inicio</h2>
     </div>
     <div class="col-xs-12 navbar-inverse main_panel">
-      <div class="col-xs-12 small_row"></div>
       <div class="col-xs-12 products" >
-
+        <!--CARUSEL -->
         <div id="slider1">
           <a class="buttons prev" href="#">&#60;</a>
           <div class="viewport">
@@ -40,16 +44,38 @@
             </ul>
           </div>
           <a class="buttons next" href="#">&#62;</a>
+        </div>
+      </div>
 
+
+      <div class="col-xs-3">
+        <div class="col-xs-12" class="small_row">
+          <h2 class="text-center">Categorias</h2>
         </div>
 
-      <div class="col-xs-1 side_space" ></div>
-      <div class="col-xs-5 top_space" >
-        <div class="col-xs-12 mid_row"></div>
+        @foreach ($categoria as $categoria)
+        <div class="col-xs-12" class="small_row">
+          <a href="search/subasta/filtro/{{ $categoria->id }}">
+            {{ $categoria->nombre }}
+          </a>
+        </div>
+        @endforeach
+        <div class="col-xs-12" class="small_row"></div>
+      </div>
+      <div class="col-xs-8" >
         <h2 class="text-center">Noticias</h2>
-        <div class="col-xs-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt...
+        <div class="col-xs-4" id="slider5">
+            <div class="viewport">
+              <ul class="overview">
+                @foreach ($bid2 as $bid2)
+                <li>
+                  <a class="red" href="search/subasta/view/{{ $bid2->id }}">
+                    <img src="{{ URL::asset('img/subasta/'.$bid2->imagen) }}" alt="" class="main_image"/>
+                  </a>
+                </li>
+                @endforeach
+              </ul>
+            </div>
         </div>
         <div class="col-xs-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -60,47 +86,9 @@
           sed do eiusmod tempor incididunt...
         </div>
       </div>
-      <div class="col-xs-6">
-        <div class="col-xs-12 mid_row" ></div>
-        <div class="col-xs-12" class="small_row">
-          <h2 class="text-center">Top 10 Productos (o categorias)</h2>
-        </div>
-        <div class="col-xs-12" class="small_row">
-          iPhone5
-        </div>
-        <div class="col-xs-12" class="small_row">
-          Android
-        </div>
-        <div class="col-xs-12" class="small_row">
-          produ3
-        </div>
-        <div class="col-xs-12" class="small_row">
-          produ4
-        </div>
-        <div class="col-xs-12" class="small_row">
-          produ5
-        </div>
-        <div class="col-xs-12" class="small_row">
-          produ6
-        </div>
-        <div class="col-xs-12" class="small_row">
-          produ7
-        </div>
-        <div class="col-xs-12" class="small_row" >
-          produ8
-        </div>
-        <div class="col-xs-12" class="small_row">
-          produ9
-        </div>
-        <div class="col-xs-12" class="small_row">
-          produ10
-        </div>
-        <div class="col-xs-12" class="small_row">
-        </div>
       </div>
-      </div>
+  </div>
 
-      </div>
 @endsection
 
 

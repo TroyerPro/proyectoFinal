@@ -25,13 +25,13 @@ class SubastaSearch extends Controller {
 	}
 
 
-	public function filtro()
+	public function filtro($id)
 	{
-		$datos = $_POST;
+		//$datos = $_POST;
 
-		//$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$id)->get();
+		$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$id)->get();
 		$categoria = Categoria::all();
-		$bid = Subasta::all();
+		//$bid = Subasta::all();
 		/*dd($categoria);
 		die();*/
 		return view('search.subasta', compact('bid','categoria'));

@@ -18,7 +18,7 @@
     border-radius: 35px;
     display: block;
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 0;
     width: 35px;
     height: 35px;
@@ -33,7 +33,7 @@
 #slider1 .next {
     right: 0;
     left: auto;
-    top: 50%;
+    top: 25%;
 }
 
 #slider1 .buttons:hover {
@@ -57,7 +57,7 @@
 
 #slider1 .overview li {
     float: left;
-  //  margin: 0 20px 0 0;
+    margin: 0 10px 0 0;
     padding: 1px;
     height: 121px;
   //  border: 1px solid #dcdcdc;
@@ -191,8 +191,21 @@
 }
 
 /* slider5 */
-#slider5 { height: 1%; overflow:hidden; padding: 0 0 10px; width: 240px; margin: 0 auto; }
-#slider5 .viewport { width: 240px; height: 125px; overflow: hidden; position: relative; }
+#slider5 {
+  height: 100%;
+  overflow:hidden;
+  padding: 0 0 15px;
+  width: 240px;
+  margin: 0 auto;
+  }
+
+#slider5 .viewport {
+  width: 240px;
+  height: 125px;
+  overflow: hidden;
+  position: relative;
+  }
+
 #slider5 .buttons {
     background: #C01313;
     border-radius: 35px;
@@ -227,13 +240,24 @@
     margin: 0 20px 0 0;
     padding: 1px;
     height: 121px;
-    border: 1px solid #dcdcdc;
+    //border: 1px solid #dcdcdc;
     width: 236px;
 }
 
 /* slider6 */
-#slider6 { height: 1%; overflow:hidden; padding: 0 0 10px; margin: 0 0 0 50px;  }
-#slider6 .viewport { float: left; width: 240px; height: 125px; overflow: hidden; position: relative; }
+#slider6 {
+  height: 100%;
+  overflow:hidden;
+  padding: 0 0 10px;
+  margin: 0 0 0 50px;
+  }
+#slider6 .viewport {
+  float: left;
+  width: 240px;
+  height: 125px;
+  overflow: hidden;
+  position: relative;
+  }
 #slider6 .buttons {
     background: #C01313;
     border-radius: 35px;
@@ -257,13 +281,37 @@
     color: #C01313;
     background: #fff;
 }
-#slider6 .disable { visibility: hidden; }
-#slider6 .overview { list-style: none; position: absolute; width: 240px; left: 0 top: 0; }
-#slider6 .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 121px; border: 1px solid #dcdcdc; width: 236px;}
+#slider6 .disable {
+  visibility: hidden;
+  }
+#slider6 .overview {
+  list-style: none;
+  position: absolute;
+  width: 240px;
+  left: 0 top: 0;
+  }
+#slider6 .overview li{
+  float: left;
+  margin: 0 20px 0 0;
+  padding: 1px;
+  height: 121px;
+  border: 1px solid #dcdcdc;
+  width: 236px;
+  }
 
 /* slider7 */
-#slider7 { height: 1%; overflow:hidden; padding: 0 0 10px 0; }
-#slider7 .viewport { width: 240px; height: 125px; float: left; overflow: hidden; position: relative; }
+#slider7 {
+  height: 1%;
+  overflow:hidden;
+  padding: 0 0 10px 0;
+  }
+#slider7 .viewport {
+  width: 240px;
+  height: 125px;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  }
 #slider7 .buttons {
     background: #C01313;
     border-radius: 35px;
