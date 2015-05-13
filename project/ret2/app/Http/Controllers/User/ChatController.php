@@ -219,4 +219,27 @@ class ChatController extends UserController {
        return $lineas;
 
      }
+     public function postChatAJAX($id)
+     {
+       $news = new Article();
+       $news -> user_id = Auth::id();
+       $news -> language_id = $request->language_id;
+       $news -> title = $request->title;
+
+       $newLinea = new lineachat() {
+
+       }
+
+
+
+       $lineas = lineachat::select('lineachats.id','lineachats.text','users.name','lineachats.created_at')
+       ->where('lineachats.id_chat', $id)
+       ->join('users','users.id','=','lineachats.id_usuario')
+       ->orderBy('created_at', 'ASC')
+       ->take(3)
+       ->get();
+
+       return $lineas;
+
+     }
 }

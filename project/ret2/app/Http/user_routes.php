@@ -129,5 +129,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('chat','User\ChatController@send');
     Route::get('chat/{id}','User\ChatController@getChat');
     Route::get('chat/ajax/{id}','User\ChatController@getChatAJAX');
+    Route::post('chat/ajax/{id}','User\ChatController@postChatAJAX');
     Route::get('chat/data', 'User\ChatController@data');
 });

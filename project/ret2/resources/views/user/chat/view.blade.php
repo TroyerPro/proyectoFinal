@@ -37,6 +37,39 @@ $( document ).ready(function() {
 
 	$( "#mensaje" ).click(function() {
   alert( "Handler for .click() called." );
+	var mensaje = 	$( "#texto" ).val();
+	var id = {{ $id }};
+	$.ajax({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+			type : 'GET',
+			url : 'ajax/'+id,
+			data : {id:id, mensaje:mensaje },
+			contentType: false,
+			cache: false,
+			processData:false
+	}).success(function() {
+/*
+			setTimeout(function() {
+				window.location.reload();
+				}, 10);
+*/
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+							// Optionally alert the user of an error here...
+							var textResponse = jqXHR.responseText;
+							var alertText = "One of the following conditions is not met:\n\n";
+							var jsonResponse = jQuery.parseJSON(textResponse);
+
+							$.each(jsonResponse, function(n, elem) {
+									alertText = alertText + elem + "\n";
+							});
+
+							alert(alertText);
+					});
+});
+
+
 });
 
 
