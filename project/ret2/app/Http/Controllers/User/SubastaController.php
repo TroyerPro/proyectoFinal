@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Subasta;
 use App\Empresa;
 use App\Categoria;
+use App\Chatusuarios;
 use Carbon;
 use DateTimeZone;
 use DateTime;
@@ -147,7 +148,8 @@ class SubastaController extends UserController {
      public function data()
      {
        $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
-       ->where('subastas.id_user_vendedor', Auth::id());
+       ->where('subastas.id_user_vendedor', Auth::id())
+       ->get();
 
        return Datatables::of($subasta)
        ->add_column('estado','@if($estado_subasta)
@@ -159,9 +161,9 @@ class SubastaController extends UserController {
        <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        @else
-       <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> {{ trans(" Prorrogar") }}</button>
+       <a href="{{{ URL::to(\'user/chat/\' . $id  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
-       <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-user"></span> {{ trans(" Contactar Ganador") }}</button>
+       <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Ganador") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        @endif')
 
