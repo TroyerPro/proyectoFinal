@@ -81,7 +81,12 @@
                <hr width="100%"/>
              </div>
              <div class="col-xs-12 ">
-               <div class="col-xs-6"><b>Tiempo restante:</b></div><div class="col-xs-6">00:00:00</div>
+
+               <div class="col-xs-6"><b>Fecha final:</b></div><div class="col-xs-6"> {{$fechaFinal}}</div>
+             </div>
+             <div class="col-xs-12 ">
+
+               <div class="col-xs-6"><b>Tiempo restante:</b></div><div class="col-xs-6" id="newcountdown"></div>
              </div>
              <div class="col-xs-12">
                <hr width="100%"/>
@@ -134,6 +139,7 @@
            </div>
          </div>
         </div>
+
     </div>
     @endsection
     @section('scripts')
@@ -155,6 +161,42 @@
             $("#background-popup").css("display", "none");
             $("#popup").css("display", "none");
           });
+
+    CountDownTimer('{{$fechaFinal}}', 'newcountdown');
+
+    function CountDownTimer(dt, id)
+    {
+        var end = new Date(dt);
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                document.getElementById(id).innerHTML = '¡ACABADA!';
+
+                return;
+            }
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
+            
+            document.getElementById(id).innerHTML = days + 'días ';
+            document.getElementById(id).innerHTML += hours + 'horas ';
+            document.getElementById(id).innerHTML += minutes + 'minutos ';
+            document.getElementById(id).innerHTML += seconds + 'segundos';
+        }
+
+        timer = setInterval(showRemaining, 1000);
+    }
       });
       </script>
     @stop
