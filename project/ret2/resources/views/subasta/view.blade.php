@@ -4,7 +4,7 @@
   <div class="col-xs-12">
     <div class="close-window">X</div>
     <div class="col-xs-12">
-      <div class="col-xs-6"><a href="subasta/view/{{ $subasta->id }}" class="btn btn-success btn-puja">Realizar puja normal</a></div>
+      <div class="col-xs-6"><a href="{{ URL::to('user/pujas/create/'.$subasta->id) }}" class="btn btn-success btn-puja">Realizar puja normal</a></div>
       <div class="col-xs-6"><a href="" class="btn btn-success btn-puja">Configurar una puja automática</a></div>
     </div>
   </div>
@@ -135,24 +135,26 @@
          </div>
         </div>
     </div>
-    <script src="{{ asset('/js/all.js') }}"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
+    @endsection
+    @section('scripts')
+      @parent
+      <script type="text/javascript">
+      $(document).ready(function() {
 
-      $('#pujar').click(function() {
-          $("#background-popup").css("visibility", "visible");
-          $("#popup").css("visibility", "visible");
+        $('#pujar').click(function() {
+            $("#background-popup").css("display", "inline");
+            $("#popup").css("display", "inline");
+        });
+
+        $('.close-window').click(function() {
+            $("#background-popup").css("display", "none");
+            $("#popup").css("display", "none");
+          });
+
+        $('#background-popup').click(function() {
+            $("#background-popup").css("display", "none");
+            $("#popup").css("display", "none");
+          });
       });
-
-      $('.close-window').click(function() {
-          $("#background-popup").css("visibility", "hidden");
-          $("#popup").css("visibility", "hidden");
-        });
-
-      $('#background-popup').click(function() {
-          $("#background-popup").css("visibility", "hidden");
-          $("#popup").css("visibility", "hidden");
-        });
-    });
-    </script>
-@endsection
+      </script>
+    @stop

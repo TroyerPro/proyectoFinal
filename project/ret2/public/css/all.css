@@ -12307,7 +12307,7 @@ li > ul {
      background-color: black;
      opacity: 0.4;
      z-index: 999;
-     visibility: hidden;
+     display: none;
    }
 
    #popup {
@@ -12318,7 +12318,7 @@ li > ul {
      height: 150px;
      width: 600px;
      background-color: white;
-     visibility: hidden;
+     display: none;
    }
 
    .close-window {

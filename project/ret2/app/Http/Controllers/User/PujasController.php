@@ -4,12 +4,14 @@ use App\Http\Controllers\UserController;
 use App\Puja;
 use App\Subasta;
 use App\Categoria;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Http\Requests\Admin\DeleteRequest;
 use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
+use App\Http\Requests\Puja\PujaRequest;
 
 class PujasController extends UserController {
 
@@ -29,13 +31,12 @@ class PujasController extends UserController {
      *
      * @return Response
      */
-    public function getCreate()
+    public function getCreate($id)
     {
-        $subasta = "";
-        $cantidad = "";
+        $subasta = Subasta::find($id);
 
         // Show the page
-        return view('user.pujas.create', compact('subasta','cantidad'));
+        return view('user.pujas.create', compact('subasta'));
     }
 
     /**
@@ -43,29 +44,29 @@ class PujasController extends UserController {
      *
      * @return Response
      */
-    public function postCreate()
-    {
-        $subasta = new Subasta();
-        $subasta -> id_user_vendedor = Auth::id();
-        $subasta -> nombre = $_POST['nombre'];
-        $subasta -> descripcion = $_POST['desc'];
-        $subasta -> id_categoria = $_POST['categoria'];
-        $subasta -> metodo_pago = $_POST['metodo'];
-        $subasta -> estado = $_POST['estado'];
-        $subasta -> estado_subasta = true;
-        $subasta -> fecha_inicio = "2015-05-22";
-        $subasta -> fecha_final = "2015-06-30";
-        $subasta -> precio_inicial = 1;
-        $subasta -> imagen = "ruta";
-
-        $subasta -> save();
-
-    }
-
-    public function newPuja($id)
+    public function postCreate($id, PujaRequest $request)
     {
       $subasta = Subasta::find($id);
-  		return view('user.pujas.new', compact('subasta'));
+      if($subasta->estado_subasta) {
+        if($_POST['cantidad'] > $subasta->precio_actual) {
+          $puja = new Puja();
+          $puja -> cantidad = $request->input('cantidad');
+          $puja -> fecha = Carbon::now();
+          $puja -> id_subasta = $id;
+          $puja -> id_usuario = Auth::user()->id;
+          $puja -> puja_auto = false;
+
+          $puja -> save();
+
+          $subasta -> precio_actual = $puja -> cantidad;
+          $subasta -> save();
+
+          return view('user.pujas.index');
+        }
+      } else {
+          return view('user.pujas.index');
+      }
+
     }
 
     /**
