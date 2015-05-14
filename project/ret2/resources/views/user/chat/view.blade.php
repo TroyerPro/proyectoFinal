@@ -7,14 +7,14 @@
 <!-- ./ tabs -->
 {{-- Edit Blog Form --}}
 
-<chat class="col-xs-6">
+<chat class="col-xs-6" style="overflow-y:scroll; max-height:250px;">
 @foreach ($lineas as $lineas)
 <div><b> {{$lineas->name}}</b> {{$lineas->created_at}}</div>
  <div>{{$lineas->text}}</div>
 @endforeach
 </chat>
 
-<escribir class="col-xs-6">
+<escribir class="col-xs-6" >
 <input id="texto" type="text"></input>
 	<button id="mensaje" class="btn btn-sm">
 		<span class="glyphicon glyphicon-ban-circle"></span> {{
@@ -34,7 +34,8 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
-
+	$("chat").animate({ scrollTop: $(document).height() }, "slow");
+	  return false;
 	$( "#mensaje" ).click(function() {
 
 	var mensaje = 	$( "#texto" ).val();
