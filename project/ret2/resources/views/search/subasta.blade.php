@@ -4,24 +4,53 @@
 {{-- Scripts --}}
 @section('scripts')
     <script type="text/javascript">
-        $(document).ready(function () {
-/*
-          $( ".categoria" ).change(function() {
-            var idCategoria= $(this).attr( 'name' );
-            $.ajax({
-              url: "{{ URL::to('search/subasta/ajax/filtro') }}",
-              data:{
-                "idCategoria": idCategoria
-              },
-            }).done(function() {
+    $(document).ready(function(){
 
 
-            });
-          });*/
+      $("#quitar").click(function(){
+        alert("hola");
+        window.location.href ="{{ URL::to('search/subasta') }}";
         });
+
+
+      //  window.location.href ="search/subasta";
+    });
+      var consulta=[];
+
+      //comprobamos si se pulsa una tecla
+    /*  $("#buscar").click(function(e){
+
+            //obtenemos el texto introducido en el campo de búsqueda
+            consulta = $("#busqueda").val();
+
+            //hace la búsqueda
+
+            $.ajax({
+                  type: "POST",
+                  url: "buscar.php",
+                  data: "b="+consulta,
+                  dataType: "html",
+                  beforeSend: function(){
+                        //imagen de carga
+                        $("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
+                  },
+                  error: function(){
+                        alert("error petición ajax");
+                  },
+                  success: function(data){
+                        $("#resultado").empty();
+                        $("#resultado").append(data);
+
+                  }
+            });
+
+
+      });*/
+
+});
     </script>
 
-@endsection
+    @endsection
 <div class="page-header">
     <h2>Buscador de Subasta</h2>
 </div>
@@ -43,50 +72,63 @@
                   </a>
                 </li>
                 <input type="text" name="nombre"></input><br>
-
+                <br>
                 <li>
                   <a>
                     <span class="hidden-sm text">Precio max.</span>
                   </a>
                 </li>
                 <input type="text" name="pmax"></input><br>
+                <br>
                 <li>
                   <a>
                     <span class="hidden-sm text">Precio min.</span>
                   </a>
                 </li>
                 <input type="text" name="pmin"></input><br>
+                <br>
                 <li>
                   <a>
                     <span class="hidden-sm text">Categorias</span>
                   </a>
                 </li>
-                @foreach ($categoria as $categoria)
-                <input type="checkbox" class="categoria" name="{{ $categoria->id }}" value="{{ $categoria->id }}">{{ $categoria->nombre }}</input><br>
-                @endforeach
+                <select class="" name="categoria">
+                  <option>Seleccione la categoria</option>
+                  @foreach ($categoria as $categoria)
+                  <option>{{ $categoria->nombre }}</option>
+                  @endforeach
+                </select>
+                <br><br>
                 <li>
                   <a>
-                    <span class="hidden-sm text">Tipo de pago</span>
+                    <span class="hidden-sm text">Metodo de pago</span>
                   </a>
                 </li>
                 <select name="pago">
+                  <option>Seleccione el metodo de pago</option>
                   <option>Paypal</option>
                   <option>Tarjeta</option>
                   <option>Efectivo</option>
                 </select>
+                <br><br>
                 <li>
                   <a>
                     <span class="hidden-sm text">Estado producto</span>
                   </a>
                 </li>
                 <select name="estado">
+                  <option>Seleccione el estado del producto</option>
                   <option>Nuevo</option>
                   <option>Usado</option>
                   <option>Viejos</option>
-                </select><br>
-                <button type="submit" class="btn btn-sm btn-success">
+                </select><br><br>
+                <button type="submit" id="buscar" class="btn btn-sm btn-success">
                   <span class="glyphicon glyphicon-ok-circle"></span>
                     Buscar
+                </button>
+                <button type="reset" id="quitar" class="btn btn-sm btn-danger">
+                  <span class="glyphicon glyphicon-remove-circle"></span>
+                    Quitar filtros
                 </button>
               </form>
             </li>
