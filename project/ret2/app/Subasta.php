@@ -26,4 +26,9 @@ class Subasta extends Model {
 			 {
 					return $this->belongsTo('App\Categoria');
 			 }
+			public function chat()
+					 {
+							return $this->belongsTo('App\Chatusuarios');
+					 }
+
 }

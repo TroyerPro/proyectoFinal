@@ -127,6 +127,7 @@ $factory('App\Subasta', [
   $factory('App\Chatusuarios', [
       'id_user1' => $faker->numberBetween(1,2),
       'id_user2' => $faker->numberBetween(1,2),
+      'id_subasta' => $faker->numberBetween(1,6),
   ]);
   $factory('App\Evalusuarios', [
       'id_user_evaluador' => $faker->numberBetween(1,3),
