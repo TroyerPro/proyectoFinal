@@ -42,15 +42,9 @@ class ChatController extends UserController {
 
     public function abrirChat($id)
     {
-      $chat = Chatusuarios::select('chatusuarios.*')->where('chatusuarios.id_subasta',$id)->get();
-
-      $lineas = lineachat::select('lineachats.id','lineachats.text','users.name','lineachats.created_at')
-      ->where('lineachats.id_chat', $chat->id)
-      ->join('users','users.id','=','lineachats.id_usuario')
-      ->orderBy('created_at', 'ASC')
-      ->get();
-
-      return view('user.chat.view', compact('lineas','id'));
+      $chat = Chatusuarios::where('chatusuarios.id_subasta',$id)->get()->first();
+      
+      return redirect('user/chat/'.$chat->id);
     }
 
     /**

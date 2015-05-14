@@ -184,8 +184,9 @@ class SubastaController extends UserController {
         ->join('pujas','subastas.puja_ganadora','=','pujas.id');
 
         return Datatables::of($subasta)
-        ->add_column('actions','<a href="{{{ URL::to(\'user/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-info iframe"><span class="glyphicon glyphicon-info-sign"></span> {{ trans("Contactar Propietario") }}</a>
-        <input type="hidden" name="row" value="{{$id}}" id="row">')
+        ->add_column('actions','  <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Comprador") }}</a>
+          <input type="hidden" name="row" value="{{$id}}" id="row">')
+
         ->remove_column('id')
 
         ->make();

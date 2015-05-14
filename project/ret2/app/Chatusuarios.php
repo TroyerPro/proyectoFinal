@@ -17,6 +17,6 @@ class Chatusuarios extends Model {
 			  }
 	public function subasta()
 			  {
-						return $this->hasOne('App\Subasta');
+						return $this->belongsTo('App\Subasta');
 				}
 }
