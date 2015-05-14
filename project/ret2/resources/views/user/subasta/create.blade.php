@@ -145,16 +145,21 @@
 @section('scripts')
     @parent
     <script type="text/javascript">
+
         var oTable;
         $(document).ready(function () {
 
 $( "#duracion" ).change(function() {
-  var añadirDias = $( "#duracion" ).val();
+  var anadirDias  = $( "#duracion" ).val();
   //var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
-  var fechaFin = {{$fechaHoy->toString() }};
-  console.log(fechaFin);
-  $(".fechaFin").attr("placeholder", fechaFin);
-  $('.fechaFin').val = fechaFin;
+  var fechaFin = "{{$fechaHoy}}";
+  var d = new Date(fechaFin.slice(0,4), fechaFin.slice(5,7), fechaFin.slice(8,10), fechaFin.slice(11,13), fechaFin.slice(14,16), fechaFin.slice(17,19), 00);  console.log(anadirDias)
+  console.log(d);
+  d.setMonth(d.getMonth()-1);
+  d.setDate(d.getDate()+parseInt(anadirDias));
+  console.log(d);
+  $(".fechaFin").attr("placeholder", d.toLocaleString());
+  $('.fechaFin').val = d;
 });
 
 
