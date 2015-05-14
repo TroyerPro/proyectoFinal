@@ -12293,9 +12293,42 @@ li > ul {
    .nomRating{
      font-size: 80%;
      color: #A4A4A4;
-
    }
 
    #pujaDesc {
      color: #D8D8D8;
+   }
+
+   #background-popup {
+     position: absolute;
+     top: 0;
+     height: 100%;
+     width: 100%;
+     background-color: black;
+     opacity: 0.4;
+     z-index: 999;
+     visibility: hidden;
+   }
+
+   #popup {
+     position: absolute;
+     top: 33%;
+     left: 33%;
+     z-index: 1000;
+     height: 150px;
+     width: 600px;
+     background-color: white;
+     visibility: hidden;
+   }
+
+   .close-window {
+     width: 20px;
+     cursor: pointer;
+     float: right;
+     text-align: center;
+     margin-top: 7px;
+   }
+
+   .btn-puja {
+     margin-top: 40px;
    }

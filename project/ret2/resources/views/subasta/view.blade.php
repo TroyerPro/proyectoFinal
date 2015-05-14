@@ -1,3 +1,14 @@
+<div id="background-popup">
+</div>
+<div id="popup">
+  <div class="col-xs-12">
+    <div class="close-window">X</div>
+    <div class="col-xs-12">
+      <div class="col-xs-6"><a href="subasta/view/{{ $subasta->id }}" class="btn btn-success btn-puja">Realizar puja normal</a></div>
+      <div class="col-xs-6"><a href="" class="btn btn-success btn-puja">Configurar una puja automática</a></div>
+    </div>
+  </div>
+</div>
 @extends('app')
 @section('content')
     <div class="row">
@@ -109,27 +120,39 @@
              <div class="col-xs-12 ">
                <div class="col-xs-6"><b>Metodo envio:</b></div> <div class="col-xs-6">{{ $subasta->metodo_envio }}</div>
              </div>
-             @if($subasta->estado_subasta == 1)
-               <div class="col-xs-12">
-                  <a href="{{{ URL::to('user/pujas/new') }}}" class="iframe btn btn-success btn-mrg-top mrg-left">Realizar una Puja</a>
-               </div>
+             @if(Auth::check())
+               @if($subasta->estado_subasta == 1 && Auth::user()->id != $subasta->id_user_vendedor)
+                 <div class="col-xs-12">
+                    <button id="pujar" class="iframe btn btn-success btn-mrg-top mrg-left">Realizar una Puja</button>
+                 </div>
+               @elseif ($subasta->estado_subasta == 1 && Auth::user()->id == $subasta->id_user_vendedor)
+                 <div class="col-xs-12">
+                    <a href="" class="iframe btn btn-danger btn-mrg-top mrg-left">Cerrar Subasta</a>
+                 </div>
+               @endif
              @endif
            </div>
          </div>
         </div>
     </div>
+    <script src="{{ asset('/js/all.js') }}"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
-      function (oSettings) {
-        $(".iframe").colorbox({
-              iframe: true,
-              width: "80%",
-              height: "80%",
-              onClosed: function () {
-                  window.location.reload();
-              }
-          });
-        }
+    $(document).ready(function() {
+
+      $('#pujar').click(function() {
+          $("#background-popup").css("visibility", "visible");
+          $("#popup").css("visibility", "visible");
+      });
+
+      $('.close-window').click(function() {
+          $("#background-popup").css("visibility", "hidden");
+          $("#popup").css("visibility", "hidden");
+        });
+
+      $('#background-popup').click(function() {
+          $("#background-popup").css("visibility", "hidden");
+          $("#popup").css("visibility", "hidden");
+        });
     });
     </script>
 @endsection

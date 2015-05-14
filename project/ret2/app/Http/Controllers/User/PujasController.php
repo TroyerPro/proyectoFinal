@@ -62,9 +62,10 @@ class PujasController extends UserController {
 
     }
 
-    public function newPuja()
+    public function newPuja($id)
     {
-      return view('user.pujas.new');
+      $subasta = Subasta::find($id);
+  		return view('user.pujas.new', compact('subasta'));
     }
 
     /**
