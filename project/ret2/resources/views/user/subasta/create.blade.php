@@ -73,7 +73,7 @@
 
                     <div class="col-md-6">
                         <input type="text" class="form-control" value="{{$fechaHoy}}" disabled >
-                        <input type="hidden" id="fechaIni" class="form-control" name="fechaIni" value="{{$fechaHoy}}" >
+                        <input type="hidden" class="form-control" name="fechaIni" value="{{$fechaHoy}}" >
                     </div>
                 </div>
 
@@ -144,43 +144,21 @@
 {{-- Scripts --}}
 @section('scripts')
     @parent
-
     <script type="text/javascript">
-    $( document ).ready(function() {
-    	$( "#duracion" ).change(function() {
-        var añadirDias = $( "#duracion" ).val();
-        var fechaInicio = $( "#fechaIni" ).val();
-    	$.ajax({
-    		headers: {
-    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    		},
-    			type : 'POST',
-    			url : 'create/ajax/',
-    			data : {añadirDias:añadirDias,
-            fechaInicio:fechaInicio
-          },
-    	}).success(function() {
-        alert();
+        var oTable;
+        $(document).ready(function () {
 
-    	}).fail(function(jqXHR, textStatus, errorThrown) {
-    							// Optionally alert the user of an error here...
-    							var textResponse = jqXHR.responseText;
-    							var alertText = "One of the following conditions is not met:\n\n";
-    							var jsonResponse = jQuery.parseJSON(textResponse);
-
-    							$.each(jsonResponse, function(n, elem) {
-    									alertText = alertText + elem + "\n";
-    							});
-
-    							alert(alertText);
-    					});
+$( "#duracion" ).change(function() {
+  var añadirDias = $( "#duracion" ).val();
+  //var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+  var fechaFin = {{$fechaHoy->toString() }};
+  console.log(fechaFin);
+  $(".fechaFin").attr("placeholder", fechaFin);
+  $('.fechaFin').val = fechaFin;
+});
 
 
 
-    });
-
-
-    });
-
+        });
     </script>
 @stop
