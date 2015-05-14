@@ -34,7 +34,7 @@
         <h2>Categorias</h2>
         @foreach ($categoria as $categoria)
         <div class="col-xs-" class="small_row">
-          <a href="search/subasta/filtro/{{ $categoria->id }}">
+          <a href="{!! URL::to('search/subasta/filtro/'.$categoria->id) !!}">
             {{ $categoria->nombre }}
           </a>
         </div>

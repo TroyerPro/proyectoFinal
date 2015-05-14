@@ -15,7 +15,6 @@
         <thead>
         <tr>
             <th>{{{ trans("Nombre") }}}</th>
-            <th>{{{ trans("Descripción") }}}</th>
             <th>{{{ trans("Fecha Final") }}}</th>
             <th>{{{ trans("Puja Actual") }}}</th>
             <th>{{{ trans("Estado") }}}</th>

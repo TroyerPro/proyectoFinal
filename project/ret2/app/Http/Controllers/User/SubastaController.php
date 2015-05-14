@@ -4,6 +4,8 @@ use App\Http\Requests\User\Imagen2Request;
 use App\Http\Controllers\UserController;
 use App\Subasta;
 use App\Categoria;
+use Carbon;
+use DateTimeZone;
 use DateTime;
 use Validator;
 use Illuminate\Support\Facades\Input;
@@ -34,6 +36,7 @@ class SubastaController extends UserController {
      */
     public function getCreate()
     {
+      $fechaHoy=Carbon\Carbon::now(new DateTimeZone('Europe/Madrid'));
         $nombre = "";
         $estado = "";
         $descripcion = "";
@@ -43,7 +46,7 @@ class SubastaController extends UserController {
         $metodo = "";
 
         // Show the page
-        return view('user.subasta.create', compact('nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
+        return view('user.subasta.create', compact('fechaHoy','nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
     }
 
     /**
@@ -56,7 +59,8 @@ class SubastaController extends UserController {
     {
       $success = true;
       $fechaIni = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
-
+      $fechaFin = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
+      date_add($fechaFin, date_interval_create_from_date_string($_POST['duracion'].' days'));
       $subasta = new Subasta();
       $subasta -> id_user_vendedor = Auth::id();
       $subasta -> nombre = $_POST['nombre'];
@@ -67,7 +71,7 @@ class SubastaController extends UserController {
       $subasta -> estado = $_POST['estado'];
       $subasta -> estado_subasta = true;
       $subasta -> fecha_inicio = $fechaIni;
-      $subasta -> fecha_final = $fechaIni;
+      $subasta -> fecha_final = $fechaFin;
       $subasta -> precio_inicial = floatval($_POST['precioIni']);
 
       //Cargar imagen subasta
@@ -105,24 +109,6 @@ class SubastaController extends UserController {
      * @return Response
      */
 
-    public function getDelete($id)
-    {
-        $news = Article::find($id);
-        // Show the page
-        return view('admin.news.delete', compact('news'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param $id
-     * @return Response
-     */
-    public function postDelete(DeleteRequest $request,$id)
-    {
-        $news = Article::find($id);
-        $news->delete();
-    }
 
     public function getCerrar($id)
     {
@@ -156,7 +142,7 @@ class SubastaController extends UserController {
      */
      public function data()
      {
-       $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual')
+       $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
        ->where('subastas.id_user_vendedor', Auth::id());
 
        return Datatables::of($subasta)

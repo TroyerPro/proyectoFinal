@@ -72,21 +72,16 @@
                     <label class="col-md-4 control-label">Fecha inicio</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" value="{{Carbon\Carbon::now()}}" disabled >
-                        <input type="hidden" class="form-control" name="fechaIni" value="{{Carbon\Carbon::now()}}" >
+                        <input type="text" class="form-control" value="{{$fechaHoy}}" disabled >
+                        <input type="hidden" class="form-control" name="fechaIni" value="{{$fechaHoy}}" >
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Duración subasta</label>
+                    <label class="col-md-4 control-label">Duración subasta (días)</label>
 
-                  <div class="col-md-6">
-                    <select name="duracion">
-                      <option value="1">3 días</option>
-                      <option value="2">5 días</option>
-                      <option value="3">1 semana</option>
-                      <option value="4">2 semanas</option>
-                    </select>
+                  <div class="col-md-1">
+                    <input type="text"  class="form-control" id="duracion" name="duracion"></input>
                   </div>
                 </div>
 
@@ -94,8 +89,8 @@
                     <label class="col-md-4 control-label">Fecha final</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" value="{{ Carbon\Carbon::now()->addDay(3) }}" disabled>
-                        <input type="hidden" class="form-control" name="fechaFin" value="{{ Carbon\Carbon::now()->addDay(3) }}" >
+                        <input type="text" class="form-control fechaFin" value="" disabled>
+                        <input type="hidden" class="form-control fechaFin" name="fechaFin" value="" >
                     </div>
                 </div>
 
@@ -145,3 +140,28 @@
         </div>
     </div>
 @endsection
+
+{{-- Scripts --}}
+@section('scripts')
+    @parent
+    <script type="text/javascript">
+
+        var oTable;
+        $(document).ready(function () {
+
+$( "#duracion" ).change(function() {
+  var anadirDias  = $( "#duracion" ).val();
+  //var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+  var fechaFin = "{{$fechaHoy}}";
+  var d = new Date(fechaFin.slice(0,4), fechaFin.slice(5,7), fechaFin.slice(8,10), fechaFin.slice(11,13), fechaFin.slice(14,16), fechaFin.slice(17,19), 00);  console.log(anadirDias)
+  console.log(d);
+  d.setMonth(d.getMonth()-1);
+  d.setDate(d.getDate()+parseInt(anadirDias));
+  console.log(d);
+  $(".fechaFin").attr("placeholder", d.toLocaleString());
+  $('.fechaFin').val = d;
+});
+
+        });
+    </script>
+@stop
