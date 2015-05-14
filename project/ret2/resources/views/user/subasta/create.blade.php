@@ -72,21 +72,16 @@
                     <label class="col-md-4 control-label">Fecha inicio</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" value="{{Carbon\Carbon::now()}}" disabled >
-                        <input type="hidden" class="form-control" name="fechaIni" value="{{Carbon\Carbon::now()}}" >
+                        <input type="text" class="form-control" value="{{$fechaHoy}}" disabled >
+                        <input type="hidden" id="fechaIni" class="form-control" name="fechaIni" value="{{$fechaHoy}}" >
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Duración subasta</label>
+                    <label class="col-md-4 control-label">Duración subasta (días)</label>
 
-                  <div class="col-md-6">
-                    <select name="duracion">
-                      <option value="1">3 días</option>
-                      <option value="2">5 días</option>
-                      <option value="3">1 semana</option>
-                      <option value="4">2 semanas</option>
-                    </select>
+                  <div class="col-md-1">
+                    <input type="text"  class="form-control" id="duracion" name="duracion"></input>
                   </div>
                 </div>
 
@@ -94,8 +89,8 @@
                     <label class="col-md-4 control-label">Fecha final</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" value="{{ Carbon\Carbon::now()->addDay(3) }}" disabled>
-                        <input type="hidden" class="form-control" name="fechaFin" value="{{ Carbon\Carbon::now()->addDay(3) }}" >
+                        <input type="text" class="form-control fechaFin" value="" disabled>
+                        <input type="hidden" class="form-control fechaFin" name="fechaFin" value="" >
                     </div>
                 </div>
 
@@ -145,3 +140,47 @@
         </div>
     </div>
 @endsection
+
+{{-- Scripts --}}
+@section('scripts')
+    @parent
+
+    <script type="text/javascript">
+    $( document ).ready(function() {
+    	$( "#duracion" ).change(function() {
+        var añadirDias = $( "#duracion" ).val();
+        var fechaInicio = $( "#fechaIni" ).val();
+    	$.ajax({
+    		headers: {
+    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    		},
+    			type : 'POST',
+    			url : 'create/ajax/',
+    			data : {añadirDias:añadirDias,
+            fechaInicio:fechaInicio
+          },
+    	}).success(function() {
+        alert();
+
+    	}).fail(function(jqXHR, textStatus, errorThrown) {
+    							// Optionally alert the user of an error here...
+    							var textResponse = jqXHR.responseText;
+    							var alertText = "One of the following conditions is not met:\n\n";
+    							var jsonResponse = jQuery.parseJSON(textResponse);
+
+    							$.each(jsonResponse, function(n, elem) {
+    									alertText = alertText + elem + "\n";
+    							});
+
+    							alert(alertText);
+    					});
+
+
+
+    });
+
+
+    });
+
+    </script>
+@stop

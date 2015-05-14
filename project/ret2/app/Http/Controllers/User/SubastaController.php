@@ -4,6 +4,8 @@ use App\Http\Requests\User\Imagen2Request;
 use App\Http\Controllers\UserController;
 use App\Subasta;
 use App\Categoria;
+use Carbon;
+use DateTimeZone;
 use DateTime;
 use Validator;
 use Illuminate\Support\Facades\Input;
@@ -34,6 +36,7 @@ class SubastaController extends UserController {
      */
     public function getCreate()
     {
+      $fechaHoy=Carbon\Carbon::now(new DateTimeZone('Europe/Madrid'));
         $nombre = "";
         $estado = "";
         $descripcion = "";
@@ -43,7 +46,7 @@ class SubastaController extends UserController {
         $metodo = "";
 
         // Show the page
-        return view('user.subasta.create', compact('nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
+        return view('user.subasta.create', compact('fechaHoy','nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
     }
 
     /**
