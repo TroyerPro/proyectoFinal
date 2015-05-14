@@ -28,7 +28,7 @@
                     </div>
                     @endif
                 <div class="form-group">
-                    <label class="col-md-4 control-label" >Tiempo subasta gratuita (días)</label>
+                    <label class="col-md-4 control-label" >Precio Prórroga (€)</label>
 
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="prorroga" placeholder="{{ $precio }}" value="{{ $precio }}">
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Precio Prórroga (€)</label>
+                    <label class="col-md-4 control-label">Tiempo subasta gratuita (días)</label>
 
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="dias_subasta" placeholder="{{ $dias_subasta }}" value="{{ $dias_subasta }}">

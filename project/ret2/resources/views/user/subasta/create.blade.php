@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Duración subasta (días)</label>
+                    <label class="col-md-4 control-label">Duración subasta (días) MAX:({{$diasgratis}})</label>
 
                   <div class="col-md-1">
                     <input type="text"  class="form-control" id="duracion" name="duracion"></input>
