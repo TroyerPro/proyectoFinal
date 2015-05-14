@@ -162,8 +162,6 @@ $( "#duracion" ).change(function() {
   $('.fechaFin').val = d;
 });
 
-
-
         });
     </script>
 @stop
