@@ -38,6 +38,8 @@ class SubastaSearch extends Controller {
 	public function ajaxFiltro()
 	{
 		$datos = $_POST;
+		VAR_DUMP($datos);
+		die();
 		$id = $datos['idCategoria'];
 
 		$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$id);
