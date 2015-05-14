@@ -3,6 +3,7 @@
 use App\Http\Requests\User\Imagen2Request;
 use App\Http\Controllers\UserController;
 use App\Subasta;
+use App\Empresa;
 use App\Categoria;
 use Carbon;
 use DateTimeZone;
@@ -36,6 +37,7 @@ class SubastaController extends UserController {
      */
     public function getCreate()
     {
+
       $fechaHoy=Carbon\Carbon::now(new DateTimeZone('Europe/Madrid'));
         $nombre = "";
         $estado = "";
@@ -44,9 +46,10 @@ class SubastaController extends UserController {
 		    $precio_inicial = "";
         $imagen = "";
         $metodo = "";
-
+        $Empresa = Empresa::find(1);
+        $diasgratis = $Empresa->dias_subasta_gratis;
         // Show the page
-        return view('user.subasta.create', compact('fechaHoy','nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
+        return view('user.subasta.create', compact('diasgratis','fechaHoy','nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
     }
 
     /**
@@ -57,6 +60,7 @@ class SubastaController extends UserController {
 
     public function postCreate(Imagen2Request $request)
     {
+
       $success = true;
       $fechaIni = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
       $fechaFin = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
