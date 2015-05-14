@@ -31,8 +31,8 @@ class CreateSubastaTable extends Migration
             $table->dateTime('fecha_final');
             $table->dateTime('fecha_inicio');
             $table->dateTime('fecha_prorroga')->nullable();
-            $table->float('precio_inicial');
-            $table->float('precio_actual');
+            $table->decimal('precio_inicial', 10, 2);
+            $table->decimal('precio_actual', 10, 2);
             $table->string('imagen');
             //$table->float('precio_compra')->nullable();
             $table->integer('puja_ganadora')->nullable();

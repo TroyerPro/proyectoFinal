@@ -16,7 +16,7 @@ class CreatePujaTable extends Migration
         Schema::create('pujas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->float('cantidad');
+            $table->decimal('cantidad', 10, 2);
             $table->dateTime('fecha');
             $table->unsignedInteger('id_subasta')->nullable();
             $table->foreign('id_subasta')->references('id')->on('subastas');

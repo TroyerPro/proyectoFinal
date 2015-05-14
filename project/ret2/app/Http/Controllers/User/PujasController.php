@@ -51,7 +51,7 @@ class PujasController extends UserController {
         if($_POST['cantidad'] > $subasta->precio_actual) {
           $puja = new Puja();
           $puja -> cantidad = $request->input('cantidad');
-          $puja -> fecha = Carbon::now();
+          $puja -> fecha = Carbon::now('Europe/Madrid');
           $puja -> id_subasta = $id;
           $puja -> id_usuario = Auth::user()->id;
           $puja -> puja_auto = false;
@@ -104,20 +104,31 @@ class PujasController extends UserController {
     public function data()
     {
 
-      $puja = Puja::select('subastas.id','pujas.cantidad','pujas.fecha','subastas.nombre', 'subastas.precio_actual')
+      $puja = Puja::select('subastas.id','pujas.cantidad','pujas.fecha','subastas.nombre', 'subastas.precio_actual', 'subastas.estado_subasta')
       ->where('pujas.id_usuario', Auth::id())
       ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta');
 
       return Datatables::of($puja)
-      ->add_column('pujastatus','@if($precio_actual == $cantidad)
-       <div class="green">Vas ganando</div>
-       @else
-       <div class="red">Vas perdiendo</div>
-       @endif')
+      ->add_column('pujastatus','
+      @if($estado_subasta)
+        @if($precio_actual == $cantidad)
+           <div class="green">Vas ganando</div>
+           @else
+           <div class="red">Vas perdiendo</div>
+         @endif
+      @else
+        @if($precio_actual == $cantidad)
+           <div class="green">Has ganado la subasta!</div>
+           @else
+           <div class="red">Has perdido la subasta</div>
+         @endif
+      @endif'
+       )
           ->add_column('actions','<a href="{{{ URL::to(\'search/subasta/view/\'.$id ) }}}" class="btn btn-sm btn-default"><span class="glyphicon"></span> {{ trans("Ir a la subasta") }}</a>
                   ')
           ->remove_column('id')
           ->remove_column('precio_actual')
+          ->remove_column('estado_subasta')
           ->make();
     }
 
