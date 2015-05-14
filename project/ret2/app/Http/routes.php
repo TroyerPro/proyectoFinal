@@ -23,8 +23,8 @@ Route::get('photo/{id}', 'PhotoController@show');
 
 Route::get('search/user','Search\UserSearch@show');
 Route::get('search/subasta','Search\SubastaSearch@show');
-//Route::post('search/subasta','Search\SubastaSearch@filtro');
-Route::get('search/subasta/ajax/filtro','Search\SubastaSearch@ajaxFiltro');
+//Route::get('search/subasta/ajax/filtro','Search\SubastaSearch@ajaxFiltro');
+Route::post('search/subasta/ajax/filtro','Search\SubastaSearch@ajaxFiltro');
 
 Route::get('search/user/view/{id}','Perfil\View@show');
 Route::get('search/subasta/view/{id}', 'Subasta\View@show');
