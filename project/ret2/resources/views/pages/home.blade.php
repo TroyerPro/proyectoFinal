@@ -11,11 +11,13 @@
       $('#slider1').tinycarousel(
         {
           interval: true,
+          intervalTime: 2000,
       });
 
       $("#slider5").tinycarousel({
         axis   : "y",
         interval: true,
+        intervalTime: 4000,
     });
   });
 
