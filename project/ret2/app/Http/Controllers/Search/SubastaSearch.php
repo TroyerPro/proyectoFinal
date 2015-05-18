@@ -30,9 +30,7 @@ class SubastaSearch extends Controller {
 				$bid = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
 		}
 			$categoria = Categoria::all();
-		//dd($news);
 			return view('search.subasta', compact('bid','categoria'));
-		//return view('search.subasta');
 	}
 
 
