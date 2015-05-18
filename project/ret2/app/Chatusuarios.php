@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chatusuarios extends Model {
 
-	//
+	protected $fillable = [ 'id_user1','id_user2','id_subasta'];
 
 	public function lineas()
 			 {

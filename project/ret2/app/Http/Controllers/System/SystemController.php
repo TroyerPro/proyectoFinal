@@ -26,13 +26,13 @@ class SystemController extends Controller {
       SystemController::crearChat($subastaId);
     }
 
-
 	}
 
   public static function crearChat($subastaId)
   {
-    $chat = Chatusuarios::select('Chatusuarios.*')->where('Chatusuarios.id_subasta',$subastaId)->get();
-    if(!$chat) {
+    $chat = Chatusuarios::select('Chatusuarios.*')->where('Chatusuarios.id_subasta',$subastaId)->count();
+
+    if($chat<1) {
       $subasta = Subasta::find($subastaId);
       $comprador = $subasta->getpujaGanadora()->id_usuario;
       $vendedor = $subasta->id_user_vendedor;
