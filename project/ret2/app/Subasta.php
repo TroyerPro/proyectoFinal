@@ -7,9 +7,9 @@ class Subasta extends Model {
 	protected $fillable = [ 'nombre', 'descripcion','metodo_pago','metodo_envio','estado_subasta','estado','fecha_final', 'fecha_inicio', 'fecha_prorroga' ,'precio_inicial','precio_actual','imagen','puja_ganadora' ];
 	//
 
-	public function usuario()
+	public function user()
 			{
-					return $this->belongsTo('App\Usuario');
+					return $this->belongsTo('App\User');
 			}
 
 	public function factura()
