@@ -1,11 +1,16 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Puja;
 
 class Subasta extends Model {
 
 	protected $fillable = [ 'nombre', 'descripcion','metodo_pago','metodo_envio','estado_subasta','estado','fecha_final', 'fecha_inicio', 'fecha_prorroga' ,'precio_inicial','precio_actual','imagen','puja_ganadora' ];
 	//
+	public function getpujaGanadora()
+				{
+					return Puja::find($this->puja_ganadora);
+				}
 
 	public function user()
 			{
@@ -17,10 +22,11 @@ class Subasta extends Model {
         	return $this->hasOne('App\Factura');
     	}
 
-	public function puja()
+	public function pujaGanadora()
 		   {
-		      return $this->belongsTo('App\Puja');
+		      return $this->belongsTo('App\Puja','puja_ganadora');
 		   }
+
 
 	public function categoria()
 			 {
