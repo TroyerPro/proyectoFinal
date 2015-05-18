@@ -1,8 +1,5 @@
 @extends('user.layouts.default')
 
-{{-- Web site Title --}}
-@section('title') {{{ trans("admin/news.news") }}} @parent @stop
-
 {{-- Content --}}
 @section('main')
 <div class="row">
@@ -64,13 +61,17 @@
                   <div class="form-group">
                       <label class="col-md-2 control-label" >R. Comprador</label>
                       <div class="col-md-6">
-                          {{ $currentuser-> ratingcomprador }}
+                        @for ($i = 0; $i < $currentuser-> ratingcomprador; $i++)
+                        <img src="{{ URL::asset('img/star.jpg') }}">
+                        @endfor
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-md-2 control-label" >R.Vendedor</label>
                       <div class="col-md-6">
-                          {{ $currentuser-> ratingvendedor }}
+                        @for ($i = 0; $i < $currentuser-> ratingvendedor; $i++)
+                        <img src="{{ URL::asset('img/star.jpg') }}">
+                        @endfor
                       </div>
                   </div>
                   <div class="form-group">
@@ -88,6 +89,9 @@
                         </div>
                         <div class="col-md-4">
                           <a href="{{{ URL::to('user/perfil/password') }}}" class="btn btn-success" ><span class="glyphicon glyphicon-pencil"></span>  Cambiar contraseña</a>
+                        </div>
+                        <div class="col-md-12">
+                          <a href="{{{ URL::to('user/perfil/baja') }}}" class="btn btn-danger btn-puja iframe" ><span class="glyphicon glyphicon-pencil"></span>Dar de baja</a>
                         </div>
                       </div>
                   </div>
