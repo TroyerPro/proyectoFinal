@@ -22,6 +22,7 @@ Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
 
 Route::get('search/user','Search\UserSearch@show');
+Route::post('search/user','Search\UserSearch@show');
 Route::get('search/subasta','Search\SubastaSearch@show');
 Route::post('search/subasta','Search\SubastaSearch@show');
 
