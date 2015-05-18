@@ -139,6 +139,10 @@ class SubastaController extends UserController {
     {
         return view('user.subasta.ganadas');
     }
+    public function getFinalizadas()
+    {
+        return view('user.subasta.finalizadas');
+    }
 
     /**
      * Show a list of all the languages posts formatted for Datatables.
@@ -149,6 +153,7 @@ class SubastaController extends UserController {
      {
        $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
        ->where('subastas.id_user_vendedor', Auth::id())
+       ->where('subastas.estado_subasta',true)
        ->get();
 
        return Datatables::of($subasta)
@@ -160,7 +165,28 @@ class SubastaController extends UserController {
        ->add_column('actions','@if($estado_subasta)
        <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
+       @endif')
+
+       ->remove_column('id')
+       ->remove_column('estado_subasta')
+
+       ->make();
+     }
+
+     public function data3()
+     {
+       $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
+       ->where('subastas.id_user_vendedor', Auth::id())
+       ->where('subastas.estado_subasta',false)
+       ->get();
+
+       return Datatables::of($subasta)
+       ->add_column('estado','@if($estado_subasta)
+       Abierta
        @else
+       Cerrada
+       @endif')
+       ->add_column('actions','@if(!$estado_subasta)
        <a href="{{{ URL::to(\'user/chat/\' . $id  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Ganador") }}</a>
@@ -172,6 +198,7 @@ class SubastaController extends UserController {
 
        ->make();
      }
+
      /**
       * Show a list of all the languages posts formatted for Datatables.
       *

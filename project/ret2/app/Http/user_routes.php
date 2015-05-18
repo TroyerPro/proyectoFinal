@@ -55,6 +55,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('subasta/{id}/cerrar', 'User\SubastaController@postCerrar'); //Implementar
     Route::get('subasta/ganadas','User\SubastaController@getGanadas');
     Route::get('subastas/data2', 'User\SubastaController@data2');
+    Route::get('subasta/finalizadas','User\SubastaController@getFinalizadas');
+    Route::get('subastas/data3', 'User\SubastaController@data3');
 
     #Pujas
     Route::get('pujas','User\PujasController@index');

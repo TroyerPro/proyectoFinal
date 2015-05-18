@@ -2,6 +2,7 @@
 
 use App\Subasta;
 use App\User;
+use App\Chatusuarios;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 
@@ -22,20 +23,24 @@ class SystemController extends Controller {
     if($fechaFin<$fechaActual) {
       $subasta->estado_subasta=false;
       $subasta->save();
-      /*
-      $chat = Subasta::select('Chatusuarios.*')->where('Chatusuarios.estado_subasta',true)->get();
-      if(!$chat) {
-        crearChat($subastaId);
-      }
-      */
+      SystemController::crearChat($subastaId);
     }
+
 	}
 
   public static function crearChat($subastaId)
   {
+    $chat = Chatusuarios::select('Chatusuarios.*')->where('Chatusuarios.id_subasta',$subastaId)->count();
 
-
-
+    if($chat<1) {
+      $subasta = Subasta::find($subastaId);
+      $comprador = $subasta->getpujaGanadora()->id_usuario;
+      $vendedor = $subasta->id_user_vendedor;
+      $chat = Chatusuarios::create(['id_user1' => $vendedor,'id_user2' => $comprador,'id_subasta' => $subastaId]);
+      $chat->save();
+    }
   }
+
+
 
 }
