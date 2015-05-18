@@ -16,9 +16,9 @@ class View extends Controller {
 
 	public function show($id)
 	{
-		$system = new SystemController;
+
 		$subasta = Subasta::find($id);
-		$system->checkSubasta($subasta->id);
+		SystemController::checkSubasta($subasta->id);
 		$pujas = Puja::select('users.name','pujas.cantidad','pujas.fecha')->where('pujas.id_subasta',$id)->join('users','pujas.id_usuario','=','users.id')->get();
 		$user = User::find($subasta->id_user_vendedor);
 		$fechaFinal = $subasta->fecha_final;

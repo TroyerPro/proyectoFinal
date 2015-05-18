@@ -12,15 +12,15 @@ class SystemController extends Controller {
 		$this->middleware('auth', [ 'except' => [ 'checkSubasta' ] ]);
 	}
 
-	public function checkSubasta($id)
+	public static function checkSubasta($id)
 	{
     $subasta = Subasta::find($id);
     $fechaFin = $subasta->fecha_final;
     $fechaActual = Carbon::now();
 
     if($fechaFin<$fechaActual) {
-      DD($fechaActual);
-      die();
+      $subasta->estado_subasta=false;
+      $subasta->save();
     }
 
 	}
