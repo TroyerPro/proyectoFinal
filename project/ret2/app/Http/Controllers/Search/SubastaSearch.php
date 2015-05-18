@@ -15,18 +15,35 @@ class SubastaSearch extends Controller {
 
 	public function show() //falta $id
 	{
-		if (isset($_REQUEST['categoria']) && isset($_REQUEST['nombre']) && isset($_REQUEST['pmax']) &&
-		isset($_REQUEST['pmin']) && isset($_REQUEST['metPago']) && isset($_REQUEST['estado'])) {
+		if (isset($_REQUEST['categoria']) || isset($_REQUEST['nombre']) || isset($_REQUEST['pmax']) ||
+		isset($_REQUEST['pmin']) || isset($_REQUEST['metPago']) || isset($_REQUEST['estado'])) {
 
 			$datos=$_REQUEST;
+			if ($datos['pmax']==null||$datos['pmax']==""||$datos['pmax']<$datos['pmin']) {
+				$datos['pmax']==99999;
+			}
+
+			if ($datos['pmin']==null||$datos['pmin']==""||$datos['pmin']<0) {
+				$datos['pmin']==0;
+			}
+			if ($_REQUEST['categoria']) {
+
+			}
+			if ($_REQUEST['metPago']) {
+
+			}
+			if ($_REQUEST['estado']) {
+				
+			}
+
 			//dd($datos);
 			//die();
-			$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$datos['categoria'])
-																					->where('subastas.nombre',$datos['nombre'])
+			$bid = Subasta::select('subastas.*')->where('subastas.id_categoria','like','%'.$datos['categoria'].'%')
+																					->where('subastas.nombre','like','%'.$datos['nombre'].'%')
 																					->where('subastas.precio_actual','<',$datos['pmax'])
 																					->where('subastas.precio_actual','>',$datos['pmin'])
-																					->where('subastas.metodo_pago',$datos['metPago'])
-																					->where('subastas.estado',$datos['estado'])
+																					->where('subastas.metodo_pago','like','%'.$datos['metPago'].'%')
+																					->where('subastas.estado','like','%'.$datos['estado'].'%')
 																					->where('subastas.estado_subasta',true)
 																					->get();
 
