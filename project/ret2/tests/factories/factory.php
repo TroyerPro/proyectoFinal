@@ -100,7 +100,7 @@ $factory('App\Subasta', [
     'precio_inicial' => $faker->numberBetween(1,3),
     'precio_actual' => $faker->numberBetween(20,30),
     'imagen' => "sandia.jpg",
-    'puja_ganadora' => $faker->numberBetween(20,30),
+    'puja_ganadora' => $faker->numberBetween(1,3),
     'id_categoria' => $faker->numberBetween(1,3),
     'id_user_vendedor' => $faker->numberBetween(1,3),
     'id_categoria' => $faker->numberBetween(1,3),
