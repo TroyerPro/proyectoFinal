@@ -25,7 +25,8 @@ class DashboardController extends UserController {
         $title = "Dashboard";
         $subasta = Subasta::where('subastas.id_user_vendedor',$usuario)->count();
         $puja = Puja::where('pujas.id_usuario',$usuario)->count();
+        $finalizadas = Subasta::where('subastas.estado_subasta',false)->where('subastas.id_user_vendedor',$usuario)->count();
 
-		return view('user.dashboard.index',  compact('title','subasta','puja'));
+		return view('user.dashboard.index',  compact('title','subasta','puja','finalizadas'));
 	}
 }
