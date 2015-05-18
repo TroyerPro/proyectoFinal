@@ -6,6 +6,11 @@
 {{-- Content --}}
 @section('main')
 
-asdasdasdasdasdasd
+<div class="container-fluid">
+    <div class="row">
+      @yield('main')
+      asd
+    </div>
+  </div>
 
 @stop

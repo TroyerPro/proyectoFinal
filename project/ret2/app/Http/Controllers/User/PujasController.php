@@ -59,6 +59,7 @@ class PujasController extends UserController {
           $puja -> save();
 
           $subasta -> precio_actual = $puja -> cantidad;
+          $subasta -> puja_ganadora = $puja -> id;
           $subasta -> save();
 
           return view('user.pujas.index');

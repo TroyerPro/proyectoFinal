@@ -11,6 +11,7 @@ use Redirect;
 use Request;
 use Session;
 use App\User;
+use App\Subasta;
 class UserProfile extends Controller {
 
 	public function __construct()
@@ -30,7 +31,9 @@ class UserProfile extends Controller {
 	{
 		$id=Auth::user()->id;
 		$currentuser = User::find($id);
-		return view('user.profile.baja', compact('currentuser'));
+		$subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final')
+		->where('subastas.id_user_vendedor', $currentuser);
+		return view('user.profile.baja', compact('currentuser', 'subasta'));
 	}
 
 	public function postBaja()
@@ -38,15 +41,7 @@ class UserProfile extends Controller {
 		$id=Auth::user()->id;
 		$currentuser = User::find($id);
 
-		if($_POST['pass']==$_POST['pass2']) {
-			$currentuser -> password = 	bcrypt($_POST['pass']);
-			$success = true;
-			$currentuser->save();
-		} else {
-			$success = false;
-		}
-
-		return view('user.profile.password', compact('currentuser', 'success'));
+		return view('user.profile.baja', compact('currentuser', 'success'));
 	}
 
 	public function postEdit() //falta $id
