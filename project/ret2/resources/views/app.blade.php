@@ -17,6 +17,7 @@
 
     <link href="{{ asset('/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/tinycarousel.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/jquery.autocomplete.css') }}" rel="stylesheet">
     {{--<link href="{{elixir('css/all.css')}}" rel="stylesheet">--}}
 
     {{-- TODO: Incorporate into elixer workflow. --}}
@@ -56,6 +57,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('/js/all.js') }}"></script>
+<script src="{{ asset('/js/jquery.autocomplete.js') }}"></script>
 {{--<script src="{{ elixir('js/all.js') }}"></script>--}}
 
 {{-- TODO: Incorporate into elixir workflow. --}}

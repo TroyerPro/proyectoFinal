@@ -22,12 +22,13 @@ class SubastaSearch extends Controller {
 			//dd($datos);
 			//die();
 			$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$datos['categoria'])
-			->where('subastas.nombre',$datos['nombre'])
-			->where('subastas.precio_actual','<',$datos['pmax'])
-			->where('subastas.precio_actual','>',$datos['pmin'])
-			->where('subastas.metodo_pago',$datos['metPago'])
-			->where('subastas.estado',$datos['estado'])
-			->where('subastas.estado_subasta',true)->get();
+																					->where('subastas.nombre',$datos['nombre'])
+																					->where('subastas.precio_actual','<',$datos['pmax'])
+																					->where('subastas.precio_actual','>',$datos['pmin'])
+																					->where('subastas.metodo_pago',$datos['metPago'])
+																					->where('subastas.estado',$datos['estado'])
+																					->where('subastas.estado_subasta',true)
+																					->get();
 
 		}else{
 				$bid = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
@@ -46,7 +47,9 @@ class SubastaSearch extends Controller {
 	public function filtro($id)
 	{
 
-		$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$id)->get();
+		$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$id)
+																				->where('subastas.estado_subasta',true)
+																				->get();
 		$categoria = Categoria::all();
 
 		return view('search.subasta', compact('bid','categoria'));
