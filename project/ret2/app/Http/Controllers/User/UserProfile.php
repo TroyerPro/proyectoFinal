@@ -29,11 +29,21 @@ class UserProfile extends Controller {
 
 	public function getBaja()
 	{
+		$subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final')
+		->where('subastas.id_user_vendedor', Auth::user()->id)
+		->where('subastas.estado_subasta', 1)->count();
 		$id=Auth::user()->id;
 		$currentuser = User::find($id);
-		$subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final')
-		->where('subastas.id_user_vendedor', $currentuser);
-		return view('user.profile.baja', compact('currentuser', 'subasta'));
+
+		if($subasta > 0) {
+			$error = true;
+			return view('user.profile.view', compact('currentuser','error'));
+		} else {
+			$currentuser->usable = false;
+			$currentuser->save();
+
+			return action('App\Http\Controllers\HomeController@index');
+		}
 	}
 
 	public function postBaja()

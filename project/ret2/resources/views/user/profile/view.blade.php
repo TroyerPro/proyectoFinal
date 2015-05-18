@@ -34,6 +34,12 @@
                           <strong>¡Se han realizado los cambios!</strong>
                       </div>
                       @endif
+                      @if(isset($error))
+                          <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                              <strong>Tienes subastas activas. No puedes darte de baja.</strong>
+                          </div>
+                          @endif
                   <div class="form-group">
                       <label class="col-md-2 control-label" >Nombre</label>
                       <div class="col-md-8">
