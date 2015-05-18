@@ -26,6 +26,29 @@ class UserProfile extends Controller {
 		return view('user.profile.view', compact('currentuser'));
 	}
 
+	public function getBaja()
+	{
+		$id=Auth::user()->id;
+		$currentuser = User::find($id);
+		return view('user.profile.baja', compact('currentuser'));
+	}
+
+	public function postBaja()
+	{
+		$id=Auth::user()->id;
+		$currentuser = User::find($id);
+
+		if($_POST['pass']==$_POST['pass2']) {
+			$currentuser -> password = 	bcrypt($_POST['pass']);
+			$success = true;
+			$currentuser->save();
+		} else {
+			$success = false;
+		}
+
+		return view('user.profile.password', compact('currentuser', 'success'));
+	}
+
 	public function postEdit() //falta $id
 	{
 		$id=Auth::user()->id;

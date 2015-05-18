@@ -6,51 +6,37 @@
     <script type="text/javascript">
     $(document).ready(function(){
 
+        $("#quitar").click(function(){
+          window.location.assign("{{ URL::to('search/subasta') }}")
+          });
 
-      $("#quitar").click(function(){
-        alert("hola");
-        window.location.href ="{{ URL::to('search/subasta') }}";
-        });
-
-
-      //  window.location.href ="search/subasta";
-    });
-      var consulta=[];
-
-      //comprobamos si se pulsa una tecla
-    /*  $("#buscar").click(function(e){
-
-            //obtenemos el texto introducido en el campo de búsqueda
-            consulta = $("#busqueda").val();
-
-            //hace la búsqueda
-
+          $( "#buscar" ).click(function() {
+            var nombre=$(".nombre").val();
+            var pMax=$(".pMax").val();
+            var pMin=$(".pMin").val();
+            var idCategoria= $(".categoria").val();
+            var metodo= $(".metPago").val();
+            var estado= $(".estadoProd").val();
             $.ajax({
-                  type: "POST",
-                  url: "buscar.php",
-                  data: "b="+consulta,
-                  dataType: "html",
-                  beforeSend: function(){
-                        //imagen de carga
-                        $("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-                  },
-                  error: function(){
-                        alert("error petición ajax");
-                  },
-                  success: function(data){
-                        $("#resultado").empty();
-                        $("#resultado").append(data);
-
-                  }
+              type: "POST",
+              url: "{{ URL::to('search/subasta') }}",
+              data:{
+                "nombre":nombre,
+                "pMax":pMax,
+                "pMin":pMin,
+                "idCategoria": idCategoria,
+                "metodo":metodo,
+                "estado":estado
+              },
+              }).done(function() {
+                $("#ResultItems").html();
             });
+          });
 
-
-      });*/
-
-});
+    });
     </script>
 
-    @endsection
+@endsection
 <div class="page-header">
     <h2>Buscador de Subasta</h2>
 </div>
@@ -64,38 +50,38 @@
 
 
             <li>
-              <form method="POST" action="{{ URL::to('search/subasta') }}">
+              <form method="post">
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                 <li>
                   <a>
                     <span class="hidden-sm text">Nombre</span>
                   </a>
                 </li>
-                <input type="text" name="nombre"></input><br>
+                <input type="text" class="nombre" name="nombre"></input><br>
                 <br>
                 <li>
                   <a>
                     <span class="hidden-sm text">Precio max.</span>
                   </a>
                 </li>
-                <input type="text" name="pmax"></input><br>
+                <input type="text" class="pMax" name="pmax"></input><br>
                 <br>
                 <li>
                   <a>
                     <span class="hidden-sm text">Precio min.</span>
                   </a>
                 </li>
-                <input type="text" name="pmin"></input><br>
+                <input type="text" class="pMin" name="pmin"></input><br>
                 <br>
                 <li>
                   <a>
                     <span class="hidden-sm text">Categorias</span>
                   </a>
                 </li>
-                <select class="" name="categoria">
+                <select class="categoria" name="categoria">
                   <option>Seleccione la categoria</option>
                   @foreach ($categoria as $categoria)
-                  <option>{{ $categoria->nombre }}</option>
+                  <option name="{{ $categoria->id }}" value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                   @endforeach
                 </select>
                 <br><br>
@@ -104,7 +90,7 @@
                     <span class="hidden-sm text">Metodo de pago</span>
                   </a>
                 </li>
-                <select name="pago">
+                <select class="metPago" name="metPago">
                   <option>Seleccione el metodo de pago</option>
                   <option>Paypal</option>
                   <option>Tarjeta</option>
@@ -116,7 +102,7 @@
                     <span class="hidden-sm text">Estado producto</span>
                   </a>
                 </li>
-                <select name="estado">
+                <select class="estadoProd" name="estado">
                   <option>Seleccione el estado del producto</option>
                   <option>Nuevo</option>
                   <option>Usado</option>
@@ -128,7 +114,7 @@
                 </button>
                 <button type="reset" id="quitar" class="btn btn-sm btn-danger">
                   <span class="glyphicon glyphicon-remove-circle"></span>
-                    Quitar filtros
+                   Quitar filtros
                 </button>
               </form>
             </li>
@@ -137,8 +123,14 @@
       </div>
       <div class="col-xs-9">
         <div id="ResultItems" class="">
+          @if (count($bid) === 0)
+            <div class="col-xs-12" style="border-bottom:solid grey 1px;margin-top:2%;">
+              <h4>No hay subastas con esos parametros de busqueda</h4>
+            </div>
+          @else
             @foreach ($bid as $bid)
             <div class="col-xs-12" style="border-bottom:solid grey 1px;margin-top:2%;">
+              <div class="col-xs-12" style="margin-bottom:1%;">
                 <div class="col-xs-5">
                   <a href="subasta/view/{{ $bid->id }}"><img class="imagensubasta" src="{{ URL::asset('img/subasta/'.$bid->imagen) }}"></a>
                 </div>
@@ -154,8 +146,11 @@
                     {{ $bid->fecha_final }}
                   </div_fecha>
                 </div>
+              </div>
             </div>
             @endforeach
+          @endif
+
         </div>
       </div>
     </div>

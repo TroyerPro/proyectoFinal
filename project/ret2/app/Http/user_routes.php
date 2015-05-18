@@ -39,6 +39,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('perfil/password', 'User\UserProfile@postPassword');
     Route::get('perfil/imagen', 'User\UserProfile@getImagen');
     Route::post('perfil/imagen', 'User\UserProfile@postImagen');
+    Route::get('perfil/baja', 'User\UserProfile@getBaja');
+    Route::post('perfil/baja', 'User\UserProfile@postBaja');
+
     #Subasta
     Route::get('subastas','User\SubastaController@index'); // <---- CAMBIAR RUTA EN LA FUNCIÓN!!!!!
     Route::get('subastas/data', 'User\SubastaController@data');

@@ -17,6 +17,8 @@ $factory('App\User', [
     'ratingcomprador' => $faker->numberBetween(1,3),
     'ratingvendedor' => $faker->numberBetween(1,3),
     'admin' => $faker->boolean(50),
+    'usable' => $faker->boolean(50),
+    'actividad' => $faker->boolean(50),
     'confirmed' => $faker->boolean(50),
     'confirmation_code' => md5(microtime() . env('APP_KEY')),
 ]);
