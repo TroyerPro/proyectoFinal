@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('confirmation_code');
             $table->boolean('confirmed')->default(false);
             $table->boolean('admin')->default(false);
+            $table->boolean('usable')->default(true);
+            $table->boolean('actividad')->default(false);
             $table->float('ratingcomprador')->nullable();
             $table->float('ratingvendedor')->nullable();
             $table->unsignedInteger('empresa_id')->nullable();

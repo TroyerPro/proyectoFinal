@@ -16,6 +16,8 @@ class UsersTableSeeder extends Seeder {
 			'nif'=>'nifAdmin',
 			'email' => 'admin@admin.com',
 			'password' => bcrypt('admin'),
+			'usable' => true,
+			'actividad' => false,
 			'confirmed' => 1,
             'admin' => 1,
 			'confirmation_code' => md5(microtime() . env('APP_KEY')),
@@ -27,6 +29,8 @@ class UsersTableSeeder extends Seeder {
 			'nif'=>'nifUser',
 			'email' => 'user@user.com',
 			'password' => bcrypt('user'),
+			'usable' => true,
+			'actividad' => false,
 			'confirmed' => 1,
 			'confirmation_code' => md5(microtime() . env('APP_KEY')),
 		]);
