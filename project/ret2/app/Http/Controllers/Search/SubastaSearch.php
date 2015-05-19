@@ -41,8 +41,8 @@ class SubastaSearch extends Controller {
 			//die();
 			$bid = Subasta::select('subastas.*')->where('subastas.id_categoria','like','%'.$datos['categoria'].'%')
 																					->where('subastas.nombre','like','%'.$datos['nombre'].'%')
-																					->where('subastas.precio_actual','<',$datos['pmax'])
-																					->where('subastas.precio_actual','>',$datos['pmin'])
+																					->where('subastas.precio_actual','<=',$datos['pmax'])
+																					->where('subastas.precio_actual','>=',$datos['pmin'])
 																					->where('subastas.metodo_pago','like','%'.$datos['metPago'].'%')
 																					->where('subastas.estado','like','%'.$datos['estado'].'%')
 																					->where('subastas.estado_subasta',true)
@@ -52,9 +52,10 @@ class SubastaSearch extends Controller {
 				$bid = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
 		}
 
-		//foreach ($bid as $bid) {
-		//	SystemController::checkSubasta($bid->id);
-	//	}
+		for ($i=0; $i <count($bid) ; $i++) {
+			SystemController::checkSubasta($bid[$i]->id);
+		}
+
 
 			$categoria = Categoria::all();
 
