@@ -239,3 +239,4 @@ class SubastaController extends UserController {
 
        ->make();
      }
+}
