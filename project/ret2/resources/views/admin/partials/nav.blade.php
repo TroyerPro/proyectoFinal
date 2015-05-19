@@ -30,6 +30,25 @@ Inicio</span>
             </li>
         </ul>
     </li>
+    <li {{ (Request::is('user/subastas*') ? ' class=active' : '') }} >
+        <a href="#">
+            <i class="glyphicon glyphicon-user"></i> Subastas<span class="fa arrow"</span>
+        </a>
+        <ul class="nav nav-second-level collapse">
+            <li {{ (Request::is('admin/subastas') ? ' class=active' : '') }} >
+                <a href="{{URL::to('admin/subastas')}}">
+                    <i class="glyphicon glyphicon-list"></i><span
+                            class="hidden-sm text">Activas</span>
+                </a>
+            </li>
+            <li {{ (Request::is('admin/subasta') ? ' class=active' : '') }} >
+                <a href="{{URL::to('admin/subasta/finalizadas')}}">
+                    <i class="glyphicon glyphicon-list"></i><span
+                            class="hidden-sm text">Finalizadas</span>
+                </a>
+            </li>
+        </ul>
+    </li>
     <li {{ (Request::is('admin/users*') ? ' class=active' : '') }} >
         <a href="{{URL::to('admin/users')}}"
                 >
