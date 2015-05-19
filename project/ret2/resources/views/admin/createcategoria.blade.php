@@ -25,7 +25,7 @@
                 @endif
           <div class="col-xs-12 main">
             @yield('main')
-             <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('/admin/crear/categoria') !!}">  
+             <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('/admin/crear/categoria') !!}">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <form class="form-horizontal" role="form" method="POST" action="">
@@ -58,4 +58,5 @@
         {{--</div>--}}
         </div>
     </div>
+  </div>
 @endsection

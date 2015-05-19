@@ -25,7 +25,7 @@ Inicio</span>
             <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
                 <a href="{{URL::to('admin/newscategory')}}">
                     <i class="glyphicon glyphicon-list"></i><span
-                            class="hidden-sm text"> Todas </span>
+                            class="hidden-sm text"> Ver Todas </span>
                 </a>
             </li>
         </ul>
@@ -44,11 +44,25 @@ Inicio</span>
                     class="hidden-sm text">Conf. Subasta</span>
         </a>
     </li>
-    <li {{ (Request::is('admin/estadisticas*') ? ' class=active' : '') }} >
-        <a href="{{URL::to('admin/estadisticas')}}"
-                >
-            <i class="glyphicon glyphicon glyphicon-cog"></i><span
-                    class="hidden-sm text">Estadísticas</span>
+    <li {{ (Request::is('admin/estadisticas*') ? ' class=active' : '') }}>
+        <a href="#">
+            <i class="glyphicon fa fa-columns"></i> Estadísticas <span
+                    class="fa arrow"></span>
         </a>
+        <ul class="nav nav-second-level collapse">
+            <li {{ (Request::is('admin/estadisticas/users') ? ' class=active' : '') }} >
+                <a href="{{URL::to('admin/estadisticas/users')}}">
+                    <i class="glyphicon glyphicon-list"></i><span
+                            class="hidden-sm text"> Usuarios </span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-second-level collapse">
+            <li {{ (Request::is('admin/estadisticas/categorias') ? ' class=active' : '') }} >
+                <a href="{{URL::to('admin/estadisticas/categorias')}}">
+                    <i class="glyphicon glyphicon-list"></i><span
+                            class="hidden-sm text"> Categorias  </span>
+                </a>
+            </li>
     </li>
 </ul>
