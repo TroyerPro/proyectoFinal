@@ -4,9 +4,9 @@
 			trans('admin/modal.general') }}}</a></li>
 </ul>
 <form class="form-horizontal" method="post"
-	action="@if (isset($user)){{ URL::to('admin/users/' . $user->id . '/edit') }}@endif"
+	action="@if (isset($user)){{ URL::to('admin/users/'.$user->id.'/edit') }}@endif"
 	autocomplete="off">
-	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab-general">
 			<div class="col-md-12">
@@ -79,14 +79,15 @@
 			</div>
 			<div class="col-md-12">
 				<div class="form-">
-					<label class="col-md-2 control-label" for="confirm">{{
-						trans('admin/users.activate_user') }}</label>
+					<label class="col-md-2 control-label" for="confirm">
+						Usable account
+					</label>
 					<div class="col-md-6">
-						<select class="form-control" name="confirmed" id="confirmed">
-							<option value="1" {{{ ((isset($user) && $user->confirmed == 1)? '
+						<select class="form-control" name="usable" id="usable">
+							<option value="1" {{{ ((isset($user) && $user->usable == 1)? '
 								selected="selected"' : '') }}}>{{{ trans('admin/users.yes')
 								}}}</option>
-							<option value="0" {{{ ((isset($user) && $user->confirmed == 0) ?
+							<option value="0" {{{ ((isset($user) && $user->usable == 0) ?
 								' selected="selected"' : '') }}}>{{{ trans('admin/users.no')
 								}}}</option>
 						</select>
@@ -106,7 +107,7 @@
 				trans("admin/modal.reset") }}
 			</button>
 			<button type="submit" class="btn btn-sm btn-success">
-				<span class="glyphicon glyphicon-ok-circle"></span> 
+				<span class="glyphicon glyphicon-ok-circle"></span>
 				    @if	(isset($user))
 				        {{ trans("admin/modal.edit") }}
 				    @else
@@ -116,10 +117,4 @@
 		</div>
 	</div>
 </form>
-@stop @section('scripts')
-<script type="text/javascript">
-	$(function() {
-		$("#roles").select2()
-	});
-</script>
 @stop
