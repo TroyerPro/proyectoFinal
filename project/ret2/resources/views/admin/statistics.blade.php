@@ -1,16 +1,25 @@
 @extends('admin.layouts.default')
 
 @section('main')
-    <div class="row">
-        @yield('top')
+<div class="row">
+    <div class="page-header">
+        <h2>Estadísticas</h2>
     </div>
-    <div class="row">
+</div>
 
-        {{--<div class="col-xs-12">--}}
-        <div class="col-xs-12 main main_panel">
-          @yield('main')
-            Form para mostrar estadisticas
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 main">
+        <div class="col-xs-4">
+          <div class="col-xs-12">
+            left
+          </div>
         </div>
+        <div class="col-xs-8">
+          Right
+        </div>
+      </div>
     </div>
+</div>
 @endsection
 @stop
