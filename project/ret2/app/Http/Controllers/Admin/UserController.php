@@ -43,7 +43,7 @@ class UserController extends AdminController {
         $user -> email = $request->email;
         $user -> password = bcrypt($request->password);
         $user -> confirmation_code = str_random(32);
-        $user -> confirmed = $request->confirmed;
+        $user -> usable = $request->confirmed;
         $user -> save();
     }
 
