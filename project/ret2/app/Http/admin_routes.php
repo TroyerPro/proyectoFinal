@@ -118,5 +118,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     #Factura
     Route::get('factura/{id}','Admin\SubastaController@factura');
+    Route::get('factura/xml','Admin\SubastaController@generateXml');
 
 });

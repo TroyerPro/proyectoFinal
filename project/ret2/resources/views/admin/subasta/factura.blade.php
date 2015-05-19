@@ -64,3 +64,17 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+<script>
+$("xml").click(function(){
+  $.ajax({url: "factura/xml}",
+  success: function(result){
+      alert("XML generado con exito!");
+  }});
+});
+
+
+</script>
+
+@stop
