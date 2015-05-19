@@ -137,11 +137,11 @@
                 <div class="col-xs-7">
                   <h4>{{ $bid->nombre }}</h4>
                   <div_precio class="col-xs-12">
-                    {{ $bid->precio_inicial }}€
+                    Precio actual: {{ $bid->precio_actual }}€
                   </div_precio>
-                  <div_ptotales class="col-xs-12">
-                    Pujas totales:
-                  </div_ptotales>
+                  <div_precio class="col-xs-12">
+                    Precio inicial: {{ $bid->precio_inicial }}€
+                  </div_precio>
                   <div_fecha class="col-xs-12">
                     {{ $bid->fecha_final }}
                   </div_fecha>
