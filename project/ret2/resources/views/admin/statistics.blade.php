@@ -1,7 +1,8 @@
-@extends('app')
-@section('content')
+@extends('admin.layouts.default')
+
+@section('main')
     <div class="row">
-            @yield('top')
+        @yield('top')
     </div>
     <div class="row">
 
@@ -12,3 +13,4 @@
         </div>
     </div>
 @endsection
+@stop

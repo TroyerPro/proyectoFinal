@@ -42,7 +42,7 @@ class UserProfile extends Controller {
 			$currentuser->usable = false;
 			$currentuser->save();
 
-			return action('App\Http\Controllers\HomeController@index');
+			return redirect('auth/logout');
 		}
 	}
 

@@ -97,7 +97,7 @@
                           <a href="{{{ URL::to('user/perfil/password') }}}" class="btn btn-success" ><span class="glyphicon glyphicon-pencil"></span>  Cambiar contraseña</a>
                         </div>
                         <div class="col-md-12">
-                          <a href="{{{ URL::to('user/perfil/baja') }}}" class="btn btn-danger btn-puja iframe" ><span class="glyphicon glyphicon-pencil"></span>Dar de baja</a>
+                          <a id="baja" class="btn btn-danger btn-puja iframe" ><span class="glyphicon glyphicon-pencil"></span>Dar de baja</a>
                         </div>
                       </div>
                   </div>
@@ -108,4 +108,17 @@
         {{--</div>--}}
         </div>
     </div>
+@stop
+@section('scripts')
+    @parent
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $("#baja").click(function() {
+            var confirmar = confirm("Seguro que quieres darte de baja? Te recordamos que no podrás seguir utilizando más esta cuenta.");
+            if(confirmar) {
+              window.location.href = "{{{ URL::to('user/perfil/baja') }}}";
+            }
+          });
+        });
+    </script>
 @stop

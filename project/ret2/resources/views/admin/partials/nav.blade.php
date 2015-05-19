@@ -44,4 +44,11 @@ Inicio</span>
                     class="hidden-sm text">Conf. Subasta</span>
         </a>
     </li>
+    <li {{ (Request::is('admin/estadisticas*') ? ' class=active' : '') }} >
+        <a href="{{URL::to('admin/estadisticas')}}"
+                >
+            <i class="glyphicon glyphicon glyphicon-cog"></i><span
+                    class="hidden-sm text">Estadísticas</span>
+        </a>
+    </li>
 </ul>
