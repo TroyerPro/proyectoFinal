@@ -5,7 +5,7 @@ use App\Puja;
 
 class Subasta extends Model {
 
-	protected $fillable = [ 'nombre', 'descripcion','metodo_pago','metodo_envio','estado_subasta','estado','fecha_final', 'fecha_inicio', 'fecha_prorroga' ,'precio_inicial','precio_actual','imagen','puja_ganadora' ];
+	protected $fillable = [ 'nombre', 'descripcion','metodo_pago','metodo_envio','estado_subasta','estado','fecha_final', 'fecha_inicio', 'fecha_prorroga' ,'precio_inicial','precio_actual','imagen','puja_ganadora','id_user_vendedor','id_factura','id_categoria' ];
 	//
 	public function getpujaGanadora()
 				{
@@ -27,14 +27,14 @@ class Subasta extends Model {
 		      return $this->belongsTo('App\Puja','puja_ganadora');
 		   }
 
-
 	public function categoria()
 			 {
 					return $this->belongsTo('App\Categoria');
 			 }
-			public function chat()
-					 {
-							return $this->belongsTo('App\Chatusuarios');
-					 }
+
+	public function chat()
+			 {
+					return $this->belongsTo('App\Chatusuarios');
+			 }
 
 }

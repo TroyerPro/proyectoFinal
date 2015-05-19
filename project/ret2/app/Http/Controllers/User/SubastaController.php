@@ -191,6 +191,8 @@ class SubastaController extends UserController {
        <input type="hidden" name="row" value="{{$id}}" id="row">
        <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Ganador") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
+       <a href="{{{ URL::to(\'search/user/view/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Evaluar Ganador") }}</a>
+       <input type="hidden" name="row" value="{{$id}}" id="row">
        @endif')
 
        ->remove_column('id')

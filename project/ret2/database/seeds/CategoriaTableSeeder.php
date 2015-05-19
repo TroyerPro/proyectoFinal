@@ -10,7 +10,7 @@ class CategoriaTableSeeder extends Seeder {
 	public function run()
 	{
 
-		TestDummy::times(3)->create('App\Categoria');
+		TestDummy::times(8)->create('App\Categoria');
 
 	}
 
