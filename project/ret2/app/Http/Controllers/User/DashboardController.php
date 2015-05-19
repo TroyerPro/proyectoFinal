@@ -7,10 +7,7 @@ use App\ArticleCategory;
 use App\User;
 use App\Subasta;
 use App\Puja;
-use App\Video;
-use App\VideoAlbum;
-use App\Photo;
-use App\PhotoAlbum;
+use App\Chatusuarios;
 
 class DashboardController extends UserController {
 
@@ -22,11 +19,14 @@ class DashboardController extends UserController {
 	public function index()
 	{
         $usuario = Auth::id();
-        $title = "Dashboard";
+        $title = "Inicio";
         $subasta = Subasta::where('subastas.id_user_vendedor',$usuario)->count();
         $puja = Puja::where('pujas.id_usuario',$usuario)->count();
+        $chatsVendedor = Chatusuarios::where('chatusuarios.id_user1',$usuario)->count();
+        $chatsComprador = Chatusuarios::where('chatusuarios.id_user2',$usuario)->count();
+        $chats = $chatsVendedor + $chatsComprador;
         $finalizadas = Subasta::where('subastas.estado_subasta',false)->where('subastas.id_user_vendedor',$usuario)->count();
 
-		return view('user.dashboard.index',  compact('title','subasta','puja','finalizadas'));
+		return view('user.dashboard.index',  compact('title','chats','subasta','puja','finalizadas'));
 	}
 }

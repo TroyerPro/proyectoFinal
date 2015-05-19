@@ -20,16 +20,11 @@ class DashboardController extends AdminController {
 
 	public function index()
 	{
-        $title = "Inicio panel de control";
+        $title = "Inicio";
 
         $subasta = Subasta::count();
         $newscategory = Categoria::count();
         $users = User::count();
-        $photo = Photo::count();
-        $photoalbum = PhotoAlbum::count();
-        $video = Video::count();
-        $videoalbum = VideoAlbum::count();
-		return view('admin.dashboard.index',  compact('title','subasta','newscategory','video','videoalbum','photo',
-            'photoalbum','users'));
+		return view('admin.dashboard.index',  compact('title','subasta','newscategory','users'));
 	}
 }
