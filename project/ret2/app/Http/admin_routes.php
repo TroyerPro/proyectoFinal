@@ -114,6 +114,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('subastas/data2/','Admin\SubastaController@data2');
 
     #Factura
-    Route::get('factura/{id}','User\SubastaController@facturaXml');
+    Route::get('factura/{id}','Admin\SubastaController@factura');
 
 });

@@ -26,7 +26,11 @@ class SubastaController extends UserController {
     public function getFinalizadas(){
 
       return view('admin.subasta.finalizadas');
+    }
 
+    public function factura($id){
+      $subasta = Subasta::find($id);
+      return view('admin.subasta.factura' ,compact('subasta'));
     }
 
     /**
