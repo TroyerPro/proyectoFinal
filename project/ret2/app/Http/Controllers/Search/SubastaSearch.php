@@ -19,21 +19,24 @@ class SubastaSearch extends Controller {
 		isset($_REQUEST['pmin']) || isset($_REQUEST['metPago']) || isset($_REQUEST['estado'])) {
 
 			$datos=$_REQUEST;
-			if ($datos['pmax']==null||$datos['pmax']==""||$datos['pmax']<$datos['pmin']) {
+			if (!isset($_REQUEST['pmax'])||$datos['pmax']<$datos['pmin']||$datos['pmax']<0) {
 				$datos['pmax']==99999;
 			}
 
-			if ($datos['pmin']==null||$datos['pmin']==""||$datos['pmin']<0) {
+			if (!isset($_REQUEST['pmin'])||$datos['pmin']<0||$datos['pmin']>$datos['pmax']) {
 				$datos['pmin']==0;
 			}
-			if ($_REQUEST['categoria']) {
-
+			if (!isset($_REQUEST['nombre'])) {
+				$datos['nombre']="";
 			}
-			if ($_REQUEST['metPago']) {
-
+			if ($_REQUEST['categoria']=="Seleccione la categoria") {
+				$datos['categoria']="";
 			}
-			if ($_REQUEST['estado']) {
-				
+			if ($_REQUEST['metPago']=="Seleccione el metodo de pago") {
+				$datos['metPago']="";
+			}
+			if ($_REQUEST['estado']=="Seleccione el estado del producto") {
+				$datos['estado']="";
 			}
 
 			//dd($datos);
