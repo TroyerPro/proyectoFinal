@@ -2,7 +2,8 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-
+use App\User;
+use Auth;
 class Authenticate {
 
 	/**
@@ -32,6 +33,8 @@ class Authenticate {
 	 */
 	public function handle($request, Closure $next)
 	{
+
+
 		if ($this->auth->guest())
 		{
 			if ($request->ajax())
@@ -42,7 +45,15 @@ class Authenticate {
 			{
 				return redirect()->guest('auth/login');
 			}
+		} else {
+			$userlog = User::find(Auth::user()->id);
+			if($userlog->usable == 0) {
+				Auth::logout();
+			}
 		}
+
+
+
 
 		return $next($request);
 	}
