@@ -11,7 +11,8 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		// Please note the different namespace
+		// and please add a \ in front of your classes in the global namespace
 	}
 
 	/**

@@ -24,6 +24,7 @@ class SystemController extends Controller {
       $subasta->estado_subasta=false;
       $subasta->save();
       SystemController::crearChat($subastaId);
+
     }
 
 	}
@@ -41,6 +42,15 @@ class SystemController extends Controller {
     }
   }
 
+  public static function cerrarSubastas()
+	{
+    $suabastas = Subasta::all();
+    for ($i=0; $i < count($subastas) ; $i++) {
+      SystemController::checkSubasta($suabastas[$i]->id);
+    }
+
+
+	}
 
 
 }
