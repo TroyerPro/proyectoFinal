@@ -1,23 +1,24 @@
-@extends('user.layouts.default')
+@extends('admin.layouts.default')
 
 {{-- Web site Title --}}
-@section('title') {{{ trans("Chats") }}} @parent @stop
+@section('title') {{{ trans("Subastas") }}} @parent @stop
 
 {{-- Content --}}
 @section('main')
     <div class="page-header">
         <h3>
-            {{{ trans("Chats") }}}
+            {{{ trans("Subastas") }}}
         </h3>
     </div>
 
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>{{{ trans("name") }}}</th>
-            <th>{{{ trans("Destino") }}}</th>
-            <th>{{{ trans("Fecha") }}}</th>
-            <th>{{{ trans("Acciones") }}}</th>
+            <th>{{{ trans("Nombre") }}}</th>
+            <th>{{{ trans("Fecha Final") }}}</th>
+            <th>{{{ trans("Puja Actual") }}}</th>
+            <th>{{{ trans("Estado") }}}</th>
+            <th>{{{ trans("Opciones") }}}</th>
         </tr>
         </thead>
         <tbody></tbody>
@@ -36,8 +37,7 @@
 
                 "processing": true,
                 "serverSide": true,
-
-                "ajax": "{{ URL::to('user/chat/data/' )}}",
+                "ajax": "{{ URL::to('admin/subastas/data2/' )}}",
                 "fnDrawCallback": function (oSettings) {
                     $(".iframe").colorbox({
                         iframe: true,

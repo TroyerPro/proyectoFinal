@@ -8,23 +8,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">RET</a>
+            <!--    <a class="navbar-brand" href="{!! URL::to('/') !!}"> <img src="{{ asset('img/logomini.png') }}" /></a>-->
+            <a class="navbar-brand" href="{!! URL::to('/') !!}">RET</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="{{ (Request::is('/') ? 'active' : '') }}">
-                  <a href="{!! URL::to('') !!}"><i class="fa fa-home"></i> Inicio</a>
+                  <a href="{!! URL::to('/') !!}"><i class="fa fa-home"></i> Inicio</a>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-expanded="false"><i class="fa fa-search"></i>Buscar</a>
+                   aria-expanded="false"><i class="fa fa-search"></i> Buscar</a>
                   <ul class="dropdown-menu" role="menu">
                     <li>
-                      <a href="{!! URL::to('search/subasta') !!}"><i class="glyphicon glyphicon-euro"></i>Subasta</a>
+                      <a href="{!! URL::to('search/subasta') !!}"><i class="glyphicon glyphicon-euro"></i> Subasta</a>
                     </li>
                     <li>
-                      <a href="{!! URL::to('search/user') !!}"><i class="fa fa-user"></i>User</a>
+                      <a href="{!! URL::to('search/user') !!}"><i class="fa fa-user"></i> Usuario</a>
                     </li>
                   </ul>
               </li>
@@ -45,17 +46,17 @@
                             @if(Auth::check())
                                 @if(Auth::user()->admin==1)
                                     <li>
-                                        <a href="{!! URL::to('admin/dashboard') !!}"><i class="fa fa-tachometer"></i> Dashboard</a>
+                                        <a href="{!! URL::to('admin/dashboard') !!}"><i class="fa fa-th"></i> Panel general</a>
                                     </li>
                                 @else
                                   <li>
-                                      <a href="{!! URL::to('user/dashboard') !!}"><i class="fa fa-tachometer"></i>Panel control Usuario</a>
+                                      <a href="{!! URL::to('user/dashboard') !!}"><i class="fa fa-th"></i> Panel general</a>
                                   </li>
                                 @endif
                                 <li role="presentation" class="divider"></li>
                             @endif
                             <li>
-                                <a href="{!! URL::to('auth/logout') !!}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a href="{!! URL::to('auth/logout') !!}"><i class="fa fa-sign-out"></i> Desconectarte</a>
                             </li>
                         </ul>
                     </li>

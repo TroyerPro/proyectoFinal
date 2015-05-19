@@ -33,13 +33,17 @@
 <script src="{{  asset('assets/admin/js/select2.js') }}"></script>
 
 <script type="text/javascript">
+function scrollTop() {
+$("chat").animate({ scrollTop: $(document).height() }, "slow");
+	return false;
+}
 $( document ).ready(function() {
-	$("chat").animate({ scrollTop: $(document).height() }, "slow");
-	  return false;
+
+scrollTop();
 	$( "#mensaje" ).click(function() {
 
 	var mensaje = 	$( "#texto" ).val();
-	alert(mensaje);
+
 	var id = {{ $id }};
 	$.ajax({
 		headers: {
@@ -66,7 +70,6 @@ $( document ).ready(function() {
 									alertText = alertText + elem + "\n";
 							});
 
-							alert(alertText);
 					});
 
 
