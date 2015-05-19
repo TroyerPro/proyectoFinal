@@ -13,6 +13,7 @@ class View extends Controller {
 	public function show($id) //falta $id
 	{
 		$user = User::find($id);
+		
 		return view('perfil.view', compact('user'));
 	}
 }

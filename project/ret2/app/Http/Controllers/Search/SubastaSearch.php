@@ -19,16 +19,14 @@ class SubastaSearch extends Controller {
 		isset($_REQUEST['pmin']) || isset($_REQUEST['metPago']) || isset($_REQUEST['estado'])) {
 
 			$datos=$_REQUEST;
-			if (!isset($_REQUEST['pmax'])||$datos['pmax']<$datos['pmin']||$datos['pmax']<0) {
-				$datos['pmax']==99999;
+			if ($datos['pmax']==""||$datos['pmax']<$datos['pmin']||$datos['pmax']<0) {
+				$datos['pmax']=99999;
 			}
 
-			if (!isset($_REQUEST['pmin'])||$datos['pmin']<0||$datos['pmin']>$datos['pmax']) {
-				$datos['pmin']==0;
+			if ($datos['pmin']==""||$datos['pmin']<0||$datos['pmin']>$datos['pmax']) {
+				$datos['pmin']=0;
 			}
-			if (!isset($_REQUEST['nombre'])) {
-				$datos['nombre']="";
-			}
+
 			if ($_REQUEST['categoria']=="Seleccione la categoria") {
 				$datos['categoria']="";
 			}
@@ -54,12 +52,12 @@ class SubastaSearch extends Controller {
 				$bid = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
 		}
 
-		foreach ($bid as $bid) {
-			SystemController::checkSubasta($bid->id);
-		}
-
+		//foreach ($bid as $bid) {
+		//	SystemController::checkSubasta($bid->id);
+	//	}
 
 			$categoria = Categoria::all();
+
 			return view('search.subasta', compact('bid','categoria'));
 	}
 
