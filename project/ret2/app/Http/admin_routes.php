@@ -104,6 +104,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('site/config', 'Admin\SiteConfig@show'); //Hecho
     Route::post('site/config', 'Admin\SiteConfig@postEdit'); //Hecho
     Route::get('estadisticas','ViewStats@show');
-    Route::get('factura','GenerateFactura@show');
+    //Route::get('factura','GenerateFactura@show');
+
+
+    #Subastas
+    Route::get('subastas','Admin\SubastaController@show');
+    Route::get('subasta/finalizadas','Admin\SubastaController@getFinalizadas');
+    Route::get('subastas/data/','Admin\SubastaController@data');
+    Route::get('subastas/data2/','Admin\SubastaController@data2');
+
+    #Factura
+    Route::get('factura/{id}','User\SubastaController@facturaXml');
 
 });

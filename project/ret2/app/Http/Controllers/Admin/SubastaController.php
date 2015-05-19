@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\User;
+<?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\UserController;
 use App\Subasta;
@@ -18,10 +18,15 @@ class SubastaController extends UserController {
     *
     * @return Response
     */
-    public function index()
+    public function show()
     {
         // Show the page
-        return view('user.subasta.index');
+        return view('admin.subasta.index');
+    }
+    public function getFinalizadas(){
+
+      return view('admin.subasta.finalizadas');
+
     }
 
     /**
@@ -151,7 +156,7 @@ class SubastaController extends UserController {
      *
      * @return Datatables JSON
      */
-    public function data()
+    /*public function data()
     {
         $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual');
 
@@ -161,7 +166,7 @@ class SubastaController extends UserController {
             ->remove_column('id')
 
             ->make();
-    }
+    }*/
 
     /**
      * Reorder items
@@ -181,4 +186,56 @@ class SubastaController extends UserController {
         }
         return $list;
     }
-}
+
+    /**
+     * Show a list of all the languages posts formatted for Datatables.
+     *
+     * @return Datatables JSON
+     */
+
+     //Todas las Subastas Finalizadas by Marc
+     public function data()
+     {
+       $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
+       ->where('subastas.estado_subasta',false)
+       ->get();
+
+       return Datatables::of($subasta)
+       ->add_column('estado','@if($estado_subasta)
+       Abierta
+       @else
+       Cerrada
+       @endif')
+       ->add_column('actions','@if(!$estado_subasta)
+       <a href="{{{ URL::to(\'admin/factura/\' . $id .\'/\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Factura") }}</a>
+       <input type="hidden" name="row" value="{{$id}}" id="row">
+       @endif')
+
+       ->remove_column('id')
+       ->remove_column('estado_subasta')
+
+       ->make();
+     }
+     //Todas las Subastas Activas by Marc
+     public function data2()
+     {
+       $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
+       ->where('subastas.estado_subasta',true)
+       ->get();
+
+       return Datatables::of($subasta)
+       ->add_column('estado','@if($estado_subasta)
+       Abierta
+       @else
+       Cerrada
+       @endif')
+       ->add_column('actions','@if($estado_subasta)
+       <a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
+       <input type="hidden" name="row" value="{{$id}}" id="row">
+       @endif')
+
+       ->remove_column('id')
+       ->remove_column('estado_subasta')
+
+       ->make();
+     }
