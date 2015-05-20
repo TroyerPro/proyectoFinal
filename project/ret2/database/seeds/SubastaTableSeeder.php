@@ -60,7 +60,7 @@ class SubastaTableSeeder extends Seeder {
 			'fecha_prorroga' => date('2015-01-18'),
 			'precio_inicial' => 1,
 			'precio_actual' => 5,
-			'imagen' => "boli.jpg",
+			'imagen' => "boli.png",
 			'puja_ganadora' => 3,
 			'id_user_vendedor' => '4',
 			'id_categoria'=>'3',
