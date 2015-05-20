@@ -3,20 +3,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::pattern('id', '[0-9]+');
     Route::pattern('id2', '[0-9]+');
 
-    #Admin Dashboard
+    #Inicio
     Route::get('dashboard', 'User\DashboardController@index');
-
-
-    #News category
-    Route::get('newscategory', 'User\ArticleCategoriesController@index');
-    Route::get('newscategory/create', 'User\ArticleCategoriesController@getCreate');
-    Route::post('newscategory/create', 'User\ArticleCategoriesController@postCreate');
-    Route::get('newscategory/{id}/edit', 'User\ArticleCategoriesController@getEdit');
-    Route::post('newscategory/{id}/edit', 'User\ArticleCategoriesController@postEdit');
-    Route::get('newscategory/{id}/delete', 'User\ArticleCategoriesController@getDelete');
-    Route::post('newscategory/{id}/delete', 'User\ArticleCategoriesController@postDelete');
-    Route::get('newscategory/data', 'User\ArticleCategoriesController@data');
-    Route::get('newscategory/reorder', 'User\ArticleCategoriesController@getReorder');
 
     #News
     Route::get('news', 'User\ArticlesController@index');
@@ -32,7 +20,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
 
 
     #Cosas añadidas
-    //Falta un controller general para el usuario
     Route::post('perfil', 'User\UserProfile@postEdit');
     Route::get('perfil', 'User\UserProfile@show');
     Route::get('perfil/password', 'User\UserProfile@getPassword');
@@ -49,8 +36,10 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('subasta/create', 'User\SubastaController@getCreate');
     Route::post('subasta/create', 'User\SubastaController@postCreate');
     Route::get('subasta/{id}','User\SubastaController@viewSubasta'); //id en la function del controller
+    #Sub Prorroga
     Route::get('subasta/{id}/prorrogar','User\SubastaController@getProrrogar'); //id en la function del controller
     Route::post('subasta/{id}/prorrogar','User\SubastaController@postProrrogar'); //Falta implementarlo
+    #Sub Cerrar
     Route::get('subasta/{id}/cerrar','User\SubastaController@getCerrar'); //id en la function del controller
     Route::post('subasta/{id}/cerrar', 'User\SubastaController@postCerrar'); //Implementar
     Route::get('subasta/ganadas','User\SubastaController@getGanadas');
@@ -72,4 +61,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('chat/ajax/{id}','User\ChatController@getChatAJAX');
     Route::post('chat/ajax/{id}','User\ChatController@postChatAJAX');
     Route::get('chat/data', 'User\ChatController@data');
+
+
+
 });

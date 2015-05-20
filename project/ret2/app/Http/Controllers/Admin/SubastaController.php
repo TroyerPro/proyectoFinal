@@ -156,23 +156,6 @@ class SubastaController extends UserController {
 
 
     /**
-     * Show a list of all the languages posts formatted for Datatables.
-     *
-     * @return Datatables JSON
-     */
-    /*public function data()
-    {
-        $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual');
-
-        return Datatables::of($subasta)
-            ->add_column('actions','<a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
-                    <input type="hidden" name="row" value="{{$id}}" id="row">')
-            ->remove_column('id')
-
-            ->make();
-    }*/
-
-    /**
      * Reorder items
      *
      * @param items list
@@ -211,6 +194,7 @@ class SubastaController extends UserController {
        Cerrada
        @endif')
        ->add_column('actions','@if(!$estado_subasta)
+       <a href="{{{ URL::to(\'search/subasta/view/\' . $id . \'/\' ) }}}" class="btn btn-sm btn-info iframe"><span class="glyphicon glyphicon-search"></span> {{ trans("Resumen") }}</a>
        <a href="{{{ URL::to(\'admin/factura/\' . $id .\'/\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Factura") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        @endif')
@@ -234,6 +218,7 @@ class SubastaController extends UserController {
        Cerrada
        @endif')
        ->add_column('actions','@if($estado_subasta)
+       <a href="{{{ URL::to(\'search/subasta/view/\' . $id . \'/\' ) }}}" class="btn btn-sm btn-info iframe"><span class="glyphicon glyphicon-search"></span> {{ trans("Resumen") }}</a>
        <a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        @endif')

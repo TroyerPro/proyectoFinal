@@ -35,6 +35,10 @@ class PujasController extends UserController {
     {
         $subasta = Subasta::find($id);
 
+        if(!$subasta->estado_subasta) {
+          return redirect('home');
+        }
+
         // Show the page
         return view('user.pujas.create', compact('subasta'));
     }
@@ -62,10 +66,18 @@ class PujasController extends UserController {
           $subasta -> puja_ganadora = $puja -> id;
           $subasta -> save();
 
-          return view('user.pujas.index');
+          $success = true;
+
+          return view('user.pujas.index', compact('success'));
+
+        } else {
+          
+          $errorCant = true;
+          return view('user.pujas.create', compact('subasta', 'errorCant'));
         }
       } else {
-          return view('user.pujas.index');
+          $error = true;
+          return view('user.pujas.index', compact('error'));
       }
 
     }

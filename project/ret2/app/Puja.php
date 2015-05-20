@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Puja extends Model {
 
-	protected $fillable = [ 'cantidad', 'fecha','puja_auto'];
+	protected $fillable = [ 'cantidad', 'fecha','puja_auto','id_subasta','id_usuario'];
 	//
 
 	public function usuario()

@@ -103,7 +103,7 @@ $factory('App\Subasta', [
     'puja_ganadora' => $faker->numberBetween(1,3),
     'id_categoria' => $faker->numberBetween(1,3),
     'id_user_vendedor' => $faker->numberBetween(1,3),
-    'id_categoria' => $faker->numberBetween(1,3),
+    'id_factura' => $faker->numberBetween(1,1),
 ]);
 
   $factory('App\Empresa', [
@@ -153,7 +153,7 @@ $factory('App\Subasta', [
       'max_puja' => $faker->numberBetween(1,999),
       'incrementar' => $faker->numberBetween(1,100),
       'id_usuario' => $faker->numberBetween(1,3),
-      'id_puja' => $faker->numberBetween(1,3),
+      'id_puja' => $faker->numberBetween(1,1),
 
   ]);
 

@@ -12,7 +12,7 @@ class PujaRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-          'cantidad' => 'required|regex:/^\d{1,8}(\.\d{1,2})?$/',
+      'cantidad' => 'required|regex:/^\d{1,8}(\.\d{1,2})?$/',
 		];
 	}
 

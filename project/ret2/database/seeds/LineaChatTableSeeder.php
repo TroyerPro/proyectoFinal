@@ -10,7 +10,7 @@ class LineaChatTableSeeder extends Seeder {
 	public function run()
 	{
 
-		TestDummy::times(10)->create('App\Lineachat');
+		//TestDummy::times(10)->create('App\Lineachat');
 
 	}
 

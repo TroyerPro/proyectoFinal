@@ -106,7 +106,7 @@
                   <option>Seleccione el estado del producto</option>
                   <option>Nuevo</option>
                   <option>Usado</option>
-                  <option>Viejos</option>
+                  <option>Gastado</option>
                 </select><br><br>
                 <button type="submit" id="buscar" class="btn btn-sm btn-success">
                   <span class="glyphicon glyphicon-ok-circle"></span>
