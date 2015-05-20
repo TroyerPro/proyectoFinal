@@ -5,7 +5,7 @@ use App\Puja;
 
 class Subasta extends Model {
 
-	protected $fillable = [ 'nombre', 'descripcion','metodo_pago','metodo_envio','estado_subasta','estado','fecha_final', 'fecha_inicio', 'fecha_prorroga' ,'precio_inicial','precio_actual','imagen','puja_ganadora','id_user_vendedor','id_factura','id_categoria' ];
+	protected $fillable = [ 'nombre', 'descripcion','metodo_pago','metodo_envio','estado_subasta','estado','fecha_final', 'fecha_inicio', 'fecha_prorroga' ,'precio_inicial','precio_actual','imagen','puja_ganadora','id_user_vendedor','id_factura','id_categoria','fecha_final_antes_prorroga','prorrogado'];
 	//
 	public function getpujaGanadora()
 				{
