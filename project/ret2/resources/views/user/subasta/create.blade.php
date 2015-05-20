@@ -18,8 +18,11 @@
           {{--<div class="panel-heading">Subasta</div>--}}
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
+
             <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/subasta/create') !!}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                @include('errors.list')
 
                 <div class="form-group">
                     <label class="col-md-4 control-label">Nombre</label>
@@ -56,7 +59,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label">Descripción producto</label>
                     <div class="col-md-6">
-                        <textarea type="text" class="form-control" name="desc" value="{{ old('desc') }}"></textarea>
+                        <textarea type="text" class="form-control" name="desc">{{ old('desc') }}</textarea>
                     </div>
                 </div>
 
@@ -81,7 +84,7 @@
                     <label class="col-md-4 control-label">Duración subasta (días) MAX:({{$diasgratis}})</label>
 
                   <div class="col-md-1">
-                    <input type="text"  class="form-control" id="duracion" name="duracion"></input>
+                    <input type="text"  class="form-control" id="duracion" name="duracion" value="{{ old('duracion')}}"></input>
                   </div>
                 </div>
 
@@ -98,7 +101,7 @@
                     <label class="col-md-4 control-label">Precio inicial</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="precioIni" value="1,00">
+                        <input type="text" class="form-control" name="precioIni" value="{{old('precioIni')}}">
                     </div>
                 </div>
 
@@ -107,7 +110,7 @@
 
                   <div class="col-md-6">
                     <select name="metodoenvio">
-                      <option value="Postal público">Servicio Postal Público</option>
+                      <option value="Postal Público">Servicio Postal Público</option>
                       <option value="Postal Privado">Servicio Postal Privado</option>
                       <option value="Recoger en persona">Recoger en persona</option>
                     </select>

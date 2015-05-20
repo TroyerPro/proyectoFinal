@@ -14,6 +14,7 @@
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>
+            <th>{{{ trans("ID") }}}</th>
             <th>{{{ trans("Nombre") }}}</th>
             <th>{{{ trans("Fecha Final") }}}</th>
             <th>{{{ trans("Puja Actual") }}}</th>

@@ -23,8 +23,9 @@ class SystemController extends Controller {
     if($fechaFin<$fechaActual) {
       $subasta->estado_subasta=false;
       $subasta->save();
-      SystemController::crearChat($subastaId);
-
+      if($subasta->precio_actual != 0) {
+        SystemController::crearChat($subastaId);
+      }
     }
 
 	}

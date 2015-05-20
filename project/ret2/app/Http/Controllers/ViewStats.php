@@ -22,8 +22,7 @@ class ViewStats extends Controller {
 				case '0':
 					break;
 				case '1':
-					$busqueda = User::select('users.*')
-					->where()->count();
+					$busqueda = 1;
 					break;
 				case '2':
 					$busqueda = 2;

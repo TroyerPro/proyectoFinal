@@ -11,14 +11,30 @@
         $("#fechaNueva").attr("placeholder", d.toLocaleString());
         $('#fechaNueva').val = d;
       });
+      $("#formPro").submit(function() {
+        var diasPro = parseInt(document.getElementById('diasPro').value);
+        if(!isNaN(diasPro)) {
+          var dias = document.getElementById('diasPro').value;
+          var precioDia = {{ $confProrroga->precio_prorroga }};
+          var tot = dias * precioDia;
+          $confirmar = confirm("Vas a prorrogar la subasta por "+dias+" días más. El precio de la prorroga es de "
+          +precioDia+" € por día. En total, serán "+tot+" €. ¿Deseas continuar?");
+          return $confirmar;
+        }
+      });
     });
     </script>
 @endsection
-@extends('user.layouts.modal')
-@section('content')
+@extends('user.layouts.default')
+
+{{-- Web site Title --}}
+@section('title') {{{ trans("admin/news.news") }}} :: @parent @stop
+
+{{-- Content --}}
+@section('main')
 <div class="row">
     <div class="page-header">
-        <h3>Formulario de prorroga</h3>
+        <h3>Prorrogar subasta</h3>
     </div>
 </div>
 
@@ -26,16 +42,15 @@
     <div class="row">
       {{--<div class="col-md-8 col-md-offset-2">--}}
         {{--<div class="panel panel-default">--}}
-          {{--<div class="panel-heading">Cerrar Subasta</div>--}}
+          {{--<div class="panel-heading">Subasta</div>--}}
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
-            @yield('main')
-
-            <form class="form-horizontal" enctype="multipart/form-data"
-            	method="post"
-            	action="{{ URL::to('user/subasta/'.$subasta->id.'/prorrogar') }}"
-            	autocomplete="off">
-            	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+            <form class="form-horizontal"
+              method="post"
+              action="{{ URL::to('user/subasta/'.$subasta->id.'/prorrogar') }}"
+              autocomplete="off" id="formPro">
+              @include('errors.list')
+              <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
               <div class="form-group">
                 <div class="col-md-12">
                   <label class="control-label" for="title"> {{
@@ -58,37 +73,31 @@
                             value="{{ $fechaFinalMolona }}" placeholder="{{ $fechaFinalMolona }}" disabled/>
                           <label class="control-label" for="title"> {{
                             trans("Tiempo prorroga (días)") }}</label> <input
-                            class="form-control" type="text" name="diasPro" id="diasPro"/>
+                            class="form-control" type="text" name="diasPro" id="diasPro" value="{{old('diasPro')}}"/>
                             <label class="control-label" for="title"> {{
                               trans("Fecha final nueva") }}</label> <input
                               class="form-control" type="text" name="fechaNueva" id="fechaNueva"
                               value="" disabled/>
-
                 </div>
               </div>
-
-            		<div class="form-group">
-            			<div class="col-md-12">
-            				<button type="submit" class="btn btn-sm btn-success close_popup">
-            					<span class="glyphicon glyphicon-ok"></span> {{
-            					trans("Pagar") }}
-            				</button>
-                    <button class="btn btn-sm btn-danger close_popup">
-                      <span class="glyphicon glyphicon-ban-circle"></span> {{
-                      trans("Cancelar") }}
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-sm btn-success close_popup">
+                      <span class="glyphicon glyphicon-ok"></span> Pagar
                     </button>
-            			</div>
-            		</div>
-            		<!-- ./ form actions -->
 
+                <!-- ./ form actions -->
             </form>
 
+              <a href="{{{ URL::to('user/subasta/finalizadas') }}}" class="btn btn-sm btn-danger close_popup">
+                <span class="glyphicon glyphicon-ban-circle">
+                </span> {{ trans("Cancerlar") }}
+              </a>
+            </div>
+          </div>
             {{--</div>--}}
         {{--</div>--}}
         {{--</div>--}}
         </div>
     </div>
-@endsection
-
-
 @endsection

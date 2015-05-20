@@ -4,6 +4,7 @@
   <div class="col-xs-12">
     <div class="close-window">x</div>
     <div class="col-xs-12">
+      <div class="col-xs-12 text_center">¿Que deseas hacer?</div>
       <div class="col-xs-6"><a href="{{ URL::to('user/pujas/create/'.$subasta->id) }}" class="btn btn-success btn-puja">Realizar puja normal</a></div>
       <div class="col-xs-6"><a href="" class="btn btn-success btn-puja">Configurar una puja automática</a></div>
     </div>
@@ -84,7 +85,7 @@
              </div>
              <div class="col-xs-12 ">
 
-               <div class="col-xs-6"><b>Fecha final:</b></div><div class="col-xs-6"> {{$fechaFinal}}</div>
+               <div class="col-xs-6"><b>Fecha final:</b></div><div class="col-xs-6"> {{$fechaFinalMolona}}</div>
              </div>
              <div class="col-xs-12 ">
 
@@ -96,7 +97,11 @@
              <div class="col-xs-12">
                @if($subasta->estado_subasta == 1)
                <div class="col-xs-6" id="pujaDesc"><b>Puja actual:</b></div>
+                @if($subasta->precio_actual == 0)
+                <div class="col-xs-6"><i>Actualmente no hay pujas.</i></div>
+                @else
                 <div class="col-xs-6">{{ $subasta->precio_actual }} €</div>
+                @endif
                @else
                 <div class="col-xs-6" id="pujaDesc"><b>Puja Ganadora:</b></div>
                 <div class="col-xs-6">{{ $subasta->puja_ganadora }} €</div>

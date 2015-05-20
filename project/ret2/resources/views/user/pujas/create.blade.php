@@ -24,7 +24,7 @@
                     <strong>Ops!</strong> Parece que hay algunos errores en el formulario:
                     <br><br>
                     <ul>
-                            <li>La cantidad de la puja no puede ser menor o igual a la puja actual de la subasta.</li>
+                       <li>La cantidad de la puja no puede ser menor o igual a la puja actual de la subasta.</li>
                     </ul>
                 </div>
               @endif
@@ -39,9 +39,9 @@
                     </div>
                 </div>
 
+                @if($subasta->precio_actual != 0)
                 <div class="form-group">
                     <label class="col-md-4 control-label">Puja actual de la subasta:</label>
-
                     <div class="col-md-6">
                         <p class="form-control" name="pujaAct">{{ $subasta->precio_actual }}</p>
                     </div>
@@ -55,6 +55,23 @@
                     </div>
                 </div>
 
+                @else
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Precio inicial de la subasta:</label>
+                    <div class="col-md-6">
+                        <p class="form-control" name="pujaAct">{{ $subasta->precio_inicial }}</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Cantidad puja:</label>
+
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="cantidad" value="{{ $subasta->precio_inicial +0.01 }}">
+                    </div>
+                </div>
+                @endif
+
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-primary" style="margin-right: 15px;">
@@ -62,7 +79,6 @@
                         </button>
                     </div>
                 </div>
-
             </form>
             {{--</div>--}}
         {{--</div>--}}

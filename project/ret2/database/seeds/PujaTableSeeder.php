@@ -20,7 +20,7 @@ class PujaTableSeeder extends Seeder {
 			'cantidad' => 10,
 			'fecha' => date('2015-05-20'),
 			'id_subasta'=>'2',
-			'id_usuario' => '4',
+			'id_usuario' => '2',
 			'puja_auto' => false,
 		]);
 		\App\Puja::create([

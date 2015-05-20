@@ -17,7 +17,7 @@ use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
 use App\Http\Requests\Subasta\SubastaRequest;
-
+use App\Http\Requests\Subasta\ProrrogarRequest;
 
 class SubastaController extends UserController {
 
@@ -40,7 +40,7 @@ class SubastaController extends UserController {
     public function getCreate()
     {
 
-      $fechaHoy=Carbon\Carbon::now(new DateTimeZone('Europe/Madrid'));
+        $fechaHoy=Carbon\Carbon::now(new DateTimeZone('Europe/Madrid'));
         $nombre = "";
         $estado = "";
         $descripcion = "";
@@ -50,7 +50,6 @@ class SubastaController extends UserController {
         $metodo = "";
         $Empresa = Empresa::find(1);
         $diasgratis = $Empresa->dias_subasta_gratis;
-        // Show the page
         return view('user.subasta.create', compact('diasgratis','fechaHoy','nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
     }
 
@@ -60,16 +59,15 @@ class SubastaController extends UserController {
      * @return Response
      */
 
-    public function postCreate(Imagen2Request $request)
+    public function postCreate(Imagen2Request $request, SubastaRequest $request2)
     {
 
-      $success = true;
       $fechaIni = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
       $fechaFin = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
       date_add($fechaFin, date_interval_create_from_date_string($_POST['duracion'].' days'));
       $subasta = new Subasta();
       $subasta -> id_user_vendedor = Auth::id();
-      $subasta -> nombre = $_POST['nombre'];
+      $subasta -> nombre = $request2->input('nombre');
       $subasta -> descripcion = $_POST['desc'];
       $subasta -> id_categoria = $_POST['categoria'];
       $subasta -> metodo_pago = $_POST['metodo'];
@@ -101,10 +99,8 @@ class SubastaController extends UserController {
           $request->file('image')->move($destinationPath, $picture);
       }
 
-
-
-
-      return view('user.subasta.index');
+      $success = true;
+      return view('user.subasta.index', compact('success'));
 
     }
 
@@ -119,6 +115,7 @@ class SubastaController extends UserController {
     public function getCerrar($id)
     {
         $subasta = Subasta::find($id);
+        SystemController::crearChat($id);
         return view('user.subasta.cerrar', compact('subasta'));
     }
 
@@ -126,22 +123,25 @@ class SubastaController extends UserController {
     {
         $subasta = Subasta::find($id);
         $confProrroga = Empresa::find(1);
-
         $fechaFinal = Carbon\Carbon::createFromTimestamp(strtotime($subasta->fecha_final));
         $fechaProrroga = "";
         $fechaFinalMolona =  $fechaFinal->format('d/m/Y') ;
         return view('user.subasta.prorrogar', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
     }
-    public function postProrrogar($id)
-    {
-      die("xD");
-        $subasta = Subasta::find($id);
-        $confProrroga = Empresa::find(1);
 
-        $fechaFinal = Carbon\Carbon::createFromTimestamp(strtotime($subasta->fecha_final));
-        $fechaProrroga = "";
-        $fechaFinalMolona =  $fechaFinal->format('d/m/Y') ;
-        return view('user.subasta.prorrogar', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
+
+    public function postProrrogar($id, ProrrogarRequest $request)
+    {
+        $subasta = Subasta::find($id);
+        $fecha_final_antes_prorroga = DateTime::createFromFormat('Y-m-d H:i:s', $subasta->fecha_final);
+        $subasta->fecha_final_antes_prorroga =  $subasta->fecha_final;
+        date_add($fecha_final_antes_prorroga, date_interval_create_from_date_string($_POST['diasPro'].' days'));
+        $subasta->fecha_final = $fecha_final_antes_prorroga;
+        $subasta->numero_prorrogas = $subasta->numero_prorrogas + 1 ;
+        $subasta->estado_subasta = true;
+        $subasta->save();
+
+        return view('user.subasta.index', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
     }
     /**
      * Remove the specified resource from storage.
@@ -176,6 +176,7 @@ class SubastaController extends UserController {
        $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
        ->where('subastas.id_user_vendedor', Auth::id())
        ->where('subastas.estado_subasta',true)
+       ->orderBy('id', 'ASC')
        ->get();
 
        return Datatables::of($subasta)
@@ -201,6 +202,7 @@ class SubastaController extends UserController {
        $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
        ->where('subastas.id_user_vendedor', Auth::id())
        ->where('subastas.estado_subasta',false)
+       ->orderBy('id', 'ASC')
        ->get();
 
        return Datatables::of($subasta)
@@ -210,11 +212,11 @@ class SubastaController extends UserController {
        Cerrada
        @endif')
        ->add_column('actions','@if(!$estado_subasta)
-       <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/prorrogar\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
+       <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/prorrogar\'  ) }}}" class="btn btn-sm btn-succes"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Ganador") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
-       <a href="{{{ URL::to(\'search/user/view/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Evaluar Ganador") }}</a>
+       <a href="{{{ URL::to(\'user/rating/\' . $id .\'\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Evaluar Ganador") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        @endif')
 

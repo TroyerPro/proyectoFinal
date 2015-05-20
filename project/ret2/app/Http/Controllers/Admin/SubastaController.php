@@ -188,18 +188,12 @@ class SubastaController extends UserController {
        ->get();
 
        return Datatables::of($subasta)
-       ->add_column('estado','@if($estado_subasta)
-       Abierta
-       @else
-       Cerrada
-       @endif')
        ->add_column('actions','@if(!$estado_subasta)
        <a href="{{{ URL::to(\'search/subasta/view/\' . $id . \'/\' ) }}}" class="btn btn-sm btn-info iframe"><span class="glyphicon glyphicon-search"></span> {{ trans("Resumen") }}</a>
        <a href="{{{ URL::to(\'admin/factura/\' . $id .\'/\'  ) }}}" class="btn btn-sm btn-succes "><span class="glyphicon glyphicon-user"></span> {{ trans("Factura") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        @endif')
 
-       ->remove_column('id')
        ->remove_column('estado_subasta')
 
        ->make();
@@ -208,7 +202,7 @@ class SubastaController extends UserController {
      public function data2()
      {
        $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
-       ->where('subastas.estado_subasta',true)
+       ->where('subastas.estado_subasta',true)->orderBy('subastas.id','DESC')
        ->get();
 
        return Datatables::of($subasta)
@@ -222,8 +216,6 @@ class SubastaController extends UserController {
        <a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        @endif')
-
-       ->remove_column('id')
        ->remove_column('estado_subasta')
 
        ->make();

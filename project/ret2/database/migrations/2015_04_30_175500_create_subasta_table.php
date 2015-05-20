@@ -29,10 +29,9 @@ class CreateSubastaTable extends Migration
             $table->boolean('estado_subasta')->default(true);
             $table->string('estado');
             $table->dateTime('fecha_final_antes_prorroga')->nullable();
-            $table->integer('numero_prorrogas')->nullable();
+            $table->integer('numero_prorrogas')->default(0);
             $table->dateTime('fecha_final');
             $table->dateTime('fecha_inicio');
-            $table->dateTime('fecha_prorroga')->nullable();
             $table->decimal('precio_inicial', 10, 2);
             $table->decimal('precio_actual', 10, 2);
             $table->string('imagen');

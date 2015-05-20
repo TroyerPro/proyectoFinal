@@ -14,10 +14,10 @@
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>
+            <th>{{{ trans("ID") }}}</th>
             <th>{{{ trans("Nombre") }}}</th>
             <th>{{{ trans("Fecha Final") }}}</th>
-            <th>{{{ trans("Puja Actual") }}}</th>
-            <th>{{{ trans("Estado") }}}</th>
+            <th>{{{ trans("Puja Ganadora") }}}</th>
             <th>{{{ trans("Opciones") }}}</th>
         </tr>
         </thead>
