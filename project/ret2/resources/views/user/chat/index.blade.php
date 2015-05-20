@@ -14,8 +14,7 @@
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>{{{ trans("name") }}}</th>
-            <th>{{{ trans("Destino") }}}</th>
+            <th>{{{ trans("Chat con") }}}</th>
             <th>{{{ trans("Fecha") }}}</th>
             <th>{{{ trans("Acciones") }}}</th>
         </tr>

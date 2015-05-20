@@ -21,6 +21,7 @@ class ChatController extends UserController {
     */
     public function show()
     {
+
         // Show the page
         return view('user.chat.index');
     }
@@ -40,15 +41,17 @@ class ChatController extends UserController {
      */
      public function data()
      {
-       $chat = Chatusuarios::select('chatusuarios.id','chatusuarios.id_user1','chatusuarios.id_user2','chatusuarios.created_at')
+
+       $chat = Chatusuarios::select('chatusuarios.id','u1.name','chatusuarios.created_at')
        ->where('chatusuarios.id_user1', Auth::id())
-       ->orderBy('created_at', 'ASC');
+       ->orWhere('chatusuarios.id_user2', Auth::id())
+       ->join('users as u1','chatusuarios.id_user1','=','u1.id');
 
        $table = Datatables::of($chat)
        ->remove_column('id')
        ->addColumn('Acciones', '<a href="{{{ URL::to(\'user/chat/\' . $id ) }}}" class="btn btn-info btn-sm iframe" ><span class="fa fa-comments-o"></span>  Abrir </a>')
        ->make();
-       
+
        return $table;
      }
     /**
