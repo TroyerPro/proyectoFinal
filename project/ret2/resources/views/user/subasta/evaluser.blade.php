@@ -24,7 +24,7 @@
 
             <form class="form-horizontal" enctype="multipart/form-data"
             	method="post"
-            	action=""
+            	action="{{ URL::to('user/rating/'.$subasta->id.'/evaluar') }}"
             	autocomplete="off">
 
             	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
@@ -34,7 +34,7 @@
                     {{ trans("Nombre del Ganador") }}
                   </label>
                     <input class="form-control" type="text" name="nombre" id="nombre"
-                    value="{{ $buyer->name }}" disabled/>
+                    value="{{ $buyer->name }}" readonly/>
                 </div>
                 <div class="col-md-12">
                   <label class="control-label" for="title">
@@ -50,7 +50,7 @@
                   <label class="control-label" for="title">
                     {{ trans("Comentario") }}
                   </label>
-                    <textarea class="form-control" name="Comentario" id="Comentario"></textarea>
+                    <input class="form-control" type="text" name="comentario" id="comentario"></input>
                 </div>
               </div>
 
