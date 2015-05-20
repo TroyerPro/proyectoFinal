@@ -132,7 +132,7 @@
                  </div>
                @elseif ($subasta->estado_subasta == 1 && Auth::user()->id == $subasta->id_user_vendedor)
                  <div class="col-xs-12">
-                    <a href="" class="iframe btn btn-danger btn-mrg-top mrg-left">Cerrar Subasta</a>
+                    <a href="{{URL::to('user/subastas')}}" class="iframe btn btn-info btn-mrg-top mrg-left">Ir configuración subasta</a>
                  </div>
                @endif
              @endif
@@ -188,7 +188,7 @@
             var hours = Math.floor((distance % _day) / _hour);
             var minutes = Math.floor((distance % _hour) / _minute);
             var seconds = Math.floor((distance % _minute) / _second);
-            
+
             document.getElementById(id).innerHTML = days + 'días ';
             document.getElementById(id).innerHTML += hours + 'horas ';
             document.getElementById(id).innerHTML += minutes + 'minutos ';
