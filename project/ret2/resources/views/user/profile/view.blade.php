@@ -19,7 +19,7 @@
             <div class="col-md-3">
               <img class="profile_img col-md-12" src="{{ URL::asset('img/profile/'.$currentuser->imagen) }}">
               <div class="col-md-6 col-md-offset-1">
-                <a href="{{{ URL::to('user/perfil/imagen') }}}" class="btn btn-success btn-sm iframe button-center btn-mrg-top" >
+                <a href="{{{ URL::to('user/perfil/imagen') }}}" class="btn btn-success btn-sm  button-center btn-mrg-top iframe" >
                   <span class="glyphicon glyphicon-pencil"></span> Cambiar imagen</a>
               </div>
               <div class="col-md-6 col-md-offset-1">

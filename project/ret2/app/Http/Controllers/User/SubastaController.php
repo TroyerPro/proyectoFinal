@@ -50,7 +50,6 @@ class SubastaController extends UserController {
         $metodo = "";
         $Empresa = Empresa::find(1);
         $diasgratis = $Empresa->dias_subasta_gratis;
-        // Show the page
         return view('user.subasta.create', compact('diasgratis','fechaHoy','nombre','estado','descripcion','categoria','precio_inicial','imagen','metodo'));
     }
 
