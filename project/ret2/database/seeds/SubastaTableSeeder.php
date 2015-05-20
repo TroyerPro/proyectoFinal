@@ -25,7 +25,7 @@ class SubastaTableSeeder extends Seeder {
 			'fecha_prorroga' => date('2015-03-03'),
 			'precio_inicial' => 5,
 			'precio_actual' => 25,
-			'imagen' => "mochila.jpg",
+			'imagen' => "mochila.png",
 			'puja_ganadora' => 1
 		]);
 
@@ -41,7 +41,7 @@ class SubastaTableSeeder extends Seeder {
 			'fecha_prorroga' => date('2015-05-19'),
 			'precio_inicial' => 1,
 			'precio_actual' => 10,
-			'imagen' => "estuche.jpg",
+			'imagen' => "estuche.png",
 			'puja_ganadora' => 2,
 			'id_user_vendedor' => '3',
 			'id_categoria'=>'2',
@@ -79,7 +79,7 @@ class SubastaTableSeeder extends Seeder {
 			'fecha_prorroga' => date('2015-03-07'),
 			'precio_inicial' => 10,
 			'precio_actual' => 40,
-			'imagen' => "raton.jpg",
+			'imagen' => "raton.png",
 			'puja_ganadora' => 4,
 			'id_user_vendedor' => '5',
 			'id_categoria'=>'4',
@@ -100,7 +100,7 @@ class SubastaTableSeeder extends Seeder {
 			'estado_subasta' =>false,
 			'precio_inicial' => 5,
 			'precio_actual' => 12,
-			'imagen' => "teclado.jpg",
+			'imagen' => "teclado.png",
 			'puja_ganadora' => 5,
 			'id_categoria'=>'1',
 			'id_user_vendedor' => '6',
@@ -120,7 +120,7 @@ class SubastaTableSeeder extends Seeder {
 					'estado_subasta' =>true,
 					'precio_inicial' => 5,
 					'precio_actual' => 12,
-					'imagen' => "test1.jpg",
+					'imagen' => "test1.png",
 					'id_categoria'=>'1',
 					'id_user_vendedor' => '2',
 				]);
@@ -137,7 +137,7 @@ class SubastaTableSeeder extends Seeder {
 					'estado_subasta' =>true,
 					'precio_inicial' => 5,
 					'precio_actual' => 12,
-					'imagen' => "test2.jpg",
+					'imagen' => "test2.png",
 					'id_categoria'=>'1',
 					'id_user_vendedor' => '2',
 				]);
@@ -154,7 +154,7 @@ class SubastaTableSeeder extends Seeder {
 					'estado_subasta' =>true,
 					'precio_inicial' => 5,
 					'precio_actual' => 12,
-					'imagen' => "test3.jpg",
+					'imagen' => "test3.png",
 					'id_categoria'=>'1',
 					'id_user_vendedor' => '2',
 				]);
