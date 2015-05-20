@@ -15,25 +15,16 @@
                 <span class="hidden-sm text">Filtrar</span>
               </a>
               <br>
+              <span class="hidden-sm text">Categorías de..</span>
             <select id="filtro" class="categoria" name="categoria">
               <option value="0">Seleccione el filtro...</option>
-              <option name="compras" value="1">Número Compras</option>
-              <option name="ventas" value="2">Número Ventas</option>
-              <option name="pagados" value="3">€ pagados</option>
-              <option name="cobrados" value="4">€ cobrados</option>
-              <option name="pujas" value="5">Nº de pujas ofrecidas</option>
+              <option name="compras" value="1">Productos por numero de compras</option>
+              <option name="ventas" value="2">Productos por numero de ventas</option>
             </select>
           </div>
         </div>
         <div class="col-xs-8">
           <div id="chart">
-            <div class="col-xs-12">
-            @if($busqueda == 0)
-            {{ $busqueda }}
-            @else
-            {{ $busqueda }}
-            @endif
-          </div>
           </div>
         </div>
       </div>
@@ -52,8 +43,8 @@
               data:{
                 "filtro":filtro
               },
-              }).done(function() {
-                $("#chart").html();
+            }).done(function(data) {
+                $("#chart").html(data);
             });
           });
     });

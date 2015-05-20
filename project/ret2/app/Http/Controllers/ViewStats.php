@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 use App\User;
+use App\Categoria;
 
 class ViewStats extends Controller {
 
@@ -13,35 +14,32 @@ class ViewStats extends Controller {
 		return view('admin.statistics.users');
 	}
 
-	public function statsCategorias() //falta $id
+	public function statsCategorias()
+{
+		return view('admin.statistics.categorias');
+}
+
+	public function postStatsCategorias() //falta $id
 	{
-		$busqueda = "";
 		if(isset($_REQUEST['filtro'])) {
-			$filtro = isset($_REQUEST['filtro']);
+			$filtro = $_REQUEST['filtro'];
 			switch ($filtro) {
 				case '0':
 					break;
 				case '1':
-					$busqueda = 1;
+					$busqueda = Categoria::select('categoria.*')->groupBy('categoria.id_categoria');
+					dd($busqueda);
+					return compact('busqueda');
 					break;
 				case '2':
 					$busqueda = 2;
-					break;
-				case '3':
-					$busqueda = 3;
-					break;
-				case '4':
-					$busqueda = 4;
-					break;
-				case '5':
-					$busqueda = 5;
+					return $busqueda;
 					break;
 				default:
 
 					break;
 			}
 		}
-		return view('admin.statistics.categorias', compact('busqueda'));
 	}
 
 }

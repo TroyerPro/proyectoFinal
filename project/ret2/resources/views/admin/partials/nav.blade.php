@@ -65,13 +65,13 @@ Inicio</span>
     </li>
     <li {{ (Request::is('admin/estadisticas*') ? ' class=active' : '') }}>
         <a href="#">
-            <i class=" glyphicon glyphicon-signal"></i> Estadísticas <span
+            <i class="fa fa-bar-chart-o"></i> Estadísticas <span
                     class="fa arrow"></span>
         </a>
         <ul class="nav nav-second-level collapse">
             <li {{ (Request::is('admin/estadisticas/users') ? ' class=active' : '') }} >
                 <a href="{{URL::to('admin/estadisticas/users')}}">
-                    <i class=" glyphicon glyphicon-signal"></i><span
+                    <i class="fa fa-bar-chart-o"></i><span
                             class="hidden-sm text"> Usuarios </span>
                 </a>
             </li>
@@ -79,7 +79,7 @@ Inicio</span>
         <ul class="nav nav-second-level collapse">
             <li {{ (Request::is('admin/estadisticas/categorias') ? ' class=active' : '') }} >
                 <a href="{{URL::to('admin/estadisticas/categorias')}}">
-                    <i class=" glyphicon glyphicon-signal"></i><span
+                    <i class="fa fa-bar-chart-o"></i><span
                             class="hidden-sm text"> Categorias  </span>
                 </a>
             </li>
