@@ -24,7 +24,7 @@
                     <strong>Ops!</strong> Parece que hay algunos errores en el formulario:
                     <br><br>
                     <ul>
-                            <li>La cantidad de la puja no puede ser menor o igual a la puja actual de la subasta.</li>
+                       <li>La cantidad de la puja no puede ser menor o igual a la puja actual de la subasta.</li>
                     </ul>
                 </div>
               @endif

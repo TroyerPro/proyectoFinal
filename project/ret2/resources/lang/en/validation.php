@@ -39,7 +39,7 @@ return [
 	"exists"               => "El :attribute seleccionado es inválido.",
 	"image"                => ":attribute tiene que ser una imagen.",
 	"in"                   => "El :attribute seleccionado es inválido.",
-	"integer"              => ":attribute tiene que ser un integer.",
+	"integer"              => ":attribute tiene que ser un integer (número entero).",
 	"ip"                   => ":attribute tiene que ser una dirección IP válida.",
 	"max"                  => [
 		"numeric" => ":attribute no puede ser mayor de :max.",

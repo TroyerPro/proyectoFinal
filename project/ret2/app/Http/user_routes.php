@@ -62,6 +62,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('chat/ajax/{id}','User\ChatController@postChatAJAX');
     Route::get('chat/data', 'User\ChatController@data');
 
-
+    #eval
+    Route::get('rating/{id}','User\EvalUserController@show');
 
 });
