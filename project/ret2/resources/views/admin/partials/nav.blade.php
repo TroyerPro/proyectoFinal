@@ -12,7 +12,7 @@
     <li {{ (Request::is('admin/dashboard') ? ' class=active' : '') }}>
         <a href="{{URL::to('admin/dashboard')}}"
                 >
-            <i class="fa fa-dashboard fa-fw"></i><span class="hidden-sm text">
+            <i class="fa fa-home"></i><span class="hidden-sm text">
 Inicio</span>
         </a>
     </li>
@@ -32,7 +32,7 @@ Inicio</span>
     </li>
     <li {{ (Request::is('user/subastas*') ? ' class=active' : '') }} >
         <a href="#">
-            <i class="glyphicon glyphicon-user"></i> Subastas<span class="fa arrow"</span>
+            <i class="glyphicon glyphicon-shopping-cart"></i>Admin Subastas<span class="fa arrow"</span>
         </a>
         <ul class="nav nav-second-level collapse">
             <li {{ (Request::is('admin/subastas') ? ' class=active' : '') }} >
@@ -65,13 +65,13 @@ Inicio</span>
     </li>
     <li {{ (Request::is('admin/estadisticas*') ? ' class=active' : '') }}>
         <a href="#">
-            <i class="glyphicon fa fa-columns"></i> Estadísticas <span
+            <i class=" glyphicon glyphicon-signal"></i> Estadísticas <span
                     class="fa arrow"></span>
         </a>
         <ul class="nav nav-second-level collapse">
             <li {{ (Request::is('admin/estadisticas/users') ? ' class=active' : '') }} >
                 <a href="{{URL::to('admin/estadisticas/users')}}">
-                    <i class="glyphicon glyphicon-list"></i><span
+                    <i class=" glyphicon glyphicon-signal"></i><span
                             class="hidden-sm text"> Usuarios </span>
                 </a>
             </li>
@@ -79,9 +79,16 @@ Inicio</span>
         <ul class="nav nav-second-level collapse">
             <li {{ (Request::is('admin/estadisticas/categorias') ? ' class=active' : '') }} >
                 <a href="{{URL::to('admin/estadisticas/categorias')}}">
-                    <i class="glyphicon glyphicon-list"></i><span
+                    <i class=" glyphicon glyphicon-signal"></i><span
                             class="hidden-sm text"> Categorias  </span>
                 </a>
             </li>
     </li>
 </ul>
+<li {{ (Request::is('user/dashboard*') ? ' class=active' : '') }} >
+    <a href="{{URL::to('user/dashboard')}}"
+            >
+        <i class="fa fa-user"></i><span
+                class="hidden-sm text">Modo usuario</span>
+    </a>
+</li>

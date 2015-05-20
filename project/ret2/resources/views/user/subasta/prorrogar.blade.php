@@ -11,6 +11,17 @@
         $("#fechaNueva").attr("placeholder", d.toLocaleString());
         $('#fechaNueva').val = d;
       });
+      $("#formPro").submit(function() {
+        var diasPro = parseInt(document.getElementById('diasPro').value);
+        if(!isNaN(diasPro)) {
+          var dias = document.getElementById('diasPro').value;
+          var precioDia = {{ $confProrroga->precio_prorroga }};
+          var tot = dias * precioDia;
+          $confirmar = confirm("Vas a prorrogar la subasta por "+dias+" días más. El precio de la prorroga es de "
+          +precioDia+" € por día. En total, serán "+tot+" €. ¿Deseas continuar?");
+          return $confirmar;
+        }
+      });
     });
     </script>
 @endsection
@@ -37,7 +48,7 @@
             <form class="form-horizontal"
               method="post"
               action="{{ URL::to('user/subasta/'.$subasta->id.'/prorrogar') }}"
-              autocomplete="off">
+              autocomplete="off" id="formPro">
               @include('errors.list')
               <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
               <div class="form-group">
@@ -67,7 +78,6 @@
                               trans("Fecha final nueva") }}</label> <input
                               class="form-control" type="text" name="fechaNueva" id="fechaNueva"
                               value="" disabled/>
-
                 </div>
               </div>
                 <div class="form-group">

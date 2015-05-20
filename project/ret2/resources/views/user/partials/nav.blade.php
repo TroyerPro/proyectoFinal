@@ -69,4 +69,14 @@ Inicio</span>
                     class="hidden-sm text"> Perfil Usuario</span>
         </a>
     </li>
+
+@if(Auth::user()->admin==1)
+  <li {{ (Request::is('admin/dashboard*') ? ' class=active' : '') }} >
+      <a href="{{URL::to('admin/dashboard')}}"
+              >
+          <i class="fa fa-user"></i><span
+                  class="hidden-sm text">Modo admin</span>
+      </a>
+  </li>
+@endif
 </ul>

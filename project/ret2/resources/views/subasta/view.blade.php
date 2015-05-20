@@ -4,6 +4,7 @@
   <div class="col-xs-12">
     <div class="close-window">x</div>
     <div class="col-xs-12">
+      <div class="col-xs-12 text_center">¿Que deseas hacer?</div>
       <div class="col-xs-6"><a href="{{ URL::to('user/pujas/create/'.$subasta->id) }}" class="btn btn-success btn-puja">Realizar puja normal</a></div>
       <div class="col-xs-6"><a href="" class="btn btn-success btn-puja">Configurar una puja automática</a></div>
     </div>
