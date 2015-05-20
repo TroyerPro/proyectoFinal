@@ -140,17 +140,14 @@ class SubastaController extends UserController {
 
         $fecha_final_antes_prorroga = DateTime::createFromFormat('Y-m-d H:i:s', $subasta->fecha_final);
 
-        $subasta->fecha_final_antes_prorroga = $fecha_final_antes_prorroga;
+        $subasta->fecha_final_antes_prorroga =  $subasta->fecha_final;
         date_add($fecha_final_antes_prorroga, date_interval_create_from_date_string($_POST['diasPro'].' days'));
         $subasta->fecha_final = $fecha_final_antes_prorroga;
         $subasta->numero_prorrogas = $subasta->numero_prorrogas + 1 ;
         $subasta->estado_subasta = true;
         $subasta->save();
 
-
-
-die();
-        //return view('user.subasta.prorrogar', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
+        return view('user.subasta.index', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
     }
     /**
      * Remove the specified resource from storage.
