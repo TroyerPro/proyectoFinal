@@ -11,6 +11,20 @@
         </h3>
     </div>
 
+    @if(isset($success))
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>¡Se ha realizado la puja con éxito!</strong>
+        </div>
+    @endif
+
+    @if(isset($error))
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>No se ha podido realizar la puja porque la subasta está cerrada.</strong>
+        </div>
+    @endif
+
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>

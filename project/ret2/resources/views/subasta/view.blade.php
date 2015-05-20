@@ -2,7 +2,7 @@
 </div>
 <div id="popup">
   <div class="col-xs-12">
-    <div class="close-window">X</div>
+    <div class="close-window">x</div>
     <div class="col-xs-12">
       <div class="col-xs-6"><a href="{{ URL::to('user/pujas/create/'.$subasta->id) }}" class="btn btn-success btn-puja">Realizar puja normal</a></div>
       <div class="col-xs-6"><a href="" class="btn btn-success btn-puja">Configurar una puja automática</a></div>
@@ -54,7 +54,9 @@
                <div class="col-xs-12"><h3><b>{{ $subasta->nombre }}</b></h3></div>
              </div>
              <div class="col-xs-12 nomRating">
-               <div class="col-xs-4">{{ $user->name }}</div>
+               <div class="col-xs-4">
+                 <a href="{{ URL::to('search/user/view/'.$user->id) }}">{{ $user->name }}</a>
+                </div>
 
                <div class="col-xs-8">
                  @if($user->ratingvendedor == 0)
