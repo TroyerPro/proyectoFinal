@@ -58,7 +58,9 @@ class EvalUserController extends UserController {
       $evaluacion = Evalusuarios::create(['id_user_evaluador' =>$evaluador,'id_user_evaluado' => $evaluado,'id_rating' => $nota,
       'comentario' => $comentario,'id_subasta' =>$id]);
       $evaluacion->save();
-      die();
+      //var_dump($evaluacion);
+      //dd($evaluacion);
+    //  die();
 
     }
 }
