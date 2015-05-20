@@ -9,7 +9,7 @@
 @section('content')
 <div class="row">
     <div class="page-header">
-        <h3>Formulario de prorroga</h3>
+        <h3>Evaluar a <strong>{{ $buyer->name }}</strong></h3>
     </div>
 </div>
 
@@ -24,8 +24,9 @@
 
             <form class="form-horizontal" enctype="multipart/form-data"
             	method="post"
-            	action="{{ URL::to('user/subasta/'.$subasta->id.'/prorrogar') }}"
+            	action=""
             	autocomplete="off">
+
             	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
               <div class="form-group">
                 <div class="col-md-12">
@@ -49,8 +50,7 @@
                   <label class="control-label" for="title">
                     {{ trans("Comentario") }}
                   </label>
-                    <input class="form-control" type="text-area" name="nombre" id="nombre"
-                    value="{{ $buyer->name }}"/>
+                    <textarea class="form-control" name="Comentario" id="Comentario"></textarea>
                 </div>
               </div>
 
