@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lineachat extends Model {
 
-	protected $fillable = [ 'fecha','id_usuario', 'text'];
+	protected $fillable = [ 'fecha','id_usuario', 'text','id_chat'];
 	//
 
 	public function chat()
