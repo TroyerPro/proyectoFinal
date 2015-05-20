@@ -21,6 +21,7 @@
             	autocomplete="off">
 
             	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+              <input type="hidden" name="id" id="id" value="{{{ $subasta->id }}}" />
               <div class="form-group">
                 <div class="col-md-12">
                   <label class="control-label" for="title"> {{
@@ -37,26 +38,25 @@
                         value="{{ $subasta->precio_actual }}" disabled/>
                 </div>
               </div>
-
-            		<div class="form-group">
-            			<div class="col-md-12">
-            				<button type="submit" class="btn btn-sm btn-warning close_popup">
-            					<span class="glyphicon glyphicon-ban-circle"></span> {{
-            					trans("Cerrar Subasta") }}
-            				</button>
-                    <button id ="pdf" class="btn btn-sm btn-succes close_popup">
-            					<span class="glyphicon glyphicon-ban-circle"></span> {{
-            					trans("PDF") }}
-            				</button>
-                    <button id="xml" class="btn btn-sm btn-succes close_popup">
-            					<span class="glyphicon glyphicon-ban-circle"></span> {{
-            					trans("XML") }}
-            				</button>
-            			</div>
-            		</div>
             		<!-- ./ form actions -->
 
             </form>
+
+                <div class="col-md-12">
+                <button type="submit" class="btn btn-sm btn-warning close_popup">
+                  <span class="glyphicon glyphicon-ban-circle"></span> {{
+                  trans("Cerrar Subasta") }}
+                </button>
+                <button id ="pdf" class="btn btn-sm btn-succes close_popup">
+                  <span class="glyphicon glyphicon-ban-circle"></span> {{
+                  trans("PDF") }}
+                </button>
+                <button id="xml" class="btn btn-sm btn-succes close_popup">
+                  <span class="glyphicon glyphicon-ban-circle"></span> {{
+                  trans("XML") }}
+                </button>
+              </div>
+
 
             {{--</div>--}}
         {{--</div>--}}
@@ -67,11 +67,27 @@
 
 @section('scripts')
 <script>
-$("xml").click(function(){
-  $.ajax({url: "factura/xml}",
-  success: function(result){
+
+$("#xml").click(function(){
+
+  var id = $("#id").val();
+  alert(id);
+
+  $.ajaxSetup(
+{
+	headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	}
+});
+
+  $.ajax({
+    url: "xml",
+    data: {id :id },
+    method : "POST" ,
+    success: function(result){
       alert("XML generado con exito!");
   }});
+  alert(id);
 });
 
 

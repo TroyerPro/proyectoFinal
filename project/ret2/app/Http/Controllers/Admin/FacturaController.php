@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Subasta;
 use App\Categoria;
 use DateTime;
+use DomDocument;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Http\Requests\Admin\DeleteRequest;
@@ -75,9 +76,10 @@ class FacturaController extends UserController {
 
     }
 
-    public function generateXml($id){
-
-      $xml = new DOMDocument( "1.0", "UTF-8" );
+    public function generateXml(){
+      
+      $id = $_POST['id'];
+      $xml = new DomDocument( "1.0", "UTF-8" );
       $xml_album = $xml->createElement( "Factura" );
       $xml_track = $xml->createElement( "User" );
       $xml_album->appendChild( $xml_track );
@@ -86,7 +88,7 @@ class FacturaController extends UserController {
       $xml->FormatOutput = true;
       $string_value = $xml->saveXml();
 
-      $xml->save(assets("factura.xml"));
+      $xml->save("factura.xml");
 
 
 

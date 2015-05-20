@@ -50,6 +50,8 @@
 <link rel="shortcut icon"
 	href="{{{ asset('assets/admin/ico/favicon.ico') }}}">
 <!-- end: Favicon and Touch Icons -->
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 </head>
 <body>
 	<!-- Container -->
