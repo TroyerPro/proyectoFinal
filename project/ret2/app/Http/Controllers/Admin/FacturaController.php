@@ -2,15 +2,23 @@
 
 use App\Http\Controllers\UserController;
 use App\Subasta;
+use App\Empresa;
+use App\Puja;
+use App\User;
 use App\Categoria;
+use App\Factura;
 use DateTime;
 use DomDocument;
+use URL;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Http\Requests\Admin\DeleteRequest;
 use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
+use Response;
+use File;
+
 
 class FacturaController extends UserController {
 
@@ -75,20 +83,99 @@ class FacturaController extends UserController {
       return view('user.subasta.index');
 
     }
+    public function getXml($id){
+
+      $id = $_POST['id'];
+      $subasta =  Subasta::find($id);
+      $factura = Factura::find($subasta->id_factura);
+
+      $file= asset( "facturas/".$factura->id.".xml");
+      $headers = array('Content-Type', 'text/xml');
+
+      return Response::download($file, '1.xml', ['Content-Type: text/xml']);
+
+      //return Response::download($file, $factura->id.'.xml', $headers);
+
+    }
 
     public function generateXml(){
-      
       $id = $_POST['id'];
+      $subasta =  Subasta::find($id);
+      $factura = Factura::find($subasta->id_factura);
+
+      if(File::exists( "facturas/".$factura->id.".xml")){
+      //  var_dump("Pene");
+        return asset('facturas/'.$factura->id.'.xml');
+
+      }
+      else{
+
+      $idcomprador = Puja::find($subasta->puja_ganadora);
+      $comprador = User::find($idcomprador->id_usuario);
+      $vendedor = User::find($subasta->id_user_vendedor);
+      $empresa = Empresa::find(1);
+
+
       $xml = new DomDocument( "1.0", "UTF-8" );
-      $xml_album = $xml->createElement( "Factura" );
-      $xml_track = $xml->createElement( "User" );
-      $xml_album->appendChild( $xml_track );
-      $xml->appendChild( $xml_album );
+      $xml_factura = $xml->createElement( "Factura" );
+
+      //Empresa
+      $xml_empresa = $xml->createElement( "Empresa");
+      $xml_empNom = $xml->createElement( "Nombre",$empresa->nombre);
+      $xml_empDir = $xml->createElement( "Direccion",$empresa->direccion);
+
+      $xml_factura->appendChild($xml_empresa);
+      $xml_empresa->appendChild($xml_empNom);
+      $xml_empresa->appendChild($xml_empDir);
+
+      //Datos
+      $xml_datos = $xml->createElement("Datos");
+      $xml_id = $xml->createElement("Id_Factura",$factura->id);
+      $xml_fecha = $xml->createElement("Fecha",$factura->fecha);
+
+      $xml_factura->appendChild($xml_datos);
+      $xml_datos->appendChild($xml_id);
+      $xml_datos->appendChild($xml_fecha);
+
+
+      //Usuario
+      //Vendedor
+      $xml_user = $xml->createElement( "Usuarios");
+      $xml_vendedor = $xml->createElement( "Vendedor");
+      $xml_vendname = $xml->createElement( "Nombre",$vendedor->name);
+      $xml_venddni = $xml->createElement( "Dni",$vendedor->nif);
+      //Comprador
+      $xml_comprador = $xml->createElement( "Comprador");
+      $xml_compname = $xml->createElement( "Nombre",$comprador->name);
+      $xml_compdni = $xml->createElement( "Dni",$comprador->nif);
+
+      $xml_factura->appendChild($xml_user );
+      $xml_user->appendChild($xml_vendedor);
+      $xml_vendedor->appendChild($xml_vendname);
+      $xml_vendedor->appendChild($xml_venddni);
+      $xml_user->appendChild($xml_comprador);
+      $xml_comprador->appendChild($xml_compname);
+      $xml_comprador->appendChild($xml_compdni);
+
+      //Subasta
+      $xml_subasta = $xml->createElement( "Subasta");
+      $xml_nombre = $xml->createElement( "Nombre",$subasta->nombre);
+      $xml_descripcion = $xml->createElement( "Descripcion",$subasta->descripcion);
+      $xml_precio = $xml->createElement( "Precio",$factura->precio);
+      $xml_metodo = $xml->createElement( "Metodo_Pago",$subasta->metodo_pago);
+      $xml_factura->appendChild($xml_subasta );
+      $xml_subasta->appendChild($xml_nombre);
+      $xml_subasta->appendChild($xml_descripcion);
+      $xml_subasta->appendChild($xml_metodo);
+      $xml_subasta->appendChild($xml_precio);
+
+      $xml->appendChild( $xml_factura );
 
       $xml->FormatOutput = true;
       $string_value = $xml->saveXml();
 
-      $xml->save("factura.xml");
+      $xml->save('facturas/'.$factura->id.'.xml');
+    }
 
 
 
