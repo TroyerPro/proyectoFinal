@@ -46,21 +46,20 @@ class EvalUserController extends UserController {
     {
       $nota=$_POST['rating'];
       $comentario=$_POST['comentario'];
+
       $evaluado=User::select('users.id')
                       ->where('users.name',$_POST['nombre'])
                       ->get()
                       ->first();
-      $evaluador=Subasta::select('subastas.id_user_vendedor')
-                      ->where('subastas.id',$id)
-                      ->get()
-                      ->first();
 
-      $evaluacion = Evalusuarios::create(['id_user_evaluador' =>$evaluador,'id_user_evaluado' => $evaluado,'id_rating' => $nota,
-      'comentario' => $comentario,'id_subasta' =>$id]);
-      $evaluacion->save();
-      //var_dump($evaluacion);
-      //dd($evaluacion);
-    //  die();
+      $evaluacion = new Evalusuarios();
+      $evaluacion -> comentario=$comentario;
+      $evaluacion -> id_rating=$nota;
+      $evaluacion -> id_user_evaluador = Auth::id();
+      $evaluacion -> id_user_evaluado= $evaluado->id;
+      $evaluacion -> id_subasta=$id;
+      $evaluacion ->save();
 
+      return view('user.subasta.index');
     }
 }

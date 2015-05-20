@@ -1,10 +1,3 @@
-{{-- Scripts --}}
-@section('scripts')
-    <script type="text/javascript">
-    $(document).ready(function(){
-    });
-    </script>
-@endsection
 @extends('user.layouts.modal')
 @section('content')
 <div class="row">
@@ -24,7 +17,7 @@
 
             <form class="form-horizontal" enctype="multipart/form-data"
             	method="post"
-            	action="{{ URL::to('user/rating/'.$subasta->id.'/evaluar') }}"
+            	action="{{ URL::to('user/rating/'.$subasta->id.'') }}"
             	autocomplete="off">
 
             	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
@@ -75,7 +68,4 @@
         {{--</div>--}}
         </div>
     </div>
-@endsection
-
-
 @endsection
