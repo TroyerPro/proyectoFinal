@@ -64,5 +64,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
 
     #eval
     Route::get('rating/{id}','User\EvalUserController@show');
+    Route::post('rating/{id}/evaluar','User\EvalUserController@postEvaluar');
 
 });

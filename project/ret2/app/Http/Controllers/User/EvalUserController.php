@@ -24,13 +24,13 @@ class EvalUserController extends UserController {
     {
         $rating=Rating::all();
         //id de la puja ganadora
-        $bid=Subasta::select('subastas.puja_ganadora')
+        $subasta=Subasta::select('subastas.id','subastas.puja_ganadora')
                       ->where('subastas.id',$id)
                       ->get()
                       ->first();
         //id ganador a traves de la puja
         $ganador=Puja::select('pujas.id_usuario')
-                        ->where('pujas.id',$bid->puja_ganadora)
+                        ->where('pujas.id',$subasta->puja_ganadora)
                         ->get()
                         ->first();
         //datos ganador a traves de la puja
@@ -39,7 +39,26 @@ class EvalUserController extends UserController {
                       ->get()
                       ->first();
 
-        return view('user.subasta.evaluser', compact('rating','buyer'));
+        return view('user.subasta.evaluser', compact('rating','buyer','subasta'));
     }
 
+    public function postEvaluar($id)
+    {
+      $nota=$_POST['rating'];
+      $comentario=$_POST['comentario'];
+      $evaluado=User::select('users.id')
+                      ->where('users.name',$_POST['nombre'])
+                      ->get()
+                      ->first();
+      $evaluador=Subasta::select('subastas.id_user_vendedor')
+                      ->where('subastas.id',$id)
+                      ->get()
+                      ->first();
+
+      $evaluacion = Evalusuarios::create(['id_user_evaluador' =>$evaluador,'id_user_evaluado' => $evaluado,'id_rating' => $nota,
+      'comentario' => $comentario,'id_subasta' =>$id]);
+      $evaluacion->save();
+      die();
+
+    }
 }

@@ -32,6 +32,11 @@ class Subasta extends Model {
 					return $this->belongsTo('App\Categoria');
 			 }
 
+	public function evaluaciones()
+			 {
+					return $this->belongsTo('App\Evalusuarios');
+			 }
+
 	public function chat()
 			 {
 					return $this->belongsTo('App\Chatusuarios');

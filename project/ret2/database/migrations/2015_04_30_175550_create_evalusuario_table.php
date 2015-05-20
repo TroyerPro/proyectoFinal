@@ -22,8 +22,9 @@ class CreateEvalusuarioTable extends Migration
             $table->foreign('id_user_evaluado')->references('id')->on('users');
             $table->unsignedInteger('id_rating')->nullable();
             $table->foreign('id_rating')->references('id')->on('ratings');
+            $table->unsignedInteger('id_subasta')->nullable();
+            $table->foreign('id_subasta')->references('id')->on('subastas');
             $table->string('comentario');
-            $table->dateTime('fecha');
             $table->timestamps();
         });
     }

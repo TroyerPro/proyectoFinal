@@ -136,7 +136,6 @@ $factory('App\Subasta', [
       'id_user_evaluado' => $faker->numberBetween(4,5),
       'id_rating' => 1,
       'comentario' => $faker->paragraph,
-      'fecha' => $faker->dateTime(),
   ]);
   $factory('App\Lineachat', [
       'text' => $faker->paragraph,
