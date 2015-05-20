@@ -16,7 +16,7 @@
         <tr>
             <th>{{{ trans("Nombre") }}}</th>
             <th>{{{ trans("Fecha Final") }}}</th>
-            <th>{{{ trans("Puja Actual") }}}</th>
+            <th>{{{ trans("Precio Final (€)") }}}</th>
             <th>{{{ trans("Estado") }}}</th>
             <th>{{{ trans("Opciones") }}}</th>
         </tr>

@@ -53,8 +53,11 @@
 <div class="container">
 @yield('content')
 </div>
-@include('partials.footer')
 
+<!--
+Footer deshabilitado temporalmente
+@include('partials.footer')
+-->
 <!-- Scripts -->
 <script src="{{ asset('/js/all.js') }}"></script>
 <script src="{{ asset('/js/jquery.autocomplete.js') }}"></script>
