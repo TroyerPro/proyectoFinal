@@ -16,7 +16,7 @@ use App\Http\Requests\Admin\DeleteRequest;
 use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
-
+use App\Http\Requests\Subasta\SubastaRequest;
 
 class SubastaController extends UserController {
 
