@@ -14,11 +14,16 @@
     });
     </script>
 @endsection
-@extends('user.layouts.modal')
-@section('content')
+@extends('user.layouts.default')
+
+{{-- Web site Title --}}
+@section('title') {{{ trans("admin/news.news") }}} :: @parent @stop
+
+{{-- Content --}}
+@section('main')
 <div class="row">
     <div class="page-header">
-        <h3>Formulario de prorroga</h3>
+        <h3>Prorrogar subasta</h3>
     </div>
 </div>
 
@@ -26,16 +31,14 @@
     <div class="row">
       {{--<div class="col-md-8 col-md-offset-2">--}}
         {{--<div class="panel panel-default">--}}
-          {{--<div class="panel-heading">Cerrar Subasta</div>--}}
+          {{--<div class="panel-heading">Subasta</div>--}}
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
-            @yield('main')
-
-            <form class="form-horizontal" enctype="multipart/form-data"
-            	method="post"
-            	action="{{ URL::to('user/subasta/'.$subasta->id.'/prorrogar') }}"
-            	autocomplete="off">
-            	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+            <form class="form-horizontal"
+              method="post"
+              action="{{ URL::to('user/subasta/'.$subasta->id.'/prorrogar') }}"
+              autocomplete="off">
+              <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
               <div class="form-group">
                 <div class="col-md-12">
                   <label class="control-label" for="title"> {{
@@ -66,29 +69,23 @@
 
                 </div>
               </div>
-
-            		<div class="form-group">
-            			<div class="col-md-12">
-            				<button type="submit" class="btn btn-sm btn-success close_popup">
-            					<span class="glyphicon glyphicon-ok"></span> {{
-            					trans("Pagar") }}
-            				</button>
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-sm btn-success close_popup">
+                      <span class="glyphicon glyphicon-ok"></span> Pagar
+                    </button>
                     <button class="btn btn-sm btn-danger close_popup">
                       <span class="glyphicon glyphicon-ban-circle"></span> {{
                       trans("Cancelar") }}
                     </button>
-            			</div>
-            		</div>
-            		<!-- ./ form actions -->
+                  </div>
+                </div>
+                <!-- ./ form actions -->
 
             </form>
-
             {{--</div>--}}
         {{--</div>--}}
         {{--</div>--}}
         </div>
     </div>
-@endsection
-
-
 @endsection

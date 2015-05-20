@@ -132,16 +132,25 @@ class SubastaController extends UserController {
         $fechaFinalMolona =  $fechaFinal->format('d/m/Y') ;
         return view('user.subasta.prorrogar', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
     }
+
+
     public function postProrrogar($id)
     {
-      die("xD");
         $subasta = Subasta::find($id);
-        $confProrroga = Empresa::find(1);
 
-        $fechaFinal = Carbon\Carbon::createFromTimestamp(strtotime($subasta->fecha_final));
-        $fechaProrroga = "";
-        $fechaFinalMolona =  $fechaFinal->format('d/m/Y') ;
-        return view('user.subasta.prorrogar', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
+        $fecha_final_antes_prorroga = DateTime::createFromFormat('Y-m-d H:i:s', $subasta->fecha_final);
+
+        $subasta->fecha_final_antes_prorroga = $fecha_final_antes_prorroga;
+        date_add($fecha_final_antes_prorroga, date_interval_create_from_date_string($_POST['diasPro'].' days'));
+        $subasta->fecha_final = $fecha_final_antes_prorroga;
+        $subasta->numero_prorrogas = $subasta->numero_prorrogas + 1 ;
+        $subasta->estado_subasta = true;
+        $subasta->save();
+
+
+
+die();
+        //return view('user.subasta.prorrogar', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
     }
     /**
      * Remove the specified resource from storage.
@@ -210,7 +219,7 @@ class SubastaController extends UserController {
        Cerrada
        @endif')
        ->add_column('actions','@if(!$estado_subasta)
-       <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/prorrogar\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
+       <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/prorrogar\'  ) }}}" class="btn btn-sm btn-succes"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Ganador") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
