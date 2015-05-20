@@ -40,7 +40,7 @@ class SubastaController extends UserController {
     public function getCreate()
     {
 
-      $fechaHoy=Carbon\Carbon::now(new DateTimeZone('Europe/Madrid'));
+        $fechaHoy=Carbon\Carbon::now(new DateTimeZone('Europe/Madrid'));
         $nombre = "";
         $estado = "";
         $descripcion = "";
@@ -60,16 +60,15 @@ class SubastaController extends UserController {
      * @return Response
      */
 
-    public function postCreate(Imagen2Request $request)
+    public function postCreate(Imagen2Request $request, SubastaRequest $request2)
     {
 
-      $success = true;
       $fechaIni = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
       $fechaFin = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fechaIni']);
       date_add($fechaFin, date_interval_create_from_date_string($_POST['duracion'].' days'));
       $subasta = new Subasta();
       $subasta -> id_user_vendedor = Auth::id();
-      $subasta -> nombre = $_POST['nombre'];
+      $subasta -> nombre = $request2->input('nombre');
       $subasta -> descripcion = $_POST['desc'];
       $subasta -> id_categoria = $_POST['categoria'];
       $subasta -> metodo_pago = $_POST['metodo'];
@@ -101,10 +100,8 @@ class SubastaController extends UserController {
           $request->file('image')->move($destinationPath, $picture);
       }
 
-
-
-
-      return view('user.subasta.index');
+      $success = true;
+      return view('user.subasta.index', compact('success'));
 
     }
 

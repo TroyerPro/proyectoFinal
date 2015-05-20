@@ -1,6 +1,8 @@
-<?php namespace App\Http\Requests\Puja;
+<?php namespace App\Http\Requests\Subasta;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Empresa;
+use App\Categoria;
 
 class SubastaRequest extends FormRequest {
 
@@ -11,8 +13,18 @@ class SubastaRequest extends FormRequest {
 	 */
 	public function rules()
 	{
+
+		$empresa = Empresa::find(1);
+	  $categoria = Categoria::select('categorias.id')->orderBy('created_at','desc')->take(1)->get();
+		
 		return [
-          'nombre' => 'required|min:3',
+        'nombre' => 'required|min:3',
+				'desc' => 'required|min:15',
+				'image' => 'required',
+				'categoria' => 'required|integer|min:1|max:'.$categoria[0]->id,
+				'duracion' => 'required|integer|min:1|max:'.$empresa->dias_subasta_gratis,
+				'precioIni' => 'required|regex:/^\d{1,8}(\.\d{1,2})?$/',
+
 		];
 	}
 
