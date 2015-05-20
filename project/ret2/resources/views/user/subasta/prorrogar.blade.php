@@ -38,6 +38,7 @@
               method="post"
               action="{{ URL::to('user/subasta/'.$subasta->id.'/prorrogar') }}"
               autocomplete="off">
+              @include('errors.list')
               <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
               <div class="form-group">
                 <div class="col-md-12">
@@ -61,7 +62,7 @@
                             value="{{ $fechaFinalMolona }}" placeholder="{{ $fechaFinalMolona }}" disabled/>
                           <label class="control-label" for="title"> {{
                             trans("Tiempo prorroga (días)") }}</label> <input
-                            class="form-control" type="text" name="diasPro" id="diasPro"/>
+                            class="form-control" type="text" name="diasPro" id="diasPro" value="{{old('diasPro')}}"/>
                             <label class="control-label" for="title"> {{
                               trans("Fecha final nueva") }}</label> <input
                               class="form-control" type="text" name="fechaNueva" id="fechaNueva"
@@ -74,15 +75,16 @@
                     <button type="submit" class="btn btn-sm btn-success close_popup">
                       <span class="glyphicon glyphicon-ok"></span> Pagar
                     </button>
-                    <button class="btn btn-sm btn-danger close_popup">
-                      <span class="glyphicon glyphicon-ban-circle"></span> {{
-                      trans("Cancelar") }}
-                    </button>
-                  </div>
-                </div>
-                <!-- ./ form actions -->
 
+                <!-- ./ form actions -->
             </form>
+
+              <a href="{{{ URL::to('user/subasta/finalizadas') }}}" class="btn btn-sm btn-danger close_popup">
+                <span class="glyphicon glyphicon-ban-circle">
+                </span> {{ trans("Cancerlar") }}
+              </a>
+            </div>
+          </div>
             {{--</div>--}}
         {{--</div>--}}
         {{--</div>--}}

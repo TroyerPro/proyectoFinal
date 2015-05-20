@@ -17,7 +17,7 @@ use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
 use App\Http\Requests\Subasta\SubastaRequest;
-
+use App\Http\Requests\Subasta\ProrrogarRequest;
 
 class SubastaController extends UserController {
 
@@ -130,7 +130,7 @@ class SubastaController extends UserController {
     }
 
 
-    public function postProrrogar($id)
+    public function postProrrogar($id, ProrrogarRequest $request)
     {
         $subasta = Subasta::find($id);
 

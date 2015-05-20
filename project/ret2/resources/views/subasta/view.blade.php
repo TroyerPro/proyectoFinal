@@ -96,7 +96,11 @@
              <div class="col-xs-12">
                @if($subasta->estado_subasta == 1)
                <div class="col-xs-6" id="pujaDesc"><b>Puja actual:</b></div>
+                @if($subasta->precio_actual == 0)
+                <div class="col-xs-6"><i>Actualmente no hay pujas.</i></div>
+                @else
                 <div class="col-xs-6">{{ $subasta->precio_actual }} €</div>
+                @endif
                @else
                 <div class="col-xs-6" id="pujaDesc"><b>Puja Ganadora:</b></div>
                 <div class="col-xs-6">{{ $subasta->puja_ganadora }} €</div>
