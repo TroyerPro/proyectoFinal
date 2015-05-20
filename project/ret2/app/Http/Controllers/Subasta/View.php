@@ -22,11 +22,14 @@ class View extends Controller {
 		$pujas = Puja::select('users.name','pujas.cantidad','pujas.fecha')->where('pujas.id_subasta',$id)->join('users','pujas.id_usuario','=','users.id')->get();
 		$user = User::find($subasta->id_user_vendedor);
 		$fechaFinal = $subasta->fecha_final;
+		$subasta->fecha_inicio = Carbon::createFromTimestamp(strtotime($fechaFinal));
+		$subasta->fecha_inicio= $subasta->fecha_inicio -> format('d/m/Y H:m');
 
 		//$instance = Carbon::createFromFormat('Y-m-d H:m:s', $fechaFinal, 'Europe/Madrid');
-		$fechaFinal = Carbon::createFromTimestamp(strtotime($fechaFinal));
-		$fechaFinal=$fechaFinal->format('m/d/Y H:m');
-		return view('subasta.view', compact('subasta','fechaFinal','user','pujas'));
+		$fechaFinals = Carbon::createFromTimestamp(strtotime($fechaFinal));
+		$fechaFinal=$fechaFinals->format('m/d/Y H:m');
+		$fechaFinalMolona=$fechaFinals->format('d/m/Y H:m');
+		return view('subasta.view', compact('subasta','fechaFinalMolona','fechaFinal','user','pujas'));
 	}
 
 }

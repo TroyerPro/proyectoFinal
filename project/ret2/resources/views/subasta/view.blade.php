@@ -85,7 +85,7 @@
              </div>
              <div class="col-xs-12 ">
 
-               <div class="col-xs-6"><b>Fecha final:</b></div><div class="col-xs-6"> {{$fechaFinal}}</div>
+               <div class="col-xs-6"><b>Fecha final:</b></div><div class="col-xs-6"> {{$fechaFinalMolona}}</div>
              </div>
              <div class="col-xs-12 ">
 
