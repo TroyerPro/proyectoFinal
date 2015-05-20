@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Datatables;
 
 
+
 class SubastaController extends UserController {
 
     /*
@@ -121,6 +122,27 @@ class SubastaController extends UserController {
         return view('user.subasta.cerrar', compact('subasta'));
     }
 
+    public function getProrrogar($id)
+    {
+        $subasta = Subasta::find($id);
+        $confProrroga = Empresa::find(1);
+
+        $fechaFinal = Carbon\Carbon::createFromTimestamp(strtotime($subasta->fecha_final));
+        $fechaProrroga = "";
+        $fechaFinalMolona =  $fechaFinal->format('d/m/Y') ;
+        return view('user.subasta.prorrogar', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
+    }
+    public function postProrrogar($id)
+    {
+      die("xD");
+        $subasta = Subasta::find($id);
+        $confProrroga = Empresa::find(1);
+
+        $fechaFinal = Carbon\Carbon::createFromTimestamp(strtotime($subasta->fecha_final));
+        $fechaProrroga = "";
+        $fechaFinalMolona =  $fechaFinal->format('d/m/Y') ;
+        return view('user.subasta.prorrogar', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -188,7 +210,7 @@ class SubastaController extends UserController {
        Cerrada
        @endif')
        ->add_column('actions','@if(!$estado_subasta)
-       <a href="{{{ URL::to(\'user/chat/\' . $id  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
+       <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/prorrogar\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Ganador") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
@@ -241,4 +263,6 @@ class SubastaController extends UserController {
         }
         return $list;
     }
+
+
 }
