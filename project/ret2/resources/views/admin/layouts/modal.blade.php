@@ -103,7 +103,7 @@
 			                    var jsonResponse = jQuery.parseJSON(textResponse);
 
 			                    $.each(jsonResponse, function(n, elem) {
-			                        alertText = alertText + elem + "xD \n";
+			                        alertText = alertText + elem + "\n";
 			                    });
 			                    alert(alertText);
 			                });
