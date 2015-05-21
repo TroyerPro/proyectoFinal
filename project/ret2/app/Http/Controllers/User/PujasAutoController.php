@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Puja;
+use App\Confpujaauto;
 use App\Subasta;
 use App\Categoria;
 use Carbon\Carbon;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Datatables;
 use App\Http\Requests\Puja\PujaRequest;
 
-class PujasController extends UserController {
+class PujasAutoController extends UserController {
 
     /*
     * Display a listing of the resource.
@@ -40,8 +41,7 @@ class PujasController extends UserController {
           return redirect('home');
         }
 
-        // Show the page
-        return view('user.pujas.create', compact('subasta'));
+        return view('user.pujas.createAuto', compact('subasta'));
     }
 
     /**
@@ -49,19 +49,25 @@ class PujasController extends UserController {
      *
      * @return Response
      */
-    public function postCreate($id, PujaRequest $request)
+    public function postCreate($id)
     {
       $subasta = Subasta::find($id);
       if($subasta->estado_subasta) {
-        if($_POST['cantidad'] > $subasta->precio_actual) {
+        if($_POST['maximo'] > $subasta->precio_actual) {
           $puja = new Puja();
-          $puja -> cantidad = $request->input('cantidad');
+          $puja -> cantidad = $subasta->precio_actual+$_POST['increment'];
           $puja -> fecha = Carbon::now('Europe/Madrid');
           $puja -> id_subasta = $id;
           $puja -> id_usuario = Auth::user()->id;
-          $puja -> puja_auto = false;
-
+          $puja -> puja_auto = true;
           $puja -> save();
+
+          $pujaAuto = new Confpujaauto();
+          $pujaAuto->max_puja = $_POST['maximo'];
+          $pujaAuto->incrementar = $_POST['increment'];
+          $pujaAuto->id_usuario = Auth::user()->id;
+          $pujaAuto->id_puja = $puja->id;
+          $pujaAuto->save();
           if(SystemController::triggerPujasAuto($id,$puja->id)) {
             $subasta -> precio_actual = $puja -> cantidad;
             $subasta -> puja_ganadora = $puja -> id;

@@ -54,8 +54,6 @@
                                     <button type="submit" class="btn btn-primary" style="margin-right: 15px;">
                                         Entrar
                                     </button>
-
-                                    <a href="{!! URL::to('/password/email') !!}">¿Has olvidado tu password?</a>
                                 </div>
                             </div>
                         </form>

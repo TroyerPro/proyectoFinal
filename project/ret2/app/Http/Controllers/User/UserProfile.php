@@ -12,6 +12,9 @@ use Request;
 use Session;
 use App\User;
 use App\Subasta;
+use App\Http\Requests\User\ProfileRequest;
+use App\Http\Requests\User\PasswordRequest;
+
 class UserProfile extends Controller {
 
 	public function __construct()
@@ -54,14 +57,16 @@ class UserProfile extends Controller {
 		return view('user.profile.baja', compact('currentuser', 'success'));
 	}
 
-	public function postEdit() //falta $id
+	public function postEdit(ProfileRequest $request)
 	{
 		$id=Auth::user()->id;
 		$currentuser = User::find($id);
 		$currentuser-> name = $_POST['nombre'];
 		$currentuser-> surname = $_POST['apellidos'];
 		$currentuser-> nif = $_POST['nif'];
+		$currentuser-> ciudad=$_POST['ciudad'];
 		$currentuser-> email = $_POST['email'];
+		$currentuser-> descripcion =$_POST['texto'];
 		$currentuser->save();
 		$success = true;
 		return view('user.profile.view', compact('currentuser', 'success'));
@@ -74,15 +79,18 @@ class UserProfile extends Controller {
 		$name = $currentuser-> name;
 		return view('user.profile.password', compact('currentuser'));
 	}
-	public function postPassword()
+	
+	public function postPassword(PasswordRequest $request)
 	{
 		$id=Auth::user()->id;
 		$currentuser = User::find($id);
 
-		if($_POST['pass']==$_POST['pass2']) {
-			$currentuser -> password = 	bcrypt($_POST['pass']);
-			$success = true;
-			$currentuser->save();
+		if($currentuser->password == $_POST['oldpass']) {
+			if($_POST['pass']==$_POST['pass2']) {
+				$currentuser -> password = 	bcrypt($_POST['pass']);
+				$success = true;
+				$currentuser->save();
+			}
 		} else {
 			$success = false;
 		}

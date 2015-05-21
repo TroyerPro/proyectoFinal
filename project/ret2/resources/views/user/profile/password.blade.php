@@ -21,6 +21,7 @@
             @yield('main')
             <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/perfil/password') !!}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                @include('errors.list')
                 @if(isset($success))
                   @if($success)
                     <div class="alert alert-success alert-dismissible fade in" role="alert">
@@ -28,12 +29,18 @@
                         <strong>¡Se han realizado los cambios!</strong>
                     </div>
                     @else
-                    <div class="alert alert-fail alert-dismissible fade in" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <strong>¡MEEEK las passwords deben coincidir!</strong>
+                      <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                          <strong>Contraseña actual incorrecta.</strong>
+                      </div>
+                    @endif
+                @endif
+                <div class="form-group">
+                    <label class="col-md-4 control-label" >Contraseña actual</label>
+                    <div class="col-md-6">
+                        <input type="password" class="form-control" name="oldpass">
                     </div>
-                    @endif
-                    @endif
+                </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label" >Nueva contraseña</label>
                     <div class="col-md-6">
@@ -41,7 +48,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" >Repita la contraseña</label>
+                    <label class="col-md-4 control-label" >Repita la nueva contraseña</label>
                     <div class="col-md-6">
                         <input type="password" class="form-control" name="pass2">
                     </div>

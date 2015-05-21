@@ -10,7 +10,15 @@ class EmpresaTableSeeder extends Seeder {
 	public function run()
 	{
 
-		TestDummy::times(1)->create('App\Empresa');
+		\App\Empresa::create([
+			'nombre' => 'RET',
+	    'direccion' => 'c/Roger de Flor nº47 s.n',
+	    'precio_prorroga' => '10',
+	    'dias_subasta_gratis'=> '30',
+	    'tiempo_inactividad' => '30',
+		]);
+
+	//	TestDummy::times(1)->create('App\Empresa');
 
 	}
 

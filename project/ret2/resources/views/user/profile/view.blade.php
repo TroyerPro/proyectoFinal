@@ -28,6 +28,7 @@
             <div class="col-md-9">
               <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/perfil') !!}">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  @include('errors.list')
                   @if(isset($success))
                       <div class="alert alert-success alert-dismissible fade in" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -41,6 +42,12 @@
                           </div>
                           @endif
                   <div class="form-group">
+                      <label class="col-md-2 control-label" >NIF</label>
+                      <div class="col-md-8">
+                          <input type="text" class="form-control" name="nif" placeholder="{{ $currentuser-> nif }}" value="{{ $currentuser-> nif }}">
+                      </div>
+                  </div>
+                  <div class="form-group">
                       <label class="col-md-2 control-label" >Nombre</label>
                       <div class="col-md-8">
                           <input type="text" class="form-control" name="nombre" placeholder="{{ $currentuser-> name }}" value="{{ $currentuser-> name }}">
@@ -53,9 +60,9 @@
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-md-2 control-label" >NIF</label>
+                      <label class="col-md-2 control-label" >Ciudad</label>
                       <div class="col-md-8">
-                          <input type="text" class="form-control" name="nif" placeholder="{{ $currentuser-> nif }}" value="{{ $currentuser-> nif }}">
+                          <input type="text" class="form-control" name="ciudad" placeholder="{{ $currentuser-> ciudad }}" value="{{ $currentuser-> ciudad }}">
                       </div>
                   </div>
                   <div class="form-group">
@@ -87,6 +94,13 @@
                       </div>
                   </div>
                   <div class="form-group">
+                      <label class="col-md-2 control-label" >Texto de presentación:</label>
+                      <div class="col-md-8">
+                        <textarea type="text" class="form-control" name="texto" placeholder="{{ $currentuser-> descripcion }}" >{{ $currentuser-> descripcion }}</textarea>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
                       <div class="col-md-6 col-md-offset-1">
                         <div class="col-md-6">
                           <button type="submit" class="btn btn-primary">
@@ -114,7 +128,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
           $("#baja").click(function() {
-            var confirmar = confirm("Seguro que quieres darte de baja? Te recordamos que no podrás seguir utilizando más esta cuenta.");
+            var confirmar = confirm("¿Estás seguro de que quieres darte de baja? Te recordamos que no podrás seguir utilizando más esta cuenta.");
             if(confirmar) {
               window.location.href = "{{{ URL::to('user/perfil/baja') }}}";
             }

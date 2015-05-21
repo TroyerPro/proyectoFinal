@@ -54,7 +54,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('pujas/auto/data', 'User\PujasController@data2');
     Route::get('pujas/create/{id}','User\PujasController@getCreate');
     Route::post('pujas/create/{id}','User\PujasController@postCreate');
-
+    #Pujas AUTO 
+    Route::get('pujasAuto/create/{id}','User\PujasAutoController@getCreate');
+    Route::post('pujasAuto/create/{id}','User\PujasAutoController@postCreate');
     #Chat
     Route::get('chat','User\ChatController@show');
     Route::post('chat','User\ChatController@send');

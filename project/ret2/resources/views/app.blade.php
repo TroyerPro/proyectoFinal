@@ -20,6 +20,9 @@
     <link href="{{ asset('/css/jquery.autocomplete.css') }}" rel="stylesheet">
     {{--<link href="{{elixir('css/all.css')}}" rel="stylesheet">--}}
 
+    @yield('custom')
+
+
     {{-- TODO: Incorporate into elixer workflow. --}}
     <link rel="stylesheet"
           href="{{asset('assets/site/css/half-slider.css')}}">
@@ -66,6 +69,9 @@ Footer deshabilitado temporalmente
 {{-- TODO: Incorporate into elixir workflow. --}}
 <script src="{{asset('assets/site/js/jquery.justifiedGallery.min.js')}}"></script>
 <script src="{{asset('assets/site/js/lightbox.min.js')}}"></script>
+
+
+
 
 <script>
     $('#flash-overlay-modal').modal();
