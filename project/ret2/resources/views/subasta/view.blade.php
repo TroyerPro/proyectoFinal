@@ -1,3 +1,4 @@
+<div style="visibility:none">{{$hola = true}}</div>
 <div id="background-popup">
 </div>
 <div id="popup">
@@ -38,15 +39,23 @@
                <tbody></tbody>
            </table>
              @foreach ($pujas as $pujas)
+
               <div class="col-xs-4">
-                {{ $pujas->name }}
+                @if($hola) <span class="puja">{{ $pujas->name }}</span>
+                @else
+                <span>{{ $pujas->name }}</span>
+                @endif
+
+              </div>
+              <div class="col-xs-4 ">
+                @if($hola) <span class="puja">{{ $pujas->cantidad }}</span>  @else
+                  <span>{{ $pujas->cantidad }}</span> @endif
               </div>
               <div class="col-xs-4">
-                {{ $pujas->cantidad }}
+                @if($hola) <span class="puja">{{ $pujas->fecha }}</span>  @else
+                  <span>{{ $pujas->fecha }}</span> @endif
               </div>
-              <div class="col-xs-4">
-                {{ $pujas->fecha }}
-              </div>
+              {{$hola = false}}
              @endforeach
          </div>
          <div class="col-xs-6 under_panel">

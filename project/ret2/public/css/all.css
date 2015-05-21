@@ -12331,3 +12331,7 @@ li > ul {
    .btn-puja {
      margin-top: 20px;
    }
+
+   .puja{
+     background-color: lightgreen;
+   }
