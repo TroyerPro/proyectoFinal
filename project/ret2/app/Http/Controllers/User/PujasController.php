@@ -90,24 +90,7 @@ class PujasController extends UserController {
      * @return Response
      */
 
-    public function getDelete($id)
-    {
-        $news = Article::find($id);
-        // Show the page
-        return view('admin.news.delete', compact('news'));
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param $id
-     * @return Response
-     */
-    public function postDelete(DeleteRequest $request,$id)
-    {
-        $news = Article::find($id);
-        $news->delete();
-    }
 
 
     /**
