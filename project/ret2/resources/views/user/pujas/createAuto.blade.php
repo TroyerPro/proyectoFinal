@@ -15,7 +15,7 @@
           {{--<div class="panel-heading">Puja</div>--}}
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
-            <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/pujas/create/'.$subasta->id) !!}" enctype="multipart/form-data">
+            <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/pujasAuto/create/'.$subasta->id) !!}" enctype="multipart/form-data">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
               @if(isset($errorCant))
