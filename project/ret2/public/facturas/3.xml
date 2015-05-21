@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Factura><Empresa><Nombre>Geovany Maggio</Nombre><Direccion>Gage Flatley</Direccion></Empresa><Datos><Id_Factura>3</Id_Factura><Fecha>2015-03-04 00:00:00</Fecha></Datos><Usuarios><Vendedor><Nombre>Jalyn Veum</Nombre><Dni>974728243</Dni></Vendedor><Comprador><Nombre>Emilie Windler DDS</Nombre><Dni>814223923</Dni></Comprador></Usuarios><Subasta><Nombre>Boli</Nombre><Descripcion>Boligrafo azul precintado</Descripcion><Metodo_Pago>Efectivo</Metodo_Pago><Precio>5</Precio></Subasta></Factura>

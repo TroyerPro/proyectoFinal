@@ -104,9 +104,7 @@ class FacturaController extends UserController {
       $factura = Factura::find($subasta->id_factura);
 
       if(File::exists( "facturas/".$factura->id.".xml")){
-      //  var_dump("Pene");
-        return asset('facturas/'.$factura->id.'.xml');
-
+            return asset('facturas/'.$factura->id.'.xml');
       }
       else{
 
@@ -175,6 +173,8 @@ class FacturaController extends UserController {
       $string_value = $xml->saveXml();
 
       $xml->save('facturas/'.$factura->id.'.xml');
+      return asset('facturas/'.$factura->id.'.xml');
+
     }
 
 

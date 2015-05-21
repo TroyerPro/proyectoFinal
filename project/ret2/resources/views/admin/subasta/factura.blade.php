@@ -43,18 +43,19 @@
             </form>
 
                 <div class="col-md-12">
-                <button type="submit" class="btn btn-sm btn-warning close_popup">
-                  <span class="glyphicon glyphicon-ban-circle"></span> {{
-                  trans("Cerrar Subasta") }}
-                </button>
-                <button id ="pdf" class="btn btn-sm btn-succes close_popup">
+                <button id ="pdf" class="btn btn-sm btn-succes ">
                   <span class="glyphicon glyphicon-ban-circle"></span> {{
                   trans("PDF") }}
                 </button>
-                <button id="xml" class="btn btn-sm btn-succes close_popup">
+                <button id="xml" class="btn btn-sm btn-succes " >
                   <span class="glyphicon glyphicon-ban-circle"></span> {{
                   trans("XML") }}
                 </button>
+                <a id="axmlDownload" href="#" download><button type="button" id="xmlDownload" class="btn btn-sm btn-succes " style="display: none;">
+                  <span class="glyphicon glyphicon-ban-circle"></span>
+                      {{trans("Descargar XML") }}
+                </button></a>
+
               </div>
 
 
@@ -71,7 +72,8 @@
 $("#xml").click(function(){
 
   var id = $("#id").val();
-  alert(id);
+  var url = $("#id").val();
+
 
   $.ajaxSetup(
 {
@@ -85,12 +87,17 @@ $("#xml").click(function(){
     data: {id :id },
     method : "POST" ,
     success: function(result){
-      alert("XML generado con exito!");
-  }});
-  alert(id);
+      console.log(result);
+      $('#axmlDownload').attr('href', result);
+      $('#xmlDownload').show();
+      $('#xml').hide();
+
+    }
+  });
+  alert("Pk no te paras puto")
 });
 
 
 </script>
-
+@endsection
 @stop

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Factura><Empresa><Nombre>Geovany Maggio</Nombre><Direccion>Gage Flatley</Direccion></Empresa><Datos><Id_Factura>4</Id_Factura><Fecha>2015-03-04 00:00:00</Fecha></Datos><Usuarios><Vendedor><Nombre>Emilie Windler DDS</Nombre><Dni>814223923</Dni></Vendedor><Comprador><Nombre>Jettie Franecki</Nombre><Dni>331562564</Dni></Comprador></Usuarios><Subasta><Nombre>Ratón</Nombre><Descripcion>Ratón negro antiguo, con bola</Descripcion><Metodo_Pago>PayPal</Metodo_Pago><Precio>40</Precio></Subasta></Factura>
