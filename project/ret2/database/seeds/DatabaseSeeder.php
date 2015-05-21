@@ -17,16 +17,8 @@ class DatabaseSeeder extends Seeder {
         // Add calls to Seeders here
         $this->call('UsersTableSeeder');
     		$this->call('LanguagesTableSeeder');
-    		$this->call('ArticleCategoriesTableSeeder');
-    		$this->call('ArticlesTableSeeder');
-    		$this->call('PhotoAlbumsTableSeeder');
-        $this->call('PhotosTableSeeder');
-        $this->call('VideoAlbumsTableSeeder');
-        $this->call('VideosTableSeeder');
-        //########################################
         $this->call('EmpresaTableSeeder');
         $this->call('CategoriaTableSeeder');
-      //  $this->call('UsuarioTableSeeder');
         $this->call('FacturaTableSeeder');
         $this->call('SubastaTableSeeder');
         $this->call('PujaTableSeeder');
@@ -35,9 +27,6 @@ class DatabaseSeeder extends Seeder {
         $this->call('ConfpujaautoTableSeeder');
         $this->call('ChatusuariosTableSeeder');
         $this->call('LineaChatTableSeeder');
-
-
-
 
     }
 

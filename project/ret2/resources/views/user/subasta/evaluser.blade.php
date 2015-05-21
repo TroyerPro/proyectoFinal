@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
     <div class="page-header">
-        <h3>Evaluar a <strong>{{ $buyer->name }}</strong></h3>
+        <h3>Evaluar a <strong>{{ $usuario->name }}</strong></h3>
     </div>
 </div>
 
@@ -27,8 +27,9 @@
                     {{ trans("Nombre del Ganador") }}
                   </label>
                     <input class="form-control" type="text" name="nombre" id="nombre"
-                    value="{{ $buyer->name }}" readonly/>
-                </div>
+                    value="{{ $usuario->name }}" readonly/>
+                  <div class="col-md-12">
+                <input type="hidden" name="vendedor" value="{{ $vendedor }}"/></div>
                 <div class="col-md-12">
                   <label class="control-label" for="title">
                     {{ trans("Puntuación") }}

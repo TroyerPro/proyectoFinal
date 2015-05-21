@@ -25,6 +25,7 @@ class CreateEvalusuarioTable extends Migration
             $table->unsignedInteger('id_subasta')->nullable();
             $table->foreign('id_subasta')->references('id')->on('subastas');
             $table->string('comentario');
+            $table->boolean('vendedor');
             $table->timestamps();
         });
     }

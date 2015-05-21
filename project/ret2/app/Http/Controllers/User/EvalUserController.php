@@ -23,29 +23,45 @@ class EvalUserController extends UserController {
     public function show($id)
     {
         $rating=Rating::all();
+
         //id de la puja ganadora
-        $subasta=Subasta::select('subastas.id','subastas.puja_ganadora')
+        $subasta=Subasta::select('subastas.id','subastas.puja_ganadora','subastas.id_user_vendedor')
                       ->where('subastas.id',$id)
                       ->get()
                       ->first();
-        //id ganador a traves de la puja
-        $ganador=Puja::select('pujas.id_usuario')
-                        ->where('pujas.id',$subasta->puja_ganadora)
-                        ->get()
-                        ->first();
-        //datos ganador a traves de la puja
-        $buyer=User::select('users.id','users.name')
-                      ->where('users.id',$ganador->id_usuario)
+
+        if ($subasta->id_user_vendedor !=  Auth::id()){
+
+          //vendedor de la subasta
+          $usuario=User::select('users.id','users.name')
+                      ->where('users.id',$subasta->id_user_vendedor)
                       ->get()
                       ->first();
+          $vendedor=true;
+        }else{
 
-        return view('user.subasta.evaluser', compact('rating','buyer','subasta'));
+          //id ganador a traves de la puja
+          $ganador=Puja::select('pujas.id_usuario')
+                          ->where('pujas.id',$subasta->puja_ganadora)
+                          ->get()
+                          ->first();
+
+          //datos ganador a traves de la puja
+          $usuario=User::select('users.id','users.name')
+                        ->where('users.id',$ganador->id_usuario)
+                        ->get()
+                        ->first();
+                        $vendedor=false;
+        }
+
+        return view('user.subasta.evaluser', compact('rating','usuario','subasta','vendedor'));
     }
 
     public function postEvaluar($id)
     {
       $nota=$_POST['rating'];
       $comentario=$_POST['comentario'];
+      $vendedor=$_POST['vendedor'];
 
       $evaluado=User::select('users.id')
                       ->where('users.name',$_POST['nombre'])
@@ -58,8 +74,13 @@ class EvalUserController extends UserController {
       $evaluacion -> id_user_evaluador = Auth::id();
       $evaluacion -> id_user_evaluado= $evaluado->id;
       $evaluacion -> id_subasta=$id;
+      $evaluacion -> vendedor=$vendedor;
       $evaluacion ->save();
+
+      
 
       return view('user.subasta.index');
     }
+
+
 }
