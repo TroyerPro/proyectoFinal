@@ -113,6 +113,8 @@ return [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
+		'Barryvdh\Snappy\ServiceProvider',
+		'Barryvdh\DomPDF\ServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Bus\BusServiceProvider',

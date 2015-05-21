@@ -120,6 +120,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     #Factura
     Route::get('factura/{id}','Admin\SubastaController@factura');
     Route::post('factura/xml','Admin\FacturaController@generateXml');
+    Route::post('factura/pdf','Admin\FacturaController@generatePdf');
     //Route::get('factura/xml/{id}','Admin\FacturaController@getXml');
     /*Route::get('factura/xml', function(){
       $file= public_path()."/facturas/1.xml";

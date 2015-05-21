@@ -47,6 +47,10 @@
                   <span class="glyphicon glyphicon-ban-circle"></span> {{
                   trans("PDF") }}
                 </button>
+                <a id="apdfDownload" href="#" download><button type="button" id="pdfDownload" class="btn btn-sm btn-succes " style="display: none;">
+                  <span class="glyphicon glyphicon-ban-circle"></span>
+                      {{trans("Descargar XML") }}
+                </button></a>
                 <button id="xml" class="btn btn-sm btn-succes " >
                   <span class="glyphicon glyphicon-ban-circle"></span> {{
                   trans("XML") }}
@@ -72,8 +76,6 @@
 $("#xml").click(function(){
 
   var id = $("#id").val();
-  var url = $("#id").val();
-
 
   $.ajaxSetup(
 {
@@ -94,8 +96,34 @@ $("#xml").click(function(){
 
     }
   });
-  alert("Pk no te paras puto")
 });
+
+$("#pdf").click(function(){
+
+  var id = $("#id").val();
+
+  $.ajaxSetup(
+{
+	headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	}
+});
+
+  $.ajax({
+    url: "pdf",
+    data: {id :id },
+    method : "POST" ,
+    success: function(result){
+      console.log(result);
+      $('#apdfDownload').attr('href', result);
+      $('#pdfDownload').show();
+      $('#pdf').hide();
+
+    }
+  });
+});
+
+
 
 
 </script>

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Datatables;
 use Response;
 use File;
+use App;
 
 
 class FacturaController extends UserController {
@@ -83,19 +84,110 @@ class FacturaController extends UserController {
       return view('user.subasta.index');
 
     }
-    public function getXml($id){
-
+    public function generatePdf(){
       $id = $_POST['id'];
       $subasta =  Subasta::find($id);
       $factura = Factura::find($subasta->id_factura);
 
-      $file= asset( "facturas/".$factura->id.".xml");
-      $headers = array('Content-Type', 'text/xml');
+      /*if(File::exists( "facturas/".$factura->id.".xml")){
+            return asset('facturas/'.$factura->id.'.xml');
+      }
+      else{
 
-      return Response::download($file, '1.xml', ['Content-Type: text/xml']);
+      $idcomprador = Puja::find($subasta->puja_ganadora);
+      $comprador = User::find($idcomprador->id_usuario);
+      $vendedor = User::find($subasta->id_user_vendedor);
+      $empresa = Empresa::find(1);
 
-      //return Response::download($file, $factura->id.'.xml', $headers);
 
+      $xml = new DomDocument( "1.0", "UTF-8" );
+      $xml_factura = $xml->createElement( "Factura" );
+
+      //Empresa
+      $xml_empresa = $xml->createElement( "Empresa");
+      $xml_empNom = $xml->createElement( "Nombre",$empresa->nombre);
+      $xml_empDir = $xml->createElement( "Direccion",$empresa->direccion);
+
+      $xml_factura->appendChild($xml_empresa);
+      $xml_empresa->appendChild($xml_empNom);
+      $xml_empresa->appendChild($xml_empDir);
+
+      //Datos
+      $xml_datos = $xml->createElement("Datos");
+      $xml_id = $xml->createElement("Id_Factura",$factura->id);
+      $xml_fecha = $xml->createElement("Fecha",$factura->fecha);
+
+      $xml_factura->appendChild($xml_datos);
+      $xml_datos->appendChild($xml_id);
+      $xml_datos->appendChild($xml_fecha);
+
+
+      //Usuario
+      //Vendedor
+      $xml_user = $xml->createElement( "Usuarios");
+      $xml_vendedor = $xml->createElement( "Vendedor");
+      $xml_vendname = $xml->createElement( "Nombre",$vendedor->name);
+      $xml_venddni = $xml->createElement( "Dni",$vendedor->nif);
+      //Comprador
+      $xml_comprador = $xml->createElement( "Comprador");
+      $xml_compname = $xml->createElement( "Nombre",$comprador->name);
+      $xml_compdni = $xml->createElement( "Dni",$comprador->nif);
+
+      $xml_factura->appendChild($xml_user );
+      $xml_user->appendChild($xml_vendedor);
+      $xml_vendedor->appendChild($xml_vendname);
+      $xml_vendedor->appendChild($xml_venddni);
+      $xml_user->appendChild($xml_comprador);
+      $xml_comprador->appendChild($xml_compname);
+      $xml_comprador->appendChild($xml_compdni);
+
+      //Subasta
+      $xml_subasta = $xml->createElement( "Subasta");
+      $xml_nombre = $xml->createElement( "Nombre",$subasta->nombre);
+      $xml_descripcion = $xml->createElement( "Descripcion",$subasta->descripcion);
+      $xml_precio = $xml->createElement( "Precio",$factura->precio);
+      $xml_metodo = $xml->createElement( "Metodo_Pago",$subasta->metodo_pago);
+      $xml_factura->appendChild($xml_subasta );
+      $xml_subasta->appendChild($xml_nombre);
+      $xml_subasta->appendChild($xml_descripcion);
+      $xml_subasta->appendChild($xml_metodo);
+      $xml_subasta->appendChild($xml_precio);
+
+      $xml->appendChild( $xml_factura );
+
+      $xml->FormatOutput = true;
+      $string_value = $xml->saveXml();
+
+      $xml->save('facturas/'.$factura->id.'.xml');
+      return asset('facturas/'.$factura->id.'.xml');
+*/
+
+$pdf = App::make('snappy.pdf.wrapper');
+$pdf->loadHTML('<h1>Test</h1>');
+$pdf->save('facturas/test2.pdf');
+//return $pdf->stream();
+
+
+    /*  $pdf = App::make('dompdf'); //Note: in 0.6.x this will be 'dompdf.wrapper'
+      $url = asset("/site/css/bootstrap-theme.min.css");
+      $pdf->loadHTML('
+                      <html>
+                      <head>
+                      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                      <link rel="stylesheet" href="'.$url.'" media="all" />
+                      </head>
+                      <body style="background-color:lightgrey">
+
+                      <h1>This is a heading</h1>
+                      <div class="col-md-12">
+                      <div class="col-md-4"><p>This is a paragraph.</p></div>
+                      <div class="col-md-8"><p>'.$url.'</p></div>
+                      </div>
+
+                      </body>
+                      </html>');
+      $pdf->save('facturas/test.pdf');*/
+      return asset('facturas/test.pdf');
     }
 
     public function generateXml(){
@@ -174,7 +266,6 @@ class FacturaController extends UserController {
 
       $xml->save('facturas/'.$factura->id.'.xml');
       return asset('facturas/'.$factura->id.'.xml');
-
     }
 
 
