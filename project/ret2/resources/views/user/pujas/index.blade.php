@@ -7,15 +7,22 @@
 @section('main')
     <div class="page-header">
         <h3>
-            {{{ trans("Pujas Normales") }}}
+            {{{ trans("Pujas") }}}
         </h3>
     </div>
 
     @if(isset($success))
+      @if($success)
         <div class="alert alert-success alert-dismissible fade in" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
             <strong>¡Se ha realizado la puja con éxito!</strong>
         </div>
+        @else
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>¡Te han sobrepujado!</strong>
+        </div>
+        @endif
     @endif
 
     @if(isset($error))
