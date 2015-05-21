@@ -77,7 +77,35 @@ class EvalUserController extends UserController {
       $evaluacion -> vendedor=$vendedor;
       $evaluacion ->save();
 
-      
+      $usuario=User::find($evaluado->id);
+
+      $totalEvalVendedor=Evalusuarios::select('evalusuarios.id_rating')
+                                ->where('evalusuarios.id_user_evaluado',$evaluado->id)
+                                ->where('evalusuarios.vendedor',true)
+                                ->get();
+      $totalEvalComprador=Evalusuarios::select('evalusuarios.id_rating')
+                                ->where('evalusuarios.id_user_evaluado',$evaluado->id)
+                                ->where('evalusuarios.vendedor',false)
+                                ->get();
+
+      $sumasRatingVendedor=0;
+      $mediaVend=0;
+      $sumasRatingComprador=0;
+      $mediaComprador=0;
+
+      for ($i=0; $i <count($totalEvalVendedor) ; $i++) {
+        $sumasRatingVendedor+=$totalEvalVendedor[$i]->id_rating;
+      }
+      for ($i=0; $i <count($totalEvalComprador) ; $i++) {
+        $sumasRatingComprador+=$totalEvalVendedor[$i]->id_rating;
+      }
+
+      $mediaVend=$sumasRatingVendedor/count($totalEvalVendedor);
+      $mediaComprador=$sumasRatingComprador/count($totalEvalComprador);
+
+      $usuario->ratingvendedor=$mediaVend;
+      $usuario->ratingcomprador=$mediaComprador;
+      $usuario->save();
 
       return view('user.subasta.index');
     }
