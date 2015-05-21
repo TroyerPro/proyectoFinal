@@ -26,6 +26,12 @@ class PujasController extends UserController {
         return view('user.pujas.index');
     }
 
+    public function indexAuto()
+    {
+        // Show the page
+        return view('user.pujas.indexAuto');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -71,7 +77,7 @@ class PujasController extends UserController {
           return view('user.pujas.index', compact('success'));
 
         } else {
-          
+
           $errorCant = true;
           return view('user.pujas.create', compact('subasta', 'errorCant'));
         }
@@ -119,7 +125,40 @@ class PujasController extends UserController {
 
       $puja = Puja::select('subastas.id','pujas.cantidad','pujas.fecha','subastas.nombre', 'subastas.precio_actual', 'subastas.estado_subasta')
       ->where('pujas.id_usuario', Auth::id())
-      ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta');
+      ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta')
+      ->orderBy('pujas.fecha', 'DESC');
+
+      return Datatables::of($puja)
+      ->add_column('pujastatus','
+      @if($estado_subasta)
+        @if($precio_actual == $cantidad)
+           <div class="green">Vas ganando</div>
+           @else
+           <div class="red">Vas perdiendo</div>
+         @endif
+      @else
+        @if($precio_actual == $cantidad)
+           <div class="green">Has ganado la subasta!</div>
+           @else
+           <div class="red">Has perdido la subasta</div>
+         @endif
+      @endif'
+       )
+          ->add_column('actions','<a href="{{{ URL::to(\'search/subasta/view/\'.$id ) }}}" class="btn btn-sm btn-default"><span class="glyphicon"></span> {{ trans("Ir a la subasta") }}</a>
+                  ')
+          ->remove_column('id')
+          ->remove_column('precio_actual')
+          ->remove_column('estado_subasta')
+          ->make();
+    }
+    
+    public function data2()
+    {
+
+      $puja = Puja::select('subastas.id','pujas.cantidad','pujas.fecha','subastas.nombre', 'subastas.precio_actual', 'subastas.estado_subasta')
+      ->where('pujas.id_usuario', Auth::id())
+      ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta')
+      ->orderBy('pujas.fecha', 'DESC');
 
       return Datatables::of($puja)
       ->add_column('pujastatus','

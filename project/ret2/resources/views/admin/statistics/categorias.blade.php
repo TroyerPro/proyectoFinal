@@ -43,9 +43,10 @@
               data:{
                 "filtro":filtro
               },
-            }).done(function(data) {
+              success:function(data) {
                 $("#chart").html(data);
-            });
+              }
+            })
           });
     });
     </script>

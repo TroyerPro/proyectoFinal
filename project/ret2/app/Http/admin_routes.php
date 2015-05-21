@@ -104,6 +104,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('site/config', 'Admin\SiteConfig@show'); //Hecho
     Route::post('site/config', 'Admin\SiteConfig@postEdit'); //Hecho
     Route::get('estadisticas/users','ViewStats@statsUser');
+    Route::post('estadisticas/users','ViewStats@postStatsUser');
     Route::get('estadisticas/categorias','ViewStats@statsCategorias');
     Route::post('estadisticas/categorias','ViewStats@postStatsCategorias');
     Route::get('factura','GenerateFactura@show');

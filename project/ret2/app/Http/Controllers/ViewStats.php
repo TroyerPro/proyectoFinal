@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 use App\User;
+use App\Subasta;
 use App\Categoria;
+use Illuminate\Support\Facades\DB as DB;
 
 class ViewStats extends Controller {
 
@@ -27,16 +29,53 @@ class ViewStats extends Controller {
 				case '0':
 					break;
 				case '1':
-					$busqueda = Categoria::select('categoria.*')->groupBy('categoria.id_categoria');
-					dd($busqueda);
-					return compact('busqueda');
+				$busqueda = Categoria::select('subastas.*')->count();
+					return $busqueda;
 					break;
 				case '2':
 					$busqueda = 2;
 					return $busqueda;
 					break;
 				default:
+					break;
+			}
+		}
+	}
 
+	public function postStatsUser() //falta $id
+	{
+		if(isset($_REQUEST['filtro'])) {
+			$filtro = $_REQUEST['filtro'];
+			switch ($filtro) {
+				case '0':
+					break;
+				case '1':
+					$busqueda = Categoria::select('subastas.*')
+					->groupBy('subastas.id_categoria');
+					dd(DB::getQueryLog());
+					return $busqueda;
+					break;
+				case '2':
+					$busqueda = 2;
+					return $busqueda;
+					break;
+				case '3':
+					$busqueda = 3;
+					return $busqueda;
+					break;
+				case '4':
+					$busqueda = 4;
+					return $busqueda;
+					break;
+				case '5':
+					$busqueda = 5;
+					return $busqueda;
+					break;
+				case '6':
+					$busqueda = 6;
+					return $busqueda;
+					break;
+				default:
 					break;
 			}
 		}

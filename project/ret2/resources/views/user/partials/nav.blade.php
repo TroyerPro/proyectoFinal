@@ -56,11 +56,23 @@ Inicio</span>
         </ul>
     </li>
     <li {{ (Request::is('user/pujas*') ? ' class=active' : '') }} >
-        <a href="{{URL::to('user/pujas')}}"
-                >
-            <i class="fa fa-money"></i><span
-                    class="hidden-sm text"> Pujas</span>
+        <a href="#">
+            <i class="fa fa-money "></i> Pujas<span class="fa arrow"</span>
         </a>
+        <ul class="nav nav-second-level collapse">
+          <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+              <a href="{{URL::to('user/pujas')}}">
+                  <i class="glyphicon glyphicon-hand-right"></i><span
+                          class="hidden-sm text"> Normales</span>
+              </a>
+          </li>
+            <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+                <a href="{{URL::to('user/pujas/auto')}}">
+                    <i class="glyphicon glyphicon-hand-right"></i><span
+                            class="hidden-sm text "> Automáticas</span>
+                </a>
+            </li>
+        </ul>
     </li>
     <li {{ (Request::is('user/perfil*') ? ' class=active' : '') }} >
         <a href="{{URL::to('user/perfil')}}"
