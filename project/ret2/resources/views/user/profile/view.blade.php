@@ -59,6 +59,12 @@
                       </div>
                   </div>
                   <div class="form-group">
+                      <label class="col-md-2 control-label" >Ciudad</label>
+                      <div class="col-md-8">
+                          <input type="text" class="form-control" name="ciudad" placeholder="{{ $currentuser-> ciudad }}" value="{{ $currentuser-> ciudad }}">
+                      </div>
+                  </div>
+                  <div class="form-group">
                       <label class="col-md-2 control-label" >eMail</label>
                       <div class="col-md-8">
                           <input type="text" class="form-control" name="email" placeholder="{{ $currentuser-> email }}" value="{{ $currentuser-> email }}">
@@ -86,6 +92,13 @@
                         {{ $currentuser-> created_at }}
                       </div>
                   </div>
+                  <div class="form-group">
+                      <label class="col-md-2 control-label" >Texto de presentación:</label>
+                      <div class="col-md-8">
+                        <textarea type="text" class="form-control" name="texto" placeholder="{{ $currentuser-> descripcion }}" >{{ $currentuser-> descripcion }}</textarea>
+                      </div>
+                  </div>
+
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-1">
                         <div class="col-md-6">

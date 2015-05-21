@@ -61,7 +61,9 @@ class UserProfile extends Controller {
 		$currentuser-> name = $_POST['nombre'];
 		$currentuser-> surname = $_POST['apellidos'];
 		$currentuser-> nif = $_POST['nif'];
+		$currentuser-> ciudad=$_POST['ciudad'];
 		$currentuser-> email = $_POST['email'];
+		$currentuser-> descripcion =$_POST['texto'];
 		$currentuser->save();
 		$success = true;
 		return view('user.profile.view', compact('currentuser', 'success'));
