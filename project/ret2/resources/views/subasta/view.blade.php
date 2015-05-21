@@ -148,7 +148,12 @@
                  </div>
                @elseif ($subasta->estado_subasta == 1 && Auth::user()->id == $subasta->id_user_vendedor)
                  <div class="col-xs-12">
-                    <a href="{{URL::to('user/subastas')}}" class="iframe btn btn-info btn-mrg-top mrg-left">Ir configuración subasta</a>
+                   <div class="col-xs-6">
+                      <a href="{{URL::to('user/subastas')}}" class="iframe btn btn-info btn-mrg-top mrg-left">Ir configuración subasta</a>
+                   </div>
+                   <div class="col-xs-6">
+                     <a href="{{{ URL::to('user/subasta/'.$subasta->id.'/cerrar') }}}" class="iframe btn btn-danger btn-mrg-top mrg-left">{{ trans("Cerrar Subasta") }}</a>
+                   </div>
                  </div>
                @endif
              @endif

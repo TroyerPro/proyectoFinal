@@ -114,7 +114,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
           $("#baja").click(function() {
-            var confirmar = confirm("Seguro que quieres darte de baja? Te recordamos que no podrás seguir utilizando más esta cuenta.");
+            var confirmar = confirm("¿Estás seguro de que quieres darte de baja? Te recordamos que no podrás seguir utilizando más esta cuenta.");
             if(confirmar) {
               window.location.href = "{{{ URL::to('user/perfil/baja') }}}";
             }
