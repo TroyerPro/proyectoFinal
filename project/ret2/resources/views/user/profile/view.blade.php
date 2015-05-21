@@ -28,6 +28,7 @@
             <div class="col-md-9">
               <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('user/perfil') !!}">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  @include('errors.list')
                   @if(isset($success))
                       <div class="alert alert-success alert-dismissible fade in" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -41,6 +42,12 @@
                           </div>
                           @endif
                   <div class="form-group">
+                      <label class="col-md-2 control-label" >NIF</label>
+                      <div class="col-md-8">
+                          <input type="text" class="form-control" name="nif" placeholder="{{ $currentuser-> nif }}" value="{{ $currentuser-> nif }}">
+                      </div>
+                  </div>
+                  <div class="form-group">
                       <label class="col-md-2 control-label" >Nombre</label>
                       <div class="col-md-8">
                           <input type="text" class="form-control" name="nombre" placeholder="{{ $currentuser-> name }}" value="{{ $currentuser-> name }}">
@@ -50,12 +57,6 @@
                       <label class="col-md-2 control-label" >Apellidos</label>
                       <div class="col-md-8">
                           <input type="text" class="form-control" name="apellidos" placeholder="{{ $currentuser-> surname }}" value="{{ $currentuser-> surname }}">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="col-md-2 control-label" >NIF</label>
-                      <div class="col-md-8">
-                          <input type="text" class="form-control" name="nif" placeholder="{{ $currentuser-> nif }}" value="{{ $currentuser-> nif }}">
                       </div>
                   </div>
                   <div class="form-group">
