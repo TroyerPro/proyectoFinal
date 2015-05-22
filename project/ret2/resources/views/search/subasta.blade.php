@@ -145,7 +145,7 @@
                   <figcaption>
                     <h5 class="m_bottom_10"><a href="#" class="color_dark">{{$subasta->nombre}}</a></h5>
                     <div class="clearfix">
-                      <p class="scheme_color f_left f_size_large m_bottom_15">Puja: @if($subasta->puja_ganadora != 0){{$subasta->puja_ganadora}}@else 0 @endif €</p><br/>
+                      <p class="scheme_color f_left f_size_large m_bottom_15">Puja: @if($subasta->precio_actual != 0){{$subasta->precio_actual}}@else {{$subasta->precio_inicial}} @endif €</p><br/>
                       <!--rating-->
                     </div>
                     <a class="btn btn-info btn-sm" href="{!! URL::to('/search/subasta/view/'.$subasta->id) !!}">Ir a la subasta</a>
