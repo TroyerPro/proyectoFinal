@@ -47,10 +47,10 @@ class HomeController extends Controller {
 	{
 
 		$categoria = Categoria::all();
-		$bid = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
-		$bid2 = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
+		$subasta = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
 
-		return view('pages.home', compact('categoria', 'bid','bid2'));
+
+		return view('pages.home', compact('categoria', 'subasta'));
 	}
 
 }

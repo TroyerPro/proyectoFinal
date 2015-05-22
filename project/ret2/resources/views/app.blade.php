@@ -19,10 +19,6 @@
     <link href="{{ asset('/css/tinycarousel.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/jquery.autocomplete.css') }}" rel="stylesheet">
     {{--<link href="{{elixir('css/all.css')}}" rel="stylesheet">--}}
-
-    @yield('custom')
-
-
     {{-- TODO: Incorporate into elixer workflow. --}}
     <link rel="stylesheet"
           href="{{asset('assets/site/css/half-slider.css')}}">
@@ -33,7 +29,7 @@
     <link rel="stylesheet" href="{{asset('assets/site/css/bootstrap-theme.min.css')}}">
 
     @yield('styles')
-
+    @yield('custom')
     <!-- Fonts -->
 
     <!--
