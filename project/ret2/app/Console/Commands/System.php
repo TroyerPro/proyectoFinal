@@ -4,6 +4,8 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use App\Chatusuarios;
+use App\Categoria;
+use Carbon\Carbon;
 
 use App\Http\Controllers\System\SystemController;
 
@@ -30,7 +32,10 @@ class System extends Command {
 	 */
 	public function handle()
 	{
-		SystemController:cerrarSubastas();
+		SystemController::cerrarSubastas();
+		$categoria = Categoria::find(1);
+		$categoria->descripcion = Carbon::now();
+		$categoria->save();
 	}
 
 }
