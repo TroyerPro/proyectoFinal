@@ -41,6 +41,20 @@ class UsersTableSeeder extends Seeder {
 			'confirmation_code' => md5(microtime() . env('APP_KEY')),
 		]);
 
+		\App\User::create([
+			'name' => 'User3',
+			'username' => 'User3',
+			'nif'=>'User3',
+			'email' => 'user3@user3.com',
+			'password' => bcrypt('123123'),
+			'usable' => true,
+			'ratingvendedor' => 5,
+			'ratingcomprador' => 5,
+			'actividad' => false,
+			'confirmed' => 1,
+			'confirmation_code' => md5(microtime() . env('APP_KEY')),
+		]);
+
 		TestDummy::times(10)->create('App\User');
 
 	}
