@@ -4179,3 +4179,8 @@ max-height: 100px;
 border-radius: 30px !important;
 
 }
+.imagen_profilev2 {
+	height:100%;
+	width:300px;
+	max-height: 300px !important;
+}
