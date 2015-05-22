@@ -104,8 +104,8 @@ class FacturaController extends UserController {
       $fecha = $fecha -> format('d/m/Y');
 
       $pdf = App::make('dompdf'); //Note: in 0.6.x this will be 'dompdf.wrapper'
-          $logo = asset("/img/logo-med.png");
-          $pdf->loadHTML('<html>
+      $logo = asset("/img/logo-med.png");
+      $pdf->loadHTML('<html>
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     </head>
