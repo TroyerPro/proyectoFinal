@@ -7,6 +7,7 @@ use App\Puja;
 use Carbon\Carbon;
 use App\Confpujaauto;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SystemController extends Controller {
 
@@ -69,7 +70,7 @@ de la puja nueva + el incremento de la automatica
     if($pujasAutos) {
       foreach ($pujasAutos as $pujas2) {
         $confPuja = Confpujaauto::select('confpujaautos.id','confpujaautos.max_puja','confpujaautos.incrementar','confpujaautos.id_usuario','confpujaautos.id_puja')
-        ->where('Confpujaautos.id_puja',$pujas2->id)
+        ->where('confpujaautos.id_puja',$pujas2->id)
         ->get()->first();
          if($pujaNueva->cantidad<$confPuja->max_puja) {
            $puja = new Puja();
@@ -98,6 +99,83 @@ de la puja nueva + el incremento de la automatica
     }
     return true;
 	}
+
+  public static function triggerAutoVsAuto($subastaId,$autoNewId)
+	{
+    $subasta = Subasta::find($subastaId);
+    $autoNew=Confpujaauto::find($autoNewId);
+
+    $pujasAutos = Puja::select('pujas.*')
+    ->where('pujas.id_subasta',$subasta->id)
+    ->where('puja_auto', true)
+    ->get()
+    ->first();
+
+    if($pujasAutos) {
+      $autoOld=Confpujaauto::select('confpujaautos.*')
+                            ->where('confpujaautos.id_puja',$pujasAutos->id)
+                            ->get()
+                            ->first();
+      if($autoOld->max_puja<$autoNew->max_puja) {
+          $pujamenor = new Puja();
+          $pujamenor -> cantidad = $autoOld->max_puja;
+          $pujamenor -> fecha = Carbon::now('Europe/Madrid');
+          $pujamenor -> id_subasta = $subastaId;
+          $pujamenor -> id_usuario = $pujasAutos->id_usuario;
+          $pujamenor -> save();
+
+           $puja = new Puja();
+           $puja -> cantidad = $autoOld->max_puja+$autoNew->incrementar;
+           $puja -> fecha = Carbon::now('Europe/Madrid');
+           $puja -> id_subasta = $subastaId;
+           $puja -> id_usuario = Auth::id();
+           $puja -> puja_auto = true;
+           $puja -> save();
+
+           $autoNew->id_puja=$puja->id;
+           $autoNew->save();
+           $autoOld->delete();
+
+           $pujasAutos->puja_auto = false;
+           $pujasAutos->save();
+
+           $subasta -> precio_actual = $autoOld->max_puja+$autoNew->incrementar;
+           $subasta -> puja_ganadora = $puja->id;
+           $subasta->save();
+
+           return false;
+         }else{
+           $pujamenor = new Puja();
+           $pujamenor -> cantidad = $autoNew->max_puja;
+           $pujamenor -> fecha = Carbon::now('Europe/Madrid');
+           $pujamenor -> id_subasta = $subastaId;
+           $pujamenor -> id_usuario = Auth::id();
+           $pujamenor -> save();
+
+           $puja = new Puja();
+           $puja -> cantidad = $autoNew->max_puja+$autoOld->incrementar;
+           $puja -> fecha = Carbon::now('Europe/Madrid');
+           $puja -> id_subasta = $subastaId;
+           $puja -> id_usuario = $pujasAutos->id_usuario;
+           $puja -> puja_auto = true;
+           $puja -> save();
+
+
+           $pujasAutos->puja_auto = false;
+           $pujasAutos->save();
+
+           $autoOld->id_puja=$puja->id;
+           $autoOld->save();
+           $autoNew->delete();
+
+           $subasta -> precio_actual = $autoNew->max_puja+$autoOld->incrementar;
+           $subasta -> puja_ganadora = $puja->id;
+           $subasta->save();
+         }
+      }
+      return true;
+    }
+
 
 
 
