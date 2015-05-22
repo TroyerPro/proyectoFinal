@@ -13,7 +13,7 @@ class SystemController extends Controller {
 
   public function __construct()
 	{
-		$this->middleware('auth', [ 'except' => [ 'checkSubasta' ] ]);
+		$this->middleware('auth', [ 'except' => [ 'checkSubasta', 'cerrarSubastas' ] ]);
 	}
 
 	public static function checkSubasta($subastaId)
