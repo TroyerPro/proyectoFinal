@@ -59,10 +59,16 @@
                 @endif
                 <div class="form-group">
                     <label class="col-md-4 control-label">Máximo (€):</label>
-
+                    @if($subasta->precio_actual == 0)
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="maximo" value="{{ $subasta->precio_inicial +0.01 }}">
                     </div>
+                    @else
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="maximo" value="{{ $subasta->precio_actual +0.01 }}">
+                    </div>
+                    @endif
+
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label">Incrementación (€):</label>

@@ -54,31 +54,14 @@ class PujasAutoController extends UserController {
       $subasta = Subasta::find($id);
       if($subasta->estado_subasta) {
         if($_POST['maximo'] > $subasta->precio_actual) {
-          $puja = new Puja();
-          $puja -> cantidad = $subasta->precio_actual+$_POST['increment'];
-          $puja -> fecha = Carbon::now('Europe/Madrid');
-          $puja -> id_subasta = $id;
-          $puja -> id_usuario = Auth::user()->id;
-          $puja -> puja_auto = true;
-          $puja -> save();
-
           $pujaAuto = new Confpujaauto();
           $pujaAuto->max_puja = $_POST['maximo'];
           $pujaAuto->incrementar = $_POST['increment'];
           $pujaAuto->id_usuario = Auth::user()->id;
-          $pujaAuto->id_puja = $puja->id;
           $pujaAuto->save();
-          if(SystemController::triggerPujasAuto($id,$puja->id)) {
-            $subasta -> precio_actual = $puja -> cantidad;
-            $subasta -> puja_ganadora = $puja -> id;
-            $subasta -> save();
-            $success = true;
+          if (SystemController::triggerAutoVsAuto($id,$pujaAuto->id)) {
+            return view('user.pujas.index', compact('success'));
           } else {
-            $success = false;
-          }
-          return view('user.pujas.index', compact('success'));
-
-        } else {
           $errorCant = true;
           return view('user.pujas.create', compact('subasta', 'errorCant'));
         }
@@ -88,6 +71,7 @@ class PujasAutoController extends UserController {
       }
 
     }
+  }
 
     /**
      * Remove the specified resource from storage.
