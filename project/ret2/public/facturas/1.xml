@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Factura><Empresa><Nombre>RET</Nombre><Direccion>c/Roger de Flor nº47 s.n</Direccion></Empresa><Datos><Id_Factura>1</Id_Factura><Fecha>2015-03-04 00:00:00</Fecha></Datos><Usuarios><Vendedor><Nombre>Test User</Nombre><Dni>nifUser</Dni></Vendedor><Comprador><Nombre>Admin User</Nombre><Dni>nifAdmin</Dni></Comprador></Usuarios><Subasta><Nombre>Camiseta Real Madrid</Nombre><Descripcion>Camiseta nueva del Real Madrid temporada 14/15, 1a equipación</Descripcion><Metodo_Pago>Tarjeta</Metodo_Pago><Precio>25</Precio></Subasta></Factura>
