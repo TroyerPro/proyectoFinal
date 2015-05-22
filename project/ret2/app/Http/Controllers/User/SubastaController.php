@@ -236,6 +236,7 @@ class SubastaController extends UserController {
       {
         $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual')
         ->where('pujas.id_usuario',Auth::id())
+        ->where('subastas.estado_subasta',false)
         ->join('pujas','subastas.puja_ganadora','=','pujas.id');
 
         return Datatables::of($subasta)

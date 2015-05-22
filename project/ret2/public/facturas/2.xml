@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Factura><Empresa><Nombre>Geovany Maggio</Nombre><Direccion/></Empresa><Datos><Id_Factura>2</Id_Factura><Fecha>2015-03-04 00:00:00</Fecha></Datos><Usuarios><Vendedor><Nombre>Miss Modesta Keeling II</Nombre><Dni>934695859</Dni></Vendedor><Comprador><Nombre>Jalyn Veum</Nombre><Dni>974728243</Dni></Comprador></Usuarios><Subasta><Nombre>Estuche</Nombre><Precio>10</Precio><Metodo>PayPal</Metodo><Descripcion>Estuche azul con cremallera</Descripcion></Subasta></Factura>

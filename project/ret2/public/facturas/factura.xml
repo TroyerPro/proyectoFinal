@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Factura><Datos><Id>1</Id></Datos><Usuarios><Vendedor><Nombre>Jettie Franecki</Nombre><Dni>331562564</Dni></Vendedor><Comprador><Nombre>Dr. Mackenzie Oberbrunner PhD</Nombre><Dni>646826978</Dni></Comprador></Usuarios><Subasta><Nombre>Teclado</Nombre><Precio>25</Precio><Metodo>Tarjeta</Metodo><Descripcion>Teclado con todas sus teclas</Descripcion></Subasta></Factura>

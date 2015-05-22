@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Factura><Empresa><Nombre>Geovany Maggio</Nombre><Direccion>Gage Flatley</Direccion></Empresa><Datos><Id_Factura>5</Id_Factura><Fecha>2015-03-04 00:00:00</Fecha></Datos><Usuarios><Vendedor><Nombre>Jettie Franecki</Nombre><Dni>331562564</Dni></Vendedor><Comprador><Nombre>Dr. Mackenzie Oberbrunner PhD</Nombre><Dni>646826978</Dni></Comprador></Usuarios><Subasta><Nombre>Teclado</Nombre><Descripcion>Teclado con todas sus teclas</Descripcion><Metodo_Pago>Tarjeta</Metodo_Pago><Precio>12</Precio></Subasta></Factura>
