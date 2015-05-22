@@ -5,6 +5,7 @@ use App\Categoria;
 use App\Article;
 use App\Photo;
 use App\VideoAlbum;
+use App\Http\Controllers\System\SystemController;
 use App\PhotoAlbum;
 use Illuminate\Database\Eloquent;
 use Illuminate\Support\Facades\DB;
@@ -45,9 +46,11 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-
+		SystemController::cerrarSubastas();
 		$categoria = Categoria::all();
 		$subasta = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
+
+
 
 
 		return view('pages.home', compact('categoria', 'subasta'));

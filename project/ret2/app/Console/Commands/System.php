@@ -30,8 +30,7 @@ class System extends Command {
 	 */
 	public function handle()
 	{
-		$chat = Chatusuarios::create(['id_user1' => '9'],['id_user2' => '9'],['id_subasta' => '9']);
-		$chat->save();
+		SystemController:cerrarSubastas();
 	}
 
 }

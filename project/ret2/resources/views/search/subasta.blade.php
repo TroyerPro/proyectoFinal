@@ -1,5 +1,9 @@
 @extends('app')
-@section('title') Contact :: @parent @stop
+@section('custom')
+<link rel="stylesheet" type="text/css" media="all" href="{{ asset('/css/owl.carousel.css') }}">
+<link rel="stylesheet" type="text/css" media="all" href="{{ asset('/css/owl.transitions.css') }}">
+<link rel="stylesheet" type="text/css" media="all" href="{{ asset('/css/style.css') }}">
+@endsection
 @section('content')
 {{-- Scripts --}}
 @section('scripts')
@@ -47,8 +51,6 @@
       <div class="col-xs-3">
 
         <ul class="nav nav-pills nav-stacked" id="menu">
-
-
             <li>
               <form method="post">
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
@@ -123,32 +125,36 @@
       </div>
       <div class="col-xs-9">
         <div id="ResultItems" class="">
-          @if (count($bid) === 0)
+          @if (count($subasta) === 0)
             <div class="col-xs-12" style="border-bottom:solid grey 1px;margin-top:2%;">
               <h4>No hay subastas con esos parametros de busqueda</h4>
             </div>
           @else
-            @foreach ($bid as $bid)
-            <div class="col-xs-12" style="border-bottom:solid grey 1px;margin-top:2%;">
-              <div class="col-xs-12" style="margin-bottom:1%;">
-                <div class="col-xs-5">
-                  <a href="subasta/view/{{ $bid->id }}"><img class="imagensubasta" src="{{ URL::asset('img/subasta/'.$bid->imagen) }}"></a>
-                </div>
-                <div class="col-xs-7">
-                  <h4>{{ $bid->nombre }}</h4>
-                  <div_precio class="col-xs-12">
-                    Precio actual: {{ $bid->precio_actual }}€
-                  </div_precio>
-                  <div_precio class="col-xs-12">
-                    Precio inicial: {{ $bid->precio_inicial }}€
-                  </div_precio>
-                  <div_fecha class="col-xs-12">
-                    {{ $bid->fecha_final }}
-                  </div_fecha>
-                </div>
-              </div>
-            </div>
-            @endforeach
+          <section class="products_container clearfix m_bottom_25 m_sm_bottom_15">
+              @foreach ($subasta as $subasta)
+
+              <!--product item-->
+              <div class="product_item {{$subasta->id_categoria}}">
+                <figure class="r_corners photoframe shadow relative animate_ftb long">
+                  <!--product preview-->
+                  <a href="#" class="d_block relative pp_wrap">
+                    <!--sale product-->
+                    <img class="imangen_subasta_home" src="{{ URL::asset('img/subasta/'.$subasta->imagen) }}">
+                  </a>
+                  <!--description and price of product-->
+                  <figcaption>
+                    <h5 class="m_bottom_10"><a href="#" class="color_dark">{{$subasta->nombre}}</a></h5>
+                    <div class="clearfix">
+                      <p class="scheme_color f_left f_size_large m_bottom_15">Puja: @if($subasta->puja_ganadora != 0){{$subasta->puja_ganadora}}@else 0 @endif €</p><br/>
+                      <!--rating-->
+                    </div>
+                    <a class="btn btn-info btn-sm" href="{!! URL::to('/search/subasta/view/'.$subasta->id) !!}">Ir a la subasta</a>
+
+                  </figcaption>
+                </figure>
+              </div>	<!--product item-->
+              @endforeach
+            </section>
           @endif
         </div>
       </div>
@@ -156,5 +162,11 @@
   </div>
 </div>
 
+<script src="{{asset('assets/site/js/jquery-2.1.0.min.js')}}"></script>
+<script src="{{asset('assets/site/js/jquery-migrate-1.2.1.min.js')}}"></script>
 
+<script src="{{asset('assets/site/js/waypoints.min.js')}}"></script>
+<script src="{{asset('assets/site/js/jquery.isotope.min.js')}}"></script>
+
+<script src="{{asset('assets/site/js/scripts.js')}}"></script>
 @endsection

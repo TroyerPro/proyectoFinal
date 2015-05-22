@@ -15,6 +15,8 @@ class SubastaSearch extends Controller {
 
 	public function show() //falta $id
 	{
+
+		SystemController::cerrarSubastas();
 		if (isset($_REQUEST['categoria']) || isset($_REQUEST['nombre']) || isset($_REQUEST['pmax']) ||
 		isset($_REQUEST['pmin']) || isset($_REQUEST['metPago']) || isset($_REQUEST['estado'])) {
 
@@ -39,7 +41,7 @@ class SubastaSearch extends Controller {
 
 			//dd($datos);
 			//die();
-			$bid = Subasta::select('subastas.*')->where('subastas.id_categoria','like','%'.$datos['categoria'].'%')
+			$subasta = Subasta::select('subastas.*')->where('subastas.id_categoria','like','%'.$datos['categoria'].'%')
 																					->where('subastas.nombre','like','%'.$datos['nombre'].'%')
 																					->where('subastas.precio_actual','<=',$datos['pmax'])
 																					->where('subastas.precio_actual','>=',$datos['pmin'])
@@ -49,29 +51,27 @@ class SubastaSearch extends Controller {
 																					->get();
 
 		}else{
-				$bid = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
+			$subasta = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
 		}
 
-		for ($i=0; $i <count($bid) ; $i++) {
-			SystemController::checkSubasta($bid[$i]->id);
-		}
+
 
 
 			$categoria = Categoria::all();
 
-			return view('search.subasta', compact('bid','categoria'));
+			return view('search.subasta', compact('subasta','categoria'));
 	}
 
 
 	public function filtro($id)
 	{
 
-		$bid = Subasta::select('subastas.*')->where('subastas.id_categoria',$id)
+		$subasta = Subasta::select('subastas.*')->where('subastas.id_categoria',$id)
 																				->where('subastas.estado_subasta',true)
 																				->get();
 		$categoria = Categoria::all();
 
-		return view('search.subasta', compact('bid','categoria'));
+		return view('search.subasta', compact('subasta','categoria'));
 
 	}
 

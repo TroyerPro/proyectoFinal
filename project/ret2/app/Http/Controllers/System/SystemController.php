@@ -48,7 +48,7 @@ class SystemController extends Controller {
   public static function cerrarSubastas()
 	{
     $suabastas = Subasta::all();
-    for ($i=0; $i < count($subastas) ; $i++) {
+    for ($i=0; $i < count($suabastas) ; $i++) {
       SystemController::checkSubasta($suabastas[$i]->id);
     }
 	}

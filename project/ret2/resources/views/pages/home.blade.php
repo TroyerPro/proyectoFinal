@@ -36,7 +36,6 @@
         <!--filter navigation of products-->
   					<ul class="horizontal_list clearfix tt_uppercase isotope_menu f_size_ex_large">
   						<li class="active m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter="*">Todas</button></li>
-              <li class="m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter=".featured">Featured</button></li>
               @foreach ($categoria as $categoria)
               <li class="m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter=".{{$categoria->id}}">{{$categoria->nombre}}</button></li>
   						@endforeach
@@ -57,7 +56,7 @@
   								<figcaption>
   									<h5 class="m_bottom_10"><a href="#" class="color_dark">{{$subasta->nombre}}</a></h5>
   									<div class="clearfix">
-  										<p class="scheme_color f_left f_size_large m_bottom_15">Puja: {{$subasta->puja_ganadora}} €</p><br/>
+  										<p class="scheme_color f_left f_size_large m_bottom_15">Puja: @if($subasta->puja_ganadora != 0){{$subasta->puja_ganadora}}@else 0 @endif €</p><br/>
   										<!--rating-->
   									</div>
                     <a class="btn btn-info btn-sm" href="{!! URL::to('/search/subasta/view/'.$subasta->id) !!}">Ir a la subasta</a>

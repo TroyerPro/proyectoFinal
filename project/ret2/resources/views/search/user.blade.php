@@ -1,5 +1,9 @@
 @extends('app')
-@section('title') Contact :: @parent @stop
+@section('custom')
+<link rel="stylesheet" type="text/css" media="all" href="{{ asset('/css/owl.carousel.css') }}">
+<link rel="stylesheet" type="text/css" media="all" href="{{ asset('/css/owl.transitions.css') }}">
+<link rel="stylesheet" type="text/css" media="all" href="{{ asset('/css/style.css') }}">
+@endsection
 @section('content')
 
 {{-- Scripts --}}
@@ -80,25 +84,42 @@
             <h4>No hay usuarios con ese nombre</h4>
           </div>
         @else
-          @foreach ($user2 as $user2)
-          <div class="col-xs-12" style="border-bottom:solid grey 1px;margin-top:2%;">
-              <div class="col-xs-5">
-                <a href="user/view/{{ $user->id }}">imagen del user</a>
-              </div>
-              <div class="col-xs-3">
-                <h4>{{ $user2->name }}</h4>
-              </div>
-              <div class="col-xs-4">
-                <h4>{{ $user2->email }}</h4>
-              </div>
 
-          </div>
-          @endforeach
-        @endif
-      </div>
+        <section class="products_container clearfix m_bottom_25 m_sm_bottom_15" style="width:1">
+            @foreach ($user2 as $user2)
+
+            <!--product item-->
+            <div class="product_item">
+              <figure class="r_corners photoframe shadow relative animate_ftb long">
+                <!--product preview-->
+                <a href="{!! URL::to('/search/user/view/'.$user2->id) !!}" class="d_block relative pp_wrap">
+                  <!--sale product-->
+                  <img class="imangen_profile" src="{{ URL::asset('img/profile/'.$user2->imagen) }}">
+                </a>
+                <!--description and price of product-->
+                <figcaption>
+                  <h5 class="m_bottom_10"><a href="#" class="color_dark">{{ $user2->name }}</a></h5>
+                  <div class="clearfix">
+                  </div>
+
+                </figcaption>
+              </figure>
+            </div>
+
+            @endforeach
+          </section>
+          @endif
     </div>
   </div>
 </div>
+
+<script src="{{asset('assets/site/js/jquery-2.1.0.min.js')}}"></script>
+<script src="{{asset('assets/site/js/jquery-migrate-1.2.1.min.js')}}"></script>
+
+<script src="{{asset('assets/site/js/waypoints.min.js')}}"></script>
+<script src="{{asset('assets/site/js/jquery.isotope.min.js')}}"></script>
+
+<script src="{{asset('assets/site/js/scripts.js')}}"></script>
 
 
 @endsection
