@@ -7,7 +7,7 @@ use App\Evalusuarios;
 use App\Empresa;
 use App\Categoria;
 use App\Chatusuarios;
-use Carbon;
+use Carbon\Carbon;
 use DateTimeZone;
 use DateTime;
 use Validator;
@@ -117,7 +117,6 @@ class SubastaController extends UserController {
   public function getCerrar($id)
   {
     $subasta = Subasta::find($id);
-    SystemController::crearChat($id);
     return view('user.subasta.cerrar', compact('subasta'));
   }
 
@@ -125,7 +124,7 @@ class SubastaController extends UserController {
   {
     $subasta = Subasta::find($id);
     $confProrroga = Empresa::find(1);
-    $fechaFinal = Carbon\Carbon::createFromTimestamp(strtotime($subasta->fecha_final));
+    $fechaFinal = Carbon::createFromTimestamp(strtotime($subasta->fecha_final));
     $fechaProrroga = "";
     $fechaFinalMolona =  $fechaFinal->format('d/m/Y') ;
     return view('user.subasta.prorrogar', compact('subasta','fechaFinalMolona','confProrroga','fechaProrroga'));
@@ -155,7 +154,10 @@ class SubastaController extends UserController {
   {
     $subasta = Subasta::find($id);
     $subasta -> estado_subasta = false;
+    $subasta -> fecha_final = Carbon::now();
     $subasta -> save();
+    SystemController::crearChat($id);
+
   }
 
 
