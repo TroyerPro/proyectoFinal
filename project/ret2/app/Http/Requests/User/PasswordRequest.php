@@ -13,7 +13,6 @@ class PasswordRequest extends FormRequest {
 	{
 
 		return [
-        'oldpass' => 'required',
         'pass' => 'required|same:pass2',
         'pass2' => 'required',
 		];

@@ -79,21 +79,17 @@ class UserProfile extends Controller {
 		$name = $currentuser-> name;
 		return view('user.profile.password', compact('currentuser'));
 	}
-	
+
 	public function postPassword(PasswordRequest $request)
 	{
 		$id=Auth::user()->id;
 		$currentuser = User::find($id);
 
-		if($currentuser->password == $_POST['oldpass']) {
 			if($_POST['pass']==$_POST['pass2']) {
 				$currentuser -> password = 	bcrypt($_POST['pass']);
 				$success = true;
 				$currentuser->save();
 			}
-		} else {
-			$success = false;
-		}
 
 		return view('user.profile.password', compact('currentuser', 'success'));
 	}

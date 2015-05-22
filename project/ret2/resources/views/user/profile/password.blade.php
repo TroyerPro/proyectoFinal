@@ -28,19 +28,8 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                         <strong>¡Se han realizado los cambios!</strong>
                     </div>
-                    @else
-                      <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <strong>Contraseña actual incorrecta.</strong>
-                      </div>
                     @endif
                 @endif
-                <div class="form-group">
-                    <label class="col-md-4 control-label" >Contraseña actual</label>
-                    <div class="col-md-6">
-                        <input type="password" class="form-control" name="oldpass">
-                    </div>
-                </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label" >Nueva contraseña</label>
                     <div class="col-md-6">
