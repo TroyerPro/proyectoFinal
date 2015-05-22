@@ -44,7 +44,7 @@
 
                 "processing": true,
                 "serverSide": true,
-                "ajax": "{{ URL::to('user/pujas/data/' )}}",
+                "ajax": "{{ URL::to('user/pujas/auto/data' )}}",
                 "fnDrawCallback": function (oSettings) {
                     $(".iframe").colorbox({
                         iframe: true,
