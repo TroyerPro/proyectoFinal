@@ -48,6 +48,7 @@ class Registrar implements RegistrarContract {
 			'surname' => $data['surname'],
 			'username' => $data['username'],
 			'nif' => $data['nif'],
+			'imagen' => 'samge.jpg',
 			'fecha_nacimiento' => $fecha,
 			'ciudad' => $data['city'],
 			'email' => $data['email'],
