@@ -206,11 +206,11 @@ class SubastaController extends UserController {
     ->where('subastas.estado_subasta',false)
     ->orderBy('id', 'ASC')
     ->get();
+
     $evaluacion=Evalusuarios::select('evalusuarios.id_subasta')
     ->where('evalusuarios.id_user_evaluador','=',Auth::id())
     ->get();
-  //dd($evaluacion);
-    //die();
+
     for ($i=0; $i <count($subasta) ; $i++) {
       if (count($evaluacion)<=0) {
         $subasta[$i]->evaluado=false;
@@ -224,8 +224,7 @@ class SubastaController extends UserController {
         }
       }
     }
-    //dd($subasta);
-    //die();
+
     return Datatables::of($subasta)
     ->add_column('estado',
     '@if($estado_subasta)
@@ -235,13 +234,16 @@ class SubastaController extends UserController {
     @endif')
     ->add_column('actions',
     '@if(!$estado_subasta)
-      <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/prorrogar\'  ) }}}" class="btn btn-sm btn-succes"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
-      <input type="hidden" name="row" value="{{$id}}" id="row">
-      @if(!is_null($puja_ganadora))
+      @if(is_null($puja_ganadora))
+        <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/prorrogar\'  ) }}}" class="btn btn-sm btn-succes"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
+        <input type="hidden" name="row" value="{{$id}}" id="row">
+        </br>
+      @else
         <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Ganador") }}</a>
         <input type="hidden" name="row" value="{{$id}}" id="row">
+        </br>
         @if($evaluado)
-            <a class="btn btn-sm btn-succes"><span class="glyphicon glyphicon-user"></span> {{ trans("Ganador Evaluado") }}</a>
+            <a class="btn btn-sm btn-succes green"><span class="glyphicon glyphicon-ok"></span> {{ trans("Ganador Evaluado") }}</a>
         @else
             <a href="{{{ URL::to(\'user/rating/\' . $id .\'\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Evaluar Ganador") }}</a>
             <input type="hidden" name="row" value="{{$id}}" id="row">
@@ -267,15 +269,40 @@ class SubastaController extends UserController {
     $subasta = Subasta::select('subastas.id','subastas.nombre','subastas.descripcion','subastas.fecha_final','subastas.precio_actual')
     ->where('pujas.id_usuario',Auth::id())
     ->where('subastas.estado_subasta',false)
-    ->join('pujas','subastas.puja_ganadora','=','pujas.id');
+    ->join('pujas','subastas.puja_ganadora','=','pujas.id')
+    ->get();
+
+    $evaluacion=Evalusuarios::select('evalusuarios.id_subasta')
+    ->where('evalusuarios.id_user_evaluador','=',Auth::id())
+    ->get();
+
+    for ($i=0; $i <count($subasta) ; $i++) {
+      if (count($evaluacion)<=0) {
+        $subasta[$i]->evaluado=false;
+      }else{
+        for ($j=0; $j <count($evaluacion) ; $j++) {
+          if ($subasta[$i]->id==$evaluacion[$j]->id_subasta) {
+            $subasta[$i]->evaluado=true;
+          }else {
+            $subasta[$i]->evaluado=false;
+          }
+        }
+      }
+    }
 
     return Datatables::of($subasta)
     ->add_column('actions','  <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Vendedor") }}</a>
     <input type="hidden" name="row" value="{{$id}}" id="row">
-    <a href="{{{ URL::to(\'user/rating/\' . $id .\'\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Evaluar Vendedor") }}</a>
-    <input type="hidden" name="row" value="{{$id}}" id="row">')
+    </br>
+      @if($evaluado)
+          <a class="btn btn-sm btn-succes green"><span class="glyphicon glyphicon-ok"></span> {{ trans("Vendedor Evaluado") }}</a>
+      @else
+        <a href="{{{ URL::to(\'user/rating/\' . $id .\'\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Evaluar Vendedor") }}</a>
+        <input type="hidden" name="row" value="{{$id}}" id="row">
+      @endif')
 
     ->remove_column('id')
+    ->remove_column('evaluado')
 
     ->make();
   }
