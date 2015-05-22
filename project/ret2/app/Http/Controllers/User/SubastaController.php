@@ -201,7 +201,7 @@ class SubastaController extends UserController {
 
   public function data3()
   {
-    $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual')
+    $subasta = Subasta::select('subastas.id','subastas.estado_subasta','subastas.nombre','subastas.fecha_final','subastas.precio_actual','subastas.puja_ganadora')
     ->where('subastas.id_user_vendedor', Auth::id())
     ->where('subastas.estado_subasta',false)
     ->orderBy('id', 'ASC')
@@ -237,19 +237,22 @@ class SubastaController extends UserController {
     '@if(!$estado_subasta)
       <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/prorrogar\'  ) }}}" class="btn btn-sm btn-succes"><span class="glyphicon glyphicon-ok"></span> {{ trans("Prorrogar") }}</a>
       <input type="hidden" name="row" value="{{$id}}" id="row">
-      <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Ganador") }}</a>
-      <input type="hidden" name="row" value="{{$id}}" id="row">
-      @if($evaluado)
-          <a class="btn btn-sm btn-succes"><span class="glyphicon glyphicon-user"></span> {{ trans("Ganador Evaluado") }}</a>
-      @else
-          <a href="{{{ URL::to(\'user/rating/\' . $id .\'\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Evaluar Ganador") }}</a>
-          <input type="hidden" name="row" value="{{$id}}" id="row">
-      @enfif
+      @if(!is_null($puja_ganadora))
+        <a href="{{{ URL::to(\'user/chat/\' . $id .\'/abrir\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Contactar Ganador") }}</a>
+        <input type="hidden" name="row" value="{{$id}}" id="row">
+        @if($evaluado)
+            <a class="btn btn-sm btn-succes"><span class="glyphicon glyphicon-user"></span> {{ trans("Ganador Evaluado") }}</a>
+        @else
+            <a href="{{{ URL::to(\'user/rating/\' . $id .\'\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Evaluar Ganador") }}</a>
+            <input type="hidden" name="row" value="{{$id}}" id="row">
+        @endif
+      @endif
     @endif')
 
     ->remove_column('id')
     ->remove_column('estado_subasta')
     ->remove_column('evaluado')
+    ->remove_column('puja_ganadora')
 
     ->make();
   }
