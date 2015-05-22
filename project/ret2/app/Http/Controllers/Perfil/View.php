@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Perfil;
 
 use App\User;
+use App\Subasta;
 use App\Http\Controllers\Controller;
 
 class View extends Controller {
@@ -13,7 +14,11 @@ class View extends Controller {
 	public function show($id) //falta $id
 	{
 		$user = User::find($id);
-		
-		return view('perfil.view', compact('user'));
+		$subastas = Subasta::select('subastas.*')
+		->where('subastas.id_user_vendedor',$id)
+		->take(3)
+		->get();
+
+		return view('perfil.view', compact('user','subastas'));
 	}
 }

@@ -137,7 +137,7 @@
               <div class="product_item {{$subasta->id_categoria}}">
                 <figure class="r_corners photoframe shadow relative animate_ftb long">
                   <!--product preview-->
-                  <a href="#" class="d_block relative pp_wrap">
+                  <a href="{!! URL::to('/search/subasta/view/'.$subasta->id) !!}" class="d_block relative pp_wrap">
                     <!--sale product-->
                     <img class="imangen_subasta_home" src="{{ URL::asset('img/subasta/'.$subasta->imagen) }}">
                   </a>

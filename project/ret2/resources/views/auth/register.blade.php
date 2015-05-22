@@ -52,9 +52,9 @@
                               <label class="col-md-4 control-label">{{{ trans('site/user.birthdate') }}}</label>
 
                               <div class="col-md-6">
-                                <input type="text" class="col-md-3 " name="dia" placeholder="dd">
-                                <input type="text" class="col-md-3" name="mes" placeholder="mm">
-                                <input type="text" class="col-md-3 " name="ano" placeholder="aaaa">
+                                <input type="text" class="col-md-3 " name="dia" placeholder="dd" value="{{ old('dia') }}">
+                                <input type="text" class="col-md-3" name="mes" placeholder="mm" value="{{ old('mes') }}">
+                                <input type="text" class="col-md-3 " name="ano" placeholder="aaaa" value="{{ old('ano') }}">
                               </div>
                             </div>
 

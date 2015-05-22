@@ -12335,3 +12335,8 @@ li > ul {
    .puja{
      background-color: lightgreen;
    }
+
+   .subasta-perfil {
+     max-width: 100%;
+     max-height: 150px;
+   }
