@@ -49,7 +49,7 @@
                 </button>
                 <a id="apdfDownload" href="#" download><button type="button" id="pdfDownload" class="btn btn-sm btn-succes " style="display: none;">
                   <span class="glyphicon glyphicon-ban-circle"></span>
-                      {{trans("Descargar XML") }}
+                      {{trans("Descargar PDF") }}
                 </button></a>
                 <button id="xml" class="btn btn-sm btn-succes " >
                   <span class="glyphicon glyphicon-ban-circle"></span> {{
