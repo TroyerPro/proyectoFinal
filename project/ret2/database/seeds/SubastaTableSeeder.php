@@ -60,6 +60,7 @@ class SubastaTableSeeder extends Seeder {
 			'precio_inicial' => 50,
 			'precio_actual' => 124,
 			'imagen' => "bolsoMK.png",
+			'puja_ganadora' => 3
 		]);
 
 		\App\Subasta::create([
