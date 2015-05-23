@@ -42,7 +42,7 @@ class SubastaController extends UserController {
   public function getCreate()
   {
 
-    $fechaHoy=Carbon\Carbon::now(new DateTimeZone('Europe/Madrid'));
+    $fechaHoy=Carbon::now(new DateTimeZone('Europe/Madrid'));
     $nombre = "";
     $estado = "";
     $descripcion = "";

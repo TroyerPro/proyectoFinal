@@ -46,9 +46,6 @@
                         <p class="form-control" name="pujaAct" disabled>{{ $subasta->precio_actual }}</p>
                     </div>
                 </div>
-
-
-
                 @else
                 <div class="form-group">
                     <label class="col-md-4 control-label">Precio inicial de la subasta:</label>
