@@ -3,10 +3,11 @@
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#tab-general" data-toggle="tab"> {{
 			trans("Chat") }}</a></li>
+			<li class="active"></br>{{trans("Chat con:")}}<strong>{{$usuario->name}}</strong></li>
 </ul>
 <!-- ./ tabs -->
 {{-- Edit Blog Form --}}
-{{trans("Chat con:")}}<strong>{{$usuario->name}}</strong>
+
 <chat class="col-xs-12" style="overflow-y:scroll; max-height:250px;">
 @foreach ($lineas as $lineas)
 <div><b> {{$lineas->name}}</b> {{$lineas->created_at}}</div>
