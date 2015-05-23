@@ -5,6 +5,7 @@ use App\Article;
 use App\ArticleCategory;
 use App\Chatusuarios;
 use App\Lineachat;
+use App\User;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Http\Requests\Admin\DeleteRequest;
@@ -86,7 +87,19 @@ class ChatController extends UserController {
        ->orderBy('created_at', 'ASC')
        ->get();
 
-       return view('user.chat.view', compact('lineas','id'));
+       $chat=Chatusuarios::find($id);
+       if ($chat->id_user1==Auth::id()) {
+          $usuario=User::select('users.name')
+                            ->where('users.id',$chat->id_user2)
+                            ->get()
+                            ->first();
+       }else{
+         $usuario=User::select('users.name')
+                           ->where('users.id',$chat->id_user1)
+                           ->get()
+                           ->first();
+       }
+       return view('user.chat.view', compact('lineas','id','usuario'));
 
      }
      public function getChatAJAX($id)
