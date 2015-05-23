@@ -120,7 +120,7 @@ class FacturaController extends UserController {
     			<th colspan="3">Datos Empresa</th>
     		</tr>
     		<tr>
-    			<td>Id Factura :</td>
+    			<td>Nº de Factura :</td>
     			<td>'.$factura->id.'</td>
     			<td>Nombre :</td>
     			<td>'.$empresa->nombre.'</td>

@@ -3,6 +3,7 @@
 use App\Subasta;
 use App\User;
 use App\Chatusuarios;
+use App\Empresa;
 use App\Puja;
 use Carbon\Carbon;
 use App\Confpujaauto;
@@ -53,6 +54,50 @@ class SystemController extends Controller {
       SystemController::checkSubasta($suabastas[$i]->id);
     }
 	}
+
+
+  public static function actividadUsuario()
+  {
+    $usuarios = User::all();
+    for ($i=0; $i < count($usuarios) ; $i++) {
+      SystemController::checkUsuario($usuarios[$i]->id);
+    }
+  }
+
+  public static function checkUsuario($usuarioId)
+	{
+    $subasta = Subasta::where("subastas.id_user_vendedor",$usuarioId)->orderBy('subastas.updated_at', 'DESC')->get();
+    $pujas = Puja::where("pujas.id_usuario",$usuarioId)->orderBy('pujas.created_at', 'DESC')->get();
+    $inactivo = false;
+    $empresa = Empresa::all();
+    $fechaActual = Carbon::now();
+
+    //Comprovamos la última subasta modificada del usuario
+    if((count($subasta)>0)){
+      $fechaFinSub = $subasta[0]->created_at;
+      $diferenciaSub = $fechaFinSub->diff($fechaActual);
+
+      if($diferenciaSub > $empresa[0]->tiempo_inactividad) {
+        $inactivo = true;
+      }
+    }
+
+    //Comprovamos la última puja del usuario
+    if((count($pujas)>0)){
+      $fechaFinPuj = $pujas[0]->created_at;
+      $diferenciaPuj = $fechaFinPuj->diff($fechaActual);
+      if($diferenciaPuj > $empresa[0]->tiempo_inactividad) {
+        $inactivo = true;
+    }
+    }
+    // Si se ha cumplido algún caso invalidamos el usuario
+    if($inactivo){
+      $usuario = User::find($usuarioId);
+      $usuario->usable = false;
+    }
+
+	}
+
 /*
 Comprueba si una subasta tiene pujas automaticas al realizar una puja
 si la tiene comprueba si la puja que se acaba de realizar supera al máximo de
