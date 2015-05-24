@@ -118,15 +118,17 @@ de la puja nueva + el incremento de la automatica
   public static function triggerPujasAuto($subastaId,$cantidad)
 	{
     $subasta = Subasta::find($subastaId);
+
     $pujasAutos = Puja::select('pujas.id','pujas.id_subasta','pujas.cantidad','pujas.puja_auto','pujas.fecha')
     ->where('pujas.id_subasta',$subastaId)
-    ->where('puja_auto', 1)->paginate();
+    ->where('puja_auto', true)->paginate();
 
-    if($pujasAutos) {
+    if(count($pujasAutos)>0) {
       foreach ($pujasAutos as $pujas2) {
         $confPuja = Confpujaauto::select('confpujaautos.id','confpujaautos.max_puja','confpujaautos.incrementar','confpujaautos.id_usuario','confpujaautos.id_puja')
         ->where('confpujaautos.id_puja',$pujas2->id)
-        ->get()->first();
+        ->get()
+        ->first();
          if($cantidad<$confPuja->max_puja) {
 
            $pujaMenor = new Puja();
@@ -184,15 +186,19 @@ de la puja nueva + el incremento de la automatica
            return true;
          }
       }
-    }else{
+    }else if ($cantidad>$subasta->precio_actual) {
       $puja = new Puja();
       $puja -> cantidad = $cantidad;
       $puja -> fecha = Carbon::now('Europe/Madrid');
       $puja -> id_subasta = $subastaId;
       $puja -> id_usuario = Auth::id();
       $puja -> save();
-
+      $subasta -> precio_actual = $cantidad;
+      $subasta -> puja_ganadora = $puja->id;
+      $subasta->save();
       return true;
+    }else {
+      return false;
     }
     return false;
 	}
