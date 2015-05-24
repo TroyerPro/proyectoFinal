@@ -113,12 +113,12 @@
                         <figure class="d_xs_inline_b d_mxs_block">
                           <figcaption class="t_xs_align_l">
                             <h4 class="m_bottom_3"><a href="{!! URL::to('/search/user/view/'.$evaluaciones->id_user_evaluador) !!}" class="color_dark"><b>{{$evaluaciones->name}}</b></a></h4>
-                            Rating:
+                            <b>Rating:</b>
                             @for ($i = 0; $i < $evaluaciones->id_rating; $i++)
                               <img src="{{ URL::asset('img/star.jpg') }}">
                             @endfor
                             <br>
-                            Comentario:
+                            <b>Comentario:</b>
                             {{ $evaluaciones->comentario }}
                           </figcaption>
                         </figure>

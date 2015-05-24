@@ -17,6 +17,7 @@ class View extends Controller {
 		$user = User::find($id);
 		$subastas = Subasta::select('subastas.*')
 		->where('subastas.id_user_vendedor',$id)
+		->where('subastas.estado_subasta', 1)
 		->take(3)
 		->get();
 		$evaluaciones = Evalusuarios::select('evalusuarios.comentario','evalusuarios.id_user_evaluador','u1.name','evalusuarios.id_rating')
