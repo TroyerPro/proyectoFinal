@@ -67,7 +67,7 @@ class SystemController extends Controller {
   public static function checkUsuario($usuarioId)
 	{
     $subasta = Subasta::where("subastas.id_user_vendedor",$usuarioId)->orderBy('subastas.updated_at', 'DESC')->get();
-    $pujas = Puja::where("pujas.id_usuario",$usuarioId)->orderBy('pujas.created_at', 'DESC')->get();
+    $pujas = Puja::where("pujas.id_usuario",3)->orderBy('pujas.created_at', 'DESC')->get();
     $inactivo = false;
     $empresa = Empresa::all();
     $fechaActual = Carbon::now();
@@ -76,24 +76,24 @@ class SystemController extends Controller {
     if((count($subasta)>0)){
       $fechaFinSub = $subasta[0]->created_at;
       $diferenciaSub = $fechaFinSub->diff($fechaActual);
-
-      if($diferenciaSub > $empresa[0]->tiempo_inactividad) {
+      if($diferenciaSub->days > $empresa[0]->tiempo_inactividad) {
+        $inactivo = true;
+      }
+    }
+    //Comprovamos la última puja del usuario
+    if((count($pujas)>$usuarioId)){
+      $fechaFinPuj = $pujas[0]->created_at;
+      $diferenciaPuj = $fechaFinPuj->diff($fechaActual);
+      if($diferenciaPuj->days > $empresa[0]->tiempo_inactividad) {
         $inactivo = true;
       }
     }
 
-    //Comprovamos la última puja del usuario
-    if((count($pujas)>0)){
-      $fechaFinPuj = $pujas[0]->created_at;
-      $diferenciaPuj = $fechaFinPuj->diff($fechaActual);
-      if($diferenciaPuj > $empresa[0]->tiempo_inactividad) {
-        $inactivo = true;
-    }
-    }
     // Si se ha cumplido algún caso invalidamos el usuario
     if($inactivo){
-      $usuario = User::find($usuarioId);
+      $usuario = User::find(3);
       $usuario->usable = false;
+      $usuario->save();
     }
 
 	}

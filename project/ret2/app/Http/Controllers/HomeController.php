@@ -47,7 +47,7 @@ class HomeController extends Controller {
 	public function index()
 	{
 		SystemController::cerrarSubastas();
-		//SystemController::actividadUsuario();
+		SystemController::actividadUsuario();
 
 		$categoria = Categoria::all();
 		$subasta = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
