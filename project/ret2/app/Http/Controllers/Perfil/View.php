@@ -2,6 +2,7 @@
 
 use App\User;
 use App\Subasta;
+use App\Evalusuarios;
 use App\Http\Controllers\Controller;
 
 class View extends Controller {
@@ -18,7 +19,13 @@ class View extends Controller {
 		->where('subastas.id_user_vendedor',$id)
 		->take(3)
 		->get();
+		$evaluaciones = Evalusuarios::select('evalusuarios.comentario','evalusuarios.id_user_evaluador','u1.name','evalusuarios.id_rating')
+		->where('evalusuarios.id_user_evaluado',$id)
+		->join('users as u1','evalusuarios.id_user_evaluador','=','u1.id')
+		->take(10)
+		->get();
 
-		return view('perfil.view', compact('user','subastas'));
+
+		return view('perfil.view', compact('user','subastas','evaluaciones'));
 	}
 }

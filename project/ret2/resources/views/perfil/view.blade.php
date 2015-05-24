@@ -14,7 +14,7 @@
         				<div class="container">
         					<div class="d_table full_width d_xs_block m_bottom_25">
         						<div class="d_table_cell v_align_m d_xs_block m_xs_bottom_15">
-        							<h2 class="tt_uppercase color_dark">{{$user->name}} {{$user->surname}}</h2>
+        							<h1 class="tt_uppercase color_dark">{{$user->name}} {{$user->surname}}</h1>
         						</div>
         						<div class="d_table_cell v_align_m t_align_r d_xs_block">
 
@@ -28,38 +28,46 @@
         						</section>
         						<aside class="col-lg-5 col-md-5 col-sm-5 m_xs_bottom_30">
         							<h5 class="fw_medium m_bottom_10">Presentación</h5>
-        							<p class="m_bottom_15">{{ $user->descripcion }}</p>
+        							<p class="m_bottom_15">@if($user->descripcion){{ $user->descripcion }} @else Este usuario no tiene ninguna descripción. @endif</p>
         							<table class="about_project full_width m_bottom_10">
         								<tr>
         									<td>Ciudad:</td>
-        									<td>{{ $user->ciudad}}</td>
+        									<td>@if($user->ciudad){{ $user->ciudad}} @else No se ha especificado una ciudad. @endif</td>
         								</tr>
         								<tr>
         									<td>E-mail:</td>
-        									<td>{{ $user->email}}</td>
+        									<td>@if($user->email){{ $user->email}} @else No se ha especificado un eMail. @endif</td>
         								</tr>
                         <tr>
-                          <td>Creado en:</td>
-                          <td>{{ str_limit($user->created_at, 10)}}</td>
+                          <td>Miembro desde:</td>
+                          <td>{{ $user->created_at->format('d-m-Y')}}</td>
                         </tr>
         								<tr>
         									<td>R. Vendedor:</td>
         									<td>
-                            @for ($i = 0; $i < $user->ratingvendedor; $i++)
-                              <img src="{{ URL::asset('img/star.jpg') }}">
-                            @endfor
+                            @if($user->ratingvendedor==0)
+                            Este usuario no tienen ningúna valoración.
+                            @else
+                              @for ($i = 0; $i < $user->ratingvendedor; $i++)
+                                <img src="{{ URL::asset('img/star.jpg') }}">
+                              @endfor
+                            @endif
                           </td>
         								</tr>
         								<tr>
         									<td>R. Comprador:</td>
         									<td>
-                            @for ($i = 0; $i < $user->ratingcomprador; $i++)
-                              <img src="{{ URL::asset('img/star.jpg') }}">
-                            @endfor
+                            @if($user->ratingvendedor==0)
+                            Este usuario no tienen ningúna valoración.
+                            @else
+                              @for ($i = 0; $i < $user->ratingcomprador; $i++)
+                                <img src="{{ URL::asset('img/star.jpg') }}">
+                              @endfor
+                            @endif
                           </td>
         								</tr>
         							</table>
-        							<p class="d_inline_middle m_md_bottom_5">Share this:</p>
+        							<p class="d_inline_middle m_md_bottom_5">Compartir:</p>
         							<div class="d_inline_middle m_left_5 m_md_left_0 addthis_widget_container">
         								<!-- AddThis Button BEGIN -->
         								<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
@@ -77,16 +85,10 @@
         					</div>
         					<h2 class="tt_uppercase color_dark m_bottom_20">Subastas destacadas</h2>
         					<div class="row clearfix">
+                    @if(count($subastas)>0)
                     @foreach($subastas as $subastas)
                     <div class="col-lg-4 col-md-4 col-sm-4 t_xs_align_c">
                       <figure class="d_xs_inline_b d_mxs_block">
-                        <div class="photoframe with_buttons relative shadow r_corners wrapper m_bottom_15">
-                          <img src="images/portfolio_img_07.jpg" alt="" class="tr_all_long_hover">
-                          <div class="open_buttons clearfix">
-                            <div class="f_left f_size_large tr_all_hover"><a href="images/img_01.jpg" role="button" class="color_light button_type_13 r_corners box_s_none d_block jackbox" data-group="portfolio" data-title="title 1"><i class="fa fa-camera"></i></a></div>
-                            <div class="f_left m_left_10 f_size_large tr_all_hover"><a href="portfolio_single_1.html" role="button" class="color_light button_type_13 r_corners box_s_none d_block"><i class="fa fa-link"></i></a></div>
-                          </div>
-                        </div>
                         <figcaption class="t_xs_align_l">
                           <h4 class="m_bottom_3"><a href="{!! URL::to('/search/subasta/view/'.$subastas->id) !!}" class="color_dark"><b>{{$subastas->nombre}}</b></a></h4>
                           <a href="{!! URL::to('/search/subasta/view/'.$subastas->id) !!}" class="color_dark"><img src="{{ URL::asset('img/subasta/'.$subastas->imagen) }}" alt="" class="subasta-perfil"></a>
@@ -94,7 +96,42 @@
                       </figure>
                     </div>
                     @endforeach
+                    @else
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 t_xs_align_c">
+                          <figure class="d_xs_inline_b d_mxs_block">
+                        <h3>Este usuario no tiene subastas activas.</h3>
+                      </figure>
+                      </div>
+                    @endif
         					</div>
+                  <h2 class="tt_uppercase color_dark m_bottom_20" style="margin-top:2%;">Evaluaciones</h2>
+                  <div class="row clearfix">
+                    @if(count($evaluaciones)>0)
+                      @foreach($evaluaciones as $evaluaciones)
+                      <div class="col-lg-6 col-md-6 col-sm-6 t_xs_align_c">
+                        <figure class="d_xs_inline_b d_mxs_block">
+                          <figcaption class="t_xs_align_l">
+                            <h4 class="m_bottom_3"><a href="{!! URL::to('/search/user/view/'.$evaluaciones->id_user_evaluador) !!}" class="color_dark"><b>{{$evaluaciones->name}}</b></a></h4>
+                            Rating:
+                            @for ($i = 0; $i < $evaluaciones->id_rating; $i++)
+                              <img src="{{ URL::asset('img/star.jpg') }}">
+                            @endfor
+                            <br>
+                            Comentario:
+                            {{ $evaluaciones->comentario }}
+                          </figcaption>
+                        </figure>
+                      </div>
+                      @endforeach
+                    @else
+                    <div class="col-lg-6 col-md-6 col-sm-6 t_xs_align_c">
+                    <figure class="d_xs_inline_b d_mxs_block">
+                      <h3>Este usuario no tiene evaluaciones.</h3>
+                    </figure>
+                  </div>
+                    @endif
+                  </div>
         				</div>
         			</div>
     </div>
