@@ -68,6 +68,7 @@ class SystemController extends Controller {
 	{
     $subasta = Subasta::where("subastas.id_user_vendedor",$usuarioId)->orderBy('subastas.updated_at', 'DESC')->get();
     $pujas = Puja::where("pujas.id_usuario",3)->orderBy('pujas.created_at', 'DESC')->get();
+    $usuario = User::find($usuarioId);
     $inactivo = false;
     $empresa = Empresa::all();
     $fechaActual = Carbon::now();
@@ -88,10 +89,8 @@ class SystemController extends Controller {
         $inactivo = true;
       }
     }
-
     // Si se ha cumplido algún caso invalidamos el usuario
     if($inactivo){
-      $usuario = User::find(3);
       $usuario->usable = false;
       $usuario->save();
     }
