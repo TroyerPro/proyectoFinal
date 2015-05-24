@@ -72,17 +72,6 @@ class PujasAutoController extends UserController {
 
     }
   }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param $id
-     * @return Response
-     */
-
-
-
-
     /**
      * Show a list of all the languages posts formatted for Datatables.
      *
