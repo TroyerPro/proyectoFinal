@@ -27,6 +27,7 @@
             @yield('main')
              <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('/admin/crear/categoria') !!}">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              @include('errors.list')
 
             <form class="form-horizontal" role="form" method="POST" action="">
                 <div class="form-group">

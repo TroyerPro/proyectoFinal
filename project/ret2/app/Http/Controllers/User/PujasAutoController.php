@@ -13,7 +13,7 @@ use App\Http\Requests\Admin\DeleteRequest;
 use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
-use App\Http\Requests\Puja\PujaRequest;
+use App\Http\Requests\Puja\PujaAutoRequest;
 
 class PujasAutoController extends UserController {
 
@@ -49,7 +49,7 @@ class PujasAutoController extends UserController {
      *
      * @return Response
      */
-    public function postCreate($id)
+    public function postCreate($id, PujaAutoRequest $request)
     {
       $subasta = Subasta::find($id);
       if($subasta->estado_subasta) {

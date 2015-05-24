@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label">Puja actual de la subasta:</label>
                     <div class="col-md-6">
-                        <p class="form-control" name="pujaAct">{{ $subasta->precio_actual }}</p>
+                        <p class="form-control" name="pujaAct" disabled>{{ $subasta->precio_actual }}</p>
                     </div>
                 </div>
 

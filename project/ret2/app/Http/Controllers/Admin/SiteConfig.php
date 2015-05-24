@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use App\Empresa;
+use App\Http\Requests\Admin\SiteConfigRequest;
+
 class SiteConfig extends Controller {
 
 	public function __construct()
@@ -9,7 +11,7 @@ class SiteConfig extends Controller {
 		$this->middleware('auth', [ 'except' => [ 'index', 'show' ] ]);
 	}
 
-	public function show() //falta $id
+	public function show()
 	{
 		$empresa = Empresa::find(1);
 		$precio = $empresa -> precio_prorroga;
@@ -18,7 +20,7 @@ class SiteConfig extends Controller {
 		return view('admin.configsite', compact('precio','dias_subasta','tiempo_inactividad'));
 	}
 
-	public function postEdit() {
+	public function postEdit(SiteConfigRequest $request) {
 		$empresa = Empresa::find(1);
 		$precio = $_POST['prorroga'];
 		$dias_subasta = $_POST['dias_subasta'];

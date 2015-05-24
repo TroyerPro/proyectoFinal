@@ -19,6 +19,8 @@
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
             @yield('main')
+
+            @include('errors.list')
             <form class="form-horizontal" role="form" method="POST" action="{!! URL::to('admin/site/config') !!}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @if(isset($success))

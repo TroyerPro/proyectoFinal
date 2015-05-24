@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\Http\Requests\Admin\CategoriaRequest;
 
 class CreateCategory extends Controller {
 
@@ -9,12 +10,12 @@ class CreateCategory extends Controller {
 		$this->middleware('auth', [ 'except' => [ 'index', 'show' ] ]);
 	}
 
-	public function show() //falta $id
+	public function show()
 	{
 		return view('admin.createcategoria');
 	}
 
-	public function create() //falta $id
+	public function create(CategoriaRequest $request)
 	{
 		$nombre = $_POST['nomcat'];
 		$descripcion = $_POST['desc'];
