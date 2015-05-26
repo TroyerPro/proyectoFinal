@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 use App\User;
 use App\Subasta;
+use App\Puja;
 use App\Categoria;
 use Illuminate\Support\Facades\DB as DB;
 
@@ -29,7 +30,7 @@ class ViewStats extends Controller {
 				case '0':
 					break;
 				case '1':
-				$busqueda = Categoria::select('subastas.*')->count();
+					$busqueda = Categoria::select('subastas.*')->count();
 					return $busqueda;
 					break;
 				case '2':
@@ -56,13 +57,37 @@ class ViewStats extends Controller {
 					return $busqueda;
 					break;
 				case '2':
-					$busqueda = 2;
-					return $busqueda;
+					$busqueda = Subasta::all();
+					$meses = array();
+					for ($i=1; $i <=12 ; $i++) {
+						$meses[$i] = 0;
+					}
+					foreach ($busqueda as $busqueda) {
+						if(!$busqueda->estado_subasta){
+							for ($i=1; $i <= 12 ; $i++) {
+								if ($i == $busqueda->updated_at->month) {
+									$meses[$i] = $meses[$i] + 1 ;
+								}
+							}
+						}
+					}
+					return json_encode($meses);;
 					break;
 				case '3':
-					$busqueda = 3;
-					return $busqueda;
-					break;
+				$busqueda = Subasta::all();
+				$meses = array();
+				for ($i=1; $i <=12 ; $i++) {
+					$meses[$i] = 0;
+				}
+				foreach ($busqueda as $busqueda) {
+						for ($i=1; $i <= 12 ; $i++) {
+							if ($i == $busqueda->updated_at->month) {
+								$meses[$i] = $meses[$i] + 1 ;
+							}
+					}
+				}
+				return json_encode($meses);;
+				break;
 				case '4':
 					$busqueda = 4;
 					return $busqueda;
@@ -72,9 +97,20 @@ class ViewStats extends Controller {
 					return $busqueda;
 					break;
 				case '6':
-					$busqueda = 6;
-					return $busqueda;
-					break;
+				$busqueda = Puja::all();
+				$meses = array();
+				for ($i=1; $i <=12 ; $i++) {
+					$meses[$i] = 0;
+				}
+				foreach ($busqueda as $busqueda) {
+						for ($i=1; $i <= 12 ; $i++) {
+							if ($i == $busqueda->updated_at->month) {
+								$meses[$i] = $meses[$i] + 1 ;
+							}
+						}
+				}
+				return json_encode($meses);;
+				break;
 				default:
 					break;
 			}

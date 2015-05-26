@@ -1,16 +1,44 @@
 @section('scripts')
     <script type="text/javascript">
     $(document).ready(function(){
+      $.ajaxSetup(
+    {
+    	headers: {
+    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    	}
+    });
         $("#filtro").change(function(){
-            var filtro=$("#filtro").val();
+          var titulo = $("#filtro option:selected").text();
+          var filtro=$("#filtro").val();
             $.ajax({
               type: "POST",
+              dataType: "json",
               url: "{{ URL::to('admin/estadisticas/users') }}",
               data:{
                 "filtro":filtro
               },
             }).done(function(data) {
-                $("#chart").html(data);
+              var dataPoints = [];
+              for(key in data){
+                dataPoints.push({label: key, y: data[key]});
+              }
+              var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "theme2",//theme1
+                axisX:{
+                  title: "Meses",
+                },
+                title:{
+                  text: titulo
+                },
+                animationEnabled: false,   // change to true
+                data: [
+                {
+                  type: "spline",
+                  dataPoints: dataPoints
+                }
+                ]
+              });
+              chart.render();
             });
           });
     });
@@ -34,6 +62,7 @@
               </a>
               <br>
               <span class="hidden-sm text">Usuarios por..</span>
+              <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
             <select id="filtro" class="categoria" name="categoria">
               <option value="0">Seleccione el filtro...</option>
               <option name="zona" value="1">Zona Geográfica</option>
@@ -46,8 +75,8 @@
           </div>
         </div>
         <div class="col-xs-8">
-          <div id="chart">
-          </div>
+          <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        </div>
         </div>
       </div>
     </div>

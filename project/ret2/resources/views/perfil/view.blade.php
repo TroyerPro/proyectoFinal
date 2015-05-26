@@ -92,7 +92,13 @@
                         <figcaption class="t_xs_align_l">
                           <h4 class="m_bottom_3"><a href="{!! URL::to('/search/subasta/view/'.$subastas->id) !!}" class="color_dark"><b>{{$subastas->nombre}}</b></a></h4>
                           <a href="{!! URL::to('/search/subasta/view/'.$subastas->id) !!}" class="color_dark"><img src="{{ URL::asset('img/subasta/'.$subastas->imagen) }}" alt="" class="subasta-perfil"></a>
-                        </figcaption>
+                          @if($subastas->precio_actual<=0)
+                          <p class="m_bottom_3"><a href="{!! URL::to('/search/subasta/view/'.$subastas->id) !!}" class="color_dark"><b>{{$subastas->precio_inicial}}€</b></a></p>
+                          @else
+                          <p class="m_bottom_3"><a href="{!! URL::to('/search/subasta/view/'.$subastas->id) !!}" class="color_dark"><b>{{$subastas->precio_actual}}€</b></a></p>
+                          @endif
+
+                      </figcaption>
                       </figure>
                     </div>
                     @endforeach

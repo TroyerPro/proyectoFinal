@@ -60,6 +60,7 @@ Footer deshabilitado temporalmente
 <!-- Scripts -->
 <script src="{{ asset('/js/all.js') }}"></script>
 <script src="{{ asset('/js/jquery.autocomplete.js') }}"></script>
+<script src="{{ asset('/js/canvasjs.min.js') }}"></script>
 {{--<script src="{{ elixir('js/all.js') }}"></script>--}}
 
 {{-- TODO: Incorporate into elixir workflow. --}}
