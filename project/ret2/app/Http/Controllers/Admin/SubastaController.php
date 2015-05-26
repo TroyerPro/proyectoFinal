@@ -190,8 +190,10 @@ class SubastaController extends UserController {
        return Datatables::of($subasta)
        ->add_column('actions','@if(!$estado_subasta)
        <a href="{{{ URL::to(\'search/subasta/view/\' . $id . \'/\' ) }}}" class="btn btn-sm btn-info iframe"><span class="glyphicon glyphicon-search"></span> {{ trans("Resumen") }}</a>
-       <a href="{{{ URL::to(\'admin/factura/\' . $id .\'/\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Factura") }}</a>
-       <input type="hidden" name="row" value="{{$id}}" id="row">
+         @if($precio_actual>0)
+         <a href="{{{ URL::to(\'admin/factura/\' . $id .\'/\'  ) }}}" class="btn btn-sm btn-succes iframe"><span class="glyphicon glyphicon-user"></span> {{ trans("Factura") }}</a>
+         <input type="hidden" name="row" value="{{$id}}" id="row">
+         @endif
        @endif')
 
        ->remove_column('estado_subasta')
