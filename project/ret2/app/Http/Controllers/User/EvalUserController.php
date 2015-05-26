@@ -93,15 +93,19 @@ class EvalUserController extends UserController {
       $sumasRatingComprador=0;
       $mediaComprador=0;
 
-      for ($i=0; $i <count($totalEvalVendedor) ; $i++) {
-        $sumasRatingVendedor+=$totalEvalVendedor[$i]->id_rating;
-      }
-      for ($i=0; $i <count($totalEvalComprador) ; $i++) {
-        $sumasRatingComprador+=$totalEvalVendedor[$i]->id_rating;
+      if (count($totalEvalVendedor)>0) {
+        for ($i=0; $i < count($totalEvalVendedor) ; $i++) {
+          $sumasRatingVendedor+=$totalEvalVendedor[$i]->id_rating;
+        }
+        $mediaVend=$sumasRatingVendedor/count($totalEvalVendedor);
       }
 
-      $mediaVend=$sumasRatingVendedor/count($totalEvalVendedor);
-      $mediaComprador=$sumasRatingComprador/count($totalEvalComprador);
+      if (count($totalEvalComprador)>0) {
+        for ($i=0; $i < count($totalEvalComprador) ; $i++) {
+          $sumasRatingComprador+=$totalEvalComprador[$i]->id_rating;
+        }
+        $mediaComprador=$sumasRatingComprador/count($totalEvalComprador);
+      }
 
       $usuario->ratingvendedor=$mediaVend;
       $usuario->ratingcomprador=$mediaComprador;
