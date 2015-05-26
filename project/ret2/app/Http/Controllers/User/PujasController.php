@@ -99,7 +99,8 @@ class PujasController extends UserController {
       $puja = Puja::select('subastas.id','pujas.cantidad','pujas.fecha','subastas.nombre', 'subastas.precio_actual', 'subastas.estado_subasta')
       ->where('pujas.id_usuario', Auth::id())
       ->where('pujas.puja_auto',false)
-      ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta');
+      ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta')
+      ->orderBy('pujas.fecha','DESC');
 
       return Datatables::of($puja)
       ->add_column('pujastatus','
