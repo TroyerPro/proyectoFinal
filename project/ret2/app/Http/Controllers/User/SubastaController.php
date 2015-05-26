@@ -214,14 +214,13 @@ class SubastaController extends UserController {
     ->get();
 
     for ($i=0; $i <count($subasta) ; $i++) {
-      if (count($evaluacion)<=0) {
+      if (count($evaluacion)==0) {
         $subasta[$i]->evaluado=false;
       }else{
+        $subasta[$i]->evaluado=false;
         for ($j=0; $j <count($evaluacion) ; $j++) {
           if ($subasta[$i]->id==$evaluacion[$j]->id_subasta) {
             $subasta[$i]->evaluado=true;
-          }else {
-            $subasta[$i]->evaluado=false;
           }
         }
       }
@@ -278,15 +277,14 @@ class SubastaController extends UserController {
     ->where('evalusuarios.id_user_evaluador','=',Auth::id())
     ->get();
 
-    for ($i=0; $i <count($subasta) ; $i++) {
+    for ($i=0; $i <count($subasta); $i++) {
       if (count($evaluacion)<=0) {
         $subasta[$i]->evaluado=false;
       }else{
-        for ($j=0; $j <count($evaluacion) ; $j++) {
+        $subasta[$i]->evaluado=false;
+        for ($j=0; $j <count($evaluacion); $j++) {
           if ($subasta[$i]->id==$evaluacion[$j]->id_subasta) {
             $subasta[$i]->evaluado=true;
-          }else {
-            $subasta[$i]->evaluado=false;
           }
         }
       }
