@@ -197,7 +197,7 @@
             $("#popup").css("display", "none");
           });
 
-    CountDownTimer('{{$fechaFinal}}', 'newcountdown');
+    CountDownTimer('{{$subasta->fecha_final}}', 'newcountdown');
 
     function CountDownTimer(dt, id)
     {
