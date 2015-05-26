@@ -16,11 +16,25 @@ class Registrar implements RegistrarContract {
 	 */
 	public function validator(array $data)
 	{
+		$dia=31;
+		if ($data['ano']) {
+			if ((($data['ano']%4 == 0 && $data['ano']%100 != 0) || $data['ano']%400 == 0) and $data['mes']==02) {
+				$dia=29;
+			}elseif($data['mes']==02){
+				$dia=28;
+			}elseif ($data['mes']==01 or $data['mes']==03 or $data['mes']==05
+			or $data['mes']==07 or $data['mes']==08 or $data['mes']==10 or $data['mes']==12) {
+				$dia=31;
+			}else{
+				$dia=30;
+			}
+		}
+
 		return Validator::make($data, [
 			'nif' => 'required|regex:/^[0-9]{8}[A-Z]$/',
 			'name' => 'required|min:3|max:50|regex:/^([a-zA-Z]+\s)*[a-zA-Z]+$/',
 			'surname' => 'required|min:3|max:255',
-			'dia' => 'required|integer|min:1|max:31',
+			'dia' => 'required|integer|min:1|max:'.$dia.'',
 			'mes' => 'required|integer|min:01|max:12',
 			'ano' => 'required|integer|min:1900|max:1997',
 			'city' => 'required|min:3|regex:/^([a-zA-Z]+\s)*[a-zA-Z]+$/',
