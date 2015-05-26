@@ -26,15 +26,30 @@ class ViewStats extends Controller {
 	{
 		if(isset($_REQUEST['filtro'])) {
 			$filtro = $_REQUEST['filtro'];
+			$categorias = array();
 			switch ($filtro) {
 				case '0':
 					break;
 				case '1':
-					$busqueda = Categoria::select('subastas.*')->count();
-					return $busqueda;
+					$busqueda = Subasta::select( 'categorias.nombre',DB::raw('COUNT(subastas.id_categoria) as cate'))
+					->join('categorias','categorias.id','=','subastas.id_categoria')
+					->where('subastas.estado_subasta',0)
+					->where('subastas.puja_ganadora','!=',0)
+					->groupBy('subastas.id_categoria')->get();
+					foreach ($busqueda as $busqueda ) {
+						$categorias[$busqueda->nombre] = $busqueda->cate;
+					}
+					return $categorias;
 					break;
 				case '2':
-					$busqueda = 2;
+				$busqueda = Subasta::select( 'categorias.nombre',DB::raw('COUNT(subastas.id_categoria) as cate'))
+				->join('categorias','categorias.id','=','subastas.id_categoria')
+				->groupBy('subastas.id_categoria')->get();
+				foreach ($busqueda as $busqueda ) {
+					$categorias[$busqueda->nombre] = $busqueda->cate;
+				}
+				return $categorias;
+				break;
 					return $busqueda;
 					break;
 				default:

@@ -30,7 +30,7 @@
                 title:{
                   text: titulo
                 },
-                animationEnabled: false,   // change to true
+                animationEnabled: true,   // change to true
                 data: [
                 {
                   type: "spline",
