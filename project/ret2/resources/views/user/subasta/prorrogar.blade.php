@@ -3,11 +3,10 @@
     <script type="text/javascript">
     $(document).ready(function(){
       $( "#diasPro" ).change(function() {
-        var anadirDias  = $( "#diasPro" ).val();
-        var fechaFin = "{{$subasta->fecha_final}}";
-        var d = new Date(fechaFin.slice(0,4), fechaFin.slice(5,7), fechaFin.slice(8,10), fechaFin.slice(11,13), fechaFin.slice(14,16), fechaFin.slice(17,19), 00);
-        d.setMonth(d.getMonth()-1);
-        d.setDate(d.getDate()+parseInt(anadirDias));
+        var anadirDias  = parseInt($( "#diasPro" ).val());
+        var fechaFin = new Date("{{$subasta->fecha_final}}");
+        var d=fechaFin;
+        d.setDate(fechaFin.getDate()+anadirDias);
         $("#fechaNueva").attr("placeholder", d.toLocaleString());
         $('#fechaNueva').val = d;
       });
