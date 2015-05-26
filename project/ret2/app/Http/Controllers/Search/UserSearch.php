@@ -12,10 +12,13 @@ class UserSearch extends Controller {
 
 	public function show() //falta $id
 	{
-		$user = User::all();
+		$user = User::select('users.*')->where('users.usable',true)->get();
 		if (isset($_REQUEST['nombre'])) {
 			$datos=$_REQUEST;
-			$user2 = User::select('users.*')->where('users.name','like','%'.$datos['nombre'].'%')->get();
+			$user2 = User::select('users.*')
+			->where('users.name','like','%'.$datos['nombre'].'%')
+			->where('users.usable',true)
+			->get();
 		}else{
 			$user2 = $user;
 		}

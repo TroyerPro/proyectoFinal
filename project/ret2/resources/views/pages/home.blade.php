@@ -6,30 +6,7 @@
 @endsection
 @section('title') Home :: @parent @stop
 
-
-@section('scripts')
-  <script src="{{asset('js/jquery.tinycarousel.min.js')}}"></script>
-  @parent
-  <script>
-  $(document).ready(function()
-  {
-      $('#slider1').tinycarousel(
-        {
-          interval: true,
-          intervalTime: 2000,
-      });
-
-      $("#slider5").tinycarousel({
-        axis   : "y",
-        interval: true,
-        intervalTime: 4000,
-    });
-  });
-
-  </script>
-  @endsection
-
-  @section('content')
+@section('content')
   <div class="row">
       <h1 class="tt_uppercase m_bottom_20 color_dark heading1 animate_ftr">Revolution Trade</h1>
   					<h2 class="tt_uppercase m_bottom_20 color_dark heading1 animate_ftr">Subastas activas</h2>
@@ -48,13 +25,13 @@
   						<div class="product_item {{$subasta->id_categoria}}">
   							<figure class="r_corners photoframe shadow relative animate_ftb long">
   								<!--product preview-->
-  								<a href="#" class="d_block relative pp_wrap">
+  								<a href="{!! URL::to('/search/subasta/view/'.$subasta->id) !!}" class="d_block relative pp_wrap">
   									<!--sale product-->
                     <img class="imangen_subasta_home" src="{{ URL::asset('img/subasta/'.$subasta->imagen) }}">
   								</a>
   								<!--description and price of product-->
   								<figcaption>
-  									<h5 class="m_bottom_10"><a href="#" class="color_dark">{{$subasta->nombre}}</a></h5>
+  									<h5 class="m_bottom_10"><a href="{!! URL::to('/search/subasta/view/'.$subasta->id) !!}" class="color_dark">{{$subasta->nombre}}</a></h5>
   									<div class="clearfix">
   										<p class="scheme_color f_left f_size_large m_bottom_15">Puja: @if($subasta->precio_actual != 0){{$subasta->precio_actual}}@else {{$subasta->precio_inicial}} @endif €</p><br/>
   										<!--rating-->

@@ -57,7 +57,7 @@
         								<tr>
         									<td>R. Comprador:</td>
         									<td>
-                            @if($user->ratingvendedor==0)
+                            @if($user->ratingcomprador==0)
                             Este usuario no tienen ningúna valoración.
                             @else
                               @for ($i = 0; $i < $user->ratingcomprador; $i++)

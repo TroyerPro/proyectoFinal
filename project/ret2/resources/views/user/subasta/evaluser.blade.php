@@ -47,17 +47,13 @@
                     <input class="form-control" type="text" name="comentario" id="comentario"></input>
                 </div>
               </div>
-
             		<div class="form-group">
             			<div class="col-md-12">
+                  </br>
             				<button type="submit" class="btn btn-sm btn-success close_popup">
             					<span class="glyphicon glyphicon-ok"></span> {{
             					trans("Enviar") }}
             				</button>
-                    <button class="btn btn-sm btn-danger close_popup">
-                      <span class="glyphicon glyphicon-ban-circle"></span> {{
-                      trans("Cancelar") }}
-                    </button>
             			</div>
             		</div>
             		<!-- ./ form actions -->
