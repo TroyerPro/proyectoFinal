@@ -80,6 +80,10 @@
               <td  style="font-size:16px"><a href="#" class="color_dark"><a href="{{ URL::to('search/user/view/'.$user->id) }}">{{ $user->name }}</a></a></td>
             </tr>
             <tr>
+              <td  style="font-size:16px">Ciudad:</td>
+              <td  style="font-size:16px">{{ $user->ciudad }}</td>
+            </tr>
+            <tr>
               <td>R. Vendedor:</td>
                 <td>
                   @if($user->ratingvendedor == 0)
@@ -139,11 +143,11 @@
               <td><span class="color_dark">{{ $subasta->fecha_inicio }}</span></td>
             </tr>
             <tr>
-              <td>Método de pago::</td>
+              <td>Método de pago:</td>
               <td>{{ $subasta->metodo_pago }}</td>
             </tr>
             <tr>
-              <td>Método de envio::</td>
+              <td>Método de envio:</td>
               <td>{{ $subasta->metodo_envio }}</td>
             </tr>
           </table>
@@ -165,114 +169,7 @@
     </div>
 
 </div>
-<!--
-         </div>
-         <div class="col-xs-6 under_panel">
-           <div class="col-xs-12 ">
-             <div class="col-xs-12">
-               <div class="col-xs-12"><h3><b>{{ $subasta->nombre }}</b></h3></div>
-             </div>
-             <div class="col-xs-12 nomRating">
-               <div class="col-xs-4">
-                 <a href="{{ URL::to('search/user/view/'.$user->id) }}">{{ $user->name }}</a>
-                </div>
-
-               <div class="col-xs-8">R. vendedor:
-                 @if($user->ratingvendedor == 0)
-                 <i>Este usuario no tiene rating</i>
-                 @else
-                 @for ($i = 0; $i < $user->ratingvendedor; $i++)
-                 <img src="{{ URL::asset('img/star.jpg') }}">
-                 @endfor
-                 @endif
-               </div><br><br>
-               <div class="col-xs-12">
-                 <div class="col-xs-6" style="font-size:16px;">Estado :</div>
-                 @if($subasta->estado_subasta == 1)
-                  <div class="col-xs-6 green" style="font-size:16px;"><b>Abierta</b></div>
-                 @else
-                  <div class="col-xs-6 red" style="font-size:16px;"><b>Cerrada</b></div>
-                 @endif
-               </div>
-             </div>
-             <div class="col-xs-12">
-               <div class="col-xs-6"><b>Precio Inicial:</b></div> <div class="col-xs-6">{{ $subasta->precio_inicial }} € </div>
-             </div>
-             <div class="col-xs-12">
-               <hr width="100%"/>
-             </div>
-             <div class="col-xs-12 ">
-
-               <div class="col-xs-6"><b>Fecha final:</b></div><div class="col-xs-6"> {{$fechaFinalMolona}}</div>
-             </div>
-             <div class="col-xs-12 ">
-
-               <div class="col-xs-6"><b>Tiempo restante:</b></div><div class="col-xs-6" id="newcountdown"></div>
-             </div>
-             <div class="col-xs-12">
-               <hr width="100%"/>
-             </div>
-             <div class="col-xs-12">
-               @if($subasta->estado_subasta == 1)
-               <div class="col-xs-6" id="pujaDesc"><b>Puja actual:</b></div>
-                @if($subasta->precio_actual == 0)
-                <div class="col-xs-6"><i>Actualmente no hay pujas.</i></div>
-                @else
-                <div class="col-xs-6">{{ $subasta->precio_actual }} €</div>
-                @endif
-               @else
-                <div class="col-xs-6" id="pujaDesc"><b>Puja Ganadora:</b></div>
-                <div class="col-xs-6">{{ $subasta->puja_ganadora }} €</div>
-               @endif
-             </div>
-             <div class="col-xs-12">
-               <hr width="100%"/>
-             </div>
-             <div class="col-xs-12 ">
-               <div class="col-xs-6"><b>Descripción del Producto:</b></div>
-             </div>
-             <div class="col-xs-12">
-               <div class="mrg-top-bot col-xs-12">{{ $subasta->descripcion }}</div>
-             </div>
-             <div class="col-xs-12 ">
-               <div class="col-xs-6"><b>Estado del producto:</b></div> <div class="col-xs-6">{{ $subasta->estado }}</div>
-             </div>
-             <div class="col-xs-12">
-               <hr width="100%"/>
-             </div>
-             <div class="col-xs-12">
-               <div class="col-xs-6"><b>Fecha inicio:</b></div>
-               <div class="col-xs-6">{{ $subasta->fecha_inicio }}</div>
-             </div>
-             <div class="col-xs-12 ">
-               <div class="col-xs-6"><b>Metodo pago:</b></div> <div class="col-xs-6">{{ $subasta->metodo_pago }}</div>
-             </div>
-             <div class="col-xs-12 ">
-               <div class="col-xs-6"><b>Metodo envio:</b></div> <div class="col-xs-6">{{ $subasta->metodo_envio }}</div>
-             </div>
-             @if(Auth::check())
-               @if($subasta->estado_subasta == 1 && Auth::user()->id != $subasta->id_user_vendedor)
-                 <div class="col-xs-12">
-                    <button id="pujar" class="iframe btn btn-success btn-mrg-top mrg-left">Realizar una Puja</button>
-                 </div>
-               @elseif ($subasta->estado_subasta == 1 && Auth::user()->id == $subasta->id_user_vendedor)
-                 <div class="col-xs-12">
-                   <div class="col-xs-6">
-                      <a href="{{URL::to('user/subastas')}}" class="iframe btn btn-info btn-mrg-top mrg-left">Ir configuración subasta</a>
-                   </div>
-                   <div class="col-xs-6">
-                     <a href="{{{ URL::to('user/subasta/'.$subasta->id.'/cerrar') }}}" class="iframe btn btn-danger btn-mrg-top mrg-left">{{ trans("Cerrar Subasta") }}</a>
-                   </div>
-                 </div>
-               @endif
-             @endif
-           </div>
-         </div>
-        </div>
-
-    </div>
-  -->
-    @endsection
+@endsection
     @section('scripts')
       @parent
       <script src="{{asset('assets/site/js/jquery-2.1.0.min.js')}}"></script>

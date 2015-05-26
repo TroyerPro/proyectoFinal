@@ -97,11 +97,10 @@
                     </div>
                     @endforeach
                     @else
-
-                        <div class="col-lg-4 col-md-4 col-sm-4 t_xs_align_c">
-                          <figure class="d_xs_inline_b d_mxs_block">
-                        <h3>Este usuario no tiene subastas activas.</h3>
-                      </figure>
+                      <div class="col-lg-4 col-md-4 col-sm-4 t_xs_align_c">
+                        <figure class="d_xs_inline_b d_mxs_block">
+                          <h3>Este usuario no tiene subastas activas.</h3>
+                        </figure>
                       </div>
                     @endif
         					</div>
@@ -126,10 +125,10 @@
                       @endforeach
                     @else
                     <div class="col-lg-6 col-md-6 col-sm-6 t_xs_align_c">
-                    <figure class="d_xs_inline_b d_mxs_block">
-                      <h3>Este usuario no tiene evaluaciones.</h3>
-                    </figure>
-                  </div>
+                      <figure class="d_xs_inline_b d_mxs_block">
+                        <h3>Este usuario no tiene evaluaciones.</h3>
+                      </figure>
+                    </div>
                     @endif
                   </div>
         				</div>
