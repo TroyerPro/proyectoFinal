@@ -43,22 +43,22 @@
                </thead>
                <tbody></tbody>
            </table>
-             @foreach ($pujas as $pujas)
+             @foreach ($pujas as $pujas2)
 
               <div class="col-xs-4">
-                @if($hola) <span class="puja">{{ $pujas->name }}</span>
+                @if($hola) <span class="puja">{{ $pujas2->name }}</span>
                 @else
-                <span>{{ $pujas->name }}</span>
+                <span>{{ $pujas2->name }}</span>
                 @endif
 
               </div>
               <div class="col-xs-4 ">
-                @if($hola) <span class="puja">{{ $pujas->cantidad }}</span>  @else
-                  <span>{{ $pujas->cantidad }}</span> @endif
+                @if($hola) <span class="puja">{{ $pujas2->cantidad }}</span>  @else
+                  <span>{{ $pujas2->cantidad }}</span> @endif
               </div>
               <div class="col-xs-4">
-                @if($hola) <span class="puja">{{ $pujas->fecha }}</span>  @else
-                  <span>{{ $pujas->fecha }}</span> @endif
+                @if($hola) <span class="puja">{{ $pujas2->fecha }}</span>  @else
+                  <span>{{ $pujas2->fecha }}</span> @endif
               </div>
               {{$hola = false}}
              @endforeach
@@ -152,7 +152,7 @@
             </tr>
           </table>
           @if(Auth::check())
-            @if($subasta->estado_subasta == 1 && Auth::user()->id != $subasta->id_user_vendedor)
+            @if($subasta->estado_subasta == 1 && Auth::user()->id != $subasta->id_user_vendedor && $pujas[0]->id_usuario != Auth::user()->id)
               <div class="col-xs-12">
                  <button id="pujar" class="iframe btn btn-success btn-mrg-top mrg-left">Realizar una Puja</button>
               </div>

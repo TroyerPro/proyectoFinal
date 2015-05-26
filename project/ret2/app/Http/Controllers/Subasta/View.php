@@ -19,10 +19,11 @@ class View extends Controller {
 
 		$subasta = Subasta::find($id);
 		SystemController::checkSubasta($subasta->id);
-		$pujas = Puja::select('users.name','pujas.cantidad','pujas.fecha')
+		$pujas = Puja::select('users.name','pujas.cantidad','pujas.fecha','pujas.id_usuario')
 		->where('pujas.id_subasta',$id)->join('users','pujas.id_usuario','=','users.id')
 		->orderBy('pujas.cantidad', 'DESC')
 		->get();
+		
 		$user = User::find($subasta->id_user_vendedor);
 		$fechaFinal = $subasta->fecha_final;
 		$subasta->fecha_inicio = Carbon::createFromTimestamp(strtotime($fechaFinal));
