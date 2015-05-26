@@ -25,25 +25,25 @@ Inicio</span>
             <i class="glyphicon glyphicon-shopping-cart "></i> Subastas<span class="fa arrow"</span>
         </a>
         <ul class="nav nav-second-level collapse">
-          <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+          <li {{ (Request::is('user/subasta/create') ? ' class=active' : '') }} >
               <a href="{{URL::to('user/subasta/create')}}">
                   <i class="glyphicon glyphicon-hand-right"></i><span
                           class="hidden-sm text"> Crear</span>
               </a>
           </li>
-            <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+            <li {{ (Request::is('user/subastas') ? ' class=active' : '') }} >
                 <a href="{{URL::to('user/subastas')}}">
                     <i class="glyphicon glyphicon-hand-right"></i><span
                             class="hidden-sm text "> Activas</span>
                 </a>
             </li>
-            <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+            <li {{ (Request::is('user/subasta/finalizadas') ? ' class=active' : '') }} >
                 <a href="{{URL::to('user/subasta/finalizadas')}}">
                     <i class="glyphicon glyphicon-hand-right"></i><span
                             class="hidden-sm text"> Finalizadas</span>
                 </a>
             </li>
-            <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+            <li {{ (Request::is('user/subasta/ganadas') ? ' class=active' : '') }} >
                 <a href="{{URL::to('user/subasta/ganadas')}}">
                     <i class="glyphicon glyphicon-hand-right"></i><span
                             class="hidden-sm text"> Ganadas </span>
@@ -56,13 +56,13 @@ Inicio</span>
             <i class="fa fa-money "></i> Pujas<span class="fa arrow"</span>
         </a>
         <ul class="nav nav-second-level collapse">
-          <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+          <li {{ (Request::is('user/pujas/auto') ? ' class=active' : '') }} >
               <a href="{{URL::to('user/pujas')}}">
                   <i class="glyphicon glyphicon-hand-right"></i><span
                           class="hidden-sm text"> Normales</span>
               </a>
           </li>
-            <li {{ (Request::is('admin/newscategory') ? ' class=active' : '') }} >
+            <li {{ (Request::is('user/pujas/auto') ? ' class=active' : '') }} >
                 <a href="{{URL::to('user/pujas/auto')}}">
                     <i class="glyphicon glyphicon-hand-right"></i><span
                             class="hidden-sm text "> Automáticas</span>

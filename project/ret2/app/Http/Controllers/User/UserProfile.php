@@ -107,7 +107,6 @@ class UserProfile extends Controller {
 		$currentuser = User::find($id);
 		$success = true;
 
-
 		$picture = "";
 		if($request->hasFile('image'))
 		{
@@ -115,6 +114,8 @@ class UserProfile extends Controller {
 				$filename = $file->getClientOriginalName();
 				$extension = $file -> getClientOriginalExtension();
 				$picture = sha1($filename . time()) . '.' . $extension;
+		} else {
+			$picture = 'sample.jpg';
 		}
 
 

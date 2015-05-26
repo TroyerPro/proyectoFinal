@@ -7,7 +7,7 @@
 @section('main')
     <div class="page-header">
         <h3>
-            {{{ trans("Subastas") }}}
+            {{{ trans("Subastas Finalizadas") }}}
         </h3>
     </div>
 

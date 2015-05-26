@@ -21,9 +21,9 @@
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>{{{ trans("Cantidad") }}}</th>
-            <th>{{{ trans("Fecha") }}}</th>
-            <th>{{{ trans("Subasta") }}}</th>
+            <th>{{{ trans("Cantidad Máxima") }}}</th>
+            <th>{{{ trans("Cantidad Actual") }}}</th>
+            <th>{{{ trans("Fecha Creación") }}}</th>
             <th>{{{ trans("Estado puja") }}}</th>
             <th>{{{ trans("Opciones") }}}</th>
         </tr>

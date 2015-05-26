@@ -14,14 +14,12 @@
       $("#formPro").submit(function() {
         var diasPro = parseInt(document.getElementById('diasPro').value);
         if(!isNaN(diasPro)) {
-          if(Math.round(diasPro) % 2 == 0) {
             var dias = Math.round(diasPro);
             var precioDia = {{ $confProrroga->precio_prorroga }};
             var tot = dias * precioDia;
             $confirmar = confirm("Vas a prorrogar la subasta por "+dias+" días más. El precio de la prorroga es de "
             +precioDia+" € por día. En total, serán "+tot+" €. ¿Deseas continuar?");
             return $confirmar;
-          }
         }
       });
     });
