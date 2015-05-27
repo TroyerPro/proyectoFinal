@@ -11,13 +11,13 @@ class LanguagesTableSeeder extends Seeder {
         $language = new Language();
         $language->name = 'English';
         $language->lang_code = 'en';
-        $language->icon = "icon_flag_gb.gif";
+        $language->icon = "uk.png";
         $language->save();
 
         $language = new Language();
         $language->name = 'Español';
         $language->lang_code = 'es';
-        $language->icon = "icon_flag_es.gif";
+        $language->icon = "spain.png";
         $language->save();
     }
 
