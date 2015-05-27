@@ -143,7 +143,7 @@
                   </a>
                   <!--description and price of product-->
                   <figcaption>
-                    <h5 class="m_bottom_10"><a href="#" class="color_dark">{{$subasta->nombre}}</a></h5>
+                    <h5 class="m_bottom_10"><a href="#" class="color_dark">{{ str_limit($subasta->nombre,15) }}</a></h5>
                     <div class="clearfix">
                       <p class="scheme_color f_left f_size_large m_bottom_15">Puja: @if($subasta->precio_actual != 0){{$subasta->precio_actual}}@else {{$subasta->precio_inicial}} @endif €</p><br/>
                       <!--rating-->
