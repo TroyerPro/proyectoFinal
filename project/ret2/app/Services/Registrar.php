@@ -38,7 +38,7 @@ class Registrar implements RegistrarContract {
 			'nif' => 'required|regex:/^[0-9]{8}[A-Z]$/',
 			'name' => 'required|min:3|max:50|regex:/^[A-Za-záéíóúàèìòùÀÈÌÒÙÁÉÍÓÚ]+$/',
 			'surname' => 'required|min:3|max:255|regex:/^[A-Za-záéíóúàèìòùÀÈÌÒÙÁÉÍÓÚ]+$/',
-			'dia' => 'required|integer|min:1|max:'.$dia.'',
+			'dia' => 'required|integer|min:01|max:'.$dia.'',
 			'mes' => 'required|integer|min:01|max:12',
 			'ano' => 'required|integer|min:1900|max:'.$edadMinima.'',
 			'city' => 'required|min:3|regex:/^[A-Za-záéíóúàèìòùÀÈÌÒÙÁÉÍÓÚ]+$/',
