@@ -157,6 +157,10 @@ class SubastaController extends UserController {
     $subasta -> fecha_final = Carbon::now();
     $subasta -> save();
     SystemController::crearChat($id);
+    SystemController::crearFactura($id);
+
+    dd($subasta);
+    die();
 
   }
 

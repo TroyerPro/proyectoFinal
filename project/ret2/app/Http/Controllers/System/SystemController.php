@@ -5,6 +5,7 @@ use App\User;
 use App\Chatusuarios;
 use App\Empresa;
 use App\Puja;
+use App\Factura;
 use Carbon\Carbon;
 use App\Confpujaauto;
 use App\Http\Controllers\Controller;
@@ -25,14 +26,32 @@ class SystemController extends Controller {
     $fechaActual = Carbon::now();
 
     if($fechaFin<$fechaActual) {
+
       $subasta->estado_subasta=false;
       $subasta->save();
-      if($subasta->precio_actual != 0) {
+
+      if($subasta->precio_actual > 0) {
         SystemController::crearChat($subastaId);
+        SystemController::crearFactura($subastaId);
       }
     }
 
 	}
+  public static function crearFactura($subastaId)
+  {
+
+      $fechaActual = Carbon::now();
+      $subasta = Subasta::find($subastaId);
+      if(is_null($subasta->id_factura)){
+        $precio =  $subasta->precio_actual;
+        $creador = $subasta->id_user_vendedor;
+        $factura = Factura::create(['fecha'=>$fechaActual , 'precio' =>$precio , 'id_usuario'=>$creador]);
+        $factura->save();
+        $subasta->id_factura = $factura->id;
+        $subasta->save();
+      }
+
+  }
 
   public static function crearChat($subastaId)
   {
