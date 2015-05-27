@@ -150,12 +150,40 @@
               <td>Método de envio:</td>
               <td>{{ $subasta->metodo_envio }}</td>
             </tr>
+            <tr>
+            <td>
+              Compartir:
+            </td>
+            <td>
+
+
+              <div class="d_inline_middle m_left_5 m_md_left_0 addthis_widget_container">
+                <!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+                </div>
+                <!-- AddThis Button END -->
+              </div>
+            </td>
+              <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5306f8f674bfda4c"></script>
+            </tr>
           </table>
           @if(Auth::check())
-            @if($subasta->estado_subasta == 1 && Auth::user()->id != $subasta->id_user_vendedor && $pujas[0]->id_usuario != Auth::user()->id)
+            @if($subasta->estado_subasta == 1 && Auth::user()->id != $subasta->id_user_vendedor)
+              @if (count($pujas)==0)
               <div class="col-xs-12">
                  <button id="pujar" class="iframe btn btn-success btn-mrg-top mrg-left">Realizar una Puja</button>
               </div>
+              @elseif ($pujas[0]->id_usuario !=Auth::user()->id)
+              <div class="col-xs-12">
+                 <button id="pujar" class="iframe btn btn-success btn-mrg-top mrg-left">Realizar una Puja</button>
+              </div>
+              @endif
             @elseif ($subasta->estado_subasta == 1 && Auth::user()->id == $subasta->id_user_vendedor)
               <div class="col-xs-12">
                 <div class="col-xs-6">
