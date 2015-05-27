@@ -12,6 +12,13 @@
 Inicio</span>
         </a>
     </li>
+    <li {{ (Request::is('admin/language*') ? ' class=active' : '') }}>
+    <a href="{{URL::to('admin/language')}}"
+            >
+        <i class="glyphicon glyphicon-flag"></i><span
+                class="hidden-sm text"> Language</span>
+    </a>
+</li>
     <li {{ (Request::is('admin/news*') ? ' class=active' : '') }}>
         <a href="#">
             <i class="glyphicon fa fa-columns"></i> Categorias <span
@@ -26,6 +33,7 @@ Inicio</span>
             </li>
         </ul>
     </li>
+
     <li {{ (Request::is('user/subastas*') ? ' class=active' : '') }} >
         <a href="#">
             <i class="glyphicon glyphicon-shopping-cart"></i>Admin Subastas<span class="fa arrow"</span>
