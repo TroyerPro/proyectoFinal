@@ -28,8 +28,8 @@ class UsersTableSeeder extends Seeder {
 		]);
 
 		\App\User::create([
-			'name' => 'Adrià',
-			'surname'=>'Mondéjar',
+			'name' => 'Adria',
+			'surname'=>'Mondejar',
 			'username' => 'Sombe',
 			'Ciudad' => 'Granollers',
 			'nif'=>'44444444E',
