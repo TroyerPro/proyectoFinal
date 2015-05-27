@@ -1,12 +1,8 @@
 <div class="input-group">
-    <input type="text" class="form-control" placeholder="Buscar...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">
-            <i class="fa fa-search"></i>
-        </button>
-      </span>
+  <div class="col-xs-12">
+    Panel de Admin
+  </div>
 </div>
-
 
 <ul class="nav nav-pills nav-stacked" id="menu">
     <li {{ (Request::is('admin/dashboard') ? ' class=active' : '') }}>
