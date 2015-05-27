@@ -1,5 +1,4 @@
 <?php namespace App\Http\Controllers\Subasta;
-use Carbon\Carbon;
 use App\Subasta;
 use App\Http\Controllers\System\SystemController;
 use App\Puja;

@@ -3,6 +3,7 @@
 use App\User;
 use Validator;
 use Carbon\Carbon;
+use DateTimeZone;
 use DateTime;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
@@ -30,13 +31,16 @@ class Registrar implements RegistrarContract {
 			}
 		}
 
+		$fechaHoy=Carbon::now(new DateTimeZone('Europe/Madrid'));
+		$edadMinima=$fechaHoy->year - 18;
+
 		return Validator::make($data, [
 			'nif' => 'required|regex:/^[0-9]{8}[A-Z]$/',
 			'name' => 'required|min:3|max:50|regex:/^([a-zA-Z]+\s)*[a-zA-Z]+$/',
 			'surname' => 'required|min:3|max:255',
 			'dia' => 'required|integer|min:1|max:'.$dia.'',
 			'mes' => 'required|integer|min:01|max:12',
-			'ano' => 'required|integer|min:1900|max:1997',
+			'ano' => 'required|integer|min:1900|max:'.$edadMinima.'',
 			'city' => 'required|min:3|regex:/^([a-zA-Z]+\s)*[a-zA-Z]+$/',
 			'username' => 'required|unique:users|min:3|max:255',
 			'email' => 'required|email|max:255|unique:users',
