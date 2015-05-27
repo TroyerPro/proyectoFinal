@@ -16,6 +16,7 @@
         <tr>
             <th>{{{ trans("Chat con") }}}</th>
             <th>{{{ trans("Fecha") }}}</th>
+            <th>{{{ trans("Producto") }}}</th>
             <th>{{{ trans("Acciones") }}}</th>
         </tr>
         </thead>

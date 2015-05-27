@@ -43,10 +43,11 @@ class ChatController extends UserController {
      public function data()
      {
 
-       $chat = Chatusuarios::select('chatusuarios.id','u1.name','chatusuarios.created_at')
+       $chat = Chatusuarios::select('chatusuarios.id','u1.name','chatusuarios.created_at','subastas.nombre')
        ->where('chatusuarios.id_user1', Auth::id())
        ->orWhere('chatusuarios.id_user2', Auth::id())
-       ->join('users as u1','chatusuarios.id_user1','=','u1.id');
+       ->join('users as u1','chatusuarios.id_user1','=','u1.id')
+       ->join('subastas','subastas.id','=','chatusuarios.id_subasta');
 
        $table = Datatables::of($chat)
        ->remove_column('id')
