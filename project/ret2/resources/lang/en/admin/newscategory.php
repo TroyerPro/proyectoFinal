@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'newscategories' => 'News categories',
+    'newscategories' => 'Categories',
 
 
 ];

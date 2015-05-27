@@ -18,8 +18,8 @@ class SubastaRequest extends FormRequest {
 	  $categoria = Categoria::select('categorias.id')->orderBy('created_at','desc')->take(1)->get();
 
 		return [
-        'nombre' => 'required|min:3',
-				'desc' => 'required|min:15',
+        'nombre' => 'required|min:3|regex:/^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúÁÉÍÓÚäëïöüÄËÏÖÜ\-\'\.]*$/',
+				'desc' => 'required|min:15|regex:/^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúÁÉÍÓÚäëïöüÄËÏÖÜ\-\'\.]*$/',
 				'image' => 'required',
 				'categoria' => 'required|integer|min:1|max:'.$categoria[0]->id,
 				'duracion' => 'required|integer|min:1|max:'.$empresa->dias_subasta_gratis,
