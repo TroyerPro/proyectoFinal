@@ -11,25 +11,26 @@ class CategoriaTableSeeder extends Seeder {
 	{
 
 		\App\Categoria::create([
-			'nombre' => 'Deporte',
-			'descripcion' => 'Cosas orientadas a hacer deporte',
+			'nombre' => 'Moda',
+			'descripcion' => 'Objetos de moda',
 		]);
 		\App\Categoria::create([
-			'nombre' => 'Moda Masculina',
-			'descripcion' => 'Objetos de moda masculina',
+			'nombre' => 'Electrónica',
+			'descripcion' => 'Objetos electronicos',
 		]);
 		\App\Categoria::create([
-			'nombre' => 'Moda Femenina',
-			'descripcion' => 'Objetos de moda femenina',
+			'nombre' => 'Casa y jardín',
+			'descripcion' => 'Cosas para casa y jardín',
 		]);
 		\App\Categoria::create([
-			'nombre' => 'Tecnologia',
-			'descripcion' => 'Objetos tecnologicos',
+			'nombre' => 'Motor: Recambios y accesorios',
+			'descripcion' => 'Recambios y accesorios para vehiculo',
 		]);
 		\App\Categoria::create([
-			'nombre' => 'Complementos de Jardín',
-			'descripcion' => 'Decoracion de jardin',
+			'nombre' => 'Deportes y Ocio',
+			'descripcion' => 'Cosas de deporte y ocio',
 		]);
+
 
 	//	TestDummy::times(8)->create('App\Categoria');
 

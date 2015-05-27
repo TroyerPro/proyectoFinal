@@ -27,35 +27,52 @@ class UsersTableSeeder extends Seeder {
 		]);
 
 		\App\User::create([
-			'name' => 'Test User',
-			'username' => 'test_user',
-			'nif'=>'nifUser',
-			'imagen'=>'db6bee3c20ba251ea31b1ab70d4e0dbf82785999.jpg',
-			'email' => 'user@user.com',
-			'password' => bcrypt('user'),
+			'name' => 'Adria',
+			'username' => 'Mondejar',
+			'nif'=>'44444444E',
+			'imagen'=>'adri.png',
+			'email' => 'amdadria@hotmail.com',
+			'password' => bcrypt('122122'),
 			'usable' => true,
-			'ratingvendedor' => 5,
-			'ratingcomprador' => 5,
-			'actividad' => false,
-			'confirmed' => 1,
-			'confirmation_code' => md5(microtime() . env('APP_KEY')),
+			'empresa_id'=>1,
+			'fecha_nacimiento'=>1989-09-12,
 		]);
 
 		\App\User::create([
-			'name' => 'User3',
-			'username' => 'User3',
-			'nif'=>'User3',
-			'email' => 'user3@user3.com',
-			'password' => bcrypt('123123'),
+			'name' => 'Sergio',
+			'username' => 'Gonzalez',
+			'nif'=>'12345678A',
+			'imagen'=>'sergio.png',
+			'email' => 'sergiogg1337@gmail.com',
+			'password' => bcrypt('122122'),
 			'usable' => true,
-			'ratingvendedor' => 5,
-			'ratingcomprador' => 5,
-			'actividad' => false,
-			'confirmed' => 1,
-			'confirmation_code' => md5(microtime() . env('APP_KEY')),
+			'empresa_id'=>1,
+			'fecha_nacimiento'=>1990-02-20,
 		]);
 
-		TestDummy::times(10)->create('App\User');
+		\App\User::create([
+			'name' => 'Javier',
+			'username' => 'Bufo',
+			'nif'=>'89510027U',
+			'imagen'=>'javi.png',
+			'email' => 'javitobufo@gmail.com',
+			'password' => bcrypt('122122'),
+			'usable' => true,
+			'empresa_id'=>1,
+			'fecha_nacimiento'=>1991-05-17,
+		]);
+
+		\App\User::create([
+			'name' => 'Marc',
+			'username' => 'Picazos',
+			'nif'=>'98765432W',
+			'imagen'=>'marc.png',
+			'email' => 'picasso.m91@gmail.com',
+			'password' => bcrypt('122122'),
+			'usable' => true,
+			'empresa_id'=>1,
+			'fecha_nacimiento'=>1991-05-04,
+		]);
 
 	}
 
