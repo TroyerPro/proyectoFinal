@@ -4168,9 +4168,10 @@ background-color:white !important;
 }
 .imangen_subasta_home {
 
-max-width: 100%;
-max-height: 100px;
-
+max-width: 130px;
+max-height: 130px;
+min-width: 130px;
+min-height: 130px;
 }
 .imangen_profile {
 

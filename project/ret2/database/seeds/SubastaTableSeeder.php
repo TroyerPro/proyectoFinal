@@ -17,87 +17,61 @@ class SubastaTableSeeder extends Seeder {
 		\App\Subasta::create([
 			'id_user_vendedor' => "2",
 			'id_factura' => "1",
-			'id_categoria'=> "1",
-			'nombre' => 'Camiseta Real Madrid',
-			'descripcion' => 'Camiseta nueva del Real Madrid temporada 14/15, 1a equipación',
+			'id_categoria'=> "5",
+			'nombre' => 'CARCASA PARA IPHONE 5-5S',
+			'descripcion' => 'FUNDA CARCASA PARA IPHONE 5-5S HOMER COMIENDO MANZANA + FILM PROTECTOR DE PANTALLA',
 			'metodo_pago' => 'Tarjeta',
 			'metodo_envio' => 'Servicio postal publico',
 			'estado_subasta' =>false,
 			'estado' => 'Nuevo',
-			'fecha_final' => date('2015-03-04'),
-			'fecha_inicio' => date('2015-02-04'),
-			'precio_inicial' => 5,
-			'precio_actual' => 70,
-			'imagen' => "realmadrid.png",
+			'fecha_final' => date('2015-05-27'),
+			'fecha_inicio' => date('2015-04-27'),
+			'precio_inicial' => 1,
+			'precio_actual' => 2,
+			'imagen' => "iphoneHomer.png",
 			'puja_ganadora' => 1
 		]);
 
 		\App\Subasta::create([
-			'id_user_vendedor' => "2",
-			'id_factura' => "1",
-			'id_categoria'=> "1",
-			'nombre' => 'Camiseta Real Madrid',
-			'descripcion' => 'Camiseta nueva del Real Madrid temporada 14/15, 1a equipación',
-			'metodo_pago' => 'Tarjeta',
-			'metodo_envio' => 'Servicio postal publico',
+			'id_user_vendedor' => "3",
+			'id_factura' => "2",
+			'id_categoria'=> "3",
+			'nombre' => 'Barbacoa',
+			'descripcion' => 'Landmann - Barbacoa con pared esmaltada (37 cm), color negro y granate',
+			'metodo_pago' => 'Paypal',
+			'metodo_envio' => 'Servicio postal privado',
 			'estado_subasta' =>false,
-			'estado' => 'Nuevo',
-			'fecha_final' => date('2015-03-04'),
-			'fecha_inicio' => date('2015-02-04'),
-			'precio_inicial' => 5,
-			'precio_actual' => 70,
-			'imagen' => "realmadrid.png",
-			'puja_ganadora' => 1
+			'estado' => 'Usado',
+			'fecha_final' => date('2015-04-20'),
+			'fecha_inicio' => date('2015-03-20'),
+			'precio_inicial' => 2,
+			'precio_actual' => 5,
+			'imagen' => "bbq.png",
+			'puja_ganadora' => 2
 		]);
 
 		\App\Subasta::create([
-			'id_user_vendedor' => "2",
-			'id_factura' => "1",
-			'id_categoria'=> "1",
-			'nombre' => 'Camiseta Real Madrid',
-			'descripcion' => 'Camiseta nueva del Real Madrid temporada 14/15, 1a equipación',
-			'metodo_pago' => 'Tarjeta',
-			'metodo_envio' => 'Servicio postal publico',
+			'id_user_vendedor' => "3",
+			'id_factura' => "3",
+			'id_categoria'=> "3",
+			'nombre' => 'Jarron de barro',
+			'descripcion' => 'Jarron de barro lila hecho a mano en torno alfarero y esculpido despues con un diseño especial de dos caracoles. Esmaltado en lila y disponible en varios colores y 3 Tamaños mas. Firmado y etiquetado por nuestro taller artesano. Medidas 26/12cm.',
+			'metodo_pago' => 'Paypal',
+			'metodo_envio' => 'Servicio postal privado',
 			'estado_subasta' =>false,
-			'estado' => 'Nuevo',
-			'fecha_final' => date('2015-03-04'),
-			'fecha_inicio' => date('2015-02-04'),
-			'precio_inicial' => 5,
-			'precio_actual' => 70,
-			'imagen' => "realmadrid.png",
-			'puja_ganadora' => 1
+			'estado' => 'Usado',
+			'fecha_final' => date('2015-04-20'),
+			'fecha_inicio' => date('2015-03-20'),
+			'precio_inicial' => 15,
+			'precio_actual' => 25,
+			'imagen' => "jarron.png",
+			'puja_ganadora' => 4
 		]);
-
-		\App\Subasta::create([
-			'id_user_vendedor' => "2",
-			'id_factura' => "1",
-			'id_categoria'=> "1",
-			'nombre' => 'Camiseta Real Madrid',
-			'descripcion' => 'Camiseta nueva del Real Madrid temporada 14/15, 1a equipación',
-			'metodo_pago' => 'Tarjeta',
-			'metodo_envio' => 'Servicio postal publico',
-			'estado_subasta' =>false,
-			'estado' => 'Nuevo',
-			'fecha_final' => date('2015-03-04'),
-			'fecha_inicio' => date('2015-02-04'),
-			'precio_inicial' => 5,
-			'precio_actual' => 70,
-			'imagen' => "realmadrid.png",
-			'puja_ganadora' => 1
-		]);
-
 
 		//#######################################################
 		//##                    No acabadas                    ##
 		//#######################################################
-		/*
-			(1)moda
-			(2)electronica
-			(3)casayjardi
-			(4)motor:recambiosyaccesorios
-			(5)deportesyocio
-		*/
-		//5
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "2",
 			'id_categoria'=> "1",
@@ -108,11 +82,13 @@ class SubastaTableSeeder extends Seeder {
 			'estado_subasta' =>true,
 			'estado' => 'Usado',
 			'fecha_final' => date('2015-06-26'),
-			'fecha_inicio' => date('2015-05-26'),
+			'fecha_inicio' => date('2015-04-26'),
 			'precio_inicial' => 80,
 			'precio_actual' => 120,
 			'imagen' => "bolsoMK.png",
-			//6
+			'puja_ganadora' => 7
+		]);
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "2",
 			'id_categoria'=> "1",
@@ -127,9 +103,9 @@ class SubastaTableSeeder extends Seeder {
 			'precio_inicial' => 250,
 			'precio_actual' => 260,
 			'imagen' => "americanaHB.png",
-			'puja_ganadora' =>
+			'puja_ganadora' => 8
 		]);
-//7
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "2",
 			'id_categoria'=> "5",
@@ -146,7 +122,7 @@ class SubastaTableSeeder extends Seeder {
 			'imagen' => "realmadrid.png",
 
 		]);
-//8
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "3",
 			'id_categoria'=> "2",
@@ -163,7 +139,7 @@ class SubastaTableSeeder extends Seeder {
 			'precio_actual' => 0,
 			'imagen' => "samsungTV.png",
 		]);
-		//9
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "3",
 			'id_categoria'=> "3",
@@ -178,9 +154,9 @@ class SubastaTableSeeder extends Seeder {
 			'precio_inicial' => 10,
 			'precio_actual' => 12,
 			'imagen' => "mesa.png",
-			'puja_ganadora' =>
+			'puja_ganadora' => 9
 		]);
-//10
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "3",
 			'id_categoria'=> "4",
@@ -195,9 +171,9 @@ class SubastaTableSeeder extends Seeder {
 			'precio_inicial' => 2,
 			'precio_actual' => 3,
 			'imagen' => "ledBombilla.png",
-			'puja_ganadora' =>
+			'puja_ganadora' => 10
 		]);
-		//11
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "4",
 			'id_categoria'=> "1",
@@ -216,7 +192,7 @@ class SubastaTableSeeder extends Seeder {
 			'precio_actual' => 0,
 			'imagen' => "rayban.png",
 		]);
-//12
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "4",
 			'id_categoria'=> "2",
@@ -231,9 +207,9 @@ class SubastaTableSeeder extends Seeder {
 			'precio_inicial' => 20,
 			'precio_actual' => 30,
 			'imagen' => "barracuda.png",
-			'puja_ganadora' =>
+			'puja_ganadora' => 13
 		]);
-		//13
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "4",
 			'id_categoria'=> "4",
@@ -248,9 +224,9 @@ class SubastaTableSeeder extends Seeder {
 			'precio_inicial' => 5,
 			'precio_actual' => 6,
 			'imagen' => "funcaCoche.png",
-			'puja_ganadora' =>
+			'puja_ganadora' => 14
 		]);
-//14
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "5",
 			'id_categoria'=> "3",
@@ -265,10 +241,9 @@ class SubastaTableSeeder extends Seeder {
 			'precio_inicial' => 15,
 			'precio_actual' => 20,
 			'imagen' => "sillaWooden.png",
-			'puja_ganadora' =>
+			'puja_ganadora' => 15
 		]);
 
-		//15
 		\App\Subasta::create([
 			'id_user_vendedor' => "5",
 			'id_categoria'=> "5",
@@ -288,7 +263,7 @@ class SubastaTableSeeder extends Seeder {
 			'precio_actual' => 0,
 			'imagen' => "muñequera.png",
 		]);
-//16
+
 		\App\Subasta::create([
 			'id_user_vendedor' => "5",
 			'id_categoria'=> "5",
@@ -299,14 +274,12 @@ class SubastaTableSeeder extends Seeder {
 			'estado_subasta' =>true,
 			'estado' => 'Usado',
 			'fecha_final' => date('2015-06-26'),
-			'fecha_inicio' => date('2015-05-29'),
+			'fecha_inicio' => date('2015-04-29'),
 			'precio_inicial' => 10,
 			'precio_actual' => 18,
 			'imagen' => "mancuernas.png",
-			'puja_ganadora' =>
+			'puja_ganadora' =>19
 		]);
-
-
 
 	}
 

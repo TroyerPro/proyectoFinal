@@ -12,6 +12,7 @@ class UsersTableSeeder extends Seeder {
 
 		\App\User::create([
 			'name' => 'Admin User',
+			'surname'=>'admin_user',
 			'username' => 'admin_user',
 			'nif'=>'nifAdmin',
 			'imagen'=>'admin.png',
@@ -27,44 +28,57 @@ class UsersTableSeeder extends Seeder {
 		]);
 
 		\App\User::create([
-			'name' => 'Adria',
-			'username' => 'Mondejar',
+			'name' => 'Adrià',
+			'surname'=>'Mondéjar',
+			'username' => 'Sombe',
+			'Ciudad' => 'Granollers',
 			'nif'=>'44444444E',
 			'imagen'=>'adri.png',
 			'email' => 'amdadria@hotmail.com',
 			'password' => bcrypt('122122'),
 			'usable' => true,
+			'ratingvendedor' => 5,
+			'ratingcomprador' => 4,
 			'empresa_id'=>1,
 			'fecha_nacimiento'=>1989-09-12,
 		]);
 
 		\App\User::create([
 			'name' => 'Sergio',
-			'username' => 'Gonzalez',
+			'surname'=>'Gonzalez',
+			'username' => 'Troyer',
+			'Ciudad' => 'Roca del Vallés',
 			'nif'=>'12345678A',
 			'imagen'=>'sergio.png',
 			'email' => 'sergiogg1337@gmail.com',
 			'password' => bcrypt('122122'),
 			'usable' => true,
+			'ratingvendedor' => 3.5,
+			'ratingcomprador' => 5,
 			'empresa_id'=>1,
 			'fecha_nacimiento'=>1990-02-20,
 		]);
 
 		\App\User::create([
 			'name' => 'Javier',
-			'username' => 'Bufo',
+			'surname'=>'Bufo',
+			'username' => 'Zaverius',
+			'Ciudad' => 'Granollers',
 			'nif'=>'89510027U',
 			'imagen'=>'javi.png',
 			'email' => 'javitobufo@gmail.com',
 			'password' => bcrypt('122122'),
 			'usable' => true,
+			'ratingcomprador' => 1,
 			'empresa_id'=>1,
 			'fecha_nacimiento'=>1991-05-17,
 		]);
 
 		\App\User::create([
 			'name' => 'Marc',
-			'username' => 'Picazos',
+			'surname'=>'Picazos',
+			'username' => 'Noburo',
+			'Ciudad' => 'Montornés',
 			'nif'=>'98765432W',
 			'imagen'=>'marc.png',
 			'email' => 'picasso.m91@gmail.com',

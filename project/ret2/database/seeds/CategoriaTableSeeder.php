@@ -31,9 +31,6 @@ class CategoriaTableSeeder extends Seeder {
 			'descripcion' => 'Cosas de deporte y ocio',
 		]);
 
-
-	//	TestDummy::times(8)->create('App\Categoria');
-
 	}
 
 }

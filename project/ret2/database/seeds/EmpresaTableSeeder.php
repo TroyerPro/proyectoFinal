@@ -18,8 +18,6 @@ class EmpresaTableSeeder extends Seeder {
 	    'tiempo_inactividad' => '30',
 		]);
 
-	//	TestDummy::times(1)->create('App\Empresa');
-
 	}
 
 }
