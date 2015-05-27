@@ -25,6 +25,7 @@ class UsersTableSeeder extends Seeder {
 			'confirmed' => 1,
             'admin' => 1,
 			'confirmation_code' => md5(microtime() . env('APP_KEY')),
+			'descripcion'=>'Soy el admin y soy tu dios',
 		]);
 
 		\App\User::create([
@@ -41,6 +42,7 @@ class UsersTableSeeder extends Seeder {
 			'ratingcomprador' => 4,
 			'empresa_id'=>1,
 			'fecha_nacimiento'=>1989-09-12,
+			'descripcion'=>'Rubio de ojos azules',
 		]);
 
 		\App\User::create([
@@ -57,6 +59,7 @@ class UsersTableSeeder extends Seeder {
 			'ratingcomprador' => 5,
 			'empresa_id'=>1,
 			'fecha_nacimiento'=>1990-02-20,
+			'descripcion'=>'Hago las cosas porque puedo',
 		]);
 
 		\App\User::create([
@@ -72,6 +75,7 @@ class UsersTableSeeder extends Seeder {
 			'ratingcomprador' => 1,
 			'empresa_id'=>1,
 			'fecha_nacimiento'=>1991-05-17,
+			'descripcion'=>'En el gymnasio me llaman espantapajaros',
 		]);
 
 		\App\User::create([
@@ -86,6 +90,7 @@ class UsersTableSeeder extends Seeder {
 			'usable' => true,
 			'empresa_id'=>1,
 			'fecha_nacimiento'=>1991-05-04,
+			'descripcion'=>'Le cobro mucho dinero al Jairo por llevarle a casa',
 		]);
 
 	}
