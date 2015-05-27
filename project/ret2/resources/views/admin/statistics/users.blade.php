@@ -26,6 +26,7 @@
                 theme: "theme2",//theme1
                 axisX:{
                   title: "Meses",
+                  labelAngle: -30
                 },
                 title:{
                   text: titulo

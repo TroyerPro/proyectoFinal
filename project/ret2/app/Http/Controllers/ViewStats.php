@@ -50,8 +50,6 @@ class ViewStats extends Controller {
 				}
 				return $categorias;
 				break;
-					return $busqueda;
-					break;
 				default:
 					break;
 			}
@@ -66,11 +64,15 @@ class ViewStats extends Controller {
 				case '0':
 					break;
 				case '1':
-					$busqueda = Categoria::select('subastas.*')
-					->groupBy('subastas.id_categoria');
-					dd(DB::getQueryLog());
-					return $busqueda;
-					break;
+				$busqueda = User::select( 'users.ciudad',DB::raw('COUNT(users.ciudad) as ciudades'))
+				->groupBy('users.ciudad')->get();
+
+				foreach ($busqueda as $busqueda ) {
+					$categorias[$busqueda->ciudad] = $busqueda->ciudades;
+				}
+				
+				return $categorias;
+				break;
 				case '2':
 					$busqueda = Subasta::all();
 					$meses = array();
