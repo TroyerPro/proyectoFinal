@@ -18,5 +18,5 @@ return [
     'photo_items' => 'Photo items',
     'video_albums' => 'Video albums',
     'video_items' => 'Video items',
-    'users' => 'usuarios',
+    'users' => 'Usuarios',
 	];
