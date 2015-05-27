@@ -46,7 +46,13 @@ class ChatController extends UserController {
        $chat = Chatusuarios::select('chatusuarios.id','u1.name','chatusuarios.created_at','subastas.nombre')
        ->where('chatusuarios.id_user1', Auth::id())
        ->orWhere('chatusuarios.id_user2', Auth::id())
-       ->join('users as u1','chatusuarios.id_user1','=','u1.id')
+       ->join('users as u1', function($join)
+        {
+            $join->on('chatusuarios.id_user1', '=', 'u1.id')
+                 ->where('chatusuarios.id_user1', '!=', Auth::id())
+                 ->orOn('chatusuarios.id_user2', '=', 'u1.id')
+                 ->where('chatusuarios.id_user2', '!=', Auth::id());
+        })
        ->join('subastas','subastas.id','=','chatusuarios.id_subasta');
 
        $table = Datatables::of($chat)
