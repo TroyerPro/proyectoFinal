@@ -137,7 +137,7 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-
+		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
 
 		/*
@@ -203,7 +203,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-
+		'QrCode' 		=> 'SimpleSoftwareIO\QrCode\Facades\QrCode',
 		'Form'      => 'Illuminate\Html\FormFacade',
 		'HTML'      => 'Illuminate\Html\HtmlFacade',
 

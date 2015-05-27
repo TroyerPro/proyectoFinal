@@ -10,13 +10,11 @@ class ConfpujaautoTableSeeder extends Seeder {
 	public function run()
 	{
 		\App\Confpujaauto::create([
-			'max_puja' => 300,
-			'incrementar' => 1,
-			'id_usuario' => 1,
-			'id_puja' => 3,
+			'max_puja' => 700,
+			'incrementar' => 10,
+			'id_usuario' => 3,
+			'id_puja' => 8,
 		]);
-
-		//TestDummy::times(3)->create('App\Confpujaauto');
 
 	}
 

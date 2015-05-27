@@ -10,31 +10,23 @@ class FacturaTableSeeder extends Seeder {
 	public function run()
 	{
 		\App\Factura::create([
-			'fecha' => date("2015/03/04"),
-			'precio'=>25,
+			'fecha' => date('2015-05-27'),
+			'precio'=>2,
 			'id_usuario' => 2,
 		]);
+
 		\App\Factura::create([
-			'fecha' => date('2015-03-04'),
-			'precio'=>10,
-			'id_usuario' => '3',
-		]);
-		\App\Factura::create([
-			'fecha' => date('2015-03-04'),
+			'fecha' => date('2015-04-20'),
 			'precio'=>5,
-			'id_usuario' => '4',
+			'id_usuario' => 3,
 		]);
+
 		\App\Factura::create([
-			'fecha' => date('2015-03-04'),
-			'precio'=>40,
-			'id_usuario' => '5',
+			'fecha' => date('2015-04-20'),
+			'precio'=>25,
+			'id_usuario' => 3,
 		]);
-		\App\Factura::create([
-			'fecha' => date('2015-03-04'),
-			'precio'=>12,
-			'id_usuario' => '6',
-		]);
-		//TestDummy::times(5)->create('App\Factura');
+
 
 	}
 
