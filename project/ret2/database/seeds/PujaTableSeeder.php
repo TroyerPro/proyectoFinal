@@ -151,7 +151,7 @@ class PujaTableSeeder extends Seeder {
 			'cantidad' => 13,
 			'fecha' => date('2015-05-02'),
 			'id_subasta'=> '15',
-			'id_usuario' => '2',
+			'id_usuario' => '4',
 			'puja_auto' => false,
 		]);
 
@@ -167,7 +167,7 @@ class PujaTableSeeder extends Seeder {
 			'cantidad' => 18,
 			'fecha' => date('2015-05-15'),
 			'id_subasta'=> '15',
-			'id_usuario' => '2',
+			'id_usuario' => '3',
 			'puja_auto' => false,
 		]);
 

@@ -12340,3 +12340,13 @@ li > ul {
      max-width: 100%;
      max-height: 150px;
    }
+
+   .pujas-scrollbar {
+     max-height: 250px;
+     overflow-y: auto;
+   }
+
+   .buttons_share{
+     padding-top:15px;
+     padding-left:25%;
+   }

@@ -26,11 +26,25 @@
         {{--<div class="col-xs-12">--}}
         <div class="col-xs-12 main">
           @yield('main')
-         <div class="col-xs-6 under_panel">
+         <div class="col-xs-6">
+           <h2 class="m_bottom_10"><div href="#" class="color_dark fw_medium">{{ $subasta->nombre }}</div></h2>
+           <hr class="m_bottom_10 divider_type_3">
            <div class="col-xs-12">
              <img class="imagensubasta" src="{{ URL::asset('img/subasta/'.$subasta->imagen) }}">
            </div>
-           <div class=" color_dark fw_medium  col-xs-12">
+             <div class="d_inline_middle m_left_5 m_md_left_0 addthis_widget_container buttons_share">
+               <!-- AddThis Button BEGIN -->
+               <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+               <a class="addthis_button_preferred_1"></a>
+               <a class="addthis_button_preferred_2"></a>
+               <a class="addthis_button_preferred_3"></a>
+               <a class="addthis_button_preferred_4"></a>
+               <a class="addthis_button_compact"></a>
+               <a class="addthis_counter addthis_bubble_style"></a>
+               </div>
+               <!-- AddThis Button END -->
+             </div>
+           <div style="padding-top:10px;" class=" color_dark fw_medium  col-xs-12">
              <h3>Historial Pujas</h3>
            </div>
            <table id="table" class="table table-striped table-hover">
@@ -43,6 +57,7 @@
                </thead>
                <tbody></tbody>
            </table>
+           <div class="pujas-scrollbar">
              @foreach ($pujas as $pujas2)
 
               <div class="col-xs-4">
@@ -62,9 +77,9 @@
               </div>
               {{$hola = false}}
              @endforeach
+           </div>
          </div>
-         <div class="col-xs-6 under_panel">
-           <div class=" " id="">
+         <div class="col-xs-6">
 
     <div class="clearfix">
       <div class="custom_scrollbar">
@@ -72,8 +87,6 @@
         <!--right popup column-->
         <div class=" half_column">
           <!--description-->
-          <h2 class="m_bottom_10"><div href="#" class="color_dark fw_medium">{{ $subasta->nombre }}</div></h2>
-          <hr class="m_bottom_10 divider_type_3">
           <table class="description_table m_bottom_10">
             <tr>
               <td  style="font-size:16px">Vendedor:</td>
@@ -116,7 +129,7 @@
           </div>
           </h2>
           <div class="m_bottom_15">
-            <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium"  id="newcountdown"></span>
+            <span class="v_align_b f_size_ex_large m_left_5 scheme_color fw_medium"  id="newcountdown"></span>
           </div>
           <div class="m_bottom_15">
 
@@ -125,11 +138,11 @@
              @if($subasta->precio_actual == 0)
              <span><i>Actualmente no hay pujas.</i></span>
              @else
-             <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">{{ $subasta->precio_actual }} €</span>
+             <span class="v_align_b f_size_large m_left_5 scheme_color fw_medium">{{ $subasta->precio_actual }} €</span>
              @endif
             @else
             <b>Puja Ganadora:</b>
-              <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">{{ $subasta->puja_ganadora }} €</span>
+              <span class="v_align_b f_size_large m_left_5 scheme_color fw_medium">{{ $subasta->puja_ganadora }} €</span>
             @endif
           </div>
           <h5 class="fw_medium m_bottom_10">Especificaciones del producto</h5>
@@ -152,27 +165,10 @@
             </tr>
             <tr>
               <tr>
-            <td>
-              Compartir:
-            </td>
-            <td>
-              <div class="d_inline_middle m_left_5 m_md_left_0 addthis_widget_container">
-                <!-- AddThis Button BEGIN -->
-                <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-                <a class="addthis_button_preferred_1"></a>
-                <a class="addthis_button_preferred_2"></a>
-                <a class="addthis_button_preferred_3"></a>
-                <a class="addthis_button_preferred_4"></a>
-                <a class="addthis_button_compact"></a>
-                <a class="addthis_counter addthis_bubble_style"></a>
-                </div>
-                <!-- AddThis Button END -->
-              </div>
-            </td>
           </tr>
           <tr>
               <td>
-                Código QR de la subasta:
+
               </td>
               <td>
                 <img src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->size(100)->generate(Request::url())) }} ">
