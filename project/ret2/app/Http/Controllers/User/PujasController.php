@@ -59,7 +59,7 @@ class PujasController extends UserController {
     {
       $subasta = Subasta::find($id);
       if($subasta->estado_subasta) {
-        if($_POST['cantidad'] > $subasta->precio_actual) {
+        if($_POST['cantidad'] > $subasta->precio_actual && $_POST['cantidad'] > $subasta->precio_inicial) {
           if(SystemController::triggerPujasAuto($id,$_POST['cantidad'])) {
             $success = true;
           } else {
