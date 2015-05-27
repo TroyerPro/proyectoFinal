@@ -12299,7 +12299,7 @@ li > ul {
    }
 
    #background-popup {
-     position: absolute;
+     position: fixed;
      top: 0;
      height: 100%;
      width: 100%;
@@ -12310,7 +12310,7 @@ li > ul {
    }
 
    #popup {
-     position: absolute;
+     position: fixed;
      top: 33%;
      left: 33%;
      z-index: 1000;
