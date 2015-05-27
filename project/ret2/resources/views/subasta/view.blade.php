@@ -12,6 +12,7 @@
   </div>
 </div>
 @extends('app')
+
 @section('custom')
 <link rel="stylesheet" type="text/css" media="all" href="{{ asset('/css/owl.carousel.css') }}">
 <link rel="stylesheet" type="text/css" media="all" href="{{ asset('/css/owl.transitions.css') }}">
@@ -22,7 +23,6 @@
             @yield('top')
     </div>
     <div class="row">
-
         {{--<div class="col-xs-12">--}}
         <div class="col-xs-12 main">
           @yield('main')
@@ -151,12 +151,11 @@
               <td>{{ $subasta->metodo_envio }}</td>
             </tr>
             <tr>
+              <tr>
             <td>
               Compartir:
             </td>
             <td>
-
-
               <div class="d_inline_middle m_left_5 m_md_left_0 addthis_widget_container">
                 <!-- AddThis Button BEGIN -->
                 <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
@@ -170,6 +169,15 @@
                 <!-- AddThis Button END -->
               </div>
             </td>
+          </tr>
+          <tr>
+              <td>
+                Código QR de la subasta:
+              </td>
+              <td>
+                <img src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->size(100)->generate(Request::url())) }} ">
+              </td>
+          </tr>
               <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5306f8f674bfda4c"></script>
             </tr>
           </table>
