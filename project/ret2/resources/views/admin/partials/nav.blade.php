@@ -73,7 +73,7 @@ Inicio</span>
             </li>
         </ul>
         <ul class="nav nav-second-level collapse">
-            <li {{ (Request::is('admin/estadisticas/categorias') ? ' class=active' : '') }} >
+            <li {{ (Request::is('admin/estadisticas/categorias*') ? ' class=active' : '') }} >
                 <a href="{{URL::to('admin/estadisticas/categorias')}}">
                     <i class="fa fa-bar-chart-o"></i><span
                             class="hidden-sm text"> Categorias  </span>
