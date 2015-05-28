@@ -141,8 +141,8 @@
              <span class="v_align_b f_size_large m_left_5 scheme_color fw_medium">{{ $subasta->precio_actual }} €</span>
              @endif
             @else
-            <b>Puja Ganadora:</b>
-              <span class="v_align_b f_size_large m_left_5 scheme_color fw_medium">{{ $subasta->puja_ganadora }} €</span>
+            <b>Precio Final:</b>
+              <span class="v_align_b f_size_large m_left_5 scheme_color fw_medium">{{ $subasta->precio_actual }} €</span>
             @endif
           </div>
           <h5 class="fw_medium m_bottom_10">Especificaciones del producto</h5>

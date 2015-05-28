@@ -52,8 +52,9 @@ class HomeController extends Controller {
 		$categoria = Categoria::all();
 		$subasta = Subasta::select('subastas.*')->where('subastas.estado_subasta',true)->get();
 
-
-
+		for ($i=0; $i < count($subasta) ; $i++) {
+      SystemController::checkSubasta($subasta[$i]->id);
+    }
 
 		return view('pages.home', compact('categoria', 'subasta'));
 	}

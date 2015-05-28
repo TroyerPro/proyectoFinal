@@ -7,6 +7,7 @@ use App\Empresa;
 use App\Puja;
 use App\Factura;
 use Carbon\Carbon;
+use DateTimeZone;
 use App\Confpujaauto;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -22,11 +23,12 @@ class SystemController extends Controller {
 
 	public static function checkSubasta($subastaId)
 	{
+
     $subasta = Subasta::find($subastaId);
     $fechaFin = $subasta->fecha_final;
-    $fechaActual = Carbon::now();
+    $fechaActual = Carbon::now(new DateTimeZone('Europe/Madrid'));
 
-    if($fechaFin<$fechaActual && $subasta->estado_subasta) {
+    if($fechaFin<$fechaActual) {
 
       $subasta->estado_subasta=false;
       $subasta->save();
@@ -34,9 +36,25 @@ class SystemController extends Controller {
       if($subasta->precio_actual > 0) {
         SystemController::crearChat($subastaId);
         SystemController::crearFactura($subastaId);
+        SystemController::enviarEmailVenta($subastaId);
+      }else if($subasta->precio_actual <= 0){
         SystemController::enviarEmailSubasta($subastaId);
       }
     }
+  }
+
+  public static function enviarEmailVenta($subastaId) {
+    $subasta = Subasta::find($subastaId);
+    $usuarioVend = User::find($subasta->id_user_vendedor);
+    $pujaGanadora=Puja::find($subasta->puja_ganadora);
+    $usuarioComp=User::find($pujaGanadora->id_usuario);
+    $data = array('nombreSubasta' =>$subasta->nombre , 'precioSubasta'=>$subasta->precio_actual,'nombreVendedor' =>$usuarioVend->name, 'email' => $usuarioVend->email, 'nombreComprador'=>$usuarioComp->nombre ) ;
+    Mail::send('emails.vendedor',$data , function($message) use ($data){
+      $message->to($data['email'], 'The New Topic')->subject('Subasta Caducada');
+    });
+    Mail::send('emails.comprador',$data , function($message) use ($data){
+      $message->to($data['email'], 'The New Topic')->subject('Subasta Caducada');
+    });
   }
 
   public static function enviarEmailSubasta($subastaId) {
@@ -92,9 +110,10 @@ class SystemController extends Controller {
 
   public static function cerrarSubastas()
 	{
-    $suabastas = Subasta::all();
-    for ($i=0; $i < count($suabastas) ; $i++) {
-      SystemController::checkSubasta($suabastas[$i]->id);
+    $subastas = Subasta::select('subastas.*')
+                        ->where('subastas.estado_subasta',true)->get();
+    for ($i=0; $i < count($subastas) ; $i++) {
+      SystemController::checkSubasta($subastas[$i]->id);
     }
 	}
 
