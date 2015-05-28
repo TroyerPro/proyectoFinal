@@ -44,7 +44,7 @@ class SystemController extends Controller {
     $usuario = User::find($subasta->id_user_vendedor);
     $data = array('nombreSubasta' =>$subasta->nombre , 'nombre' =>$usuario->name, 'email' => $usuario->email ) ;
     Mail::send('emails.subastaAca',$data , function($message) use ($data){
-      $message->to($data['email'], 'The New Topic')->subject('Test Email');
+      $message->to($data['email'], 'The New Topic')->subject('Subasta Caducada');
     });
   }
 
@@ -52,7 +52,15 @@ class SystemController extends Controller {
     $usuario = User::find($userId);
     $data = array('nombre' =>$usuario->name, 'email' => $usuario->email ) ;
     Mail::send('emails.baja',$data , function($message) use ($data){
-      $message->to($data['email'], 'The New Topic')->subject('Test Email');
+      $message->to($data['email'], 'The New Topic')->subject('Baja Usuario');
+    });
+  }
+
+  public static function enviarEmailWelcome($userId) {
+    $usuario = User::find($userId);
+    $data = array('nombre' =>$usuario->name, 'email' => $usuario->email ) ;
+    Mail::send('emails.welcome',$data , function($message) use ($data){
+      $message->to($data['email'], 'The New Topic')->subject('Bienvenido');
     });
   }
 

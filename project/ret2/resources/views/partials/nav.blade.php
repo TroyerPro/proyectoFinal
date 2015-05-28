@@ -54,6 +54,10 @@
                                   </li>
                                 @endif
                                 <li role="presentation" class="divider"></li>
+                                <li>
+                                    <a href="{!! URL::to('search/user/view/'.Auth::id()) !!}"><i class="fa fa-male"></i> Mi perfil </a>
+                                </li>
+                                <li role="presentation" class="divider"></li>
                             @endif
                             <li>
                                 <a href="{!! URL::to('auth/logout') !!}"><i class="fa fa-sign-out"></i> Desconectarte</a>

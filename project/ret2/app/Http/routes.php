@@ -13,13 +13,8 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
-Route::get('about', 'PagesController@about');
-Route::get('contact', 'PagesController@contact');
 
 Route::pattern('id', '[0-9]+');
-Route::get('news/{id}', 'ArticlesController@show');
-Route::get('video/{id}', 'VideoController@show');
-Route::get('photo/{id}', 'PhotoController@show');
 
 Route::get('search/user','Search\UserSearch@show');
 Route::post('search/user','Search\UserSearch@show');

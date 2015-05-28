@@ -5,6 +5,7 @@ use Validator;
 use Carbon\Carbon;
 use DateTimeZone;
 use DateTime;
+use App\Http\Controllers\System\SystemController;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
 class Registrar implements RegistrarContract {
@@ -37,7 +38,7 @@ class Registrar implements RegistrarContract {
 		return Validator::make($data, [
 			'nif' => 'required|regex:/^[0-9]{8}[A-Z]$/',
 			'name' => 'required|min:3|max:50|regex:/^[A-Za-záéíóúàèìòùÀÈÌÒÙÁÉÍÓÚ]+$/',
-			'surname' => 'required|min:3|max:255|regex:/^[A-Za-záéíóúàèìòùÀÈÌÒÙÁÉÍÓÚ]+$/',
+			'surname' => 'required|min:3|max:255|regex:/^[A-Za-záéíóúàèìòùÀÈÌÒÙÁÉÍÓÚ]+\s[A-Za-záéíóúàèìòùÀÈÌÒÙÁÉÍÓÚ]*$/',
 			'dia' => 'required|integer|min:01|max:'.$dia.'',
 			'mes' => 'required|integer|min:01|max:12',
 			'ano' => 'required|integer|min:1900|max:'.$edadMinima.'',
@@ -78,6 +79,7 @@ class Registrar implements RegistrarContract {
 
 		$user-> fecha_nacimiento = $fecha;
 		$user-> save();
+		SystemController::enviarEmailWelcome($user->id);
 		return $user;
 	}
 
