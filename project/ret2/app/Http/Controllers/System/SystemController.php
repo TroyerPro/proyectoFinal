@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Confpujaauto;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Mail;
 
 class SystemController extends Controller {
 
@@ -25,7 +26,7 @@ class SystemController extends Controller {
     $fechaFin = $subasta->fecha_final;
     $fechaActual = Carbon::now();
 
-    if($fechaFin<$fechaActual) {
+    if($fechaFin<$fechaActual && $subasta->estado_subasta) {
 
       $subasta->estado_subasta=false;
       $subasta->save();
@@ -33,10 +34,20 @@ class SystemController extends Controller {
       if($subasta->precio_actual > 0) {
         SystemController::crearChat($subastaId);
         SystemController::crearFactura($subastaId);
+        SystemController::enviarEmail($subastaId);
       }
     }
 
 	}
+  public static function enviarEmail($subastaId) {
+    $subasta = Subasta::find($subastaId);
+    $usuario = User::find($subasta->id_user_vendedor);
+    $data = array('nombreSubasta' =>$subasta->nombre , 'nombre' =>$usuario->name, 'email' => $usuario->email ) ;
+    Mail::send('emails.welcome',$data , function($message) use ($data){
+      $message->to($data['email'], 'The New Topic')->subject('Test Email');
+  });
+
+}
   public static function crearFactura($subastaId)
   {
 
