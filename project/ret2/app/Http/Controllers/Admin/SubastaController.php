@@ -214,8 +214,8 @@ class SubastaController extends UserController {
        Cerrada
        @endif')
        ->add_column('actions','@if($estado_subasta)
-       <a href="{{{ URL::to(\'search/subasta/view/\' . $id . \'/\' ) }}}" class="btn btn-sm btn-info iframe"><span class="glyphicon glyphicon-search"></span> {{ trans("Resumen") }}</a>
-       <a href="{{{ URL::to(\'admin/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
+       <a href="{{{ URL::to(\'search/subasta/view/\' . $id . \'/\' ) }}}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span> {{ trans("Resumen") }}</a>
+       <a href="{{{ URL::to(\'user/subasta/\' . $id . \'/cerrar\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("Cerrar Subasta") }}</a>
        <input type="hidden" name="row" value="{{$id}}" id="row">
        @endif')
        ->remove_column('estado_subasta')

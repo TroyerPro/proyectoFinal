@@ -159,11 +159,7 @@ class SubastaController extends UserController {
     SystemController::crearChat($id);
     SystemController::crearFactura($id);
 
-    dd($subasta);
-    die();
-
   }
-
 
   public function getGanadas()
   {

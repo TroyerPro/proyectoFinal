@@ -36,30 +36,27 @@ class SystemController extends Controller {
         SystemController::crearFactura($subastaId);
         SystemController::enviarEmailSubasta($subastaId);
       }
-    }
-
 	}
+
   public static function enviarEmailSubasta($subastaId) {
     $subasta = Subasta::find($subastaId);
     $usuario = User::find($subasta->id_user_vendedor);
     $data = array('nombreSubasta' =>$subasta->nombre , 'nombre' =>$usuario->name, 'email' => $usuario->email ) ;
-    Mail::send('emails.welcome',$data , function($message) use ($data){
+    Mail::send('emails.subastaAca',$data , function($message) use ($data){
       $message->to($data['email'], 'The New Topic')->subject('Test Email');
-  });
-
-}
+    });
+  }
 
   public static function enviarEmailUser($userId) {
     $usuario = User::find($userId);
     $data = array('nombre' =>$usuario->name, 'email' => $usuario->email ) ;
     Mail::send('emails.baja',$data , function($message) use ($data){
       $message->to($data['email'], 'The New Topic')->subject('Test Email');
-  });
+    });
+  }
 
-}
   public static function crearFactura($subastaId)
   {
-
       $fechaActual = Carbon::now();
       $subasta = Subasta::find($subastaId);
       if(is_null($subasta->id_factura)){
@@ -70,13 +67,11 @@ class SystemController extends Controller {
         $subasta->id_factura = $factura->id;
         $subasta->save();
       }
-
   }
 
   public static function crearChat($subastaId)
   {
     $chat = Chatusuarios::select('Chatusuarios.*')->where('Chatusuarios.id_subasta',$subastaId)->count();
-
     if($chat<1) {
       $subasta = Subasta::find($subastaId);
       $comprador = $subasta->getpujaGanadora()->id_usuario;
