@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
     <div class="page-header">
-        <h2>Cerrar Subasta</h2>
+        <h2>Factura</h2>
     </div>
 </div>
 
@@ -10,11 +10,11 @@
     <div class="row">
       {{--<div class="col-md-8 col-md-offset-2">--}}
         {{--<div class="panel panel-default">--}}
-          {{--<div class="panel-heading">Cerrar Subasta</div>--}}
+          {{--<div class="panel-heading">Factura</div>--}}
           {{--<div class="panel-body">--}}
           <div class="col-xs-12 main">
             @yield('main')
-            <p>Factura de la Subasta : </p>
+            <p>Generando factura de la siguiente Subasta: </p>
             <form class="form-horizontal" enctype="multipart/form-data"
             	method="post"
             	action="{{ URL::to('user/subasta/'.$subasta->id.'/cerrar') }}"

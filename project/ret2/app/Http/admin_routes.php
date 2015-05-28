@@ -17,19 +17,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('language/data', 'Admin\LanguageController@data');
     Route::get('language/reorder', 'Admin\LanguageController@getReorder');
 
-    #News category
-    Route::get('newscategory', 'Admin\ArticleCategoriesController@index');
-    Route::get('newscategory/create', 'Admin\ArticleCategoriesController@getCreate');
-    Route::post('newscategory/create', 'Admin\ArticleCategoriesController@postCreate');
-    Route::get('newscategory/{id}/edit', 'Admin\ArticleCategoriesController@getEdit');
-    Route::post('newscategory/{id}/edit', 'Admin\ArticleCategoriesController@postEdit');
-    Route::get('newscategory/{id}/delete', 'Admin\ArticleCategoriesController@getDelete');
-    Route::post('newscategory/{id}/delete', 'Admin\ArticleCategoriesController@postDelete');
-    Route::get('newscategory/data', 'Admin\ArticleCategoriesController@data');
-    Route::get('newscategory/reorder', 'Admin\ArticleCategoriesController@getReorder');
-
-
-
+    #Categories
+    Route::get('newscategory', 'Admin\CategoriasController@index');
+    Route::get('newscategory/create', 'Admin\CategoriasController@getCreate');
+    Route::post('newscategory/create', 'Admin\CategoriasController@postCreate');
+    Route::get('newscategory/{id}/edit', 'Admin\CategoriasController@getEdit');
+    Route::post('newscategory/{id}/edit', 'Admin\CategoriasController@postEdit');
+    Route::get('newscategory/{id}/delete', 'Admin\CategoriasController@getDelete');
+    Route::post('newscategory/{id}/delete', 'Admin\CategoriasController@postDelete');
+    Route::get('newscategory/data', 'Admin\CategoriasController@data');
+    Route::get('newscategory/reorder', 'Admin\CategoriasController@getReorder');
 
     #Users
     Route::get('users/', 'Admin\UserController@index');

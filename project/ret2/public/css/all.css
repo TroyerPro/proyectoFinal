@@ -12350,3 +12350,11 @@ li > ul {
      padding-top:15px;
      padding-left:25%;
    }
+
+   .logo {
+     line-height: inherit;
+     display: block;
+     margin-top: -20px;
+     width: 120px;
+     max-height: 75px;
+   }

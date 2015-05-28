@@ -8,7 +8,7 @@
 
 @section('content')
   <div class="row">
-      <h1 class="tt_uppercase m_bottom_20 color_dark heading1 animate_ftr">Revolution Trade</h1>
+      <h1 class="tt_uppercase m_bottom_20 color_dark heading1 animate_ftr">Revolution of Trade</h1>
   					<h2 class="tt_uppercase m_bottom_20 color_dark heading1 animate_ftr">Subastas activas</h2>
         <!--filter navigation of products-->
   					<ul class="horizontal_list clearfix tt_uppercase isotope_menu f_size_ex_large">

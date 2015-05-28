@@ -4,13 +4,13 @@ use App\ArticleCategory;
 use App\Language;
 use App\Categoria;
 use App\Http\Controllers\AdminController;
-use App\Http\Requests\Admin\NewsCategoryRequest;
+use App\Http\Requests\Admin\categoriasRequest;
 use App\Http\Requests\Admin\DeleteRequest;
 use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
 
-class ArticleCategoriesController extends AdminController {
+class CategoriasController extends AdminController {
 
 	/**
 	 * Display a listing of the resource.
@@ -43,10 +43,10 @@ class ArticleCategoriesController extends AdminController {
      */
     public function postCreate()
     {
-        $newscategory = new Categoria();
-        $newscategory -> nombre = $_POST['nombre'];
-        $newscategory -> descripcion = $_POST['descripcion'];
-        $newscategory -> save();
+        $categorias = new Categoria();
+        $categorias -> nombre = $_POST['nombre'];
+        $categorias -> descripcion = $_POST['descripcion'];
+        $categorias -> save();
     }
     /**
      * Show the form for editing the specified resource.
@@ -56,9 +56,9 @@ class ArticleCategoriesController extends AdminController {
      */
     public function getEdit($id)
     {
-        $newscategory = Categoria::find($id);
+        $categorias = Categoria::find($id);
 
-        return view('admin.newscategory.create_edit', compact('newscategory'));
+        return view('admin.newscategory.create_edit', compact('categorias'));
     }
 
     /**
@@ -67,12 +67,12 @@ class ArticleCategoriesController extends AdminController {
      * @param  int  $id
      * @return Response
      */
-    public function postEdit(NewsCategoryRequest $request, $id)
+    public function postEdit(categoriasRequest $request, $id)
     {
-        $newscategory = Categoria::find($id);
-				$newscategory -> nombre = $_POST['nombre'];
-        $newscategory -> descripcion = $_POST['descripcion'];
-        $newscategory -> save();
+        $categorias = Categoria::find($id);
+				$categorias -> nombre = $_POST['nombre'];
+        $categorias -> descripcion = $_POST['descripcion'];
+        $categorias -> save();
     }
 
     /**
@@ -84,9 +84,9 @@ class ArticleCategoriesController extends AdminController {
 
     public function getDelete($id)
     {
-        $newscategory = Categoria::find($id);
+        $categorias = Categoria::find($id);
         // Show the page
-        return view('admin.newscategory.delete', compact('newscategory'));
+        return view('admin.newscategory.delete', compact('categorias'));
     }
 
     /**
@@ -97,8 +97,8 @@ class ArticleCategoriesController extends AdminController {
      */
     public function postDelete(DeleteRequest $request,$id)
     {
-        $newscategory = Categoria::find($id);
-        $newscategory->delete();
+        $categorias = Categoria::find($id);
+        $categorias->delete();
     }
 
     /**
