@@ -13,14 +13,14 @@ return [
 	|
 	*/
 
-	"password" => "The password must be at least six characters long and it must match the confirmation field.",
+	"password" => "Las contraseñas tienen que ser mínimo de seis caracteres y tienen que coincidir con el campo de confirmación.",
 
-	"user" => "We couldn't find any user with that E-mail.",
+	"user" => "No hemos encontrado ningún usuario con ese correo electrónico.",
 
-	"token" => "The code to restore your password is incorrect.",
+	"token" => "El código para restablecer la contraseña es incorrecto.",
 
-	"sent" => "We have sent an e-mail with a reminder of your password.",
+	"sent" => "Se ha enviado el recordatorio de su contraseña.",
 
-	"reset" => "Your password has been reset.",
+	"reset" => "Su contraseña se ha restablecido.",
 
 ];
