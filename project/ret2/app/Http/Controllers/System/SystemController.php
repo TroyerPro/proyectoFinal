@@ -36,7 +36,8 @@ class SystemController extends Controller {
         SystemController::crearFactura($subastaId);
         SystemController::enviarEmailSubasta($subastaId);
       }
-	}
+    }
+  }
 
   public static function enviarEmailSubasta($subastaId) {
     $subasta = Subasta::find($subastaId);
