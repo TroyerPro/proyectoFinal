@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
     <div class="row">
-
+      @include('errors.list')
           <div class="col-xs-12 main" style="min-height:300px;">
             @yield('main')
 						<div class="col-xs-6 form-group">

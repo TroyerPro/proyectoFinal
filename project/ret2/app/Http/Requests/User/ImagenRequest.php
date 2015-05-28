@@ -12,6 +12,7 @@ class ImagenRequest extends FormRequest {
 	public function rules()
 	{
 		return [
+			'image' => 'image',
 		];
 	}
 
