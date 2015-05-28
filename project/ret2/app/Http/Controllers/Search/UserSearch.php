@@ -22,7 +22,7 @@ class UserSearch extends Controller {
 		}else{
 			$user2 = $user;
 		}
-		SystemController::checkUsuario(6);
+
 		return view('search.user', compact('user','user2'));
 	}
 
