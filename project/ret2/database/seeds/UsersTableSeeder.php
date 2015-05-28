@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder {
 			'ratingvendedor' => 5,
 			'ratingcomprador' => 4,
 			'empresa_id'=>1,
-			'fecha_nacimiento'=>1989-09-12,
+			'fecha_nacimiento'=>date('1989-09-12'),
 			'descripcion'=>'Rubio de ojos azules',
 		]);
 
@@ -58,7 +58,7 @@ class UsersTableSeeder extends Seeder {
 			'ratingvendedor' => 3.5,
 			'ratingcomprador' => 5,
 			'empresa_id'=>1,
-			'fecha_nacimiento'=>1990-02-20,
+			'fecha_nacimiento'=>date('1990-02-20'),
 			'descripcion'=>'Hago las cosas porque puedo',
 		]);
 
@@ -74,7 +74,7 @@ class UsersTableSeeder extends Seeder {
 			'usable' => true,
 			'ratingcomprador' => 1,
 			'empresa_id'=>1,
-			'fecha_nacimiento'=>1991-05-17,
+			'fecha_nacimiento'=>date('1991-05-17'),
 			'descripcion'=>'En el gymnasio me llaman espantapajaros',
 		]);
 
@@ -89,7 +89,7 @@ class UsersTableSeeder extends Seeder {
 			'password' => bcrypt('122122'),
 			'usable' => true,
 			'empresa_id'=>1,
-			'fecha_nacimiento'=>1991-05-04,
+			'fecha_nacimiento'=>date('1991-05-04'),
 			'descripcion'=>'Le cobro mucho dinero al Jairo por llevarle a casa',
 		]);
 

@@ -34,16 +34,25 @@ class SystemController extends Controller {
       if($subasta->precio_actual > 0) {
         SystemController::crearChat($subastaId);
         SystemController::crearFactura($subastaId);
-        SystemController::enviarEmail($subastaId);
+        SystemController::enviarEmailSubasta($subastaId);
       }
     }
 
 	}
-  public static function enviarEmail($subastaId) {
+  public static function enviarEmailSubasta($subastaId) {
     $subasta = Subasta::find($subastaId);
     $usuario = User::find($subasta->id_user_vendedor);
     $data = array('nombreSubasta' =>$subasta->nombre , 'nombre' =>$usuario->name, 'email' => $usuario->email ) ;
     Mail::send('emails.welcome',$data , function($message) use ($data){
+      $message->to($data['email'], 'The New Topic')->subject('Test Email');
+  });
+
+}
+
+  public static function enviarEmailUser($userId) {
+    $usuario = User::find($userId);
+    $data = array('nombre' =>$usuario->name, 'email' => $usuario->email ) ;
+    Mail::send('emails.baja',$data , function($message) use ($data){
       $message->to($data['email'], 'The New Topic')->subject('Test Email');
   });
 
@@ -135,6 +144,7 @@ class SystemController extends Controller {
     if(($inactivoSub && $inactivoPuj) || $inactivo){
       $usuario->usable = false;
       $usuario->save();
+      SystemController::enviarEmailUser($usuario->id);
     }
 
 	}

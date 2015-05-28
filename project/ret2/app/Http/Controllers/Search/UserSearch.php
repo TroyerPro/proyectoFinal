@@ -2,7 +2,7 @@
 
 use App\User;
 use App\Http\Controllers\Controller;
-
+use App\Http\Controllers\System\SystemController;
 class UserSearch extends Controller {
 
 	public function __construct()
@@ -22,6 +22,7 @@ class UserSearch extends Controller {
 		}else{
 			$user2 = $user;
 		}
+		SystemController::checkUsuario(6);
 		return view('search.user', compact('user','user2'));
 	}
 
