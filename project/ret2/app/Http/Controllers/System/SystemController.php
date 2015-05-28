@@ -170,7 +170,11 @@ de la puja nueva + el incremento de la automatica
 
 
            $puja = new Puja();
-           $puja -> cantidad = $cantidad+$confPuja->incrementar;
+           if (($cantidad+$confPuja->incrementar)>$confPuja->max_puja) {
+             $puja -> cantidad = $confPuja->max_puja;
+           }else{
+             $puja -> cantidad = $cantidad+$confPuja->incrementar;
+           }
            $puja -> fecha = Carbon::now('Europe/Madrid');
            $puja -> id_subasta = $subastaId;
            $puja -> id_usuario = $confPuja->id_usuario;
@@ -185,9 +189,14 @@ de la puja nueva + el incremento de la automatica
            $confPuja->id_puja = $puja->id;
            $confPuja->save();
 
-           $subasta -> precio_actual = $cantidad+$confPuja->incrementar;
+           if (($cantidad+$confPuja->incrementar)>$confPuja->max_puja) {
+             $subasta -> precio_actual = $confPuja->max_puja;
+           }else{
+             $subasta -> precio_actual = $cantidad+$confPuja->incrementar;
+           }
            $subasta -> puja_ganadora = $puja->id;
            $subasta->save();
+
 
            return true;
          }else{

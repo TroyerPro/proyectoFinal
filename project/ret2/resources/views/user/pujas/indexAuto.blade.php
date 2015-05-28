@@ -23,6 +23,7 @@
         <tr>
             <th>{{{ trans("Cantidad Máxima") }}}</th>
             <th>{{{ trans("Cantidad Actual") }}}</th>
+            <th>{{{ trans("Producto") }}}</th>
             <th>{{{ trans("Fecha Creación") }}}</th>
             <th>{{{ trans("Estado puja") }}}</th>
             <th>{{{ trans("Opciones") }}}</th>

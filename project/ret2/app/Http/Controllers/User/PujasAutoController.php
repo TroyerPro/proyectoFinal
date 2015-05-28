@@ -80,9 +80,11 @@ class PujasAutoController extends UserController {
     public function data()
     {
 
-      $puja = Puja::select('subastas.id','pujas.cantidad','pujas.fecha','subastas.nombre', 'subastas.precio_actual', 'subastas.estado_subasta')
-      ->where('pujas.id_usuario', Auth::id())
-      ->join('subastas', 'subastas.id', '=', 'pujas.id_subasta');
+      $puja=Puja::select('subastas.id','confpujaautos.max_puja','pujas.cantidad','subastas.precio_actual','subastas.nombre','confpujaautos.created_at','subastas.estado_subasta')
+      ->where('pujas.id_usuario',Auth::id())
+      ->join('confpujaautos','confpujaautos.id_puja','=','pujas.id')
+      ->join('subastas','subastas.id','=','pujas.id_subasta')
+      ->orderBy('confpujaautos.created_at','DESC');
 
       return Datatables::of($puja)
       ->add_column('pujastatus','
@@ -103,7 +105,7 @@ class PujasAutoController extends UserController {
           ->add_column('actions','<a href="{{{ URL::to(\'search/subasta/view/\'.$id ) }}}" class="btn btn-sm btn-default"><span class="glyphicon"></span> {{ trans("Ir a la subasta") }}</a>
                   ')
           ->remove_column('id')
-          ->remove_column('precio_actual')
+          ->remove_column('cantidad')
           ->remove_column('estado_subasta')
           ->make();
     }
