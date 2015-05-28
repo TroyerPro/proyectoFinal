@@ -48,12 +48,13 @@ class SystemController extends Controller {
     $usuarioVend = User::find($subasta->id_user_vendedor);
     $pujaGanadora=Puja::find($subasta->puja_ganadora);
     $usuarioComp=User::find($pujaGanadora->id_usuario);
-    $data = array('nombreSubasta' =>$subasta->nombre , 'precioSubasta'=>$subasta->precio_actual,'nombreVendedor' =>$usuarioVend->name, 'email' => $usuarioVend->email, 'nombreComprador'=>$usuarioComp->nombre ) ;
+
+    $data = array('nombreSubasta' =>$subasta->nombre , 'precioSubasta'=>$subasta->precio_actual,'nombreVendedor' =>$usuarioVend->name, 'emailVendedor' => $usuarioVend->email,'emailComprador' => $usuarioComp->email, 'nombreComprador'=>$usuarioComp->name ) ;
     Mail::send('emails.vendedor',$data , function($message) use ($data){
-      $message->to($data['email'], 'The New Topic')->subject('Subasta Caducada');
+      $message->to($data['emailVendedor'], 'The New Topic')->subject('Subasta Caducada');
     });
     Mail::send('emails.comprador',$data , function($message) use ($data){
-      $message->to($data['email'], 'The New Topic')->subject('Subasta Caducada');
+      $message->to($data['emailComprador'], 'The New Topic')->subject('Subasta Caducada');
     });
   }
 
