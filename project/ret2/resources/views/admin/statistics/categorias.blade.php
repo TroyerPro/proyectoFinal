@@ -6,6 +6,55 @@
 
 {{-- Content --}}
 @section('main')
+
+@section('scripts')
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $.ajaxSetup(
+    {
+    	headers: {
+    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    	}
+    });
+        $("#filtro").change(function(){
+          var titulo = $("#filtro option:selected").text();
+          var filtro=$("#filtro").val();
+          $.ajax({
+              type: "POST",
+              dataType: "json",
+              url: "{{ URL::to('admin/estadisticas/categorias') }}",
+              data:{
+                "filtro":filtro
+              },
+            }).done(function(data) {
+              var dataPoints = [];
+              for(key in data){
+                dataPoints.push({label: key, y: data[key]});
+              }
+              var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "theme2",//theme1
+                axisX:{
+                  title: "Categorias",
+                },
+                title:{
+                  text: titulo
+                },
+                animationEnabled: true,   // change to true
+                data: [
+                {
+                  type: "column",
+                  dataPoints: dataPoints
+                }
+                ]
+              });
+              chart.render();
+            });
+          });
+    });
+    </script>
+@endsection
+
+
 <div class="row">
     <div class="page-header">
         <h2>Estadísticas</h2>
@@ -53,52 +102,6 @@
                 $("#chart").html(data);
               }
             })
-          });
-    });
-    </script>
-@endsection
-@section('scripts')
-    <script type="text/javascript">
-    $(document).ready(function(){
-      $.ajaxSetup(
-    {
-    	headers: {
-    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    	}
-    });
-        $("#filtro").change(function(){
-          var titulo = $("#filtro option:selected").text();
-          var filtro=$("#filtro").val();
-            $.ajax({
-              type: "POST",
-              dataType: "json",
-              url: "{{ URL::to('admin/estadisticas/categorias') }}",
-              data:{
-                "filtro":filtro
-              },
-            }).done(function(data) {
-              var dataPoints = [];
-              for(key in data){
-                dataPoints.push({label: key, y: data[key]});
-              }
-              var chart = new CanvasJS.Chart("chartContainer", {
-                theme: "theme2",//theme1
-                axisX:{
-                  title: "Categorias",
-                },
-                title:{
-                  text: titulo
-                },
-                animationEnabled: true,   // change to true
-                data: [
-                {
-                  type: "column",
-                  dataPoints: dataPoints
-                }
-                ]
-              });
-              chart.render();
-            });
           });
     });
     </script>
