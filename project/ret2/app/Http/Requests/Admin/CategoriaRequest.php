@@ -12,8 +12,8 @@ class CategoriaRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-      'nomcat' => 'required|regex:/^[A-z]+$/',
-      'desc' => 'required|regex:/^[A-z]+$/',
+      'nombre' => 'required|alpha',
+      'descripcion' => 'required|alpha',
 		];
 	}
 

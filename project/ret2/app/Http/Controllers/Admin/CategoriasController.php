@@ -4,7 +4,7 @@ use App\ArticleCategory;
 use App\Language;
 use App\Categoria;
 use App\Http\Controllers\AdminController;
-use App\Http\Requests\Admin\categoriasRequest;
+use App\Http\Requests\Admin\CategoriaRequest;
 use App\Http\Requests\Admin\DeleteRequest;
 use App\Http\Requests\Admin\ReorderRequest;
 use Illuminate\Support\Facades\Auth;
@@ -67,11 +67,11 @@ class CategoriasController extends AdminController {
      * @param  int  $id
      * @return Response
      */
-    public function postEdit(categoriasRequest $request, $id)
+    public function postEdit(CategoriaRequest $request, $id)
     {
         $categorias = Categoria::find($id);
-				$categorias -> nombre = $_POST['nombre'];
-        $categorias -> descripcion = $_POST['descripcion'];
+				$categorias -> nombre = $request->nombre;
+        $categorias -> descripcion = $request->descripcion;
         $categorias -> save();
     }
 

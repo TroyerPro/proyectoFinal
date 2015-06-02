@@ -39,8 +39,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('users/data', 'Admin\UserController@data');
 
     #Cosas añadidas
-    Route::get('crear/categoria', 'CreateCategory@show');
-    Route::post('crear/categoria', 'CreateCategory@create');
+    Route::get('crear/categoria', 'CategoriasController@show');
+    Route::post('crear/categoria', 'CategoriasController@create');
     Route::get('site/config', 'Admin\SiteConfig@show'); //Hecho
     Route::post('site/config', 'Admin\SiteConfig@postEdit'); //Hecho
     Route::get('estadisticas/users','ViewStats@statsUser');
@@ -61,5 +61,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('factura/{id}','Admin\SubastaController@factura');
     Route::post('factura/xml','Admin\FacturaController@generateXml');
     Route::post('factura/pdf','Admin\FacturaController@generatePdf');
-  
+
 });

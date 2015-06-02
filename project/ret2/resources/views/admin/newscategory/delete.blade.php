@@ -8,12 +8,12 @@
 <!-- ./ tabs -->
 {{-- Delete Post Form --}}
 <form id="deleteForm" class="form-horizontal" method="post"
-	action="@if (isset($newscategory)){{ URL::to('admin/newscategory/' . $newscategory->id . '/delete') }}@endif"
+	action="@if (isset($categorias)){{ URL::to('admin/newscategory/' . $categorias->id . '/delete') }}@endif"
 	autocomplete="off">
 
 	<!-- CSRF Token -->
 	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" /> <input
-		type="hidden" name="id" value="{{ $newscategory->id }}" />
+		type="hidden" name="id" value="{{ $categorias->id }}" />
 	<!-- <input type="hidden" name="_method" value="DELETE" /> -->
 	<!-- ./ csrf token -->
 

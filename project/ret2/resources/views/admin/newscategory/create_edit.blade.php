@@ -8,7 +8,7 @@
 {{-- Edit Blog Form --}}
 <form class="form-horizontal" enctype="multipart/form-data"
 	method="post"
-	action="@if(isset($newscategory)){{ URL::to('admin/newscategory/'.$newscategory->id.'/edit') }}
+	action="@if(isset($categorias)){{ URL::to('admin/newscategory/'.$categorias->id.'/edit') }}
 	        @else{{ URL::to('admin/newscategory/create') }}@endif"
 	autocomplete="off">
 	<!-- CSRF Token -->
@@ -24,14 +24,14 @@
 						<label class="control-label" for="title"> {{
 							trans("Nombre") }}</label> <input
 							class="form-control" type="text" name="nombre" id="nombre"
-							value="{{{ Input::old('nombre', isset($newscategory) ? $newscategory->nombre : null) }}}" />
+							value="{{{ Input::old('nombre', isset($categorias) ? $categorias->nombre : null) }}}" />
 						{!!$errors->first('nombre', '<span class="help-block">:message LOLFAKU2</span>')!!}
 					</div>
 					<div class="col-md-12">
 						<label class="control-label" for="title"> {{
 							trans("Descripcion") }}</label> <textarea
 							class="form-control" type="text" name="descripcion" id="descripcion"
-							value="{{{ Input::old('descripcion', isset($newscategory) ? $newscategory->descripcion : null) }}}" >@if(isset($newscategory)){{$newscategory->descripcion}} @endif </textarea>
+							value="{{{ Input::old('descripcion', isset($categorias) ? $categorias->descripcion : null) }}}" >@if(isset($categorias)){{$categorias->descripcion}} @endif </textarea>
 						{!!$errors->first('descripcion', '<span class="help-block">:message </span>')!!}
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 				</button>
 				<button type="submit" class="btn btn-sm btn-success">
 					<span class="glyphicon glyphicon-ok-circle"></span>
-					@if (isset($newscategory))
+					@if (isset($categorias))
 						{{ trans("admin/modal.edit") }}
 					@else
 						{{trans("admin/modal.create") }}
